@@ -1,0 +1,177 @@
+%the beginning set for the text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,12pt,oneside]{book}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{booktabs}
+\usepackage[dvipdfm,colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%defining the bra and ket
+\newcommand{\bra}[1]{\langle #1| }
+\newcommand{\ket}[1]{|#1 \rangle }
+
+%here the definition used in text
+\newcommand{\brat}[1]{$\langle #1|$ }
+\newcommand{\kett}[1]{$|#1 \rangle $}
+
+%here define the math bold font for the vector operator:
+\newcommand{\hei}[1]{\mathbf{\hat{#1}} }
+\newcommand{\heit}[1]{$\mathbf{\hat{#1}}$}
+\newcommand{\heiti}[1]{\mathbf{#1} }
+
+%% define the mathbf type of characters
+\newcommand{\vect}[1]{$\mathbf{#1}$}
+
+%% define the theorem enviroment for the whole text
+\theoremstyle{definition}\newtheorem{law}{Law}
+\theoremstyle{plain}\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+\theoremstyle{axiom}\newtheorem{axiom}{Axiom}
+
+%% to assiciate the numbering with the chapter
+\numberwithin{law}{chapter}
+\numberwithin{theorem}{chapter}
+\numberwithin{remark}{chapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{Fenglai Liu}
+\title{Working Notes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% define the head and the foot for each page
+% such definition are taken from somewhere else
+%
+\pagestyle{fancy}
+%with this we ensure that the chapter and section
+%headings are in lowercase.
+\renewcommand{\chaptermark}[1]{%
+\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{%
+\markright{\thesection\ #1}}
+\fancyhf{} % delete current header and footer
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{0.5pt} % space for the rule
+\fancypagestyle{plain}{%
+\fancyhead{} % get rid of headers on plain pages
+\renewcommand{\headrulewidth}{0pt} % and the line
+}
+\fancyfoot[L]{Working Notes for Computational Chemistry}
+\fancyfoot[R]{Author: Fenglai Liu}
+\renewcommand{\footrulewidth}{0.5pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+\bibliographystyle{unsrt}
+\graphicspath{{figure/}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%so here we want to insert the main content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%            Fundamental Theory Volume              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Theory in Quantum Mechanics}
+%\include{theory/physics/introduction}
+%\include{theory/physics/basic}
+%\include{theory/physics/general}
+%\include{theory/physics/Hilbert}
+%\include{theory/physics/operator}
+%\include{theory/physics/representation}
+%\include{theory/physics/coordinate_momentum}
+%\include{theory/physics/operatorMore}
+%\include{theory/physics/schrodinger}
+%\include{theory/physics/identical}
+%\include{theory/physics/symmetry}
+%\include{theory/physics/angular}
+%\include{theory/physics/spin}
+%\include{theory/physics/perturbation}
+%\include{theory/physics/time_dependent}
+
+\part{Fundamental Theory in Quantum Chemistry}
+%\include{theory/chemistry/introduction}
+%\include{theory/chemistry/spin_in_chemistry}
+%\include{theory/chemistry/groups}
+\include{theory/chemistry/hf}
+%\include{theory/chemistry/density_matrices}
+%\include{theory/chemistry/basis}
+%\include{theory/chemistry/ci}
+%\include{theory/chemistry/cis}
+%\include{theory/chemistry/vibration}
+%\include{theory/chemistry/perturbation}
+%\include{theory/chemistry/dft}
+%\include{theory/chemistry/functionals}
+%\include{theory/chemistry/second}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%             Advanced Theory Volume                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\part{Advanced Theory in Quantum Chemistry}
+%\include{theory/chemistry/advfunctional}
+%\include{theory/chemistry/vdw}
+%\include{theory/chemistry/tddft}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%              Algorithm Volume                     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Algorithms in Building Computational Chemistry Software}
+\include{algorithm/technic/basis}
+\include{algorithm/technic/integral/int}
+%\include{algorithm/technic/coulomb}
+%\include{algorithm/technic/general_derivatives}
+%\include{algorithm/technic/hf_derivatives}
+%\include{algorithm/technic/ci_derivatives}
+%\include{algorithm/technic/NumericalQuadrature}
+%\include{algorithm/technic/tdgrad}
+%\include{algorithm/technic/opt}
+
+\part{Mathematical Tools}
+%\include{algorithm/math/delta}
+%\include{algorithm/math/functional}
+%\include{algorithm/math/hermite}
+\include{algorithm/math/numerical_analysis}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%             Application Volume                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\part{Appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{questions}
+
+
+\bibliography{reference/reference}
+
+\end{document}
+
+
+

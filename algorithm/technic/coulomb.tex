@@ -1,0 +1,384 @@
+%
+% set up Oct 10th, 2013
+% revision requirement:
+% 1  this file finally will be the electrondynamics.tex
+% 2  add more discussion to the Gauss's Law, potential etc.
+% 3  add more discussion about electric field 
+% 4  for the part solving the Laplacian equation in spherical system,
+%    we may finally separate it into the math part and add more details
+%
+\chapter{Coulomb Integrals}
+%
+%
+In the two electron integrals, one of the term is the Coulomb integral which
+is expressed as:
+\begin{align}
+\label{coulomb_int_eq:1}
+ I &= \int dr \int dr^{'} \frac{\rho(r)\rho(r^{'})}{|r-r^{'}|} \nonumber \\
+   &= \int dr \int dr^{'} P_{\mu\nu}P_{\lambda\eta}
+   \frac{\phi_{\mu}(r)\phi_{\nu}(r)\phi_{\lambda}(r^{'})\phi_{\eta}(r^{'})}{|r-r^{'}|}
+\end{align}
+This expression is formed based on normal four center ERI integrals. In this
+chapter, we will try to talk about how to simplify the \ref{coulomb_int_eq:1}
+and make the Coulomb integral calculation more faster\footnote{Here we omit
+the factor of $\dfrac{1}{2}$. $\dfrac{1}{2}$ is related to multiple change case, see
+the Page of 46 in book of \cite{jackson_classic_electrodynamics}.}.
+
+\section{Origin of Coulomb Interactions}
+%
+%
+%
+The Coulomb interactions in quantum chemistry is actually not a ``quantum''
+phenomenon. It's more like to be a classic electrostatic potential term living
+in the quantum world. In classic electrodynamics
+\cite{jackson_classic_electrodynamics}, the electric potential for a point
+charge could be as\footnote{In this chapter we omit a lot of background concepts
+such as Coulomb force, electric field etc. They could be got from the above
+referenced book about classic electrodynamics}:
+\begin{equation}
+ v(r) = \frac{1}{4\pi\varepsilon_{o}}\frac{q}{r}
+\end{equation}
+$q$ is the charge, and $r$ is the distance between the charge and a given point.
+This is also called Coulomb potential.
+
+The energy between this charge and a testing charge could be expressed as:
+\begin{equation}
+ E(r) = v(r)q^{'}
+\end{equation}
+this is the simplest case.
+
+In quantum chemistry, if we express the $q$ and $q^{'}$ in terms of the electron
+density, and replace the direct form with the integrand form;
+then it's just the form of \ref{coulomb_int_eq:1}:
+\begin{equation}
+ E = \int dr \int dr^{'} \frac{\rho(r)\rho(r^{'})}{|r-r^{'}|}
+\end{equation}
+Such connection also indicates that we can draw some similarity between the
+Coulomb interaction here with the simplest point charge case in classic
+electrodynamics.
+
+\section{Poisson Equation}
+\label{laplace_spherical_electrondynamics:sec}
+%
+%
+%
+One of the important property for the classic electric field, is that for static
+electric field(electrostatic field), the electric field is satisfying Gauss's Law:
+\begin{equation}
+ \nabla\bm{E} = 4\pi \rho
+\end{equation}
+$\bm{E}$ here denotes the static electric field. On the other hand, the electric
+field is just the gradient of the electric potential:
+\begin{equation}
+ \bm{E} = -\nabla v(r)
+\end{equation}
+therefore for the static electric field, we can have:
+\begin{equation}
+ \nabla^{2} v(r) = -4\pi \rho
+\end{equation}
+This is the Poisson equation. For the point charge case, it could be expressed as:
+\begin{equation}
+\label{coulomb_int_eq:2}
+ \nabla^{2} v(r) = 0
+\end{equation}
+Now this is the Laplace equation.
+
+\section{Solving Laplace Equation in Sphere Coordinates}
+%
+%
+%
+One of the important application for Laplace equation is to solve it in
+sphere coordinate system.
+
+In the spherical coordinate system, it has three independent variables
+which are corresponding to $x$, $y$ and $z$. Their relation is given as:
+\begin{align}
+ x &= r\sin \theta\cos \phi \nonumber \\
+ y &= r\sin \theta\sin \phi \nonumber \\
+ z &= r\cos \theta
+\end{align}
+
+On the other hand, it could be written as:
+\begin{align}
+ r &= \sqrt{x^{2} + y^{2} + z^{2}}  \nonumber \\
+ \theta &= \arccos (z/r) \nonumber \\
+ \phi   &= \arctan (y/x)
+\end{align}
+
+Based on the two expressions, we can derive the expression for $\nabla^{2}$
+in terms of $r$, $\theta$ and $\phi$:
+\begin{equation}
+ \nabla^{2} = \frac{1}{r^{2}}\frac{\partial}{\partial r}(r^{2}
+ \frac{\partial}{\partial r}) +
+\frac{1}{r^{2}\sin \theta}\frac{\partial}{\partial \theta}
+(\sin \theta \frac{\partial}{\partial \theta}) +
+\frac{1}{r^{2}\sin^{2} \theta}\frac{\partial^{2}}{\partial \phi^{2}}
+\end{equation}
+Then the \ref{coulomb_int_eq:2} becomes:
+\begin{align}
+ &\frac{2}{r}\frac{\partial v(r,\theta,\phi)}{\partial r} +
+ \frac{\partial^{2} v(r,\theta,\phi)}{\partial r^{2}} +
+\frac{1}{r^{2}\sin \theta}\frac{\partial }{\partial \theta}
+(\sin \theta \frac{\partial v(r,\theta,\phi)}{\partial \theta}) \nonumber \\
+&+ \frac{1}{r^{2}\sin^{2} \theta}\frac{\partial^{2} v(r,\theta,\phi)}{\partial \phi^{2}} = 0
+\end{align}
+
+$v(r,\theta,\phi)$ could be divided into three independent component
+functions:
+\begin{equation}
+ v(r,\theta,\phi) = \frac{R(r)}{r}P(\theta)Q(\phi)
+\end{equation}
+Then the above equation turns into:
+\begin{equation}
+ P(\theta)Q(\phi) \frac{d^{2} R(r)}{dr^{2}} +
+ \frac{R(r)Q(\phi)}{r^{2}\sin \theta}\frac{d }{d \theta}
+(\sin \theta \frac{d P(\theta)}{d \theta}) +
+\frac{R(r)P(\theta)}{r^{2}\sin^{2} \theta}\frac{d^{2} Q(\phi)}{d \phi^{2}} = 0
+\end{equation}
+
+If we multiply both side with $\dfrac{r^{2}\sin^{2} \theta}{R(r)P(\theta)Q(\phi)}$,
+then the above equation turns into:
+\begin{equation}
+\frac{r^{2}\sin^{2} \theta}{R(r)}\frac{d^{2} R(r)}{dr^{2}} +
+\frac{\sin \theta}{P(\theta)}\frac{d }{d \theta}
+(\sin \theta \frac{d P(\theta)}{d \theta}) +
+\frac{1}{Q(\phi)}\frac{d^{2} Q(\phi)}{d \phi^{2}} = 0
+\end{equation}
+
+Obviously this function could be partitioned into two independent pieces:
+\begin{align}
+ \frac{1}{Q(\phi)}\frac{d^{2} Q(\phi)}{d \phi^{2}} &= -M \nonumber \\
+\frac{r^{2}\sin^{2} \theta}{R(r)}\frac{d^{2} R(r)}{dr^{2}} +
+\frac{\sin \theta}{P(\theta)}\frac{d }{d \theta}
+(\sin \theta \frac{d P(\theta)}{d \theta}) &= M
+\end{align}
+Where $M$ is some constant since this satisfies all kind of variables
+of $r, \theta, \phi$.
+
+For the first equation, we can set $M$ to be $m^{2}$ then it goes:
+\begin{equation}
+ \frac{1}{Q(\phi)}\frac{d^{2} Q(\phi)}{d \phi^{2}} = -m^{2}
+\end{equation}
+It's solution is:
+\begin{equation}
+ Q(\phi) = e^{\pm im\phi}
+\end{equation}
+
+Therefore the second equation goes to:
+\begin{equation}
+ \frac{r^{2}\sin^{2} \theta}{R(r)}\frac{d^{2} R(r)}{dr^{2}} +
+\frac{\sin \theta}{P(\theta)}\frac{d }{d \theta}
+(\sin \theta \frac{d P(\theta)}{d \theta}) = m^{2}
+\end{equation}
+Where it could be written into:
+\begin{equation}
+ \frac{r^{2}}{R(r)}\frac{d^{2} R(r)}{dr^{2}} +
+\frac{1}{P(\theta)\sin \theta}\frac{d }{d \theta}
+(\sin \theta \frac{d P(\theta)}{d \theta}) = \frac{m^{2}}{\sin^{2} \theta}
+\end{equation}
+
+Similarly, in this equation the first part is only related to $r$,
+and the second part (we should include the $\dfrac{m^{2}}{\sin^{2} \theta}$
+into the second part) only related to $\theta$; we can separate the equation
+into two equations:
+\begin{align}
+ \frac{r^{2}}{R(r)}\frac{d^{2} R(r)}{dr^{2}} &= l(l+1) \nonumber \\
+ \frac{1}{P(\theta)\sin \theta}\frac{d }{d \theta}
+(\sin \theta \frac{d P(\theta)}{d \theta}) + \frac{-m^{2}}{\sin^{2} \theta}
+&= -l(l+1)
+\end{align}
+For the second equation, it's solution is actually based on $\cos \theta$
+rather than $\theta$; therefore if we replace the $\theta$ with
+$x = \cos \theta$, it would be:
+\begin{equation}
+\frac{d }{d x}(1-x^{2})\frac{d P}{d x} + [-\frac{m^{2}}{1-x^{2}}+l(l+1)]P = 0
+\end{equation}
+This is the associated Legendre equation. For $m=0$, this equation becomes
+the Legendre differential equation, and it's solution is the Legendre polynomials:
+\begin{equation}
+ P_{l}(x) = \frac{1}{2^{n}n!}\frac{d^{l}}{dx^{l}}(x^{2}-1)^{l}
+\end{equation}
+
+The Legendre polynomials form an orthogonal functions set, which means:
+\begin{equation}
+ \int dx P_{l}(x) P_{m}(x) = 0
+\end{equation}
+if $l \neq m$.
+
+For the radial part concerning the $R(r)$, it's able to see that it's solution
+is like the form below:
+\begin{equation}
+ R(r) = Ar^{l+1} - Br^{-l}
+\end{equation}
+$A$ and $B$ are some constant, and $l$ is not fixed yet. Since the Legendre
+polynomials is an orthogonal functions set, for $m=0$ case, the final solution for
+equation of $\nabla^{2} v(r) = 0$ could be expressed as:
+\begin{equation}\label{laplace_spherical_electrondynamics:2}
+ v = \sum_{l=0}^{\infty}(Ar^{l+1} - Br^{-l})P_{l}(\cos \theta)
+\end{equation}
+
+The above solving process is for the case that $m=0$, for $m \neq 0$, we need to
+solve this equation:
+\begin{equation}
+\frac{d }{d x}(1-x^{2})\frac{d P}{d x} + [-\frac{m^{2}}{1-x^{2}}+l(l+1)]P = 0
+\end{equation}
+This is the associated Legendre equation, and it's solution is the associated
+Legendre polynomials:
+\begin{equation}\label{}
+ P^{m}_{l}(x) = (-1)^{m}\frac{(1-x^{2})^{\frac{m}{2}}}{2^{l}l!}
+\frac{d^{l+m}}{dx^{l+m}}(x^{2}-1)^{l}
+\end{equation}
+
+By combing with the $Q(\phi) = e^{\pm im\phi}$, the angular part for the
+$v(r)$ is:
+\begin{equation}\label{}
+P(\theta)Q(\phi) = (-1)^{m}\frac{(1-\cos^{2} \theta)^{\frac{m}{2}}}{2^{l}l!}
+\frac{d^{l+m}}{d\cos^{l+m}\theta}(\cos^{2} \theta-1)^{l}e^{im\phi}
+\end{equation}
+Where $m$ could be vary from $-l$ to $+l$ for the fixed $l$.
+
+We can further normalized the $P(\theta)Q(\phi)$, which finally turns it
+into the spherical harmonic functions:
+\begin{equation}\label{}
+Y^{m}_{l}(\theta,\phi) = (-1)^{m}
+\sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}e^{im\phi} \frac{(1-\cos^{2}\theta)^{\frac{m}{2}}}{2^{l}l!}
+\frac{d^{l+m}}{d\cos^{l+m}\theta}(\cos^{2}\theta-1)^{l}
+\end{equation}
+
+Therefore, similar with the expression of 
+\ref{laplace_spherical_electrondynamics:2}, the general solution 
+for the $\nabla^{2} v = 0$ will be:
+\begin{align}\label{laplace_spherical_electrondynamics:3}
+v(r,\theta,\phi) &= \sum_{l=0}^{l=\infty}\sum_{m=-l}^{m=+l}
+(A_{lm}r^{l+1} - B_{lm}r^{-l})Y^{m}_{l}(\theta,\phi)
+\end{align}
+We note that the $A$ and $B$ could be dependent on $l$ and $m$. To get the 
+$A$ and $B$, we need more conditions of the potential of $v$ to fix
+$A$ and $B$.
+
+\section{Expansion of $\dfrac{1}{r_{12}}$}
+\label{r12_electrondynamics:sec}
+%
+%
+%
+Now let's try to expand the $\frac{1}{r_{12}}$ based on the above 
+results in \ref{laplace_spherical_electrondynamics:sec}. Firstly,
+for the $\frac{1}{r_{12}}$ the easiest case is that both of the two
+points are lying on the same axis, for example; the Z axis:
+\begin{equation}\label{}
+\frac{1}{r_{12}} = \left| \frac{1}{\sqrt{r_{1}^{2}+r_{2}^{2}-2r_{1}r_{2}}}\right|
+\end{equation}
+
+Now let's introduce an variable $\alpha$ for expansion by writing the above 
+expression into:
+\begin{align}\label{r12_electrondynamics:0}
+\frac{1}{r_{12}} &= \lim_{\alpha\rightarrow 0} \frac{1}{r_{12}^{\alpha}} \nonumber \\
+&=\lim_{\alpha\rightarrow 0}
+\left| \frac{1}{\sqrt{r_{1}^{2}+r_{2}^{2}-2\cos \alpha r_{1}r_{2}}}\right| \nonumber \\
+&= \lim_{\alpha\rightarrow 0}\frac{1}{r_{>}} \frac{1}{\sqrt{1+x^{2}-2x\cos \alpha }}
+\end{align}
+Where $x = \frac{r_{<}}{r_{>}}$, $r_{<}$ is the small value of $r_{1}$ and $r_{2}$,
+$r_{>}$ is the larger one between $r_{1}$ and $r_{2}$. $\alpha$ is actually the 
+angle between the vector $\bm{r1-r2}$ and Z axis.
+
+For expanding the bove expression, we know that it could be expressed as series 
+of Legendre polynomials:
+\begin{equation}
+ \frac{1}{\sqrt{1+x^{2}-2x\cos \alpha }} = 
+ \sum_{l}a_{l}P_{l}(\cos \alpha) 
+\end{equation}
+
+Therefore we have:
+\begin{align}
+\frac{1}{\sqrt{1+x^{2}-2x\cos \alpha }} &= 
+ \sum_{l}a_{l}P_{l}(\cos \alpha) \Rightarrow \nonumber \\
+\int_{-1}^{+1}\frac{d \cos \alpha}{1+x^{2}-2x\cos \alpha} &= 
+\sum_{l}a_{l}\sum_{l^{'}}a_{l^{'}}
+\int^{+1}_{-1} P_{l}(\cos \alpha)P_{l^{'}}(\cos \alpha) d \cos \alpha
+\end{align}
+We perform it in this way is because $P_{l}(\cos \alpha)$ has a
+complicated form, and through such treatment we can cancel
+the $P_{l}(\cos \alpha)$.
+
+The integration of above equation leads to:
+\begin{equation}\label{r12_electrondynamics:1}
+\int_{-1}^{+1}\frac{d \cos \alpha}{1+x^{2}-2x\cos \alpha} = 
+\sum_{l}\frac{2}{2l+1}a_{l}^{2} 
+\end{equation}
+by using the orthogonality of Legendre polynomials.
+
+The left hand side integration gives(remember that $x\leq 1$):
+\begin{equation}
+ \sum_{l}\frac{2}{2l+1}a_{l}^{2} = \frac{1}{x}\ln\left( \frac{1+x}{1-x}\right) 
+\end{equation}
+
+To make the Talor expansion to the right hand side, it gives:
+\begin{equation}
+ \frac{1}{x}\ln\left( \frac{1+x}{1-x}\right) = 
+ 2\sum_{l=0}^{\infty}\frac{x^{2l}}{2l+1}
+\end{equation}
+To compare this equation with the right hand side of \ref{r12_electrondynamics:1},
+it's easy to see that:
+\begin{equation}
+ a_{l} = x^{l}
+\end{equation}
+therefore the final expansion for the \ref{r12_electrondynamics:0} is:
+\begin{align}\label{r12_electrondynamics:2}
+\frac{1}{r_{12}} &= \lim_{\alpha\rightarrow 0} \frac{1}{r_{12}^{\alpha}} \nonumber \\
+&=\lim_{\alpha\rightarrow 0}
+\left| \frac{1}{\sqrt{r_{1}^{2}+r_{2}^{2}-2\cos \alpha r_{1}r_{2}}}\right| \nonumber \\
+&= \lim_{\alpha\rightarrow 0}\frac{1}{r_{>}} \frac{1}{\sqrt{1+x^{2}-2x\cos \alpha }} 
+\nonumber \\
+&= \lim_{\alpha\rightarrow 0}\frac{1}{r_{>}}\sum_{l=0}^{\infty}
+\left( \frac{r_{<}}{r_{>}}\right)^{l} P_{l}(\cos \alpha) \nonumber \\
+&= \frac{1}{r_{>}}\sum_{l=0}^{\infty}
+\left( \frac{r_{<}}{r_{>}}\right)^{l}
+\end{align}
+We also obtain the $\dfrac{1}{r_{12}}$ expansion for the $\bm{r_{12}}$ 
+lies on the XZ plane (while the $\phi$ value is zero).
+
+For the more general case, where the vector of $\bm{r_{1}}$ and $\bm{r_{2}}$
+lie on arbitrary direction in the Cartesian coordinate system, we need to expand 
+the $\dfrac{1}{r_{12}}$ based on spherical harmonics rather than the Legendre 
+polynomials. For the spherical harmonics, it has a relation with the 
+Legendre polynomials(this is the addition theorem for spherical harmonics):
+\begin{equation}
+\label{r12_electrondynamics:3}
+ P_{l}(\cos \alpha) = \sum_{m=-l}^{m=+l}
+ Y_{lm}(\theta,\phi)Y_{l,-m}(\theta^{'},\phi^{'})
+\end{equation}
+Where the $\theta,\phi$ is related to the $\bm{r_{1}}$, and $\theta^{'},\phi^{'}$
+is related to the $\bm{r_{2}}$. By inserting the \ref{r12_electrondynamics:3}
+into the \ref{r12_electrondynamics:2}, we can get:
+\begin{align}
+\label{r12_electrondynamics:4}
+|\frac{1}{r_{12}}| &= \frac{1}{r_{>}}\sum_{l=0}^{\infty}
+\left( \frac{r_{<}}{r_{>}}\right)^{l} P_{l}(\cos \alpha) \nonumber \\
+&=\frac{4\pi}{2l+1}\sum_{l=0}^{\infty}
+\left( \frac{r_{<}^{l}}{r_{>}^{l+1}}\right)\sum_{m=-l}^{m=+l}
+ Y_{lm}(\theta,\phi)Y_{l,-m}(\theta^{'},\phi^{'}) 
+\end{align}
+
+\subsection{Another Way to Expand the $\dfrac{1}{r_{12}}$}
+%
+%
+%
+Here we will follow Weitao's paper to rewrite the multipole expansion form.
+The $\frac{1}{r_{12}}$ could be expressed as:
+\begin{equation}
+\frac{1}{r_{12}} = \frac{1}{r_{>}}\sum_{l=0}^{\infty}
+\left( \frac{r_{<}}{r_{>}}\right)^{l} P_{l}(\cos \alpha)
+\end{equation}
+In the last section, our effort is trying to convert this expression into
+the spherical harmonics. Here we will try to use another way to do it.
+
+
+
+
+\section{Multipole Expansion}
+%
+%
+
+
+
+

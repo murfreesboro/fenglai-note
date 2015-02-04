@@ -1,0 +1,352 @@
+%
+% OK
+%
+%
+% revised on Jan. 29th, 2009
+% it seems good enough. the expression related to the English
+% may be need to be polished, but the general idea is OK.
+%
+% revised on Mar. 22th, 2009
+% to use the environment of theorem and law to improve it
+%
+% revised at Aug. 1st, 2009
+% slightly modifed the words
+%
+
+\chapter{General outline for the quantum mechanics}
+%
+% set up the general outlines for understanding the quantum mechanics
+%
+%
+\section{Introduction}
+%
+% why we need to firstly introduce the mathematical framework
+% but not gradually have an introduction?
+%
+To some extent, the quantum mechanics can be seen as a set of rules;
+on which the quantum phenomenon can be therefore explained.
+
+How can we set up these rules? On the one hand, they can be
+gradually introduced and finally weaved into an entire system. For
+example, in classical mechanics; the concept of velocity and
+acceleration etc. can be initially introduced, then several examples
+can be provided to discuss the basis relation between them(the
+universal Newton function has been implicitly contained); through
+these discussion the reader may get some impress between the
+``force'' and the acceleration. Finally, the fundamental Newton
+equation will be unveiled.
+
+In classical mechanics, we can do this because that the concept of
+velocity, acceleration etc., and the relationship between them are
+something that we can feel, they are some part of our common sense
+to this world. However, in the quantum mechanics the phenomenon is
+so strange that it's totally impossible for us to refer ourself to
+the common sense.
+
+Therefore, we can only rely on the mathematics and logic to solve
+the problems we met in the quantum mechanics. On the other hand,
+this implies that firstly we need a self-contained and rigorous
+system to provide description to the rules of quantum mechanics,
+then we can use these rules to analyze the phenomenon we met in this
+range.
+
+As a result, firstly we will establish all the fundamental concepts
+and relations in the quantum mechanics to form the ``base''; then we
+will go to the discussion to each concrete problems we met.
+
+In this chapter, we will briefly introduced the conceptual framework
+of quantum mechanics. In the following part, the concepts presented
+here will be further discussed.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{General outline}
+%
+% general outline
+%
+After some time on the study of quantum mechanics, I think that the
+quantum mechanics can be firstly viewed as some ``algebra system''.
+In this system, we provide the concepts, and the relations(or more
+appropriate to call them as ``algorithm'') between them. Here below
+is the framework for them.
+
+Firstly, how to define the physical quantity for this system? In
+classical mechanics, the physical quantity must be presented as some
+kind of mathematical variables; just like
+$\vec{v}=\frac{d\vec{x}}{dt}$, etc. Therefore, what's the
+correspondence in the quantum mechanics?
+
+\begin{law}
+\textbf{In quantum mechanics, the operator is corresponding to the
+physical quantity. Moreover, only the hermite operators are
+corresponding to the common dynamic variables.}
+\end{law}
+
+Operator can be seen as some kind of ``function transformation
+machine'', it transforms the function from one form to another. For
+example, the $\frac{d^{2}}{dx^{2}}$ is a kind of operator. For the
+function of $e^{ikx}$, we have $\frac{d^{2}}{dx^{2}} (e^{ikx}) =
+-k^{2}e^{ikx}$.
+
+In quantum mechanics, all the physical quantity are expressed as
+some form of operators. For example, the kinetic operator is
+expressed as $-\frac{\hbar^{2}}{2m}\nabla^{2}$, the momentum
+operator is expressed as $-i\hbar\nabla$.
+
+After the setting up of physical quantity, the next question is how
+to get the information related to the system state? Just like in the
+classical mechanics, for the simple falling movement, $s =
+\frac{1}{2}gt^{2}$ may tell anything about the state in any time;
+what's the correspondence in the quantum mechanics?
+
+\begin{law}
+\textbf{In quantum mechanics, the state is determined by the
+schrodinger equation:
+\begin{equation}
+\hat{H}\Psi(r,t) = i \hbar \frac{\partial \Psi(r,t)}{\partial t}
+\end{equation}
+In which the $\Hat{H}$ is the Hamiltonian operator. The $\Psi(r,t)$
+is the solution of this equation, called ``wave functions''.}
+\end{law}
+
+However, the schrodinger equation is not easy to solve, especially
+for the multi-particle system. Commonly in the quantum chemistry, we
+use the variational principle to approach to the answer rather than
+directly solve the schrodinger equation. In the following content,
+this important theorem will be stated and proved.
+
+After setting up the schrodinger equation, we may also get the
+concept of ``wave functions''. The wave functions can be seen as the
+solution of the schrodinger equation, it totally describe the
+quantum states. As what we have seen in the first chapter, wave
+function describe the probability distribution of the system.
+
+There's an important feature which needed to emphasized in the
+quantum mechanics. In classical mechanics, for a specific system we
+can only get one function to describe its state, for example, the $s
+= \frac{1}{2}gt^{2}$ for the simple falling movement; however, in
+solving the schrodinger equation we may get a group of
+solutions(it's number can be finite or infinite); which is weaved
+into a function space (That can be abstracted as Hilbert space).
+
+\begin{law}
+\textbf{In quantum mechanics, the quantum state is totally described
+by the wave functions. The character of the wave functions, is
+abstracted by the Hilbert space.}
+\end{law}
+
+For the Hilbert space, it's character can be generalized below:
+\begin{quote}
+  \begin{center}
+    \begin{itemize}
+    \item the description of the quantum system is got by some
+      function space composed by the wave functions.
+    \item this function space can have many different form of
+      representation, that is; we can represent it by choosing a set
+      of basis functions (and the probability character of the wave
+      functions require that only the normalized basis functions is
+      meaningful) which composed into some complete
+      sets. Furthermore,any two set of basis functions are equivalent
+      with each other.
+    \item any quantum states which describe the state of the system,
+      can be achieved by the linear combination of the basis functions
+      in the Hilbert space. Thus the complete sets gives a complete
+      description of the quantum system.
+    \end{itemize}
+  \end{center}
+\end{quote}
+
+Thus we can know that how to describe an arbitrary state based on
+the base vectors we got. That's what we call the superposition
+principle:
+\begin{law}
+\textbf{ If some measurement done to the wave function of $\Psi_{1}$
+get the result of 1, and this measurement done to the wave function
+of $\Psi_{2}$ get the result of 2; and the measurement only has
+these two results; thus we can make a linear combination of $\Psi =
+C_{1}\Psi_{1} + C_{2}\Psi_{2}$($C_{i}$ is some coefficient), which
+can be used to express an arbitrary quantum states.}
+\end{law}
+We can see that this important feature can be generalized into the
+concept of Hilbert space.
+
+So far we have got the description of physical quantity, and got the
+wave functions to describe the quantum states; however, if we want
+to derive some specific dynamic values of this system, what can we
+do? For example, the angular momentum of the system, the energy, and
+others?
+
+To answer this question, we may distinguish the physical quantity
+into two groups: for a specific set of wave functions, some of them
+can give a definite measurement of dynamic values (for example,
+through the schrodinger equation the Hamiltonian operator can give
+the system energy over its eigen states); while others can not (for
+example, the coordinate operator; only the average location we can
+get).
+
+For the first group, it has some function (called eigen function)
+connecting the operator the wave functions and the measurement of
+dynamic values together:
+\begin{equation}\label{}
+\hat{A}\Psi = a\Psi
+\end{equation}
+Here the $\Psi$ is the wave function, it's also called eigen states
+for the physical quantity of $\hat{A}$; the real value of $a$
+corresponds to the the measurement of the physical quantity, called
+eigen value. It's very important to note that the operator belong to
+the first group is that they can commute with Hamiltonian operator;
+those can not commuted with Hamiltonian operator are in the second
+group.
+
+For the second group, although we do not have a clear measurement
+value over it, we can still define the average value (expectation
+value) for the given operator $\hat{A}$:
+\begin{equation}\label{}
+\langle\hat{A}\rangle = \int \Psi^{*}\hat{A}\Psi d\tau
+\end{equation}
+
+Here, we provide an example of coordinate operator of $\hat{x}$:
+\begin{equation}\label{}
+\langle\hat{x}\rangle = \int \Psi^{*}\hat{x}\Psi d\tau
+\end{equation}
+This value depicts the average coordinate movement for the $\Psi$
+along the x axis.
+
+All in all, these answers can be sum up into some principle:
+\begin{law}
+\textbf{In quantum mechanics, the measurement of some physical
+quantity is derived from the corresponding eigen functions; which
+connect the operator and wave functions together:
+\begin{equation}\label{}
+\hat{A}\Psi = a\Psi
+\end{equation}
+here, to ensure the measurement of a is a real number, the operator
+of $\hat{A}$ must be hermitian.}
+\end{law}
+
+However, the solution of the Schrodinger equation may have the
+degenerate states, from which it leads to an uncertainty to
+determine the eigen states to build the whole Hilbert space. For
+example, the Schrodinger equation for the one dimensional free
+particle movement is (in the first chapter it has been discussed):
+\begin{equation}\label{}
+-\frac{\hbar^{2}}{2m}\frac{d^{2}}{dx^{2}}\Psi(x) = E\Psi(x)
+\end{equation}
+the solution for this equation can be $\Psi_{1} = exp (
+iP_{x}x/\hbar )$ or $\Psi_{2} = exp ( -iP_{x}x/\hbar )$. Both of the
+two solutions occupy the same energy level.
+
+It's clear that the linear combination of the two functions is still
+the solution of the above schrodinger equation ($\Psi =
+c_{1}\Psi_{1} + c_{2}\Psi_{2}$, the $c_{1}$ and $c_{2}$ are some
+arbitrary real number ), this is coincident with the above
+discussion. To eliminate such uncertainty in the solution, we will
+introduce the ``CSCCO'', that is:
+\begin{law}
+  \textbf{``CSCCO'' is a group of operators rather than one
+    Hamiltonian operator used to determine the corresponding Hilbert
+    space. This group of operators contain the $\hat{H}$, and the
+    other operators which all commuted with $\hat{H}$, any two of them
+    also commute with each other (physically to say, each physical
+    quantity provides a freedom to specify the investigated
+    system). It can be proved that this group of operators determine a
+    definite Hilbert space to describe the quantum state. Therefore,
+    this group is called ``complete set Of commutating conserved
+    operators''; in the future, they will be abbreviated as
+    ``CSCCO''.}
+\end{law}
+
+Finally, the particles, which fall into the range of quantum type; can
+be classified into different types; such as electrons, different
+atoms, photons and so on. It's found that the same type of particles
+are identical with each other; that is to say, it's impossible to
+distinguish any particles which is in the same type. For example, two
+electrons are same with each other.
+
+Therefore, the identical quantum particles lead us to another
+fundamental hypothesis in the quantum mechanics:
+\begin{law}
+\textbf{for the wave functions describe the quantum states, if we
+alter the position of two identical particles (such as two
+electrons), the wave functions may retain its sign or change its
+sign. The former is call boson particle, and the later is called
+fermion.}
+\end{law}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Scheme for the following chapters}
+%
+%
+%
+%
+Firstly, we will generally introduce the Hilbert space and the
+operators, and discuss their properties in general. Here at this
+point we will set up the skeleton of the framework.
+
+Then, the discussion will shift to the position representation and
+the momentum representation. Through this part, we wish to set up
+the transformation from the abstract Hilbert space to the concrete
+wave function which is the function of coordinate of $\bm{r}$.
+
+After that, we will give more algebra analysis on the coordinate
+operator and the momentum operator. Since they are the base for all
+the other operators.
+
+Next the Schrodinger equation will be formally introduced and given
+an complete and rigorous discussion. the most important thing is the
+concept of ``CSCCO''.
+
+Finally we should focus on the identical properties for the quantum
+system. So that to introduce the Pauli principle.
+
+Here at this point, the general framework for the quantum mechanics
+has been finished. In the following content, we will focus on each
+of the subjects in the quantum mechanics.
+
+the subjects should containing:
+\begin{itemize}
+  \item the angular
+momentum and the spin. the discussion will focus on the form of
+operators, eigen function, eigen value; commutation relations
+between the operators. Besides, most importantly, the angular
+momentum and spin in many particle system.
+  \item  some important one dimension model, including the
+harmonic oscillator function discussion.
+  \item  central field model.
+  \item  the perturbation theory for the time independent and time
+  dependent case.
+  \item  radiation theory.
+  \item  uniform electron gas model.
+  \item  second quantization.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tmp list for the work will be done since July 29th, 2009}
+%
+%
+%
+%
+All has been concentrated on the physics part:
+
+operator:
+\begin{itemize}
+\item one dimension model. including the harmonic oscillator.
+\item Heisenberg uncertainty relation prove in basic.tex
+\item perhaps have to revise the Schroedinger equation discussion. So
+  far we do not have clear idea about it.
+\item central field model discussion.
+\item etc......
+\end{itemize}
+
+
+So far, we only concentrate on the position representation and
+momentum representation. This part should be done first.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

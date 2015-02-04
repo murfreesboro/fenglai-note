@@ -1,0 +1,1665 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  This chapter is now in good condition
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% change log:
+% setting up around Feb. 2008
+% revised at June, 25th, 2009
+% 1  add the reference to this part
+% 2  before the HF discussion, correct some bugs
+% 3  rewrite the HF part discussion
+% revised at July, 5th, 2009
+% correct the exchange hole discussion
+% revised at July, 8th, 2009
+% revise the exchange hole discussion by giving more clear idea
+% revised at July, 25th, 2009
+% to make the hole function discussion more clear
+% revised at September 1th, 2009
+% add the discussion from Barth's paper so that to make the hole
+% function derivation much more clear
+% revised at Feb 7th, 2011
+% really understand the physical meaning of hole function
+%
+%
+
+
+\chapter{Density matrices}
+%
+% this part used to present the base for the density matrices.
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+% why we have to discuss the density matrices?
+%
+%
+In quantum mechanics, density matrices is generally considered as some
+extension to the concept of wave functions\cite{Landau}.  However, in
+this part; we concentrate on the discussion of density matrices for
+different purpose.
+
+The traditional algorithm devised in the quantum mechanics, is mainly
+focused on the concept of wave functions. From the HF single
+determinant to the configurations in the post-HF methods (here also
+including the perturbation theory), the core of the framework is all
+around the question that how to form a wave function to solve the
+problem.
+
+However, in this chapter we are going to prove that the use of wave
+functions is not indispensable, potentially we can use the density to
+replace it and get the same result. This important idea is some kind
+of foundation of the popular DFT theory, and this idea will be
+unveiled in this part\footnote{reference can see Lowdin's
+  paper\cite{Lowdin1,Lowdin2,Lowdin3}, Weitao Yang's
+  book\cite{weitaoYang}, Mr. Tang's book \cite{aoqingTang} etc. Here
+  we find that the materials provided by U von
+  Barth\cite{2004PhST..109....9V} is most inspiring for understanding
+  the DFT origin.}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Density matrices}
+%
+% 1 what's the relation between density matrices and project operator?
+% actually they are the same definition.
+% 2 reduced density matrices. main discussion point
+%   2.1 the reduced density matrices only depend on the coordinates
+%       and spin
+%   2.2 the character of the reduced density matrices,
+%       also compared with the density matrices
+%   2.3 give the example of first order and second order ones
+%   2.4 discuss the diagonal elements for first order and second
+%       order ones, and its physical meaning
+%   2.5 discussion to the operators: they only depends on coordinates.
+%       thus it is no need to introduce 4n variables
+%       to express the expectation values for these operators. so
+%       potentially we may use the density matrices to express the
+%       expectation values.
+%   2.6 Hamiltonian and dipole moment example
+%   2.7 also variation process can be done to the reduced density matrices
+%   2.8 eigen values for the reduced density matrices
+%
+\subsection{Definition of density matrices}
+\label{DODM_in_density_matrices}
+% definition. and several discussion to it
+%
+Suggest that the $\Psi(x_{1}, x_{2}, \cdots, x_{n})$ is some $n$
+particles wave function. Here, the $x_{i}$ is the arguments for the
+electron $i$ in the total wave functions, they include the
+coordinates $x,y,z$ of electron $i$ and its spin:
+\begin{equation}\label{}
+  x_{i} \Leftrightarrow (x, y, z, s) \quad \text{for electron $i$}
+\end{equation}
+Then the $\Psi^{*}(x_{1}, x_{2}, \cdots, x_{n})\Psi(x_{1}, x_{2},
+\cdots, x_{n})$ is associated with the probability distribution for
+the electrons in this system. Here we can define a more general form:
+\begin{equation}\label{DMeq:1}
+  \gamma_{n}(x^{'}_{1}, x^{'}_{2}, \cdots, x^{'}_{n}, x_{1}, x_{2},
+  \cdots, x_{n}) = \Psi^{*}(x^{'}_{1}, x^{'}_{2}, \cdots,
+  x^{'}_{n})\Psi(x_{1}, x_{2}, \cdots, x_{n})
+\end{equation}
+Here the two sets of independent quantities $x^{'}_{1}, x^{'}_{2},
+\cdots, x^{'}_{n}$ and $x_{1}, x_{2}, \cdots, x_{n}$ can be thought
+of as two sets of indices. If the two sets are identical with each
+other, it will lead to the density probability. Actually, we can see
+that the definition in (\ref{DMeq:1}) is identical with density
+operator of $\ket{\Psi}\bra{\Psi}$. The form in (\ref{DMeq:1}) is
+$\ket{\Psi}\bra{\Psi}$'s position representation.
+
+Now let's discuss the characters related to density matrices:
+\begin{theorem}\label{}
+$\gamma_{n}^{+} = \gamma_{n}$. So $\gamma_{n}$ is hermitian.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\gamma_{n}^{+} = (\ket{\Psi}\bra{\Psi})^{+} = \ket{\Psi}\bra{\Psi} =
+\gamma_{n}
+\end{equation}
+Hence the operator of $\gamma_{n}$ is hermitian. \qedhere
+\end{proof}
+
+\begin{theorem}\label{}
+For any $\Phi$, $\langle\Phi|\gamma_{n}|\Phi\rangle \geq 0$.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\langle\Phi|\gamma_{n}|\Phi\rangle = \langle\Phi|\Psi\rangle^{2}
+\geq 0
+\end{equation}
+\qedhere
+\end{proof}
+
+\begin{theorem}\label{}
+$\gamma_{n}^{2} = \gamma_{n}$.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\gamma_{n}^{2} = \ket{\Psi}\bra{\Psi}\Psi\rangle\bra{\Psi} =
+\ket{\Psi}\bra{\Psi} = \gamma_{n}
+\end{equation}
+So $\gamma_{n}$ is idempotent. \qedhere
+\end{proof}
+
+Here there's something need to note, that if the $\ket{\Psi}$ is
+some complete sets: $\ket{\Psi_{i}}$ ($i = 1, 2, \cdots$); then from
+the closure relation we can get that:
+\begin{equation}\label{}
+\sum_{i}\ket{\Psi_{i}}\bra{\Psi_{i}} = I
+\end{equation}
+
+\begin{theorem}\label{}
+$\gamma_{n}\hat{B} = \hat{B}\gamma_{n}$.
+If $\hat{B}$ is hermitian.
+\end{theorem}
+
+\begin{proof}
+Suggest that we have some arbitrary wave function of $\Phi$:
+\begin{equation}\label{}
+\langle\Phi|\gamma_{n}\hat{B}|\Phi\rangle =
+\langle\Phi\ket{\Psi}\bra{\Psi}\hat{B}|\Phi\rangle =
+\bra{\Psi}\hat{B}|\Phi\rangle\langle\Phi\ket{\Psi} =
+\bra{\Phi}\hat{B}|\Psi\rangle\langle\Psi\ket{\Phi} =
+\langle\Phi|\hat{B}\gamma_{n}|\Phi\rangle
+\end{equation}
+So $\gamma_{n}$ is able to exchange with any hermitian operators.
+\qedhere
+\end{proof}
+
+Finally, let's prove some very important equation in quantum
+chemistry:
+\begin{theorem}\label{DM:3}
+For any arbitrary  $\gamma_{n}$, we have:
+\begin{equation}\label{}
+i \hbar\frac{\partial \gamma_{n}}{\partial t} = [\hat{H},
+\gamma_{n}]
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Suggest that $\gamma_{n} = \ket{\Psi}\bra{\Psi}$, now let's start
+from the Schrodinger equation:
+\begin{align}\label{}
+\hat{H}\ket{\Psi} &= i \hbar \frac{\partial \ket{\Psi}}{\partial t}
+\nonumber \\
+\bra{\Psi}\hat{H} &= -i \hbar \frac{\partial \bra{\Psi}}{\partial t}
+\end{align}
+Hence we have:
+\begin{equation}\label{}
+\begin{split}
+  i \hbar\frac{\partial \gamma_{n}}{\partial t} &=
+   i \hbar \frac{\partial \ket{\Psi}\bra{\Psi}}{\partial t}\\
+    &=
+    i \hbar \frac{\partial \ket{\Psi}}{\partial t}\bra{\Psi} +
+    \ket{\Psi}i \hbar \frac{\partial \bra{\Psi}}{\partial t} \\
+    &= (\hat{H}\ket{\Psi})\bra{\Psi} - \ket{\Psi}(\bra{\Psi}\hat{H})
+    \\
+    &= [\hat{H}, \gamma_{n}]
+\end{split}
+\end{equation}
+ \qedhere
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Reduced density matrices}
+%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Definition}
+%
+%
+In quantum chemistry the most useful form is the reduced density
+matrices, which is deriving from the common density matrices.
+
+The Pth order of reduced density matrices is defined as:
+\begin{multline}\label{DMeq:2}
+  \gamma^{p}(x^{'}_{1}, x^{'}_{2}, \cdots, x^{'}_{p}, x_{1}, x_{2},
+  \cdots, x_{p}) \\
+  = C^{p}_{n}\int \Psi^{*}(x^{'}_{1}, x^{'}_{2}, \cdots, x^{'}_{p},
+  x_{p+1},
+  \cdots, x_{n})* \\
+  \Psi(x_{1}, x_{2}, \cdots, x_{p}, x_{p+1}, \cdots,
+  x_{n})dx_{p+1}\cdots dx_{n}
+\end{multline}
+Here in this definition, we make integration to the electrons of $p+1,
+p+2, \cdots, n$ so that to ensure that they are not included in the
+expression of the Pth order of reduced density matrices. On the other
+hand, since that the electrons are indistinguishable with each other,
+there are $C^{p}_{n}$ Pth order reduced density matrices formed by any
+$p$ electrons picking up from the total $n$ electrons, they are same
+with each other; thus we have to multiply a coefficient of
+$C^{p}_{n}$.
+
+Hence we can see that the Pth order of reduced density matrices is not
+relied on the specific electrons, its is only depending on the
+coordinates and the spin on this specific location:
+\begin{equation}\label{}
+  x_{i} \Leftrightarrow (\mathbf{r}, s)
+\end{equation}
+Here in the Pth order of reduced density matrices, the expression
+depends on $2P$ independent coordinates (two sets of indices are
+included for $x_{i}$ and $x_{i}^{'}$), and the spin state in the
+specific location of $\mathbf{r}$ or $\mathbf{r^{'}}$.
+
+Now let's go to see the characters related to the reduced density
+matrices.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Characters of reduced density matrices}
+%
+%
+%
+First, the reduced density matrices still preserve the hermitian
+property:
+\begin{equation}\label{}
+  \gamma^{p}(x^{'}_{1}, x^{'}_{2}, \cdots, x^{'}_{p}, x_{1}, x_{2},
+  \cdots, x_{p}) = \gamma^{p*}(x_{1}, x_{2}, \cdots,
+  x_{p},x^{'}_{1}, x^{'}_{2}, \cdots, x^{'}_{p})
+\end{equation}
+On the other hand, it's diagonal element is not equal to $1$ any more,
+but amount to $C^{p}_{n}$:
+\begin{equation}\label{}
+  tr(\gamma^{p}) = C^{p}_{n}
+\end{equation}
+
+Next, the reduced density matrices are antisymmetric in each set of
+indices:
+\begin{equation}\label{}
+  \gamma^{p}(x^{'}_{1}, x^{'}_{2}, \cdots, x^{'}_{p}, x_{1}, x_{2},
+  \cdots, x_{p}) = -\gamma^{p}(x^{'}_{2}, x^{'}_{1},  \cdots,
+  x^{'}_{p}, x_{1}, x_{2}, \cdots, x_{p})
+\end{equation}
+This property ensures that the Pauli principle is still preserved in
+the reduced density matrices, thus we can expected an ``hole''
+around each position of \vect{r}:
+\begin{equation}\label{}
+  \gamma^{p}(x^{'}_{1}, x^{'}_{1}, \cdots, x^{'}_{p}, x_{1}, x_{2},
+  \cdots, x_{p}) = 0
+\end{equation}
+That's the famous ``Fermi'' hole to describe the antisymmetry
+requirement.
+
+We can also derive the lower order of reduced density matrices from
+the higher order one, that is:
+\begin{multline}\label{}
+  \gamma^{p-1}(x^{'}_{1}, x^{'}_{2}, \cdots, x^{'}_{p-1}, x_{1},
+  x_{2},
+  \cdots, x_{p-1}) \\
+  = \frac{p}{n-p+1}\int \gamma^{p}(x^{'}_{1}, x^{'}_{2}, \cdots,
+  x^{'}_{p-1}, x^{'}_{p},
+  x_{1}, x_{2}, \cdots, x_{p-1}, x_{p})_{x_{p}=x^{'}_{p}}
+  dx_{p}
+\end{multline}
+That's some interesting property, and can be directly gotten from
+the definition of the reduced density matrices. Since that we can
+not derive $n-1$ particles wave function from the $n$ particles wave
+function. Here we can do this is just because that the independent
+variables used is only the coordinates and spin, it's not related to
+the electron itself.
+
+As some kind of hermitian operator, the reduced density matrices
+also has it's eigen values and eigen functions. For the
+$\gamma^{1}$, its eigen function is:
+\begin{equation}\label{}
+  \int \gamma^{1}(x^{'}_{1},x_{1})\psi^{*}_{i}(x^{'}_{1})dx^{'}_{1} =
+  n_{i}\psi_{i}(x_{1})
+\end{equation}
+Here the $\psi_{i}(x_{1})$ is some single electron orbital, and it's
+called natural spin orbital, the $n_{i}$ is called occupation
+number. Similarly, for the $\gamma^{2}$, its eigen function is:
+\begin{equation}\label{}
+  \int \gamma^{2}(x^{'}_{1},x^{'}_{2}, x_{1},
+  x_{2})\theta_{i}(x_{1},x_{2})dx_{1}dx_{2} =
+  g_{i}\theta^{*}_{i}(x^{'}_{1}, x^{'}_{2})
+\end{equation}
+Here the $\theta_{i}$ is called natural germinal, and $g_{i}$ is the
+occupation number.
+
+The reduced density matrices can be expressed by its eigen functions
+as well as its eigen values. Since that for an arbitrary operator of
+$\hat{A}$, we have:
+\begin{align}\label{}
+  \hat{A}\ket{\psi_{i}} &= a_{i}\ket{\psi_{i}} \Rightarrow \nonumber \\
+  \hat{A}\ket{\psi_{i}}\bra{\psi_{i}} &=
+  a_{i}\ket{\psi_{i}}\bra{\psi_{i}}
+  \Rightarrow \nonumber \\
+  \hat{A} &= \hat{A}\sum_{i}(\ket{\psi_{i}}\bra{\psi_{i}}) =
+  \sum_{i}a_{i}\ket{\psi_{i}}\bra{\psi_{i}}
+\end{align}
+Thus $\hat{A}$ can be expressed by its set of eigen functions and
+eigen values.
+
+Therefore, for the $\gamma^{1}$, if its set of eigen functions has
+been found, we can write:
+\begin{equation}\label{}
+  \gamma^{1} = \sum_{i}n_{i}\psi^{*}_{i}(x^{'}_{1})\psi_{i}(x_{1})
+\end{equation}
+
+
+The benefit to introduce the reduced density matrices, is that such
+concept greatly reduces the arguments while to determine the states
+of the quantum system. In the traditional quantum mechanics, to
+determine the wave functions for the common chemical system it's
+necessary to know up to $4n$ variables, $n$ is the number of
+electrons. For each electron, all its coordinates and spin state is
+needed in specifying the wave functions. On the contrary, in the
+reduced density matrices only $4$ variables needed to know to
+describe it, that's the coordinates plus the spin state.
+
+On the other hand, we can see that the operators commonly used is
+actually expressed on the base of the coordinates, for instance, the
+kinetic operator, nucleus-electron operator and the electron
+repulsion operator; thus the Hamiltonian for the ordinary chemical
+system is working on the coordinates. that means, potentially
+there's some possibility to express the system states in a way that
+is to avoid the use of $4n$ variables wave functions.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{First order and second order of reduced density matrices}
+\label{RDM1_and_EDM2}
+%
+%
+%
+Now we are going to present some examples of reduced density
+matrices. In quantum chemistry, since we only use single electron
+operator and double electron operator; thus it's appropriate to
+discuss the expression for first order reduced density matrices and
+second order reduced density matrices. The first order reduced
+density matrices is:
+\begin{align}\label{}
+  \gamma^{1}(x^{'}_{1}, x_{1}) &= n\int \Psi^{*}(x^{'}_{1}, x_{2},
+  \cdots, x_{p}, x_{p+1},
+  \cdots, x_{n})* \nonumber \\
+  & \Psi(x_{1}, x_{2}, \cdots, x_{p}, x_{p+1}, \cdots,
+  x_{n})dx_{2}dx_{3}\cdots dx_{n}
+\end{align}
+The second order one is:
+\begin{align}\label{}
+  \gamma^{2}(x^{'}_{1},x^{'}_{2}, x_{1},x_{2}) &= \frac{n(n-1)}{2}\int
+  \Psi^{*}(x^{'}_{1}, x^{'}_{2}, \cdots, x_{p}, x_{p+1},
+  \cdots, x_{n})* \nonumber \\
+  & \Psi(x_{1}, x_{2}, \cdots, x_{p}, x_{p+1}, \cdots,
+  x_{n})dx_{3}dx_{4}\cdots dx_{n}
+\end{align}
+
+Here, their diagonal elements have some important physical
+interpretations. For the $\gamma^{1}(x_{1}, x_{1})dv$ is the number
+of electrons $\times$ the probability of finding an electron within
+the volume of $dv$ around the position of \vect{r_{1}} having the
+spin of $s$ (here we should remember that $x_{i} \Leftrightarrow
+(\mathbf{r_{i}}, s)$), when all the other electrons have arbitrary
+position and spin states. It's easy to see that the
+$\gamma^{1}(x_{1}, x_{1})dv$ is just the electron density of
+$\rho_{\sigma}(\bm{r_{1}})dv$ with spin state of $\sigma$.
+
+Similarly, the $\gamma^{2}(x_{1},x_{2},x_{1},x_{2})dv_{1}dv_{2}$ is
+the number of electrons pairs $\times$ the probability of finding an
+electron within the volume of $dv_{1}$ around the position of
+\vect{r_{1}} having the spin state of $s_{1}$; and the other within
+the volume of $dv_{2}$ around the position of \vect{r_{2}} having
+the spin state of $s_{2}$; when all the other electrons have
+arbitrary position and spin states. Compared with the electron
+density of $\rho_{\sigma}(\bm{r_{1}})$, here we can define such
+electron density for two electrons as ``pair density'', which is
+labeled as $\rho_{\sigma\sigma^{'}}(\bm{r_{1}}, \bm{r_{2}})$, in
+which at $\bm{r_{1}}$ it has spin state of $\sigma$, at $\bm{r_{2}}$
+it has spin state of $\sigma^{'}$.
+
+What's more, the physical interpretation for the Pth order of
+reduced density matrices can be got in the same way.
+
+On the other hand, in literature we can see that there's another way
+to get the expressions for electron density and the pair density.
+For the electron density, we can define the ``density operator'' of
+$\hat{n}_{\sigma}(\bm{r})$ as:
+\begin{equation}\label{DMeq:41}
+\hat{n}_{\sigma}(\bm{r}) = \sum_{i=1}^{n}\delta(\bm{r} -
+\bm{r_{i}})\delta_{\sigma\sigma_{i}}
+\end{equation}
+From the discussion for the delta function, we know that:
+\begin{equation}\label{DMeq:43}
+\int f(x^{'})\delta(x^{'}-x) = f(x)
+\end{equation}
+Hence for the $\langle\Psi|\hat{n}_{\sigma}(\bm{r})|\Psi\rangle$
+(the integration is over for each of $\bm{r_{i}}$ and $\sigma_{i}$),
+it just equals to the diagonal form of first order reduced density
+matrices:
+\begin{equation}\label{}
+\langle\Psi|\hat{n}_{\sigma}(\bm{r})|\Psi\rangle =
+\gamma^{1}(x^{'}_{1}, x_{1})_{x^{'}_{1} = x_{1}} =\rho_{\sigma}(\bm{r})
+\end{equation}
+It's equivalent to the electron density for all electrons with spin
+state of $\sigma$ in location of $\bm{r}$.
+
+How can we understand this form? Now let's suggest that the many
+particle wave function of $\Psi(\bm{r_{1}}, \sigma_{1}, \bm{r_{2}},
+\sigma_{2}, \cdots, \bm{r_{n}}, \sigma_{n})$ is composed by slater
+determinant same with (\ref{HFTeq:45}):
+\begin{equation}\label{HFTeq:45}
+\Psi =\frac{1}{\sqrt{n!}}
+\begin{vmatrix}
+\phi_{1}(\bm{r_{1}})\sigma(1) &  \phi_{2}(\bm{r_{1}})\sigma(1) & \cdots & \phi_{n}(\bm{r_{1}})\sigma(1)  \\
+\phi_{1}(\bm{r_{2}})\sigma(2) &  \phi_{2}(\bm{r_{2}})\sigma(2) & \cdots & \phi_{n}(\bm{r_{2}})\sigma(2)  \\
+\cdots               &  \cdots               & \cdots & \cdots                  \\
+\phi_{1}(\bm{r_{n}})\sigma(n) &  \phi_{2}(\bm{r_{n}})\sigma(n) & \cdots & \phi_{n}(\bm{r_{n}})\sigma(n)  \\
+\end{vmatrix}
+\end{equation}
+
+Then let's evaluate the
+$\langle\Psi|\hat{n}_{\sigma}(\bm{r})|\Psi\rangle$:
+\begin{equation}\label{}
+\begin{split}
+\langle\Psi|\hat{n}_{\sigma}(\bm{r})|\Psi\rangle &=
+\sum_{i=1}^{n}\langle\Psi|\delta(\bm{r} -
+\bm{r_{i}})\delta_{\sigma\sigma_{i}}|\Psi\rangle \\
+    &= \frac{1}{n!}\sum_{i=1}^{n}\sum_{p=1}^{n}\int
+\phi^{*}_{p}(\bm{r_{i}})\sigma(i)\delta(\bm{r} -
+\bm{r_{i}})\phi_{p}(\bm{r_{i}})\sigma(i)\delta_{\sigma\sigma_{i}}
+d\bm{r_{i}}d\sigma_{i}\\
+&\langle\triangle^{(p, \bm{r_{i}})}|\triangle^{(p,
+\bm{r_{i}})}\rangle \\
+&=\frac{1}{n}\sum_{i=1}^{n}\sum_{p=1}^{n}\int
+\phi^{*}_{p}(\bm{r_{i}})\sigma(i)\delta(\bm{r} -
+\bm{r_{i}})\phi_{p}(\bm{r_{i}})\sigma(i)\delta_{\sigma\sigma_{i}}
+d\bm{r_{i}}d\sigma_{i} \\
+&=\sum_{p=1}^{n}\int \phi^{*}_{p\sigma}(\bm{r^{'}})\delta(\bm{r} -
+\bm{r^{'}})\phi_{p\sigma}(\bm{r^{'}})
+d\bm{r^{'}} \\
+&=\sum_{p=1}^{n}\phi^{*}_{p\sigma}(\bm{r})\phi_{p\sigma}(\bm{r})
+\quad \\
+&= \rho_{\sigma}(\bm{r})
+\end{split}
+\end{equation}
+Furthermore, it's clear that such derivation can be naturally
+extended to the general form of wave functions which is absent with
+the single particle restriction.
+
+What's more, we can introduce the operator to generate the pair
+density:
+\begin{equation}\label{DMeq:42}
+\hat{n}_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) = \sum_{i\neq
+j}^{n}\delta(\bm{r} - \bm{r_{i}})\delta_{\sigma\sigma_{i}}
+\delta(\bm{r^{'}} - \bm{r_{j}})\delta_{\sigma^{'}\sigma_{j}}
+\end{equation}
+It's just some natural extension from the (\ref{DMeq:41}). Hence we
+can get:
+\begin{equation}\label{}
+\langle\Psi|\hat{n}_{\sigma\sigma^{'}}(\bm{r},
+\bm{r^{'}})|\Psi\rangle = \rho_{\sigma\sigma^{'}}(\bm{r},
+\bm{r^{'}})
+\end{equation}
+
+Now let's give some discussion for the pair density of
+$\rho_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}})$. Firstly, since the
+$\bm{r}$ and $\bm{r^{'}}$ are arbitrarily defined, since the
+exchange between the two index will cause no change; hence we have:
+\begin{equation}\label{}
+\rho_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) =
+\rho_{\sigma\sigma^{'}}(\bm{r^{'}}, \bm{r})
+\end{equation}
+The pair density is symmetric. On the other hand, since the pair
+density operator is some positive operator
+($\hat{n}_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) \geq 0$), hence we
+have the pair density must be larger or equal to zero:
+\begin{equation}\label{}
+\rho_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) \geq 0
+\end{equation}
+Finally, we note that the pair density should also obey the Pauli
+principle, that for the case $\bm{r} = \bm{r^{'}}$, the pair density
+is zero:
+\begin{equation}\label{}
+\rho_{\sigma\sigma^{'}}(\bm{r}, \bm{r}) = 0
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{To express the Schrodinger equation via reduced density
+  matrices}
+%
+%
+%
+%
+%
+Now let's try to rewrite the Schrodinger equation by the reduced
+density matrices. we assume that the Hamiltonian operator for the
+ordinary chemical system is:
+\begin{equation}\label{DMeq:3}
+  \hat{H} = \left\{\sum_{i=1}^{n}(\frac{-1}{2}\times\nabla_{i}^2)+
+    \sum_{i=1}^{n}\sum_{\alpha=1}^{N}(\frac{-1}{r_{i\alpha}})+
+    \sum\sum_{i<j}(\frac{1}{r_{ij}}) \right\}
+\end{equation}
+First we bring forward some conventions in treating the reduced
+density matrices. The operators are considered to work only on the
+unprimed coordinates $x_{i}, x_{j}$ etc., but not on the $x_{i}^{'},
+x_{j}^{'}$ etc.; it's just after the operation we put $x_{i} =
+x_{i}^{'}$, $x_{j} = x_{j}^{'}$ etc. to get the diagonal elements.
+
+For the kinetic operator, we have:
+\begin{align}\label{DMeq:4}
+  \langle T\rangle &=
+  \bra{\Psi}\sum_{i=1}^{n}(\frac{-1}{2}\times\nabla_{i}^2)\ket{\Psi}
+  \nonumber \\
+  &=n\int \Psi^{*}(x^{'}_{1}, x_{2}, \cdots,
+  x_{n})(\frac{-1}{2}\times\nabla_{1}^2)\Psi(x_{1}, x_{2}, \cdots,
+  x_{n})d\tau \nonumber \\
+  &=\int \left[\left(\frac{-1}{2}\times\nabla^2\right)
+    \gamma^{1}(x^{'}_{1}, x_{1})\right]_{x_{1} = x_{1}^{'}} dx_{1}
+  \nonumber \\
+  &=\int \left[\left(\frac{-1}{2}\times\nabla^2\right)
+    \gamma^{1}(\bm{r^{'}_{1}}, \bm{r_{1}})\right]_{\bm{r_{1}} =
+    \bm{r_{1}^{'}}}d\bm{r_{1}}
+\end{align}
+Here we integrate the spin state contained in the index of $x_{1}$ and
+$x^{'}_{1}$ since that the kinetic operator does not contain the spin
+operator. Finally, we can see that the kinetic energy is totally
+expressed by the first order reduced density matrices.
+
+The nucleus-electron is much simpler:
+\begin{align}\label{DMeq:5}
+  \langle V_{ne}\rangle &=
+  \bra{\Psi}\left(\sum_{i=1}^{n}\sum_{\alpha=1}^{N}(\frac{-1}{r_{i\alpha}}
+    )\right)\ket{\Psi}
+  \nonumber \\
+  &=\sum_{\alpha=1}^{N} n\int \Psi^{*}(x^{'}_{1}, x_{2}, \cdots,
+  x_{n})(\frac{-1}{r_{x_{1}\alpha}})\Psi(x_{1}, x_{2}, \cdots,
+  x_{n})d\tau \nonumber \\
+  &=\sum_{\alpha=1}^{N} n\int
+  (\frac{-1}{r_{x_{1}\alpha}})\Psi^{*}(x^{'}_{1}, x_{2}, \cdots,
+  x_{n})\Psi(x_{1}, x_{2}, \cdots,
+  x_{n})d\tau \nonumber \\
+  &=\sum_{\alpha=1}^{N}\int
+  \left(\frac{-1}{r_{x_{1}\alpha}}\right)\left[ \gamma^{1}(x^{'}_{1},
+    x_{1})\right]_{x_{1} = x_{1}^{'}} dx_{1}
+  \nonumber \\
+  &=\sum_{\alpha=1}^{N}\int
+  \left[\left(\frac{-1}{r_{x_{1}\alpha}}\right) \rho(x_{1})\right]
+  dx_{1} \nonumber \\
+  &=\sum_{\alpha=1}^{N}\int
+  \left[\left(\frac{-1}{r_{x_{1}\alpha}}\right) \rho(\bm{r_{1}})\right]
+  d\bm{r_{1}}
+\end{align}
+Hence we can see that the nucleus-electron energy is purely working on
+the electron density.
+
+Finally for the electron repulsion term, we have:
+\begin{align}\label{DMeq:6}
+  \langle V_{ee}\rangle &=
+  \bra{\Psi}\left(\sum\sum_{i<j}(\frac{1}{r_{ij}})\right)\ket{\Psi}
+  \nonumber \\
+  &= C_{n}^{2}\int \Psi^{*}(x^{'}_{1}, x^{'}_{2}, \cdots,
+  x_{n})(\frac{1}{r_{12}})\Psi(x_{1}, x_{2}, \cdots,
+  x_{n})d\tau \nonumber \\
+  &=C_{n}^{2}\int (\frac{1}{r_{12}})\Psi^{*}(x^{'}_{1}, x^{'}_{2}, \cdots,
+  x_{n})\Psi(x_{1}, x_{2}, \cdots,
+  x_{n})d\tau \nonumber \\
+  &=\int \left(\frac{1}{r_{12}}\right)\left[
+    \gamma^{2}(x^{'}_{1},x^{'}_{2}, x_{1},x_{2})\right]_{x_{1} =
+    x_{1}^{'}, x_{2} = x_{2}^{'}} dx_{1}dx_{2}
+  \nonumber \\
+  &=\int \left[\left(\frac{1}{r_{12}}\right)
+    \gamma^{2}(x_{1},x_{2})\right] dx_{1}dx_{2} \nonumber \\
+  &= \int \left[\left(\frac{1}{r_{12}}\right)
+    \rho(\bm{r_{1}},\bm{r_{2}})\right] d\bm{r_{1}}d\bm{r_{2}}
+\end{align}
+Hence to evaluate the electron repulsion energy we only need the pair
+density. Since that the two position of \vect{r_{1}} and \vect{r_{2}}
+correlated with each other (including the Fermi effects and the
+correlation effects), we can see that this term implicitly contains
+the Pauli requirement and the correlation effect.
+
+It's interesting to point out that since the first order of reduced
+density matrix can be expressed by the second order one, thus for any
+quantum system; if we can know the exact expression for the second
+order of reduced density matrices, we can get the exact energy of the
+whole system.
+
+All in all, the energy based on the reduced density matrices can be
+expressed as:
+\begin{multline}\label{DMeq:21}
+  E = \int \left[\left(\frac{-1}{2}\times\nabla^2\right)
+    \gamma^{1}(\bm{r^{'}_{1}}, \bm{r_{1}})\right]_{\bm{r_{1}} =
+    \bm{r_{1}^{'}}} d\bm{r_{1}} + \sum_{\alpha=1}^{N}\int
+  \left[\left(\frac{-1}{r_{x_{1}\alpha}}\right) \rho(\bm{r_{1}})\right]
+  d\bm{r_{1}} + \\
+  \int \left[\left(\frac{1}{r_{12}}\right)
+    \rho(\bm{r_{1}}, \bm{r_{2}})\right]d\bm{r_{1}}d\bm{r_{2}}
+\end{multline}
+
+
+Next, we will consider the operator for the electric moment \vect{D}:
+\begin{equation}\label{}
+  \mathbf{D} = \mathbf{e}\sum_{i}\mathbf{r_{i}}
+\end{equation}
+Here the $i$ is the electron label. Similar to the nucleus-electron
+term, we can finally get the expression by the reduced density
+matrices:
+\begin{equation}\label{}
+  \langle\mathbf{D}\rangle = \mathbf{e}\int
+  \mathbf{r_{1}}\gamma(x_{1})dx_{1} = \mathbf{e}\int
+  \mathbf{r_{1}}\rho(\bm{r_{1}})d\bm{r_{1}}
+\end{equation}
+We can see that in the expression above, the expectation value of the
+dipole moment is only depending on the electron density as well as the
+position in the space.
+
+Finally, we can see that we can use the variation process to determine
+the best reduced density matrices which give the lowest energy of
+Hamiltonian operator. However, there's some theoretical difficulties
+related to this step, yet have not been solved. In the following
+content, we can see what's the difficulties behind it.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spinless reduced density matrices}
+% 1 expression for the spinless reduced density matrices 2 examples of
+% first order and second order ones 3 expectation values are same 4
+% the spin density matrices
+%
+%
+Since that many operators do not involve the spin state, such as the
+common Hamiltonian operator shown in the (\ref{DMeq:3}); therefore
+it's necessary for us to consider the spinless reduced density
+matrices.
+
+The spinless reduced density matrices, is to integrate the spin state
+in the expression of Pth order of reduced density matrices:
+\begin{multline}\label{DMeq:11}
+  \gamma^{p}(\mathbf{r}^{'}_{1}s_{1}, \mathbf{r}^{'}_{2}s_{2}, \cdots,
+  \mathbf{r}^{'}_{p}s_{p}, \mathbf{r}_{1}s_{1}, \mathbf{r}_{2}s_{2},
+  \cdots, \mathbf{r}_{p}s_{p}) \\
+  \shoveleft{= C^{p}_{n}\int \Psi^{*}(\mathbf{r}^{'}_{1}s_{1},
+    \mathbf{r}^{'}_{2}s_{2}, \cdots, \mathbf{r}^{'}_{p}s_{p},
+    \mathbf{r}_{p+1}s_{p+1},
+    \cdots, \mathbf{r}_{n}s_{n})*} \\
+  \Psi(\mathbf{r}_{1}s_{1}, \mathbf{r}_{2}s_{2}, \cdots,
+  \mathbf{r}_{p}s_{p}, \mathbf{r}_{p+1}s_{p+1}, \cdots,
+  \mathbf{r}_{n}s_{n}) \\
+  ds_{1}ds_{2}\cdots ds_{p}d\mathbf{r}_{p+1}ds_{p+1}\cdots
+  d\mathbf{r}_{n}ds_{n}
+\end{multline}
+Here we can see that for the two indices of $x_{i}$ and
+$x^{'}_{i}$, they share the same spin states; this is because that the
+wave functions with different spin will automatically orthogonal to
+each other, thus for the spinless density matrices, only the
+contribution from the same spin state can be left here.
+
+Hence, the first order of spinless reduced density matrices is:
+\begin{multline}\label{}
+  \gamma^{1}(\mathbf{r}^{'}_{1}, \mathbf{r}_{1}) \\
+  \shoveleft{= n \int \Psi^{*}(\mathbf{r}^{'}_{1}s_{1},
+    \mathbf{r}_{2}s_{2}, \cdots, \mathbf{r}_{n}s_{n})*
+    \Psi(\mathbf{r}_{1}s_{1}, \mathbf{r}_{2}s_{2}, \cdots,
+    \mathbf{r}_{n}s_{n}) } \\
+  ds_{1}d\mathbf{r}_{2}ds_{2}\cdots d\mathbf{r}_{n}ds_{n}
+\end{multline}
+
+The second order of spinless reduced density matrices is:
+\begin{multline}\label{}
+  \gamma^{2}(\mathbf{r}^{'}_{1}, \mathbf{r}^{'}_{2},
+  \mathbf{r}_{1}, \mathbf{r}_{2}) \\
+  \shoveleft{= C^{2}_{n}\int \Psi^{*}(\mathbf{r}^{'}_{1}s_{1},
+    \mathbf{r}^{'}_{2}s_{2}, \mathbf{r}_{3}s_{3}, \cdots,
+    \mathbf{r}_{n}s_{n})* \Psi(\mathbf{r}_{1}s_{1},
+    \mathbf{r}_{2}s_{2}, \mathbf{r}_{3}s_{3}, \cdots,
+    \mathbf{r}_{n}s_{n}) }\\
+  ds_{1}ds_{2}d\mathbf{r}_{3}ds_{3}\cdots d\mathbf{r}_{n}ds_{n}
+\end{multline}
+
+Here we can see that the expression for the spinless ones are similar
+to their general form. For the operators which does not involve in the
+spin state, it's only needed to integrate the spin state in the
+expectation expression; therefore by changing the indices of $x_{i}$
+and $x^{'}_{i}$ into the $\mathbf{r}_{i}$ and $\mathbf{r}^{'}_{i}$; we
+can arrive at the expression for the spinless ones.
+
+Sometimes it's convenient to have the spinless reduced density
+matrices decomposed into the polarized components, which arising from
+the different spin state. For the first order of reduced density
+matrices, we have:
+\begin{equation}\label{}
+  \gamma^{1}(\mathbf{r}^{'}_{1}, \mathbf{r}_{1}) =
+  \gamma^{1}_{\alpha\alpha}(\mathbf{r}^{'}_{1}, \mathbf{r}_{1}) +
+  \gamma^{1}_{\beta\beta}(\mathbf{r}^{'}_{1}, \mathbf{r}_{1})
+\end{equation}
+Thus the first order of reduced density matrices can be regard as the
+direct sum between the $\alpha$ part and the $\beta$ part.
+
+For the second order ones, it's a bit of complex; since that for the
+location of \vect{r_{1}}, \vect{r_{2}}, \vect{r^{'}_{1}} and
+\vect{r^{'}_{2}} we may have different spin state corresponding to
+them. Generally to say, the second order ones can be split into:
+\begin{align}\label{}
+  \gamma^{2}(\mathbf{r}^{'}_{1},\mathbf{r}^{'}_{2},
+  \mathbf{r}_{1},\mathbf{r}_{2}) &= \nonumber \\
+  &\gamma^{2}_{\alpha\alpha,\alpha\alpha}(\mathbf{r}^{'}_{1},\mathbf{r}^{'}_{2},
+  \mathbf{r}_{1},\mathbf{r}_{2}) +
+  \gamma^{2}_{\beta\beta,\beta\beta}(\mathbf{r}^{'}_{1},\mathbf{r}^{'}_{2},
+  \mathbf{r}_{1},\mathbf{r}_{2}) +\nonumber \\
+  &\gamma^{2}_{\alpha\beta,\alpha\beta}(\mathbf{r}^{'}_{1},\mathbf{r}^{'}_{2},
+  \mathbf{r}_{1},\mathbf{r}_{2}) +
+  \gamma^{2}_{\beta\alpha,\beta\alpha}(\mathbf{r}^{'}_{1},\mathbf{r}^{'}_{2},
+  \mathbf{r}_{1},\mathbf{r}_{2})
+\end{align}
+The other terms, such as $\gamma^{2}_{\alpha\alpha,\beta\alpha}$
+etc. does not exist. This is because the spin state for the
+$\mathbf{r}_{i}$ and $\mathbf{r}^{'}_{i}$ should be same. So only
+such four terms left.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hole function derivation}
+%
+% 1 hole function portrays the relations between electron density and
+% electron pair density
+% 2 get the hole function expression
+% 3 define the exchange and correlation holes
+% 4 the importance of the exchange and correlation holes
+%
+In the above content, we have raised the concept of electron density
+and electron pair density, which are represented by $\rho(\bm{r_{1}})$
+and $\rho(\bm{r_{1}},\bm{r_{2}})$, respectively; now in this section
+we are going to further investigate some relation between them, which
+is called ``hole function''.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Derive hole function from density operator}
+\label{DHF_in_density_matrices}
+%
+%
+%
+%
+%
+Firstly, let's start from the density operator as well as the pair
+density operator\footnote{This derivation is taken from the reference
+  written by Barth\cite{2004PhST..109....9V}}:
+\begin{equation}
+\label{DMeq:44}
+\begin{split}
+  \int \hat{n}_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}})d^{3}\bm{r^{'}} &=
+  \sum_{i\neq j}^{n}\delta(\bm{r} - \bm{r_{i}})
+  \delta_{\sigma\sigma_{i}}\delta_{\sigma^{'}\sigma_{j}}
+  \int\delta(\bm{r^{'}} - \bm{r_{j}})d^{3}\bm{r^{'}} \\
+  &= \sum_{i\neq j}^{n}\delta(\bm{r} -
+  \bm{r_{i}})\delta_{\sigma\sigma_{i}}
+  \delta_{\sigma^{'}\sigma_{j}} \\
+  &= \sum_{i}^{n}\sum_{j}^{n}\delta(\bm{r} -
+  \bm{r_{i}})\delta_{\sigma\sigma_{i}}
+  \delta_{\sigma^{'}\sigma_{j}} - \sum_{i}^{n}\delta(\bm{r} -
+  \bm{r_{i}})\delta_{\sigma\sigma_{i}}
+  \delta_{\sigma^{'}\sigma_{i}} \\
+  &= \sum_{i}^{n}\delta(\bm{r} -
+  \bm{r_{i}})\delta_{\sigma\sigma_{i}}
+  \sum_{j}^{n}\delta_{\sigma^{'}\sigma_{j}} -
+  \hat{n}_{\sigma}\delta_{\sigma\sigma^{'}} \\
+  &= \hat{n}_{\sigma}\hat{N}_{\sigma^{'}} -
+  \hat{n}_{\sigma}\delta_{\sigma\sigma^{'}}
+\end{split}
+\end{equation}
+Now let's give some explanation to the above derivation. Such
+derivation is totally mathematical by starting from the definition of
+the density operator as well as the pair density operator, so it
+guarantees the generality of the result.
+
+The general idea is to set up some connection between the pair density
+operator and the density operator, hence we make integration over the
+$\hat{n}_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}})$. From the property of
+delta function, we arrive at some expression with two sum symbol with
+$i\neq j$. Then we try to convert the expression to make it closer to
+the form of density operator, so that to get the final result. In the
+above derivation, we have:
+\begin{equation}
+ \begin{split}
+  \hat{n}_{\sigma} &= \sum_{i}^{n}\delta(\bm{r} -
+  \bm{r_{i}})\delta_{\sigma\sigma_{i}} \\
+  \hat{N}_{\sigma^{'}} &= \sum_{j}^{n}\delta_{\sigma^{'}\sigma_{j}}
+ \end{split}
+\end{equation}
+
+Now by using the (\ref{DMeq:44}) we can further evaluate the relation
+between the pair density and the density\footnote{Here we should go 
+to Page 12 of reference\cite{2004PhST..109....9V} for more explanations. 
+The $n_{\sigma^{'}}$ in the final result needs more consideration. Here
+we just follow his derivation.}:
+\begin{equation}
+\begin{split}
+  \bra{\Psi}\int\hat{n}_{\sigma\sigma^{'}}(\bm{r},
+  \bm{r^{'}})d^{3}\bm{r^{'}} \ket{\Psi} &=
+  \bra{\Psi}\hat{n}_{\sigma}\hat{N}_{\sigma^{'}} -
+  \hat{n}_{\sigma}\delta_{\sigma\sigma^{'}}\ket{\Psi} \\
+&= \rho_{\sigma}(\bm{r})n_{\sigma^{'}} -
+\rho_{\sigma}(\bm{r})\delta_{\sigma\sigma^{'}}
+\end{split}
+\label{DMeq:45}
+\end{equation}
+
+
+For the pair density, we have:
+\begin{align}
+  \label{DMeq:46}
+  \bra{\Psi}\int\hat{n}_{\sigma\sigma^{'}}(\bm{r},
+  \bm{r^{'}})d^{3}\bm{r^{'}} \ket{\Psi} &= \int
+  \bra{\Psi}\hat{n}_{\sigma\sigma^{'}}(\bm{r},
+  \bm{r^{'}}) \ket{\Psi} d^{3}\bm{r^{'}} \nonumber \\
+  &= \int \rho_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) d^{3}\bm{r^{'}}
+\end{align}
+Hence the (\ref{DMeq:45}) is converted into:
+\begin{equation}
+  \label{DMeq:47}
+  \int \rho_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) d^{3}\bm{r^{'}} =
+\rho_{\sigma}(\bm{r})n_{\sigma^{'}} -
+\rho_{\sigma}(\bm{r})\delta_{\sigma\sigma^{'}}  
+\end{equation}
+
+Furthermore, if we express the pair density as:
+\begin{equation}
+  \label{DMeq:48}
+  \rho_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) =
+  \rho_{\sigma}(\bm{r})\rho_{\sigma^{'}}(\bm{r^{'}})
+  g_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}})
+\end{equation}
+Here the function of $g$ characterizes the correlation between the two
+spots in the $\bm{r}$ and $\bm{r^{'}}$. By using this expression, we
+can see that (\ref{DMeq:45}) finally turns into:
+\begin{equation}
+  \label{DMeq:49}
+  \begin{split}
+    \rho_{\sigma}(\bm{r})\int\rho_{\sigma^{'}}(\bm{r^{'}})
+  g_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}})d^{3}\bm{r^{'}} &=
+\rho_{\sigma}(\bm{r})n_{\sigma^{'}} -
+\rho_{\sigma}(\bm{r})\delta_{\sigma\sigma^{'}} \Rightarrow \\
+\int\rho_{\sigma^{'}}(\bm{r^{'}})
+  g_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}})d^{3}\bm{r^{'}} &=
+n_{\sigma^{'}} - \delta_{\sigma\sigma^{'}}
+  \end{split}
+\end{equation}
+
+By further consideration that
+\begin{equation}
+  \label{DMeq:50}
+  n_{\sigma^{'}} = \int \rho_{\sigma^{'}}(\bm{r^{'}}) d^{3}\bm{r^{'}}
+\end{equation}
+
+Then we can arrive at the final conclusion:
+\begin{equation}
+  \label{DMeq:51}
+  \int\rho_{\sigma^{'}}(\bm{r^{'}})
+  (g_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) - 1)d^{3}\bm{r^{'}} =
+- \delta_{\sigma\sigma^{'}}
+\end{equation}
+
+Now let's consider the case that $\sigma = \sigma^{'}$, then we
+have:
+\begin{equation}\label{DMeq:52}
+\int\rho_{\sigma}(\bm{r^{'}})
+(g_{\sigma}(\bm{r}, \bm{r^{'}}) -
+1)d^{3}\bm{r^{'}} = - 1
+\end{equation}
+
+On the other hand, if we consider the case that $\sigma \neq
+\sigma^{'}$, then the (\ref{DMeq:51}) is:
+\begin{equation}
+\label{DMeq:53}
+\int\rho_{\sigma^{'}}(\bm{r^{'}})
+  (g_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}}) - 1)d^{3}\bm{r^{'}} =
+0
+\end{equation}
+
+Finally, let's consider the spinless pair density where:
+\begin{align}\label{DMeq:54}
+\rho(\bm{r}, \bm{r^{'}}) &=
+\sum_{\sigma\sigma^{'}}\rho_{\sigma\sigma^{'}}(\bm{r}, \bm{r^{'}})
+\nonumber \\
+&=\sum_{\sigma\sigma^{'}}\rho_{\sigma}(\bm{r})
+\rho_{\sigma^{'}}(\bm{r^{'}})g_{\sigma\sigma^{'}}(\bm{r},
+\bm{r^{'}}) \nonumber \\
+&=\rho(\bm{r}) \rho(\bm{r^{'}})g(\bm{r}, \bm{r^{'}})
+\end{align}
+
+Hence we apply the summation over all the spin states for the
+(\ref{DMeq:51}), the result turns into:
+\begin{equation}\label{DMeq:55}
+  \int\rho(\bm{r^{'}})
+  (g(\bm{r}, \bm{r^{'}}) - 1)d^{3}\bm{r^{'}} =
+- \sum_{\sigma\sigma^{'}}\delta_{\sigma\sigma^{'}} = -1
+\end{equation}
+This result is called ``sum rule'' for the hole function.
+
+Now how can we understand these results physically? Let's
+back to the pair density to use the 
+\ref{DMeq:48}, now we can have:
+\begin{equation}
+ \begin{split}
+ \int \rho(\bm{r}, \bm{r^{'}}) d \bm{r^{'}}
+&= \int \rho(\bm{r})\rho(\bm{r^{'}})
+  g(\bm{r}, \bm{r^{'}}) d \bm{r^{'}} \\
+&= \int \rho(\bm{r})\rho(\bm{r^{'}})
+  (g(\bm{r}, \bm{r^{'}}) - 1 + 1) d \bm{r^{'}} \\
+&=\int \rho(\bm{r})\rho(\bm{r^{'}})d \bm{r^{'}} +
+\int \rho(\bm{r})\rho(\bm{r^{'}})
+  (g(\bm{r}, \bm{r^{'}}) - 1) d \bm{r^{'}} \\
+&= \rho(\bm{r})n-\rho(\bm{r}) \\
+&= \rho(\bm{r})(n-1)
+ \end{split}
+ \label{DM_hole_function_explanation_1}
+\end{equation}
+
+On the other hand, if we neglect the $g(\bm{r}, \bm{r^{'}})$ in the pair
+density, which means; we set it to $1$; then physically the total density will
+be the direct product of the density pieces. Then we have:
+\begin{equation}
+\begin{split}
+  \int \rho(\bm{r}, \bm{r^{'}}) d \bm{r^{'}}
+&= \int \rho(\bm{r})\rho(\bm{r^{'}}) d \bm{r^{'}} \\
+&=\rho(\bm{r})\int \rho(\bm{r^{'}}) d \bm{r^{'}} \\
+&= \rho(\bm{r})n
+\end{split}
+\label{DM_hole_function_explanation_2}
+\end{equation}
+
+The results show in the (\ref{DM_hole_function_explanation_1}) and
+(\ref{DM_hole_function_explanation_2}) reveal the physical meaning of the hole
+function; and more precisely; the physical meaning of $g(\bm{r}, \bm{r^{'}})$
+in the pair density. \textbf{It's because of the $g(\bm{r}, \bm{r^{'}})$, the
+overall probability that we can find electrons in the $\bm{r^{'}}$ decrease to
+$n-1$ compared to the completely uncorrelated system, which is $n$. It seems
+that the reference point of $\bm{r}$ is digging some ``hole'' that to
+``retain'' some electron density so that there's depletion of electron
+density at $\bm{r^{'}}$.} This is the physical meaning of the hole function.
+
+This hole is also called ``exchange-correlation'' hole in the density
+functional theory. Later we can see, that the hole describing the exchange
+effects are integrated to $-1$, and the correlation hole integrates to $0$.
+However, it does not mean that \ref{DMeq:52} is the exchange hole and
+\ref{DMeq:53} is the correlation hole! The exchange energy, as what we can 
+see; is always originated from the same spin wave functions; however; the
+correlation energy, is both contributed from same spin wave functions and
+opposite spin wave functions. Hence the \ref{DMeq:53} is only a part of 
+correlation hole, that's what we need to pay attention to.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Another derivation for the hole function}
+%
+%
+%
+%
+%
+Let's consider the spinless density matrices for the first order and
+second order:
+\begin{equation}\label{DMeq:12}
+  \gamma^{1}(\bm{r_{1}^{'}}, \bm{r_{1}}) = \dfrac{2}{n-1}\int
+  \gamma^{2}(\bm{r_{1}^{'}},\bm{r_{2}},
+  \bm{r_{1}},\bm{r_{2}})d\bm{r_{2}}
+\end{equation}
+If we take the diagonal form, the expression above will be some
+relation between the electron density and the pair density:
+\begin{equation}
+\rho_{1}(\bm{r_{1}}) = \dfrac{2}{n-1}\int
+\rho_{2}(\bm{r_{1}},\bm{r_{2}})d\bm{r_{2}}
+\end{equation}
+Here we have to remember some important fact that in (\ref{DMeq:12})
+the variables of $\bm{r_{1}}$ and $\bm{r_{2}}$ should be always
+different since that they are representing different electrons (see
+the definition of second order reduced density matrices, we multiply
+some constant of $C^{2}_{n}$).
+
+Now let's go to see how to express the pair density. In the
+(\ref{DMeq:48}) we partition the density as:
+\begin{equation}\label{}
+\rho_{2}(\bm{r_{1}},\bm{r_{2}}) = \rho(\bm{r_{1}})
+\rho(\bm{r_{2}})g(\bm{r_{1}}, \bm{r_{2}})
+\end{equation}
+This is for the spinless case. However, in this expression we can
+see that the variable of $\bm{r_{1}}$ and $\bm{r_{2}}$ are
+symmetric, they may equal to each other; hence in such pair density
+expression we have to multiply the factor of $\frac{1}{2}$ to
+prevent double counting:
+\begin{equation}\label{DMeq:14}
+\rho_{2}(\bm{r_{1}},\bm{r_{2}}) = \frac{1}{2}\rho(\bm{r_{1}})
+\rho(\bm{r_{2}})g(\bm{r_{1}}, \bm{r_{2}})
+\end{equation}
+Then we can apply this expression into the (\ref{DMeq:48}).
+
+Now we can combine the (\ref{DMeq:14}) and (\ref{DMeq:12}) together,
+we will have:
+\begin{align}
+  \frac{n-1}{2}\rho(\bm{r_{1}}) &= \int
+  \frac{1}{2}\rho(\bm{r_{1}})\rho(\bm{r_{2}})g(\bm{r_{1}}, \bm{r_{2}})
+  d\bm{r_{2}}  \nonumber \\
+  n-1 &= \int \rho(\bm{r_{2}})g(\bm{r_{1}}, \bm{r_{2}}) d\bm{r_{2}}
+\end{align}
+
+Since that $\int \rho(\bm{r_{2}})d\bm{r_{2}} = n$, $n$ is the number
+of electrons; we can arrive at the final result:
+\begin{equation}
+  \label{DMeq:15}
+  \int\rho(\bm{r_{2}})(g(\bm{r_{1}}, \bm{r_{2}}) - 1) d\bm{r_{2}} = -1
+\end{equation}
+If we write the $g(\bm{r_{1}}, \bm{r_{2}}) - 1$ as 
+$\widetilde{h}(\bm{r_{1}}, \bm{r_{2}})$, then we can have:
+\begin{equation}
+   \label{DM_xc_hole_sum_rule}
+  \int\rho(\bm{r_{2}})\widetilde{h}(\bm{r_{1}}, \bm{r_{2}})
+ d\bm{r_{2}} = -1
+\end{equation}
+
+This is the sum rule which we have derived from some more general
+formula (see \ref{DMeq:55}). It demonstrates the average interactions
+between the reference location of $\bm{r_{1}}$ and all the other
+positions of $\bm{r_{2}}$ for the electron density.
+
+The concept of exchange and correlation holes possess some kind of
+importance in the density functional theory. Because that such
+concepts demonstrated what kind of behavior the density should be. If
+the correct density functionals are employed, the result density
+should obey the rules mentioned above.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The N-representability of the reduced density matrices}
+%
+% 1 sufficient and necessary condition of the reduced density matrices
+% 2 why the sufficient condition is vital for the variation process 3
+% the result for the gamma_{1} 4 the state for the gamma_{2}
+%
+%
+From the discussion above, we can see that the reduced density
+matrices actually is some kind of contraction for the wave
+functions. Inside the reduced density matrices, some information
+beneath the wave functions has been wrapped up so that we can not
+trace it any more. However, in this section we can see that this has
+brought some difficulties for further extending the use of reduced
+density matrices.
+
+For an arbitrary Nth order of reduced density matrices of
+$\gamma^{n}$, if we can find some wave functions contracting to it;
+then we can get $\gamma^{1}$ and $\gamma^{2}$ from the $\gamma^{n}$,
+finally the variation process can be utilized on the total energy
+based on the $\gamma^{1}$ and $\gamma^{2}$.
+
+Here we note that the above condition actually is necessary to apply
+the variation principle. If a set of $\gamma^{n}$ can be found that
+they are all contracting from the wave functions of the
+corresponding system; then the variation process can be strike up to
+find the best reduced density matrices which is to minimize the
+energy of the system. Furthermore, the result reduced density
+matrices can also be used to evaluate the other system properties.
+Since that all the reduced density matrices are originated from the
+wave functions, this guarantees that such result is able to
+correspond to the true wave functions of the system. Hence, to find
+out the condition that the requirement for the $\gamma^{n}$ to be
+contracted from the wave function is something vital.
+
+So far what we have discussed is the sufficient condition to get
+$\gamma^{1}$ and $\gamma^{2}$, the necessary condition for the
+$\gamma^{1}$ and $\gamma^{2}$ is that whether $\gamma^{1}$ and
+$\gamma^{2}$ can be contracted from the $\gamma^{n}$. Here it's said
+that $\gamma^{1}$ and $\gamma^{2}$ satisfy the sufficient condition
+will lead to an energy higher than the true energy, and the
+$\gamma^{1}$ and $\gamma^{2}$ satisfy the necessary condition will
+lead to the energy lower than the true energy\cite{weitaoYang}. If
+the $\gamma^{1}$ and $\gamma^{2}$ satisfies both of the sufficient
+condition and the necessary condition, it's said that $\gamma^{1}$
+and $\gamma^{2}$ are N-representable. Hence, we can make use of such
+$\gamma^{1}$ and $\gamma^{2}$ to get the system energy by variation
+process.
+
+The condition for the $\gamma^{1}$ to be N-representable has been
+found, that if $\bra{\psi_{i}}$ is some normalized spin orbital
+state, that $\gamma^{1}$ is N-representable as long as to satisfy
+the condition below:
+\begin{equation}\label{}
+  0 \leq \int
+  \psi_{i}^{*}(x_{1}^{'})\gamma^{1}(x_{1}^{'},x_{1})\psi_{i}(x_{1})dx_{1}dx_{1}^{'}
+  \leq 1
+\end{equation}
+This is equivalent to the requirement that eigenvalue for the
+$\gamma^{1}$ (the occupation number) of $n_{i}$ should fall into the
+range of $0$ to $1$:
+\begin{equation}\label{}
+  0 \leq n_{i} \leq 1
+\end{equation}
+
+However, it's difficult to get the N-representable condition for the
+$\gamma^{2}$; even the sufficient condition for the $\gamma^{2}$ is
+still too difficult so that it's not reachable yet. Therefore, so
+far it's impossible to make variation process on the energy
+expression based on the reduced density matrices.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hatree-Fock theory in reduced density matrices form}
+% 1 how to express the density matrices based on the HF wave function
+% 2 idempotent character 3 energy expression
+%
+\subsection{Expression of the reduced density matrices}
+%
+%
+In the above content, the reduced density matrices has been discussed
+generally, now in this section we will see how to express the reduced
+density matrices within the Hatree-Fock framework.
+
+First, on the base of the single electron hypothesis; the first
+order of reduced density matrices can be directly gotten from the
+definition (here we note that by following the above definition, the
+label of $x_{i}$ denotes some combination of spin variable and the
+coordinate variable; so the spin part is not explicitly given)\label{DM:1}:
+\begin{align}\label{DMeq:10}
+  \gamma^{1}(x^{'}_{1},x_{1})
+      &= \frac{1}{n!}\times n\int \Psi^{*}(x^{'}_{1}, x_{2},
+  \cdots, x_{p}, x_{p+1},
+  \cdots, x_{n})* \nonumber \\
+  & \Psi(x_{1}, x_{2}, \cdots, x_{p}, x_{p+1}, \cdots,
+  x_{n})dx_{2}dx_{3}\cdots dx_{n} \nonumber \\
+      &= \frac{1}{(n-1)!}\int \begin{vmatrix}
+       \psi^{*}_{1}(x^{'}_{1}) & \psi^{*}_{2}(x^{'}_{1}) & \cdots & \psi^{*}_{n}(x^{'}_{1}) \\
+       \psi^{*}_{1}(x_{2}) & \psi^{*}_{2}(x_{2}) & \cdots & \psi^{*}_{n}(x_{2}) \\
+       \cdots & \cdots & \cdots & \cdots \\
+       \psi^{*}_{1}(x_{n}) & \psi^{*}_{2}(x_{n}) & \cdots & \psi^{*}_{n}(x_{n}) \\
+     \end{vmatrix}\times \nonumber \\
+     &\begin{vmatrix}
+       \psi_{1}(x_{1}) & \psi_{1}(x_{2}) & \cdots & \psi_{1}(x_{n}) \\
+       \psi_{2}(x_{1}) & \psi_{2}(x_{2}) & \cdots & \psi_{2}(x_{n}) \\
+       \cdots & \cdots & \cdots & \cdots \\
+       \psi_{n}(x_{1}) & \psi_{n}(x_{2}) & \cdots & \psi_{n}(x_{n}) \\
+     \end{vmatrix} dx_{2}dx_{3}\cdots dx_{n} \nonumber \\
+  &=\sum_{i=1}^{n}\psi^{*}_{i}(x^{'}_{1})\psi_{i}(x_{1})
+\end{align}
+Here $\varphi_{i}(x^{'}_{1})$ indicates that the $i$th orbital's
+value on the coordinate of $x^{'}_{1}$(here the spin state is
+obviously same for the $\mathbf{r^{'}_{1}}$ and
+$\mathbf{\bm{r_{1}}}$, else both of the orbitals will be orthogonal
+with each other).
+
+Similarly, we can get the Pth order of reduced density matrices:
+\begin{multline}\label{DMeq:7}
+  \gamma^{p}(x^{'}_{1}, x^{'}_{2}, \cdots, x^{'}_{p}, x_{1}, x_{2},
+  \cdots, x_{p}) \\
+  = \frac{1}{p!}
+  \begin{vmatrix}
+    \gamma^{1}(x^{'}_{1},x_{1}) & \gamma^{1}(x^{'}_{1},x_{2}) & \cdots
+    &
+    \gamma^{1}(x^{'}_{1},x_{p}) \\
+    \gamma^{1}(x^{'}_{2},x_{1}) & \gamma^{1}(x^{'}_{2},x_{2}) & \cdots
+    &
+    \gamma^{1}(x^{'}_{2},x_{p}) \\
+    \cdots & \cdots & \cdots &
+    \cdots \\
+    \gamma^{1}(x^{'}_{p},x_{1}) & \gamma^{1}(x^{'}_{p},x_{2}) & \cdots
+    &
+    \gamma^{1}(x^{'}_{p},x_{p}) \\
+  \end{vmatrix}
+\end{multline}
+It's interesting to see that in the single electron approximation
+that all the higher order of density matrices are constructed by the
+first order ones. Actually this is some inherent requirement by the
+single electron approximation.
+
+Now we will give the example of the second order of reduced density
+matrices to see that how we can get the expression of (\ref{DMeq:7}).
+
+First, we can suggest that in the $\Psi^{*}$ the electron $1$ always
+resides on position of $x_{1}^{'}$ (in spin state of $s_{1}$), and
+the electron $2$ resides on the position of $x_{2}^{'}$ (in spin
+state of $s_{2}$); on the other hand, in the $\Psi$ the electron $1$
+and $2$ reside on the position of $x_{1}$ and $x_{2}$, respectively.
+However, since that in the reduced density matrices the electron
+label does not exist; thus here it's only ``representative'' to show
+that in such position we have electron here but without caring that
+which one it is.
+
+Now we begin the job. Firstly, for any multi-electron wave functions
+under Hatree-Fock framework, we can all have:
+\begin{equation}\label{}
+  \Psi = \dfrac{1}{\sqrt{n}}\sum^{n}_{1 \leq i<j \leq n}\left|
+    \begin{array}{cc}
+      \psi_{i}(1) & \psi_{j}(1) \\
+      \psi_{i}(2) & \psi_{j}(2) \\
+    \end{array}
+  \right|
+  \Delta^{
+    i,\,1 \choose
+    j,\,2 }
+  (3,4,\cdots,n)
+\end{equation}
+This is from the (\ref{HFTeq:16}). However, for deriving the
+(\ref{DMeq:7}) it's better to rewrite it into the form that:
+\begin{equation}\label{}
+  \Psi = \dfrac{1}{\sqrt{n}}\sum^{n}_{1 \leq i<j \leq n}\left|
+    \begin{array}{cc}
+      \psi_{i}(1) & \psi_{i}(2) \\
+      \psi_{j}(1) & \psi_{j}(2) \\
+    \end{array}
+  \right|
+  \Delta^{
+    i,\,1 \choose
+    j,\,2 }
+  (3,4,\cdots,n)
+\end{equation}
+
+If we replace the electron label with the position variables of
+$x_{i}$ and $x_{i}^{'}$, we can see that the second order reduced
+density matrices can be expressed as:
+\begin{multline}\label{}
+  \gamma^{2}(x^{'}_{1},x^{'}_{2},x_{1},x_{2}) = \\
+  \shoveleft{C^{2}_{n}\frac{1}{n!}\times\int \sum^{n}_{1 \leq i<j \leq n}
+     \left|
+      \begin{array}{cc}
+        \psi^{*}_{i}(x^{'}_{1}) &  \psi^{*}_{j}(x^{'}_{1})  \\
+        \psi^{*}_{i}(x^{'}_{2}) & \psi^{*}_{j}(x^{'}_{2})   \\
+      \end{array}
+    \right| \Delta^{ i,\,1 \choose j,\,2 }
+    (3,4,\cdots,n)\times} \\
+  \sum^{n}_{1 \leq i^{'}<j^{'} \leq n}\left|
+    \begin{array}{cc}
+      \psi_{i^{'}}(x_{1}) & \psi_{i^{'}}(x_{2}) \\
+      \psi_{j^{'}}(x_{1}) & \psi_{j^{'}}(x_{2}) \\
+    \end{array}
+  \right| \Delta^{ i^{'},\,1 \choose j^{'},\,2 } (3,4,\cdots,n)
+  dx_{3}x_{4}\cdots dx_{n}
+\end{multline}
+Here in this expression, we can see that if the label of $i$ and $j$
+have been fixed in the bra, the $i^{'}$ and $j^{'}$ should have the
+relation that $i=i^{'}$, $j=j^{'}$ (or $i=j^{'}$, $j=i^{'}$),
+respectively; else the integration for the complement minor of
+$\Delta$ will be zero due to the orthogonal condition. Thus such
+analysis leads to an very important conclusion:
+\begin{equation}\label{DMeq:8}
+  \gamma^{2} = \frac{1}{2!}\sum^{n}_{1 \leq i<j \leq
+    n}
+\left|A^{*}\begin{pmatrix}
+             x^{'}_{1} & x^{'}_{2} \\
+             i & j \\
+           \end{pmatrix}
+\right|
+\left|A\begin{pmatrix}
+             i & j \\
+             x_{1} & x_{2} \\
+           \end{pmatrix}
+\right|
+\end{equation}
+Here we use the $A$ to represent the determinant:
+\begin{equation}\label{}
+A\begin{pmatrix}
+             i & j \\
+             x^{'}_{1} & x^{'}_{2} \\
+           \end{pmatrix} = \left[
+      \begin{array}{cc}
+        \psi_{i}(x_{1}) &  \psi_{i}(x_{2})  \\
+        \psi_{j}(x_{1}) &  \psi_{j}(x_{2})   \\
+      \end{array}
+    \right]
+\end{equation}
+The first row indicates the label for the orbital it changes as the
+row of matrix changes; the second row is the variable of $x_{i}$,
+which is composed by $x_{i} = (\mathbf{r_{i}}, s_{i})$ ($s_{i}$ is
+the spin variable); it changes as the matrix column changes. Hence,
+the orbitals are changing in rows, while the variables of $x_{i}$ is
+changing in column format in the matrix. Finally, $A^{*}$ indicates
+that the matrix element is in bra space.
+
+The conclusion in the (\ref{DMeq:8}) can be similarly expanded into
+the Pth order of reduced density matrices:
+\begin{equation}\label{DMeq:9}
+  \gamma^{p} = \frac{1}{p!}\sum^{n}_{1 \leq i_{1}<i_{2}<\cdots<i_{p}
+    \leq n}\left|A^{*}\begin{pmatrix}
+                        x^{'}_{1} & x^{'}_{2} & \cdots & x^{'}_{p} \\
+                        i_{1} & i_{2} & \cdots & i_{p} \\
+                      \end{pmatrix}
+\right| \left|A\begin{pmatrix}
+                        i_{1} & i_{2} & \cdots & i_{p} \\
+                        x_{1} & x_{2} & \cdots & x_{p} \\
+                      \end{pmatrix}
+\right|
+\end{equation}
+Here the derivation for the Pth order of reduced density matrices is
+same with the second order one.
+
+In this step, the most important thing for us to do is to eliminate
+the integration operation. So far the in the (\ref{DMeq:9}), we can
+drop the quadrature symbol. the next step is to make the
+(\ref{DMeq:9}) come close to the (\ref{DMeq:7}). According to the
+Cauchy-binet formula in the linear algebra, we generally have:
+\begin{align}\label{}
+&\sum^{n}_{1 \leq i_{1}<i_{2}<\cdots<i_{p}
+    \leq n}\left|A^{*}\begin{pmatrix}
+                        x^{'}_{1} & x^{'}_{2} & \cdots & x^{'}_{p} \\
+                        i_{1} & i_{2} & \cdots & i_{p} \\
+                      \end{pmatrix}
+\right| \left|A\begin{pmatrix}
+                        i_{1} & i_{2} & \cdots & i_{p} \\
+                        x_{1} & x_{2} & \cdots & x_{p} \\
+                      \end{pmatrix}
+\right| \nonumber \\
+&=    \left|A^{*}A\begin{pmatrix}
+                        x^{'}_{1} & x^{'}_{2} & \cdots & x_{p} \\
+                        x_{1} & x_{2} & \cdots & x_{p} \\
+                      \end{pmatrix}
+\right|
+\end{align}
+Therefore, we have:
+\begin{equation}\label{DMeq:22}
+  \gamma^{p} = \frac{1}{p!}\left|A^{*}A\begin{pmatrix}
+                        x^{'}_{1} & x^{'}_{2} & \cdots & x_{p} \\
+                        x_{1} & x_{2} & \cdots & x_{p} \\
+                      \end{pmatrix}
+\right|
+\end{equation}
+So finally we have drop the summation symbol.
+
+It's easy to prove that (\ref{DMeq:22}) is just equal to the
+(\ref{DMeq:7}). Here in the (\ref{DMeq:22}) the results means that
+the variables of $x_{i}$ ($x^{'}_{i}$) is selected to be fixed (from
+$1$ to $p$); while the label of orbital is free to change (from $1$
+to $n$); therefore it comes to the result of (\ref{DMeq:7}).
+
+Finally it's interesting to compare the form of reduced density
+matrices in (\ref{DMeq:10}) with the ``density matrix'' defined in the
+HF chapter (see (\ref{HFT:5})). Why they have the same name? Do they
+represent the same thing?
+
+In ((\ref{HFT:5})), the density matrix of $P_{\mu\nu}$ is defined
+as:
+\begin{equation}
+  \label{DMeq:27}
+P_{\mu\nu} = \sum^{occ}_{j=1}c^{*}_{\mu j}c_{\nu j}
+\end{equation}
+
+Then the first order of reduced density matrices is:
+\begin{align}
+    \label{DMeq:28}
+    \gamma^{1}(x_{1}^{'}, x_{1}) &=
+\sum_{i=1}^{occ}\psi^{*}_{i}(x^{'}_{1})\psi_{i}(x_{1}) \quad
+\underrightarrow{\psi_{i}(x) = \sum_{\mu}c_{\mu i}\phi_{\mu}(x)}
+\nonumber \\
+&= \sum_{i=1}^{occ}\left( \sum_{\mu}c^{*}_{\mu i}\phi^{*}_{\mu}(x^{'}_{1}) \right)
+\left( \sum_{\nu}c_{\nu i}\phi_{\nu}(x_{1}) \right) \nonumber \\
+&=\sum_{\mu}\sum_{\nu}P_{\mu\nu}\phi^{*}_{\mu}(x^{'}_{1})\phi_{\nu}(x_{1})
+\end{align}
+
+From the (\ref{DMeq:28}) we can see that in the selected basis
+functions of $\phi(x)$, if the $P_{\mu\nu}$ is given then the
+first order of density matrices is fixed (for all the $\mu$ and
+$\nu$). On the contrary, if the $\gamma^{1}(x_{1}^{'}, x_{1})$ is
+known (here below we assume that the basis functions are orthogonal
+with each other, such relation can always be made true); then
+through the normalization condition (for the arbitrary pair of $\mu$
+and $\nu$):
+\begin{equation}
+  \label{DMeq:29}
+  \int \phi^{*}_{\nu}(x_{1})\gamma^{1}(x_{1}^{'},
+  x_{1})\phi_{\mu}(x^{'}_{1})dx^{'}_{1}dx_{1} = P_{\mu\nu}
+\end{equation}
+The $P_{\mu\nu}$ is also fixed. Hence, we say that the density
+matrix of $P_{\mu\nu}$ is identical to the first order of
+density matrices of $\gamma^{1}(x_{1}^{'},x_{1})$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Character for the reduced density matrices in HF framework}
+%
+%
+%
+%
+Now we turn back to see the physical meaning of (\ref{DMeq:7}). We
+can see that in the Hatree-Fock framework, all the higher order of
+reduced density matrices are only depending on the first order ones.
+As a matter of fact, this is some kind of one-to-one mapping
+relationship between the Hatree-Fock framework and the expression of
+(\ref{DMeq:7})\cite{weitaoYang}. If the single electron
+approximation and slater determinants expression are introduced, the
+expression of reduced density matrices will turn to (\ref{DMeq:7});
+on the other hand, if we already have the reduced density matrices
+in expression of (\ref{DMeq:7}), we will arrive at the single
+electron approximation and slater determinants (here, the proof has
+been omitted here). Therefore, it can say that (\ref{DMeq:7})
+actually is another way to represent the Hatree-Fock framework.
+
+For the $\gamma^{1}$, from the expression of (\ref{DMeq:10}) we can
+see that:
+\begin{align}\label{DMeq:23}
+&\int\gamma^{1}(x^{'}_{1},x^{''}_{1})
+\gamma^{1}(x^{''}_{1},x_{1})dx^{''}_{1} \nonumber
+\\
+&=\int \sum_{i=1}^{n}\psi^{*}_{i}(x^{'}_{1})\psi_{i}(x^{''}_{1})
+\sum_{j=1}^{n}\psi^{*}_{j}(x^{''}_{1})\psi_{j}(x_{1})dx^{''}_{1}
+\nonumber
+\\
+&=\sum_{i=1}^{n}\sum_{j=1}^{n}
+\psi^{*}_{i}(x^{'}_{1})\psi_{j}(x_{1})
+\int\psi_{i}(x^{''}_{1})
+\psi^{*}_{j}(x^{''}_{1})dx^{''}_{1} \nonumber
+\\
+&=\sum_{i=1}^{n}\sum_{j=1}^{n}
+\psi^{*}_{i}(x^{'}_{1})\psi_{j}(x_{1})\delta_{ij} \nonumber \\
+&=\sum_{i=1}^{n} \psi^{*}_{i}(x^{'}_{1})\psi_{i}(x_{1}) =
+\gamma^{1}(x^{'}_{1},x_{1})
+\end{align}
+This reflects that the $\gamma^{1}$ has the idempotent character.
+Such character is originated from the orthogonality of the orbital
+space. On the other hand, it's easy to see that
+\begin{equation}\label{DMeq:25}
+  \int \gamma^{1}\psi_{i}(x_{1})dx_{1} = \psi^{'}_{i}(x^{'}_{1})
+\end{equation}
+Here we note that the occupation number for the $\psi^{'}_{i}$
+equals to $1$. From the definition of the reduced density matrices
+in (\ref{DMeq:10}), we know that they are all composed by the
+occupied orbitals so this conclusion is natural.
+
+Finally, from the explanation of (\ref{DMeq:25}) it's easy to prove
+that:
+\begin{equation}\label{DMeq:24}
+Tr(\gamma^{1}) =
+\int\gamma^{1}(x^{'}_{1},x_{1})_{x^{'}_{1}=x_{1}}dx_{1} = n
+\end{equation}
+Such meaning is clear for there are totally $n$ electrons so that
+the electron density should be $n$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Energy expression for the reduced density matrices
+in HF framework}\label{expression_RDM_HF_framework}
+%
+%
+%
+%
+Finally, let's bring the expression of (\ref{DMeq:10}) and
+(\ref{DMeq:7}) into (\ref{DMeq:21}); then we can express total
+energy for the reduced density matrices via the single electron
+approximation. However, firstly let's make some changes to the
+$\gamma^{2}$:
+\begin{align}\label{}
+\gamma^{2}(x^{'}_{1}, x^{'}_{2}, x_{1}, x_{2})_{x^{'}_{1}=x_{1},
+x^{'}_{2}=x_{2}} &= \frac{1}{2}
+  \begin{vmatrix}
+    \gamma^{1}(x^{'}_{1},x_{1}) & \gamma^{1}(x^{'}_{1},x_{2})  \\
+    \gamma^{1}(x^{'}_{2},x_{1}) & \gamma^{1}(x^{'}_{1},x_{1})  \\
+  \end{vmatrix}_{x^{'}_{1}=x_{1},
+x^{'}_{2}=x_{2}} \nonumber \\
+  &=\frac{1}{2}(\gamma^{1}(x_{1},x_{1})\gamma^{1}(x_{1},x_{1}) -
+  \gamma^{1}(x_{1},x_{2})\gamma^{1}(x_{2},x_{1}))
+\end{align}
+
+
+Hence, the energy expression in the (\ref{DMeq:21}) will finally becomes:
+\begin{multline}\label{DMeq:26}
+  E = \int \left[\left(\frac{-1}{2}\times\nabla^2\right)
+    \gamma^{1}(x^{'}_{1}, x_{1})\right]_{x_{1} = x_{1}^{'}} dx_{1} +
+  \sum_{\alpha=1}^{N}\int
+  \left[\left(\frac{-1}{r_{x_{1}\alpha}}\right) \rho(x_{1})\right]
+  dx_{1} + \\
+  \frac{1}{2}\int \left[\left(\frac{1}{r_{12}}\right)
+    \left(\gamma^{1}(x_{1},x_{1})\gamma^{1}(x_{2},x_{2}) -
+  \gamma^{1}(x_{1},x_{2})\gamma^{1}(x_{2},x_{1})\right)\right] dx_{1}dx_{2}
+\end{multline}
+
+
+In the expression of (\ref{DMeq:26}), the coulomb energy term and the
+exchange energy term is fully characterized. For the coulomb term:
+\begin{equation}
+  \label{DMeq:30}
+  E_{coulomb} =  \frac{1}{2}\int \frac{1}{r_{12}}
+  \gamma^{1}(x_{1},x_{1})\gamma^{1}(x_{2},x_{2})dx_{1}dx_{2} =
+  \frac{1}{2}\int \frac{1}{r_{12}} \rho(x_{1})\rho(x_{2})dx_{1}dx_{2}
+\end{equation}
+It's clearly the classic coulomb energy expression between the
+electron density of $\rho(x_{1})$ and $\rho(x_{2})$. Here the $\rho$
+is the total density in given point:
+\begin{equation}
+  \label{DMeq:31}
+  \rho(x_{1}) = \rho^{\alpha}(x_{1}) + \rho^{\beta}(x_{1})
+\end{equation}
+
+The exchange energy part, however; is a bit of complicated:
+\begin{equation}
+  E_{exchange} =  -\frac{1}{2}\int \frac{1}{r_{12}}
+  \gamma^{1}(x_{1},x_{2})\gamma^{1}(x_{2},x_{1})dx_{1}dx_{2}
+\end{equation}
+
+Since that $\gamma^{1}(x_{1},x_{2}) = \gamma^{1*}(x_{2},x_{1})$
+according to the (\ref{DMeq:10}), then this term becomes:
+\begin{equation}
+  \label{DMeq:32}
+  E_{exchange} =  -\frac{1}{2}\int \frac{1}{r_{12}}
+  |\gamma^{1}(x_{1},x_{2})|^{2}dx_{1}dx_{2}
+\end{equation}
+such expression invoke us to define the ``exchange density'', which
+is related to two different position $x_{1}$ and $x_{2}$. Below we use
+the subscript of $1$ to indicate it's the first order density
+matrices:
+\begin{equation}\label{}
+\rho_{1}(x_{1},x_{2}) = \gamma^{1}(x_{1},x_{2})
+\end{equation}
+Since it is related to two locations, it has some ``non-local''
+character. Furthermore, in the (\ref{DM:1}), we have stated that the
+spin variable has been integrated into the variable of $x_{i}$, then
+here it's clear that both of the two location; $x_{1}$ and $x_{2}$
+should share the same spin, else the integral will go zero. Hence we
+have:
+\begin{align}
+  \label{DMeq:33}
+  E_{exchange} &=  -\frac{1}{2}\int \frac{1}{r_{12}}
+  \left\{|\rho^{\alpha}_{1}(x_{1},x_{2})|^{2} +
+  |\rho^{\beta}_{1}(x_{1},x_{2})|^{2}\right\}dx_{1}dx_{2}
+\end{align}
+
+Therefore, we can further express the (\ref{DMeq:26}) as:
+\begin{multline}
+\label{DMeq:34}
+  E = \int \left[\left(\frac{-1}{2}\times\nabla^2\right)
+    \gamma^{1}(x^{'}_{1}, x_{1})\right]_{x_{1} = x_{1}^{'}} dx_{1} +
+  \sum_{\alpha=1}^{N}\int
+  \left[\left(\frac{-1}{r_{x_{1}\alpha}}\right) \rho(x_{1})\right]
+  dx_{1} + \\
+\frac{1}{2}\int \frac{1}{r_{12}} \rho(x_{1})\rho(x_{2})dx_{1}dx_{2}
+- \frac{1}{2}\int \frac{1}{r_{12}}
+  \Bigg\{|\rho^{\alpha}_{1}(x_{1},x_{2})|^{2} +
+         |\rho^{\beta}_{1}(x_{1},x_{2})|^{2}\Bigg\}dx_{1}dx_{2}
+\end{multline}
+
+If the configuration is in close shell (RHF case), then we have:
+\begin{equation}
+  \label{DMeq:35}
+  \rho^{\alpha}_{1}(x_{1},x_{2})=
+  \rho^{\beta}_{1}(x_{1},x_{2})=
+\frac{1}{2}\rho_{1}(x_{1},x_{2})
+\end{equation}
+
+Then the exchange energy becomes:
+\begin{equation}
+  \label{DMeq:36}
+    E_{exchange} =  -\frac{1}{4}\int \frac{1}{r_{12}}
+  |\rho_{1}(x_{1},x_{2})|^{2}dx_{1}dx_{2}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exchange hole description}\label{DM:2}
+%
+%
+%
+%
+From the discussion about the Hatree-Fock framework, we have known
+that the single electron approximation have just brought in the full
+exchange effects so that to make the approximated wave function
+satisfy the Pauli principle. However, for the correlation effects,
+the single electron approximation has completely neglected it; which
+is clear by comparing the energy expression in (\ref{DMeq:34}) and
+the pair density shown in (\ref{DM_xc_hole_sum_rule}). Let's rewrite 
+the exchange energy in the last section into some new form: 
+\begin{equation}
+\begin{split}
+E_{exchange} &=  -\frac{1}{2}\int \frac{1}{r_{12}}
+  \gamma^{1}(x_{1},x_{2})\gamma^{1}(x_{2},x_{1})dx_{1}dx_{2} \\
+&= -\frac{1}{2}\int dx_{1}dx_{2} \rho(x_{1})\rho(x_{2})
+\frac{1}{r_{12}}
+\frac{\gamma^{1}(x_{1},x_{2})\gamma^{1}(x_{2},x_{1})}{\rho(x_{1})\rho(x_{2})}
+\end{split}
+\end{equation}
+
+Here we declare that the term inside the $\int dx_{2}$ contains the exchange
+hole $\widetilde{h}(x_{1}, x_{2})$\footnote{Actually this declaration is more
+clear we we get to the adiabatic connection in the density functional theory
+part, see \ref{Adiabatic_connections} and the expression for XC functional 
+\ref{DFTIeq:29}}:
+\begin{equation}\label{DMeq:37}
+\widetilde{h}(x_{1}, x_{2})
+ =\widetilde{h}_{x}(x_{1}, x_{2}) = -\frac{1}{2}
+\frac{\rho_{1}(x_{1},x_{2})\rho_{1}(x_{2},x_{1})}{\rho(x_{1})\rho(x_{2})}
+\end{equation}
+
+Now let's evaluate the average effects for the exchange hole:
+\begin{align}\label{DMeq:38}
+\int\rho(x_{2})\widetilde{h}_{x}(x_{1}, x_{2})dx_{2} &= -\frac{1}{2}\int
+\frac{\rho_{1}(x_{1},x_{2})\rho_{1}(x_{2},x_{1})}{\rho(x_{1})}dx_{2}
+\nonumber \\
+&=-\frac{1}{2}\int\frac{1}{\rho(x_{1})}
+\sum_{i=1}^{occ}\psi^{*}_{i}(x_{1})\psi_{i}(x_{2})
+\sum_{j=1}^{occ}\psi^{*}_{j}(x_{2})\psi_{j}(x_{1})
+dx_{2} \nonumber \\
+&=-\frac{1}{2}\frac{1}{\rho(x_{1})}
+\sum_{i=1}^{occ}\sum_{j=1}^{occ}\psi^{*}_{i}(x_{1})\psi_{j}(x_{1})
+\int\psi^{*}_{j}(x_{2})\psi_{i}(x_{2})dx_{2} \nonumber \\
+&= -\frac{1}{\rho(x_{1})}
+\sum_{i=1}^{occ}\sum_{j=1}^{occ}\psi^{*}_{i}(x_{1})\psi_{j}(x_{1})
+\delta_{ij} \nonumber \\
+&= -\frac{1}{\rho(x_{1})}\rho(x_{1}) \nonumber \\
+&= -1
+\end{align}
+
+Here in the above derivation we have used the relation that:
+\begin{equation}\label{}
+\int\psi^{*}_{i}(x_{2})\psi_{j}(x_{2})dx_{2} = 2\delta_{ij}
+\end{equation}
+Here all of the alpha and beta electrons are counted, since we are 
+sticking to the spinless form. 
+
+Now we have arrived at some important conclusion that the average
+effects for the exchange hole equal to $-1$. this holds true for any
+single Slater determinant wave functions. The \ref{DMeq:38} means, if we
+imagine that there's an electron fixing at the location of
+$\bm{r_{1}}$, then if we counting the exchange effects for all the
+other locations of $\bm{r_{2}}$ (which means to cause depletion of electron 
+density at the $\bm{r_{2}}$), it will be $-1$; which is
+equivalent to one electron.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

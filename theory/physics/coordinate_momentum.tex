@@ -1,0 +1,554 @@
+%
+% finished at Aug. 5th, 2009
+%
+%
+\chapter{Position representation and momentum representation}
+\label{position_momentum representation}
+% introduce the coordinates
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+% why we have this chapter?
+%
+%
+In the previous sections, we have brought into the concept of
+Hilbert space and operator, and have discussed their features in
+general. However, all the discussions have been made are abstract.
+For example, the wave functions are only considered as some
+``vectors'' in the Hilbert space and the discussion are mainly on
+the ``vector'' property. Samely, in the discussion about the
+operators, no analysis has bee made on the concrete expression of
+the operators; for instance; does the Hamiltonian operator commute
+with the momentum operator? such subjects has been put down so far.
+
+Well, since this chapter we will go into such discussions. We will
+derive the concrete expression for both wave functions and operators
+from the above general discussion. Here we will focus on the subject
+that how to associate the concrete wave function of $\Psi(\bm{r},
+t)$ with the corresponding vector of $\Psi$ in the Hilbert
+space?\footnote{Here the analysis within in this chapter is taken
+from the Xinlin Ke's book\cite{XingLinKe}.}
+
+The general thread for derivation within this chapter has been given
+in section \ref{vector_schalar_in_operator}. Here we only follow the
+clues there.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Eigen states and eigen values for position
+and momentum operator}
+\label{eigen_states_in_position_momentum}
+%
+% the changing of eigen states are continuous for x and p
+%
+%
+Now let's concentrate on one dimension motion of a single particle for
+simplicity. Suggest that $\ket{x}$ and $\ket{p}$ are some normalized
+eigen states for position operator $\hat{x}$ and momentum operator
+$\hat{p}$, the corresponding eigen values are $x$ and $p$. hence we
+have:
+\begin{align}
+\label{PRAMReq:1}
+\hat{x}\ket{x} &= x\ket{x} \nonumber \\
+\hat{p}\ket{p} &= p\ket{p}
+\end{align}
+Here the $\ket{x}$ and $\ket{p}$ are just some generalization for
+the wave functions we have shown in the (\ref{sec:PWF_in_Hilbert}).
+There the $\nu_{p}(x)$ is just some concrete function to stand for
+the $\ket{p}$ in the position representation.
+
+Now let's go to see what kind of value can be achieved by $x$ and
+$p$.
+
+From the commutation relation of $[\hat{x}, \hat{p}] = i\hbar$, we can
+use $\hat{p}$ to construct some unitary operator of $\hat{q}$:
+\begin{align}
+  \label{PRAMReq:2}
+\hat{q}(\xi) &= e^{\frac{i}{\hbar}\xi\hat{p}} \Rightarrow \nonumber \\
+\hat{q}^{+}(\xi) &= e^{-\frac{i}{\hbar}\xi\hat{p}} \Rightarrow
+\nonumber \\
+\hat{q}(\xi)\hat{q}^{+}(\xi) &= I
+\end{align}
+Here $\xi$ is some arbitrary real number. From the mathematical
+analysis, it's known that we can expand the $\hat{q}(\xi)$ into series
+expansion (it holds true for all $\xi$ value):
+\begin{equation}
+  \label{PRAMReq:3}
+  \hat{q}(\xi) = 1 + \left(\frac{i}{\hbar}\xi\hat{p}\right) +
+ \frac{\left(\frac{i}{\hbar}\xi\hat{p}\right)^{2}}{2!} +
+\frac{\left(\frac{i}{\hbar}\xi\hat{p}\right)^{3}}{3!} + \cdots
+\end{equation}
+
+Now we have to resort to an equation which will be introduced in the
+following content (\ref{OPERATORMOREeq:11}):
+\begin{equation}
+  \label{PRAMReq:4}
+[\hei{r}, f(\hei{p})] = i\hbar \frac{\partial f(\hei{p})}{\partial
+\hei{p}}
+\end{equation}
+
+Here the operation is for the vector operator, but it can be directly
+applied to the scalar operator; so by the (\ref{PRAMReq:4}) we can
+get:
+\begin{align}
+  \label{PRAMReq:5}
+    [\hat{x}, \hat{q}(\xi)] &=
+i\hbar \frac{\partial\hat{q}(\xi)}{\partial \hat{p}} \nonumber \\
+&=i\hbar \frac{i}{\hbar}\xi\hat{q}(\xi) \nonumber \\
+&=-\xi\hat{q}(\xi)
+\end{align}
+
+So we have:
+\begin{align}
+  \label{PRAMReq:6}
+\hat{x}\hat{q}(\xi) - \hat{q}(\xi)\hat{x} &= -\xi\hat{q}(\xi)
+\Rightarrow \nonumber \\
+\hat{x}\hat{q}(\xi) &= \hat{q}(\xi)\hat{x} - \xi\hat{q}(\xi)
+\end{align}
+
+Hence for the $\ket{x}$, we have:
+\begin{align}
+  \label{PRAMReq:7}
+\hat{x}\hat{q}(\xi)\ket{x} &= (\hat{q}(\xi)\hat{x} -
+\xi\hat{q}(\xi))\ket{x} \nonumber \\
+&=\hat{q}(\xi) (x - \xi)\ket{x} \nonumber \\
+&=(x - \xi)\hat{q}(\xi)\ket{x}
+\end{align}
+
+From (\ref{PRAMReq:7}) it turns out that if $\ket{x}$ is the eigen
+state for the $\hat{x}$, then $\hat{q}(\xi)\ket{x}$ is also the
+$\hat{x}$ eigen state which gives the eigen value of $x - \xi$. This
+holds true for any real value of $\xi$. Hence, this conclusion implies
+that the position can adopt any real value for the wave functions.
+
+What's more, the (\ref{PRAMReq:7}) indicates that through
+$\hat{q}(\xi)$ the eigen state of $\ket{x}$ is transformed into the
+eigen state of $\ket{x - \xi}$, that is:
+\begin{equation}
+  \label{PRAMReq:8}
+  \hat{q}(\xi)\ket{x} = \ket{x - \xi}
+\end{equation}
+Thus the $\hat{q}(\xi)$ is also called ``down operator'' for the
+$\ket{x}$.
+
+Similarly, by the same procedure we can construct the ``up operator''
+for the $\ket{x}$, which is $\hat{q}^{+}(\xi) =
+e^{-\frac{i}{\hbar}\xi\hat{p}}$. It transforms the $\ket{x}$ into the
+$\ket{x + \xi}$:
+\begin{equation}
+  \label{PRAMReq:9}
+    \hat{q}^{+}(\xi)\ket{x} = \ket{x + \xi}
+\end{equation}
+
+Hence, from the $\ket{x}$, and the corresponding up and down operators
+we can get all the eigen states for the $\ket{x}$.
+
+As for the momentum, we can build the similar up and down operators of
+$\hat{t}(\xi)$ and $\hat{t}^{+}(\xi)$:
+\begin{align}
+  \label{PRAMReq:10}
+  \hat{t}(\xi) = e^{\frac{i}{\hbar}\xi\hat{x}} &\quad \hat{t}^{+}(\xi) =
+  e^{-\frac{i}{\hbar}\xi\hat{x}} \nonumber \\
+ \hat{t}(\xi)\ket{p} = \ket{p + \xi} &\quad \hat{t}^{+}(\xi)\ket{p} =
+ \ket{p - \xi}
+\end{align}
+through same procedure, we can know that $\ket{p}$ also adopts all the
+real values.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Position representation and momentum representation}
+\label{sec:PRAMR_in_position_representation}
+%
+% 1 how to express the \ket{x} and \ket{p} in matrix form
+% 2 the physical meaning of matrix element
+% 3 obtain the expression of \hat{x} for \ket{x}
+%
+From the above section, we have generally set up some important
+feature for the $\ket{x}$ and $\ket{p}$, that both of their eigen
+values are continuously changed. Here in this section, we will further
+investigate their details by concentrating on one question: how to
+associate the abstract Hilbert vector of $\ket{x}$ with the concrete
+wave function of $\Psi(x)$?
+
+Now let's consider the complete sets of $\ket{x}$ and $\ket{p}$. Since
+the $\ket{x}$ is the eigen states for the $\hat{x}$, then it's the
+representation for the $\hat{x}$, we can call it ``position
+representation''; on the other hand, the $\ket{p}$ is the
+representation for the $\hat{p}$ so that we can call it as ``momentum
+representation''.
+
+According to the discussion in the above paragraph, the eigen states
+and eigen values for the $\ket{x}$ and $\ket{p}$ are continuously
+changed. So we can express the closure relation as:
+\begin{align}
+\label{PRAMReq:11}
+  \int^{+\infty}_{-\infty}\ket{x}\bra{x}dx &= 1 \nonumber \\
+  \int^{+\infty}_{-\infty}\ket{p}\bra{p}dp &= 1
+\end{align}
+
+Firstly let's consider the position representation. Let's multiply
+$\ket{x^{'}}$ to the (\ref{PRAMReq:11}), it leads to:
+\begin{equation}
+  \label{PRAMReq:12}
+    \int^{+\infty}_{-\infty}\ket{x}\bra{x} x^{'}\rangle dx =
+    \ket{x^{'}}
+\end{equation}
+
+However, since the position is continuously changed, we can use the
+delta function to express it:
+\begin{equation}
+  \label{PRAMReq:13}
+  \ket{x^{'}}  = \int^{+\infty}_{-\infty}
+  \ket{x}\delta(x - x^{'}) dx
+\end{equation}
+
+Hence we have:
+\begin{equation}
+  \label{PRAMReq:14}
+ \langle x|x^{'} \rangle = \delta(x - x^{'})
+\end{equation}
+
+From (\ref{PRAMReq:14}) we have gotten the expression for the inner
+product. Now let's express some arbitrary quantum state of
+$\ket{\Psi}$ via $\ket{x}$:
+\begin{align}
+  \label{PRAMReq:15}
+\ket{\Psi} &= \left\{\int^{+\infty}_{-\infty}  \ket{x}\bra{x}\,
+dx\right\}\ket{\Psi}\nonumber \\
+&=\int^{+\infty}_{-\infty}  \langle x|\Psi \rangle
+\ket{x} dx \nonumber \\
+&= \int^{+\infty}_{-\infty} \Psi_{x}\ket{x} dx
+\end{align}
+
+According to the discussion in the section of \ref{REPRESENTATION:2},
+the $\Psi_{x}$ is just the representation for the $\ket{\Psi}$; so the
+$\ket{\Psi}$ can be expressed as:
+\begin{equation}
+  \label{PRAMReq:16}
+  \ket{\Psi} \Leftrightarrow \begin{pmatrix}
+                               \vdots \\
+                               \Psi_{x} \\
+                               \vdots \\
+                               \Psi_{x^{'}} \\
+                               \vdots \\
+                             \end{pmatrix}
+\end{equation}
+Here an important feature is, because the index of $x$ is continuously
+changed so the the matrix element of the $\Psi_{x}$ is also continuously
+changed.
+
+The $\bra{\Psi}$ can be similarly expressed as:
+\begin{equation}
+  \label{PRAMReq:17}
+  \bra{\Psi} \Leftrightarrow
+  \begin{pmatrix}
+  \cdots & \Psi^{*}_{x} & \cdots & \Psi^{*}_{x^{'}} & \cdots \\
+  \end{pmatrix}
+\end{equation}
+The inner product of $\langle\Psi|\Psi\rangle$ is:
+\begin{equation}
+  \label{PRAMReq:18}
+  \langle\Psi|\Psi\rangle \Leftrightarrow
+  \begin{pmatrix}
+  \cdots & \Psi^{*}_{x} & \cdots & \Psi^{*}_{x^{'}} & \cdots \\
+  \end{pmatrix}
+  \begin{pmatrix}
+  \vdots \\
+  \Psi_{x} \\
+  \vdots \\
+  \Psi_{x^{'}} \\
+  \vdots \\
+  \end{pmatrix}
+\end{equation}
+For some arbitrary operator of $\hat{A}$, we have:
+\begin{equation}
+  \label{PRAMReq:19}
+  \begin{split}
+    \langle\Psi|\hat{A}|\Psi\rangle &=
+\int^{+\infty}_{-\infty}dx \int^{+\infty}_{-\infty}dx^{'}
+   \Psi^{*}_{x}\Psi_{x^{'}} \langle x|\hat{A}|x^{'}\rangle
+\quad
+\underrightarrow{A_{xx^{'}} = \langle x|\hat{A}|x^{'}\rangle} \\
+&\Leftrightarrow
+\int^{+\infty}_{-\infty}dx \int^{+\infty}_{-\infty}dx^{'}
+  \begin{pmatrix}
+  \cdots & \Psi^{*}_{x} & \cdots & \Psi^{*}_{x^{'}} & \cdots \\
+  \end{pmatrix} \\
+&  \begin{pmatrix}
+    \cdots & \cdots & \cdots & \cdots & \cdots \\
+    \cdots & \cdots & \cdots & \cdots & \cdots \\
+    \cdots & \cdots & A_{xx^{'}} & \cdots & \cdots \\
+    \cdots & \cdots & \cdots & \cdots & \cdots \\
+    \cdots & \cdots & \cdots & \cdots & \cdots \\
+  \end{pmatrix}
+  \begin{pmatrix}
+  \vdots \\
+  \Psi_{x} \\
+  \vdots \\
+  \Psi_{x^{'}} \\
+  \vdots \\
+  \end{pmatrix}
+  \end{split}
+\end{equation}
+
+Suggest that the $\hat{A}$ in the (\ref{PRAMReq:19}) is $\hat{x}$,
+then we can have:
+\begin{align}
+  \label{PRAMReq:26}
+\langle x^{'}|\hat{x}|x \rangle &= x \langle x^{'}|x \rangle \nonumber
+\\
+&= x \delta(x - x^{'})
+\end{align}
+Hence the matrix for $\hat{x}$ is some continuous diagonal matrix with
+the its elements all equal to infinity.
+
+Now let's try to associate the $\ket{x}$ with the wave function form
+of $\Psi(x)$. Firstly, let's give some physical interpretation for the
+$\Psi_{x}$.  Since the $x$ inside the $\Psi_{x}$ are continuously
+varied, and $\Psi_{x}$ physically characterizes the weight the
+$\ket{x}$ in the $\ket{\Psi}$; so it turns out that we can set up such
+one to one correspondence:
+\begin{equation}
+\label{PRAMReq:20} \Psi_{x} \Leftrightarrow \Psi(x)
+\end{equation}
+This means, the abstract vector of $\ket{\Psi}$ in Hilbert space can
+be considered as some function based on the variable of $x$. The two
+expressions are identical to each other. Such one to one
+correspondence generally holds true for an arbitrary vector of
+$\ket{\Psi}$ in any Hilbert space.
+
+This final conclusion also give an explanation that why in the
+(\ref{sec:WPDAOYE_in_basic}) and (\ref{sec:PWC_in_basic}) we express
+the wave function in terms of $\bm{r}$. This can be naturally
+derived from the the more strict framework of quantum mechanics.
+
+Generally such conclusion can be extended to three dimensional
+space, that is:
+\begin{equation}
+\label{PRAMReq:21} \Psi_{\bm{r}} \Leftrightarrow \Psi(\bm{r})
+\end{equation}
+For multi-particles system, we can also get:
+\begin{equation}\label{PRAMReq:22}
+\Psi_{\bm{r_{1}}, \bm{r_{2}}, \cdots, \bm{r_{n}}} \Leftrightarrow
+\Psi(\bm{r_{1}}, \bm{r_{2}}, \cdots, \bm{r_{n}})
+\end{equation}
+
+From now on we can just write the $\Psi_{x}$ as $\Psi(x)$. However,
+here there's one thing still needed to be solved, that is how to
+express the operator of $\hat{x}$ and $\hat{p}$ in the $\Psi_{x}$? Now
+let's go to see how to express the $\hat{x}$.
+
+Suggest that $\hat{A}\ket{\Psi} = \ket{\Phi}$, hence we have:
+\begin{equation}\label{PRAMReq:25}
+\begin{split}
+  \ket{\Phi} &= \hat{A}\ket{\Psi} \quad
+  \underrightarrow{\text{From closure relation}} \\
+  \langle x|\Phi \rangle &= \int^{+\infty}_{-\infty} \langle
+  x|\hat{A}|x^{'} \rangle \langle x^{'}|\Psi
+  \rangle dx^{'}\\
+  \Phi_{x} &= \int^{+\infty}_{-\infty} A_{xx^{'}}\Psi_{x^{'}}dx^{'}
+\end{split}
+\end{equation}
+Now suggest the $\hat{A}$ is just the $\hat{x}$, then according to the
+(\ref{PRAMReq:26}) we can have:
+\begin{equation}\label{PRAMReq:23}
+  \begin{split}
+      \Phi_{x} &= \int^{+\infty}_{-\infty} x \delta(x -
+      x^{'})\Psi_{x^{'}}dx^{'} \\
+&= x \Psi_{x}
+  \end{split}
+\end{equation}
+Therefore, if we have $\hat{x}\ket{\Psi} = \ket{\Phi}$, then in the
+position representation we can conveniently express the position
+operator as $\hat{x}\Psi(x) = x\Phi(x)$. Generally, for the position
+operator of $\hei{r}\ket{\Psi} = \ket{\Phi}$, we have
+$\hei{r}\Psi(\bm{r}) = \bm{r}\Phi(\bm{r})$ to correspond to it.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{How to express momentum operator in the position
+  representation}
+\label{sec:momentum_operator_in_position_momentum}
+%
+%
+% how to express the momentum operator in position representation?
+%
+%
+%
+Now in this section, we are going to seek the concrete expression for
+the $\hat{p}$ in the representation of $\ket{x}$. Firstly, let's
+concentrate how to express $\langle x|p \rangle$.
+
+By using the up and down operators in the
+(\ref{eigen_states_in_position_momentum}), we can have:
+\begin{equation}
+  \label{PRAMReq:24}
+  \langle x|p \rangle = \langle x|e^{\frac{i}{\hbar}p\hat{x}}|0_{p}
+  \rangle
+\end{equation}
+Here $\ket{0_{p}}$ is just to express the eigen state gives the $0$
+eigen value: $\hat{p}\ket{0_{p}} = 0\ket{0_{p}}$.
+
+On the other hand, the operator of $e^{\frac{i}{\hbar}p\hat{x}}$ is
+also some operator for the $\bra{x}$, and by using that
+$\bra{x}\hat{x} = \bra{x}x$, we can have:
+\begin{equation}
+  \label{PRAMReq:27}
+  \langle x|p \rangle = \langle x|e^{\frac{i}{\hbar}p\hat{x}}|0_{p}
+  \rangle  = e^{\frac{i}{\hbar}px}\langle x|0_{p} \rangle
+\end{equation}
+
+For the $\langle x|0_{p} \rangle$, by using the up operator for
+$\bra{x}$, we can have:
+\begin{equation}
+  \label{PRAMReq:28}
+  \langle x|0_{p} \rangle = \langle 0_{x}|e^{\frac{i}{\hbar}x\hat{p}}|0_{p}
+  \rangle
+\end{equation}
+Similarly the $e^{\frac{i}{\hbar}x\hat{p}}$ is also the operator on
+the $\ket{p}$, so we have $e^{\frac{i}{\hbar}x\hat{p}}\ket{0_{p}} =
+e^{\frac{i}{\hbar}x\times 0}\ket{0_{p}} = \ket{0_{p}}$; therefore we have:
+\begin{equation}
+  \label{PRAMReq:29}
+  \langle x|p \rangle = e^{\frac{i}{\hbar}px}\langle 0_{x}|0_{p} \rangle
+\end{equation}
+
+Now let's go to see how to express the $\langle 0_{x}|0_{p} \rangle$:
+\begin{equation}
+  \label{PRAMReq:30}
+  \begin{split}
+    \langle p^{'}|p \rangle = \delta (p^{'} - p) &=
+    \int^{+\infty}_{-\infty} \langle p^{'}|x \rangle \langle x|p
+    \rangle dx \\
+    &= \int^{+\infty}_{-\infty}
+    e^{-\frac{i}{\hbar}p^{'}x}e^{\frac{i}{\hbar}px} |\langle
+    0_{x}|0_{p}
+    \rangle|^{2} dx \\
+    &= \int^{+\infty}_{-\infty} e^{\frac{i}{\hbar}(p-p^{'})x}|\langle
+    0_{x}|0_{p}
+    \rangle|^{2} dx \quad
+    \underrightarrow{\text{From delta function}} \\
+    &= |\langle 0_{x}|0_{p} \rangle|^{2} 2\pi\hbar\delta(p^{'} - p)
+    \quad \Rightarrow \\
+    \langle 0_{x}|0_{p} \rangle &= \frac{1}{\sqrt[2]{2\pi\hbar}}
+  \end{split}
+\end{equation}
+
+Based on the (\ref{PRAMReq:30}), let's go to see how to express the
+$\langle x|\hat{p}|x^{'}\rangle$:
+\begin{equation}
+  \label{PRAMReq:31}
+  \begin{split}
+    \langle x|\hat{p}|x^{'}\rangle &= \int^{+\infty}_{-\infty}dp
+    \int^{+\infty}_{-\infty}dp^{'} \langle x|p\rangle \langle
+    p|\hat{p}|p^{'}\rangle \langle p^{'}|x^{'}\rangle \quad
+    \text{by closure relation in \ref{PRAMReq:1}}  \\
+    &= \frac{1}{2\pi\hbar}\int^{+\infty}_{-\infty}dp
+    \int^{+\infty}_{-\infty}dp^{'}
+    e^{\frac{i}{\hbar}px}e^{-\frac{i}{\hbar}p^{'}x^{'}}
+    p^{'}\delta(p-p^{'}) \\
+    &= \frac{1}{2\pi\hbar}\int^{+\infty}_{-\infty}pdp
+    e^{\frac{i}{\hbar}p(x-x^{'})}  \\
+    &= \frac{1}{2\pi\hbar}\int^{+\infty}_{-\infty}dp
+    \frac{\hbar}{i}\frac{\partial e^{\frac{i}{\hbar}p(x-x^{'})} }
+    {\partial x} \\
+    &= \left(\frac{\hbar}{i}\frac{\partial}{\partial x}\right)
+    \frac{1}{2\pi\hbar}\int^{+\infty}_{-\infty}dp
+    e^{\frac{i}{\hbar}p(x-x^{'})}  \\
+    &=\frac{1}{2\pi\hbar}\left(-i\hbar \frac{\partial}{\partial
+        x}\right)
+    2\pi\hbar \delta(x - x^{'}) \\
+    &=-i\hbar \frac{\partial}{\partial x}\delta(x - x^{'})
+  \end{split}
+\end{equation}
+
+Now let's use the (\ref{PRAMReq:31}) to get the concrete expression
+for the momentum operator. Similar to the (\ref{PRAMReq:25}), we
+suggest that we have $\hat{p}\ket{\Psi} = \ket{\Phi}$, so we have:
+\begin{equation}\label{PRAMReq:32}
+\begin{split}
+  \ket{\Phi} &= \hat{p}\ket{\Psi} \quad
+  \underrightarrow{\text{From closure relation}} \\
+  \langle x|\Phi \rangle &= \int^{+\infty}_{-\infty} \langle
+  x|\hat{p}|x^{'} \rangle \langle x^{'}|\Psi
+  \rangle dx^{'}\\
+  \Phi_{x} &= \int^{+\infty}_{-\infty} p_{xx^{'}}\Psi_{x^{'}}dx^{'}
+  \quad
+  \underrightarrow{\text{From \ref{PRAMReq:31}}} \\
+  &= \int^{+\infty}_{-\infty} \left(-i\hbar \frac{\partial}{\partial
+      x}\delta(x - x^{'})\right) \Psi_{x^{'}}dx^{'} \\
+  &=  -i\hbar \frac{\partial}{\partial x}\Psi_{x}
+\end{split}
+\end{equation}
+Hence we get the expression of momentum operator for wave function
+of $\Psi(x)$:
+\begin{equation}\label{PRAMReq:33}
+\hat{p}\Psi(x) = -i\hbar \frac{\partial}{\partial x}\Psi(x)
+\end{equation}
+
+For three-dimensional space, such conclusion can be generally
+extended as:
+\begin{equation}
+  \label{PRAMReq:34}
+  \hei{p} =  -i\hbar \nabla
+\end{equation}
+
+In quantum mechanics, since all the other operators are constructed
+by the position operator and the momentum operator, then from the
+$\hei{r}$ and $\hei{p}$ we are able to construct the expression for
+all the other operators in the position representation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{How to express the wave function and operators
+in momentum expression}
+\label{sec:momentum_operator_in_position_momentum}
+%
+%
+% How to express the wave function and operators
+% in momentum expression
+%
+%
+%
+In the above content, we have fully solved the question that how to
+associate the $\ket{\Psi}$ with wave function of $\Psi(\bm{r})$, and
+how to express the $\hei{r}$ and $\hei{p}$ in terms of the position
+representation.
+
+However, according to the axiom \ref{axiom5}, the position and
+momentum in quantum mechanics are ``paired'' together. That means,
+if we can express the $\hei{r}$ and $\hei{p}$ in terms of $\bm{r}$,
+then all the other operators will be some function of $\bm{r}$; and
+the corresponding wave functions will be in the form of
+$\Psi(\bm{r})$; which is one to one correspondent to the
+$\ket{\Psi}$. To be contrary, the judgment holds true for the
+momentum $\bm{p}$. We can express the relation as:
+\begin{align}\label{PRAMReq:35}
+ \Psi(\bm{r}) \Leftrightarrow &\ket{\Psi}
+ \Leftrightarrow \Psi(\bm{p}) \nonumber \\
+\hei{r} = \hei{r}(\bm{r}), \hei{p} = \hei{p}(\bm{r})
+&\Leftrightarrow \hei{r} = \hei{r}(\bm{p}), \hei{p} =
+\hei{p}(\bm{p})
+\end{align}
+
+The derivation process for getting the expression for the $\hei{r}$
+and $\hei{p}$ in terms of the momentum representation is nearly the
+same with the above derivation for position representation. By
+starting from the (\ref{PRAMReq:11}), and each step we exchange the
+position representation $\ket{x}$ with the momentum representation
+$\ket{p}$, we are indeed getting the conclusions shown in
+(\ref{PRAMReq:35}). More specifically, we point out that in the
+momentum representation, the operator of $\hei{r}$ and $\hei{p}$ are
+expressed as:
+\begin{align}\label{PRAMReq:36}
+\hei{p} &= p \nonumber \\
+\hei{r} &= -i\hbar \frac{\partial}{\partial \bm{p}}
+\end{align}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

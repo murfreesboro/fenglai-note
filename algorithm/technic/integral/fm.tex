@@ -1,0 +1,261 @@
+%
+% set up Oct. 2013
+%
+\section{Calculating $(00|r_{12}|00)^{m}$ integrals}
+%
+%
+The $(00|r_{12}|00)^{m}$ type of integrals is fundamental
+for recursive relation calculation. This type of integrals
+is needed to be calculated directly from incomplete Gamma 
+function (see \ref{nuclear_attraction_direct_int_eq:20} and 
+\ref{OS_ERI_complementary_result}):
+\begin{equation}
+ (0_{A}0_{B}|r_{12}|0_{C}0_{D})^{(m)} = 
+ 2\left( \frac{\rho}{\pi}\right)^{\frac{1}{2}}(0_{A}|0_{B})
+(0_{C}|0_{D})\int^{1}_{0} t^{2m} e^{-(\rho|PQ|^{2})t^{2}} dt 
+\label{fm_ssssm_eq:0}
+\end{equation}
+Where we have the arguments as:
+\begin{align}
+ \overrightarrow{P} &= \frac{\alpha \overrightarrow{A} + \beta
+\overrightarrow{B}}{\alpha + \beta} \nonumber \\
+\overrightarrow{Q} &= \frac{\gamma \overrightarrow{C} + \delta
+\overrightarrow{D}}{\gamma + \delta} \nonumber \\
+\rho &= \frac{(\alpha+\beta)(\gamma + \delta)}
+{(\alpha+\beta)+(\gamma + \delta)}
+\end{align}
+
+The integral in \ref{fm_ssssm_eq:0} could be directly calculated through
+incomplete Gamma function. However, such way is expensive because the 
+$(00|r_{12}|00)^{(m)}$ is inside the primitive Gaussian loop. Suggest
+we have 1000 basis sets, and each basis set's contraction is 3; then
+for producing the normal four center ERI integrals the number $(00|r_{12}|00)^{(m)}$
+for each $m$ could be approximated as: $\dfrac{1}{8}*1000^{4}*3^{4} = 
+1.0125\times 10^{13}$! Therefore, even a small increasing of the calculation
+cost to the $(00|r_{12}|00)^{(m)}$ will lead to a dramatical cost increase
+to the integral calculation. Therefore, it's necessary to have a simpler
+way to calculate the $(00|r_{12}|00)^{(m)}$ integrals.
+
+There has been a lot of literatures to discuss the integral calculation here(see 
+\cite{harris1983sssm, gill1991two} etc. and the paper cited by them). The discussion
+made in this section is mainly based on the results in the above reference.
+
+\subsection{$f_{m}(t)$}
+%
+%
+Firstly, let's discuss the integral inside the \ref{fm_ssssm_eq:0}:
+\begin{equation}\label{fm_ssssm_fmt_eq:1}
+ f_{m}(t) = \frac{2}{\sqrt{\pi}}\int^{1}_{0} u^{2m} e^{-tu^{2}} du 
+\end{equation}
+
+When the $m=0$, this function is back to the error function:
+\begin{equation}
+\begin{split}
+ f_{0}(t) &= \frac{2}{\sqrt{\pi}}\int^{1}_{0} e^{-tu^{2}} du  \\
+          &= t^{-\frac{1}{2}}\frac{2}{\sqrt{\pi}}\int^{1}_{0} 
+          e^{-(\sqrt{t}u)^{2}} d (\sqrt{t}u) \\
+          &= t^{-\frac{1}{2}}\frac{2}{\sqrt{\pi}}\int^{\sqrt{t}}_{0} e^{-x^{2}} dx \\
+          &= t^{-\frac{1}{2}} erf(t^{\frac{1}{2}})
+\end{split}
+\label{fm_ssssm_fmt_eq:2}
+\end{equation}
+The error function is fast to converge(this function in standard C++ library is several
+hundreds time faster than the incomplete gamma function defined in boost library), and 
+we note; this function can be found 
+in standard C++ library\footnote{We note that the standard efc function in C library has 
+the $\dfrac{2}{\sqrt{\pi}}$}.
+
+For $m>0$, by integration by parts it's easy to find a recursive relation
+for compute $f_{m}(t)$:
+\begin{equation}
+ \begin{split}
+  f_{m}(t) &= \frac{2}{\sqrt{\pi}}\int^{1}_{0} u^{2m} e^{-tu^{2}} du \\ 
+           &= -\frac{1}{t\sqrt{\pi}}\int^{1}_{0} u^{2m-1} e^{-tu^{2}} d(-tu^{2}) \\
+           &= -\frac{1}{t\sqrt{\pi}}\int^{1}_{0} u^{2m-1} d\left( e^{-tu^{2}} \right) \\         
+           &= -\left.\frac{1}{t\sqrt{\pi}}u^{2m-1} e^{-tu^{2}}\right|^{1}_{0} + 
+           \frac{2m-1}{t\sqrt{\pi}}\int^{1}_{0} u^{2m-2} e^{-tu^{2}} du \\  
+           &= -\frac{1}{t\sqrt{\pi}}e^{-t} + \frac{2m-1}{2t} f_{m-1}(t) \Rightarrow \\
+           &= \frac{1}{2t}\left( (2m-1)f_{m-1}(t) - \frac{2}{\sqrt{\pi}}e^{-t}\right)    
+ \end{split}
+ \label{fm_ssssm_fmt_eq:3}
+\end{equation}
+This function provides the easiest way to compute the $f_{m}(t)$. However, if we use
+such recursive relation to direct compute $f_{m}(t)$ from the $f_{0}(t)$, it's 
+easy to see the error is propagating very quickly (see the example in 
+\ref{error_propagation_numerical} for more details). Therefore, to directly use the 
+\ref{fm_ssssm_fmt_eq:3} from $f_{0}(t)$ for computing is not applicable.
+
+The error propagation in this example is because we have 
+$f_{m}(t) > f_{m+1}(t)$\footnote{such expression could be easily derived from 
+Cauchy–Schwarz inequality}. It's easy to see that $f_{m}(t)$ is always larger than 0.
+As the $m$ grows larger, the difference between $f_{m}(t)$ and $f_{m+1}(t)$ is getting 
+smaller. This is the reason why error begins propagating when we calculate $f_{m+1}(t)$
+from $f_{m}(t)$.
+
+However, such recursive relation may be applicable for some given $m$ and $t$ combinations,
+as long as the error is within some small range. For testify this idea, we made an
+investigation for all of $m$ and $t$ combinations within error limit of $1.0E^{-10}$. 
+The results indicate that for $m=1$ to $m=10$ and $t>1$, by using this ``UP'' 
+recursive relation we could get the accurate results(within error of $1.0E^{-10}$) 
+by climbing from error function\footnote{for a detailed testing, we study the $t$
+from $1.0$ to $30.0$(when $t>30.0$ we can use simpler form to express $f_{m}(t)$, see
+the discussion below) with step length of $1.0E^{-6}$ for $m=1$ to $m=10$. All of results
+are comparing with the one calculated from incomplete gamma function from boost library
+in terms of error limit in $1.0E^{-10}$}.
+
+On the other hand, such circumstance indicates that the reverse recursive calculation
+is applicable for calculation, that is; to compute the $f_{m}(t)$ from $f_{m+1}(t)$. 
+It's easy to show, that through the ``downward recursive relation'' the computation
+of $f_{m}(t)$ will never lose the accuracy\footnote{We tested the cases for $m=1$ 
+to $m=10$ and $t$ ranges from $0.0$ to $30.0$ with same step length etc. shown above}. 
+Therefore, in real application we will use the following expression:
+\begin{equation}
+ \label{fm_ssssm_fmt_eq:4}
+ f_{m}(t) = \frac{1}{2m+1}\left( 2tf_{m+1}(t) + \frac{2}{\sqrt{\pi}}e^{-t}\right) 
+\end{equation}
+We have tested for $m=0$ to $m=30$ for t ranging from $0.001$ to $30.00$ (with 
+step wide of 0.001 too), by using 
+the downward recursive relation all of results could be accurate within the error 
+range of $1.0^{-10}$. Therefore, the problem here is that how we compute the 
+$f_{m_{max}}(t)$.
+
+The most easiest way to calculate $f_{m}(t)$ is perhaps through it's series expansion. In 
+paper of Harris\cite{harris1983sssm}, equation 9 provides a series expansion:
+\begin{equation}
+ \label{fm_ssssm_fmt_eq:5}
+ f_{m}(t) = \frac{2}{\sqrt{\pi}}e^{-t}\sum_{k=0}^{\infty}\frac{(2m-1)!!}{(2m+2k+1)!!}
+ (2t)^{k}
+\end{equation}
+We can see that for small t (perhaps $t<=1$), such expression will converge in 
+a very quick way. For larger $t$, it's obvious that it needs more term for 
+converging\footnote{We have tested the $m=1$ to $m=10$ cases with respect to 
+$t<=1$ in same testing condition mentioned above. All of results are in good
+accuracy within error range of $1.0^{-10}$ with 12 terms expansion}.
+
+However, for the large $t$ situation, the integral of $f_{m}(t)$ should be faster
+approaching to zero compared with these with small $t$. From the paper 
+\cite{harris1983sssm}, it has another series expansion to understand it:
+\begin{equation}
+\begin{split}
+ f_{m}(t) &= \frac{(2m-1)!!}{(2t)^{m}t^{1/2}}-\frac{2}{\sqrt{\pi}}\frac{e^{-t}}{2t} 
+ \left( 1+\frac{2m-1}{2t} \right. \\
+ &+ \left. \frac{(2m-1)(2m-3)}{(2t)^{2}} + \frac{(2m-1)(2m-3)(2m-5)}{(2t)^{3}}+ \cdots 
+ \right) 
+\end{split}
+ \label{fm_ssssm_fmt_eq:6}
+\end{equation}
+It's easy to see, when $t>25$; then $\dfrac{2}{\sqrt{\pi}}\dfrac{e^{-t}}{2t}$
+will be less than $10^{-12}$ therefore we can always omit the series inside 
+\ref{fm_ssssm_fmt_eq:6} so that when $t>=25$, the $f_{m}(t)$ could be expressed 
+as:
+\begin{equation}
+ \label{fm_ssssm_fmt_eq:7}
+ f_{m}(t) = \frac{(2m-1)!!}{(2t)^{m}t^{1/2}}
+\end{equation}
+
+Now let's give a summary to calculate the $f_{m}(t)$:
+\begin{enumerate}
+ \item if $M_{max} = 0$, use erf function;
+ \item if $M_{max} >= 1$ and $M_{max} <= 10$:
+ \begin{enumerate}
+  \item if $t<=1$, calculate $f_{Mmax}(t)$ by using power series in 
+  \ref{fm_ssssm_fmt_eq:5} with 12 terms, then use down recursive relation
+  in \ref{fm_ssssm_fmt_eq:4} for the rest of $f_{m}(t)$;
+  \item if $t>1$ and $t<25$, calculate $f_{0}(t)$ with error function and 
+  use up recursive relation in \ref{fm_ssssm_fmt_eq:3} to derive other $f_{m}(t)$;
+  \item if $t>=25$, calculate $f_{Mmax}(t)$ with \ref{fm_ssssm_fmt_eq:7} and use down 
+  recursive relation in \ref{fm_ssssm_fmt_eq:4} to derive other $f_{m}(t)$
+ \end{enumerate}
+ \item if $M_{max} >= 11$:
+ \begin{enumerate}
+  \item if $t<25$, calculate $f_{Mmax}(t)$ from incomplete gamma function (for example,
+  from boost library function), and use down 
+  recursive relation in \ref{fm_ssssm_fmt_eq:4} to derive other $f_{m}(t)$
+  \item if $t>=25$, calculate $f_{Mmax}(t)$ with \ref{fm_ssssm_fmt_eq:7} and use down 
+  recursive relation in \ref{fm_ssssm_fmt_eq:4} to derive other $f_{m}(t)$
+ \end{enumerate}
+\end{enumerate}
+We note, that with such arrangement, all of S, P and D shell integrals (up to second 
+derivatives order) could be derived without incomplete gamma function, which is 
+expensive. for $m>11$, the down recursive relation grantees that only one $f_{m}(t)$
+is calculated, which also saves a lot of times.
+
+\subsection{Compute Bottom Integrals}
+%
+%
+Now let's use the above results and consider the full expression of 
+\ref{fm_ssssm_eq:0}:
+\begin{equation}
+ (00|r_{12}|00)^{(m)} = O\rho^{\frac{1}{2}}f_{m}(T)
+\label{fm_ssssm_eq:1}
+\end{equation}
+Where the parameters are given as\footnote{``O'' here indicates 
+overlap integrals}:
+\begin{equation}
+ \begin{split}
+  \sigma_{P} &= \frac{1}{\alpha + \beta} \\
+  \bm{P}  &=(\alpha{A} + \beta\bm{B})\sigma_{P} \\
+  O_{P} &= (\pi\sigma_{P})^{\frac{3}{2}}e^{-\alpha\beta\sigma_{P}
+  |\bm{A}-\bm{B}|^{2}} \\
+   \sigma_{Q} &= \frac{1}{\gamma + \delta} \\
+  \bm{Q}  &= (\gamma\bm{C} + \delta\bm{D})\sigma_{Q} \\
+  O_{Q} &= (\pi\sigma_{Q})^{\frac{3}{2}}e^{-\gamma\delta\sigma_{Q}
+  |\bm{C}-\bm{D}|^{2}} \\
+  O &= O_{P}O_{Q} \\
+  \rho &= \frac{1}{\sigma_{P} + \sigma_{Q}} \\
+  R &= |\bm{P}-\bm{Q}| \\
+  T &= \rho R^{2}
+ \end{split}
+ \label{fm_ssssm_eq:2}
+\end{equation}
+Here all of the parameters except $\rho$, $O$, $R$ and $T$ could be 
+pre-computed outside the integral loop.
+
+For the $m=0$, the $(00|r_{12}|00)^{(0)}$ is:
+\begin{equation}
+ \begin{split}
+  (00|r_{12}|00)^{(0)} &= O\rho^{\frac{1}{2}}f_{0}(T) \\
+  &= O\rho^{\frac{1}{2}} T^{-\frac{1}{2}} erf(T^{\frac{1}{2}}) \\
+  &= \frac{O}{R}erf(T^{\frac{1}{2}}) 
+ \end{split}
+ \label{fm_ssssm_eq:3}
+\end{equation}
+
+For the $m>0$ case, the down recursive relation is:
+\begin{equation}
+\begin{split}
+ f_{m}(T) &=\frac{1}{2m+1}\left( 2Tf_{m+1}(T) + \frac{2}{\sqrt{\pi}}e^{-T}\right)
+ \Rightarrow \\
+ (00|r_{12}|00)^{(m)} &= \frac{1}{2m+1}
+ \left( 2t(00|r_{12}|00)^{(m+1)} + \frac{2}{\sqrt{\pi}}O\rho^{\frac{1}{2}}e^{-T} \right)
+\end{split}
+\label{fm_ssssm_eq:4}
+\end{equation}
+Here the factor of $\frac{1}{T\sqrt{\pi}}$ and term 
+$O\rho^{\frac{1}{2}}e^{-T}$ need to 
+be computed in the integral loop (but only once!). 
+
+The up recursive relation is:
+\begin{equation}
+ \begin{split}
+  f_{m}(T) &= \frac{1}{2T}\left( (2m-1)f_{m-1}(T) - \frac{2}{\sqrt{\pi}}e^{-T}\right) 
+  \Rightarrow \\    
+  (00|r_{12}|00)^{(m)} &= \frac{1}{2T}\left( (2m-1)(00|r_{12}|00)^{(m-1)} - 
+  \frac{2}{\sqrt{\pi}}O\rho^{\frac{1}{2}}e^{-T}\right)
+ \end{split}
+ \label{fm_ssssm_eq:5}
+\end{equation}
+
+The power series becomes:
+\begin{equation}
+  (00|r_{12}|00)^{(m)} = \frac{2}{\sqrt{\pi}}O\rho^{\frac{1}{2}}e^{-T}
+  \sum_{k=0}^{\infty}\frac{(2m-1)!!}{(2m+2k+1)!!}(2T)^{k}
+ \label{fm_ssssm_eq:6}
+\end{equation}
+and the \ref{fm_ssssm_fmt_eq:7} becomes:
+\begin{equation}
+ \label{fm_ssssm_fmt_eq:7}
+ (00|r_{12}|00)^{(m)} = O\frac{(2m-1)!!}{(2T)^{m}R}
+\end{equation}
+
+

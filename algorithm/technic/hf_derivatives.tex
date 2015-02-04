@@ -1,0 +1,937 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%problems remained:
+%
+%
+%#  for CPHF equation, why the MO rotation matrix of U can only
+%   be solved for occ-vir block? Can we find some physical or
+%   mathematical interpretation? (solved)
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Analytical Gradient for Self-Consistent Field Equation}
+%
+%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Total Energy and Fock Matrix for Hatree-Fock-Roothaan and Kohn-Sham
+Equations}
+%
+%
+%
+%
+Now in this chapter, we begin to evaluate the analytical gradients for energy
+and Fock matrix in Hatree-Fock and Kohn-Sham framework. According to the
+conclusion given in chapter \ref{HFT}, the total energy For Hatree-Fock equation
+is expressed as:
+\begin{equation}
+ \label{TE_FM_HF_gradient_eq:1}
+E = \sum_{i}^{occ}h_{ii} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ ( ii|jj) - ( ij|ji)
+    \right \} 
+\end{equation}
+This is expressed in MO orbital compared with the AO expression in
+(\ref{HFTeq:11-1}), and the Fock matrix for the MO $p$ and $q$ is expressed as:
+\begin{equation}
+\label{TE_FM_HF_gradient_eq:2}
+F_{pq} = \langle\varphi_{p}|\hat{F}|\varphi_{q}\rangle = h_{pq} + 
+\sum_{k}^{occ}\left \{  (pq|kk) - ( pk|kq)\right \} 
+\end{equation}
+It can be directly got by integrated with $ \langle\varphi_{p}|$ to the
+Hatree-Fock equation in (\ref{HFTeq:10}) (the MO orbital could be occupied or
+virtual, so we use $p,q$ etc. to designate it), and because of the orthogonality
+of the MO; we have:
+\begin{equation}
+ \label{TE_FM_HF_gradient_eq:3}
+F_{pq} = 
+\begin{cases}
+ 0  &\text{if $p \neq q$} \\
+\epsilon_{p} &\text{if $p = q$}
+\end{cases}
+\end{equation}
+
+For Kohn-Sham equation, the total energy is expressed by adding the
+exchange-correlation functional to (\ref{TE_FM_HF_gradient_eq:1}):
+\begin{equation}
+ \label{TE_FM_HF_gradient_eq:4}
+E = \sum_{i}^{occ}h_{ii} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ ( ii|jj) - a_{x}( ij|ji)
+    \right \} + \sum_{i}^{occ}E_{XC}[\rho_{i}] 
+\end{equation}
+Where the $\rho_{i}$ is expressed through occupied orbitals:
+\begin{equation}
+ \begin{split}
+  \rho_{i} &= |\varphi_{i}|^{2} \\
+              &= \sum_{\mu\nu}c_{\mu i}c_{\nu i}\phi_{\mu}\phi_{\nu}
+ \end{split}
+ \label{TE_FM_HF_gradient_eq:5}
+\end{equation}
+$a_{x}$ is the general parameter for specifying the hybrid functional.
+
+Similarly, for the corresponding Fock matrix, it's:
+\begin{equation}
+\label{TE_FM_HF_gradient_eq:6}
+F_{pq} = \langle\varphi_{p}|\hat{F}|\varphi_{q}\rangle = h_{pq} + 
+\sum_{k}^{occ}\left \{  (pq|kk) - a_{x}( pk|kq)\right \} + F^{XC}_{pq} 
+\end{equation}
+$F^{XC}$ is the corresponding exchange-correlation Fock matrix, which satisfy
+the relation in (\ref{TE_FM_HF_gradient_eq:3}), too.
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The First Order Derivatives for Energy}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The First Order Derivatives for MO Integrals}
+%
+%
+%
+As what we can see in the (\ref{TE_FM_HF_gradient_eq:1}), we only
+have one or two indices MO integrals, so it will be help for us to study the
+derivatives for MO integrals before we step into the HF derivatives.
+
+For the core Hamiltonian integral, the $h_{ii}^{[a]}$ is:
+\begin{equation}
+ \label{1st_MO_energy_HF_gradient_eq:1}
+h_{ii}^{[a]} = 2\sum_{r}^{ALL MO}H_{ir}U^{a}_{ri} + H^{a}_{ii}
+\end{equation}
+This is got by simply set the index of $p$ and $q$ to $i$ in
+(\ref{core_Hamiltonian_MO_INT_gradient_eq:1}).
+
+For the double electron integral, it has:
+\begin{align}
+  \label{1st_MO_energy_HF_gradient_eq:2}
+(ii|jj)^{[a]} &= 2\sum_{r}^{ALL MO}\left[ U^{a}_{ri}\Pi_{rijj} +
+U^{a}_{rj}\Pi_{iirj}\right] + \Pi^{a}_{iijj} \nonumber \\
+(ij|ji)^{[a]} &= 2\sum_{r}^{ALL MO}\left[ U^{a}_{ri}\Pi_{rjji} +
+U^{a}_{rj}\Pi_{irji}\right]  + \Pi^{a}_{ijji}
+\end{align}
+
+The first order derivatives for the exchange-correlation part is got in
+(\ref{1st_XC_general_derivative}), which is:
+\begin{equation}
+  E_{XC}^{[x]} =  \sum\omega^{[x]}(r)F_{XC}(r) +
+\sum\omega(r)F^{[x]}_{XC}(r) 
+\label{1st_MO_energy_HF_gradient_eq:3}
+\end{equation}
+Where the $F^{[x]}_{XC}(r)$ is:
+\begin{align}
+F^{[x]}_{XC}(r) &= \sum_{\xi}\sum_{\sigma}\frac{\partial F}{\partial
+\xi_{\sigma}} \frac{\partial \xi_{\sigma}}{\partial \bm{R}_{x}} \nonumber\\
+&=  \sum_{\xi}\sum_{\sigma} V_{XC}(\xi_{\sigma})\xi_{\sigma}^{[x]}
+ \label{1st_MO_energy_HF_gradient_eq:4}
+\end{align}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The First Order Derivatives for Total Energy in Hatree-Fock
+framework}
+%
+%
+%
+According to the (\ref{TE_FM_HF_gradient_eq:1}), we have:
+\begin{equation}
+ \label{FOD_energy_HF_derivatives_eq:1}
+E^{[a]} = \sum_{i}^{occ}h_{ii}^{[a]} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ ( ii|jj)^{[a]} - ( ij|ji)^{[a]}
+    \right \} 
+\end{equation}
+Let's bring (\ref{1st_MO_energy_HF_gradient_eq:1}) and
+(\ref{1st_MO_energy_HF_gradient_eq:2}) into this equation, then it gives:
+\begin{equation}
+\label{FOD_energy_HF_derivatives_eq:2}
+ \begin{split}
+  E^{[a]} &= \sum_{i}^{occ}\left( 2\sum_{r}^{ALL MO}H_{ir}U^{a}_{ri} +
+H^{a}_{ii} \right) + \frac{1}{2}\sum_{ij}^{occ}\left\lbrace 2\sum_{r}^{ALL
+MO}\left[
+U^{a}_{ri}\Pi_{rijj} +
+U^{a}_{rj}\Pi_{iirj}\right]  \right. \\ 
+&\left. + \Pi^{a}_{iijj} - 2\sum_{r}^{ALL MO}\left[
+U^{a}_{ri}\Pi_{rjji} + U^{a}_{rj}\Pi_{irji}\right]  -
+\Pi^{a}_{ijji}\right\rbrace \\
+&= \sum_{i}^{occ}H^{a}_{ii} + \frac{1}{2}\sum_{ij}^{occ}\left( \Pi^{a}_{iijj} -
+\Pi^{a}_{ijji}\right) \\
+&+ \sum_{r}^{ALL MO}\left\lbrace  \sum_{i}^{occ}H_{ir}U^{a}_{ri} +
+\sum_{ij}^{occ}\left[ U^{a}_{ri}\Pi_{rijj} - U^{a}_{ri}\Pi_{rjji}\right] 
+\right\rbrace \\
+&+ \sum_{r}^{ALL MO}\left\lbrace  \sum_{j}^{occ}H_{jr}U^{a}_{rj} +
+\sum_{ij}^{occ}\left[ U^{a}_{rj}\Pi_{iirj} - U^{a}_{rj}\Pi_{irji}\right] 
+\right\rbrace
+ \end{split}
+\end{equation}
+Here in the sum of $2\sum_{i}^{occ}\sum_{r}^{ALL MO}H_{ir}U^{a}_{ri}$, since
+the label $i$ is arbitrary; then we split it into two parts; one is
+$\sum_{i}^{occ}\sum_{r}^{ALL MO}H_{ir}U^{a}_{ri}$ and the other is
+$\sum_{j}^{occ}\sum_{r}^{ALL MO}H_{jr}U^{a}_{rj}$.
+
+For the last two summation terms in (\ref{FOD_energy_HF_derivatives_eq:2}), in
+terms of the invariance of the $\Pi$ integral ($\Pi_{irji} = \Pi_{irij} =
+\Pi_{riji} = \Pi_{jiri}$ etc.) and the Fock matrix in
+(\ref{TE_FM_HF_gradient_eq:2}), we can have:
+\begin{align}
+\label{FOD_energy_HF_derivatives_eq:3}
+ &\sum_{r}^{ALL MO}\left\lbrace  \sum_{i}^{occ}H_{ir}U^{a}_{ri} +
+\sum_{ij}^{occ}\left[ U^{a}_{ri}\Pi_{rijj} - U^{a}_{ri}\Pi_{rjji}\right] 
+\right\rbrace \nonumber \\
+&= \sum_{r}^{ALL MO}\sum_{i}^{occ}U^{a}_{ri}\left\lbrace H_{ir} + 
+\sum_{j}^{occ} \left[ \Pi_{rijj} - \Pi_{rjji}\right]  \right\rbrace \nonumber \\
+&= \sum_{r}^{ALL MO}\sum_{i}^{occ}U^{a}_{ri}F_{ri} 
+\end{align}
+\begin{align}
+ \label{FOD_energy_HF_derivatives_eq:4}
+&\sum_{r}^{ALL MO}\left\lbrace  \sum_{j}^{occ}H_{jr}U^{a}_{rj} +
+\sum_{ij}^{occ}\left[ U^{a}_{rj}\Pi_{iirj} - U^{a}_{rj}\Pi_{irji}\right] 
+\right\rbrace \nonumber \\
+&= \sum_{r}^{ALL MO}\sum_{j}^{occ}U^{a}_{rj}\left\lbrace H_{jr} +
+\sum_{i}^{occ}\left[\Pi_{rjii} - \Pi_{riij}\right] 
+\right\rbrace \nonumber \\ 
+&= \sum_{r}^{ALL MO}\sum_{j}^{occ}U^{a}_{rj}F_{rj}
+\end{align}
+
+What's more, since the $i$ and $j$ index are arbitrary, it's easy to see that
+the (\ref{FOD_energy_HF_derivatives_eq:3}) and
+(\ref{FOD_energy_HF_derivatives_eq:4}) are identical with each other, so the
+(\ref{FOD_energy_HF_derivatives_eq:1}) finally becomes:
+\begin{align}
+ \label{FOD_energy_HF_derivatives_eq:5}
+E^{[a]} &= \sum_{i}^{occ}H^{a}_{ii} + \frac{1}{2}\sum_{ij}^{occ}\left(
+\Pi^{a}_{iijj} -
+\Pi^{a}_{ijji}\right) \nonumber \\
+&+ 2\sum_{r}^{ALL MO}\sum_{j}^{occ}U^{a}_{rj}F_{rj} \nonumber \\
+&= \sum_{i}^{occ}H^{a}_{ii} + \frac{1}{2}\sum_{ij}^{occ}\left( \Pi^{a}_{iijj} -
+\Pi^{a}_{ijji}\right) + 2\sum_{j}^{occ}U^{a}_{jj}\epsilon_{j}
+\end{align}
+Here we have used the relation (\ref{TE_FM_HF_gradient_eq:3}) for Fock matrix.
+
+According the winger's theorem, we know that the first order perturbed term,
+such as $U^{a}_{jj}$; should not appear in the gradient expression. Remember in
+(\ref{overlap_MO_INT_gradient_eq:3}), we have:
+\begin{equation}
+ U^{a}_{qp} + U^{a}_{pq} + S^{a}_{pq} = 0
+\end{equation}
+For the $p=q=j$ case, we have $2U^{a}_{jj} = -S^{a}_{jj}$. Hence finally, the
+gradient for Hatree-Fock energy becomes:
+\begin{equation}
+ \label{FOD_energy_HF_derivatives_eq:6}
+E^{[a]} = \sum_{i}^{occ}H^{a}_{ii} + \frac{1}{2}\sum_{ij}^{occ}\left(
+\Pi^{a}_{iijj} -
+\Pi^{a}_{ijji}\right) - \sum_{j}^{occ}S^{a}_{jj}\epsilon_{j}
+\end{equation}
+This is easy to extend to the AO expression.
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The First Order Derivatives for Kohn-Sham equation}
+%
+%
+%
+Compared with Hatree-Fock equation, Kohn-Sham equation only adds the
+exchange-correlation contribution. From the viewpoint of gradient theory, the
+exchange-correlation part is same with the core Hamiltonian integral. Now let's
+go to see the details.
+
+By driving the terms related to $U$ matrix together, the
+(\ref{1st_MO_energy_HF_gradient_eq:3}) can be further expressed as:
+\begin{align}
+E^{[x]}_{XC}(r)
+&=  \sum_{\xi}\sum_{\sigma} V_{XC}(\xi_{\sigma})\xi_{\sigma}^{[x]} \nonumber \\
+&=  \sum_{r}\omega^{[x]}(r)F_{XC}(r) + \sum_{r}\sum_{\xi}\sum_{\sigma}
+\omega(r) V_{XC}(\xi_{\sigma})\xi_{\sigma}^{x} \nonumber \\
+&+ \sum_{r}\sum_{\xi}\sum_{\sigma}
+\omega(r) V_{XC}(\xi_{\sigma})(\xi^{U}_{\sigma})^{x} \nonumber \\
+&= E^{x}_{XC}(r) + \sum_{r}\sum_{\xi}\sum_{\sigma}
+\omega(r) V_{XC}(\xi_{\sigma})(\xi^{U}_{\sigma})^{x}
+ \label{FOD_energy_KS_derivatives_eq:1}
+\end{align}
+
+Now let's consider the (\ref{FOD_energy_HF_derivatives_eq:3}) and
+(\ref{FOD_energy_HF_derivatives_eq:4}) so that to add in exchange-correlation
+part:
+\begin{align}
+\label{FOD_energy_KS_derivatives_eq:2}
+ &\sum_{r}^{ALL MO}\left\lbrace  \sum_{i}^{occ}H_{ir}U^{a}_{ri} +
+\sum_{ij}^{occ}\left[ U^{a}_{ri}\Pi_{rijj} - U^{a}_{ri}\Pi_{rjji}\right] 
+\right\rbrace  \nonumber \\
+&+ \sum_{r}\sum_{\xi}\sum_{\sigma}
+\omega(r) V_{XC}(\xi_{\sigma})(\xi^{U}_{\sigma})^{x}\nonumber \\
+&= \sum_{r}^{ALL MO}\sum_{i}^{occ}U^{a}_{ri}\left\lbrace H_{ir} + 
+\sum_{j}^{occ} \left[ \Pi_{rijj} - \Pi_{rjji}\right]  \right\rbrace \nonumber \\
+&= \sum_{r}^{ALL MO}\sum_{i}^{occ}U^{a}_{ri}F_{ri} 
+\end{align}
+
+Similarly,
+\begin{align}
+ \label{FOD_energy_HF_derivatives_eq:4}
+&\sum_{r}^{ALL MO}\left\lbrace  \sum_{j}^{occ}H_{jr}U^{a}_{rj} +
+\sum_{ij}^{occ}\left[ U^{a}_{rj}\Pi_{iirj} - U^{a}_{rj}\Pi_{irji}\right] 
+\right\rbrace \nonumber \\
+&= \sum_{r}^{ALL MO}\sum_{j}^{occ}U^{a}_{rj}\left\lbrace H_{jr} +
+\sum_{i}^{occ}\left[\Pi_{rjii} - \Pi_{riij}\right] 
+\right\rbrace \nonumber \\ 
+&= \sum_{r}^{ALL MO}\sum_{j}^{occ}U^{a}_{rj}F_{rj}
+\end{align}
+
+
+
+\begin{equation}
+ \label{FOD_energy_KS_derivatives_eq:1}
+E^{[a]} = \sum_{i}^{occ}H^{a}_{ii} + \frac{1}{2}\sum_{ij}^{occ}\left(
+\Pi^{a}_{iijj} -
+\Pi^{a}_{ijji}\right) - \sum_{j}^{occ}S^{a}_{jj}\epsilon_{j} + E_{XC}^{a}
+\end{equation}
+The $E_{XC}^{a}$ can be got in (\ref{1st_MO_energy_HF_gradient_eq:3}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The First Order Derivatives for Fock Matrix}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The First Order Derivatives of MO Integrals for Fock Matrix}
+%
+%
+%
+%
+Before we step into the derivatives for Fock matrix,
+it's better for us to see the corresponding derivatives for MO integrals.
+\begin{equation}
+\label{FOD_MO_FOCK_derivatives_eq:1}
+h_{pq}^{[a]}  = \sum_{t}^{ALL MO}\left[U^{a}_{tp}H_{qt} +
+  U^{a}_{tq}H_{pt}\right]
+  + H^{a}_{pq}  
+\end{equation}
+The core Hamiltonian derivatives are same with
+(\ref{core_Hamiltonian_MO_INT_gradient_eq:1}).  
+
+For the double electron integrals, we have:
+\begin{align}
+  \label{FOD_MO_FOCK_derivatives_eq:2}
+\Pi_{pqkk}^{[a]} &= \sum_{t}^{ALL MO}\left[ 
+U^{a}_{tp}\Pi_{tqkk} +
+U^{a}_{tq}\Pi_{ptkk} + 
+2U^{a}_{tk}\Pi_{pqtk}   
+\right] + \Pi^{a}_{pqkk} \nonumber \\
+\Pi_{pkkq}^{[a]} &= \sum_{t}^{ALL MO}\left[ 
+U^{a}_{tp}\Pi_{tkkq} +
+U^{a}_{tq}\Pi_{pkkt} + 
+U^{a}_{tk}\left(\Pi_{ptkq} + \Pi_{pktq}\right)   
+\right] + \Pi^{a}_{pkkq}
+\end{align}
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The First Order Derivatives of Fock Matrix}
+%
+%
+%
+%
+Now let's consider the $F_{pq}$, generally it can be expressed as:
+\begin{equation}
+    \label{FOD_FOCK_hf_derivatives_eq:1}
+F_{pq}^{[a]} = h_{pq}^{[a]} + 
+\sum_{k}^{occ}\left \{  (pq|kk)^{[a]} - ( pk|kq)^{[a]}\right \} 
+\end{equation}
+
+After putting the (\ref{FOD_MO_FOCK_derivatives_eq:1}) and
+(\ref{FOD_MO_FOCK_derivatives_eq:2}) into this expression, it becomes: 
+\begin{align}
+  \label{FOD_FOCK_hf_derivatives_eq:2}
+F_{pq}^{[a]} &= \sum_{t}^{ALL MO}\left[U^{a}_{tp}H_{qt} +
+  U^{a}_{tq}H_{pt}\right] + H^{a}_{pq} \nonumber \\  
+  &+ 
+\sum_{k}^{occ}\left \{ \sum_{t}^{ALL MO}\left[ 
+U^{a}_{tp}\Pi_{tqkk} +
+U^{a}_{tq}\Pi_{ptkk} + 
+2U^{a}_{tk}\Pi_{pqtk}   
+\right] + \Pi^{a}_{pqkk} \right. \nonumber \\
+  &\left. -
+\sum_{t}^{ALL MO}\left[ 
+U^{a}_{tp}\Pi_{tkkq} +
+U^{a}_{tq}\Pi_{pkkt} + 
+U^{a}_{tk}\left(\Pi_{ptkq} + \Pi_{pktq}\right)   
+\right] - \Pi^{a}_{pkkq}
+  \right \} 
+\end{align}
+
+By rearrange the items in terms of the $U$ matrix, the
+(\ref{FOD_FOCK_hf_derivatives_eq:2}) further becomes:
+\begin{align}
+  \label{FOD_FOCK_hf_derivatives_eq:3}
+F_{pq}^{[a]} &= H^{a}_{pq} + 
+\sum_{k}^{occ}\left \{\Pi^{a}_{pqkk} - \Pi^{a}_{pkkq} \right\}
+\nonumber \\
+&+  \sum_{t}^{ALL MO}U^{a}_{tp}\left\{H_{qt} + 
+  \sum_{k}^{occ}\left[\Pi_{tqkk} -
+   \Pi_{tkkq} \right]\right \}\nonumber \\
+&+  \sum_{t}^{ALL MO}U^{a}_{tq}\left\{H_{pt} + 
+  \sum_{k}^{occ}\left[\Pi_{ptkk} -
+   \Pi_{pkkt} \right]\right \}\nonumber \\
+&+ \sum_{t}^{ALL MO}U^{a}_{tk}\left\{ 
+\sum_{k}^{occ}\left[ 
+2\Pi_{pqtk} - \Pi_{ptkq} - \Pi_{pktq}\right]
+\right\}
+\end{align}
+
+Again, let's apply the similar methods which we have used in
+(\ref{FOD_energy_HF_derivatives_eq:3}) and
+(\ref{FOD_energy_HF_derivatives_eq:4}); then the
+(\ref{FOD_FOCK_hf_derivatives_eq:3}) gives:
+\begin{align}
+  \label{FOD_FOCK_hf_derivatives_eq:4}
+F_{pq}^{[a]} &= H^{a}_{pq} + 
+\sum_{k}^{occ}\left \{\Pi^{a}_{pqkk} - \Pi^{a}_{pkkq} \right\}
+\nonumber \\
+&+  \sum_{t}^{ALL MO}\left(U^{a}_{tp}F_{qt} + U^{a}_{tq}F_{pt}\right)
++ \sum_{k}^{occ}\sum_{t}^{ALL MO}U^{a}_{tk}A_{pq,kt} 
+\end{align}
+Where the $A_{pq,kt}$ is given by:
+\begin{equation}
+    \label{FOD_FOCK_hf_derivatives_eq:5}
+A_{pq,kt}  = 2\Pi_{pqtk} - \Pi_{ptkq} - \Pi_{pktq}
+\end{equation}
+
+This is the final result for Fock matrix derivatives. Here we
+preserved the $F_{pt}$ etc. and did not transform it to
+$\delta_{pt}\epsilon_{p}$. In second derivatives evaluation, 
+we will use the result here is derived.   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Second Order Derivatives for Hatree-Fock Energy}
+%
+%
+%
+Generally, the second derivatives for Hatree-Fock energy can be
+taken by differentiate the first derivatives of $E^{[a]}$
+\begin{comment}
+\footnote{
+Here we do not start from the general expression below:
+\begin{equation}
+E^{[ab]} = \sum_{i}^{occ}H_{ii}^{[ab]} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ ( ii|jj)^{[ab]} - ( ij|ji)^{[ab]}
+    \right \} 
+\end{equation}
+Actually I doubt that this expression is wrong. I have tried to bring the
+$\Pi^{[ab]}$ and $H^{[ab]}$ into this expression, but it does not give the
+correct result. I think that the reason can be expressed in the following way.
+Firstly, for the integral of  $\Pi$ and $H$, they are actually some multivariate
+function of $\bm{R}$. For the first derivatives, they are able to keep the
+invariance of differential form, so we can generally express them as $H^{[a]}$
+and $\Pi^{[a]}$; but for the second derivatives, such invariance breaks; so we
+can not differentiate $\Pi^{[a]}$ to get $\Pi^{[ab]}$ to obtain the result. This
+is like to differentiate the function:
+\begin{equation}
+f(x_{1}, \cdots, x_{n}, y_{1}(x_{1},
+\cdots, x_{n}), \cdots, y_{m}(x_{1}, \cdots, x_{n}), z_{1}(x_{1},
+\cdots, x_{n}), \cdots, z_{l}(x_{1}, \cdots, x_{n})) 
+\end{equation}
+Here $y$ is similar to MO $i$, and $z$ is similar to MO $j$, and $x$ is the
+variable of $\bm{R}$. 
+
+On the other hand, we can observe that  the MO $i$ and
+$j$ are symmetrical in the energy expression. Hence in the second derivatives,
+The factor of $1/2$ may diminish. Based on this point, we suspect that the
+section 4.7 in Fritz's book\cite{New_Dimension_for_Derivatives_Calculation} may
+be wrong.}
+\end{comment}
+:
+\begin{equation}
+   \label{SOD_energy_hf_derivatives_eq:1}
+\begin{split}
+E^{[ab]} &= \frac{\partial E^{[a]}}{\partial
+\bm{R}_{b}} \\
+&=\sum_{i}^{occ}H_{ii}^{a[b]} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ ( ii|jj)^{a[b]} - ( ij|ji)^{a[b]}
+    \right \}   \\
+&+ 2\sum_{r}^{ALL
+MO}\sum_{j}^{occ}\left\lbrace F_{rj}\frac{\partial U^{a}_{rj}}{\partial
+\bm{R}_{b}} + U^{a}_{rj}\frac{\partial F_{rj}}{\partial
+\bm{R}_{b}}\right\rbrace 
+\end{split}
+\end{equation}
+The $M^{a[b]}$ indicates that the partial derivatives of ``a'' is only on the
+AO integrals, and ``b'' is on the MO integrals. Now let's focus on each MO
+integral pieces appearing in this general expression. 
+
+For the core Hamiltonian integral, its derivatives is expressed
+as:
+\begin{equation}
+  \begin{split}
+    H_{ii}^{a[b]} &=2\sum_{r}U^{b}_{ri}H^{a}_{ir}  + H^{ab}_{ii}
+  \end{split}
+     \label{SOD_energy_hf_derivatives_eq:2}
+\end{equation}
+This is done by setting the label of $p$ and $q$ to $i$ in the
+(\ref{core_Hamiltonian_MO_INT_gradient_eq:3}).  
+
+For $(ii|jj)$, its derivatives is:
+\begin{equation}
+  \label{SOD_energy_hf_derivatives_eq:3}
+  \begin{split}
+    (ii|jj)^{a[b]} = \Pi_{iijj}^{a[b]} &= 2\sum_{r}\left[ 
+U^{b}_{ri}\Pi^{a}_{rijj} +
+U^{b}_{rj}\Pi^{a}_{iirj}  
+\right] + \Pi^{ab}_{iijj}
+  \end{split}
+\end{equation}
+This is achieved by setting the label of $p$, $q$ to $i$ and $r$, $s$
+to $j$ in (\ref{two_electron_MO_INT_gradient_eq:9}).
+
+Similarly, by setting the $p$ and $s$ to $i$, $q$ and $r$ to $j$; from
+the (\ref{two_electron_MO_INT_gradient_eq:9}) we can obtain the
+second derivatives for $(ij|ji)$:
+\begin{equation}
+ \label{SOD_energy_hf_derivatives_eq:4}
+  \begin{split}
+    (ij|ji)^{a[b]} = \Pi_{ijji}^{a[b]} &= 2\sum_{r}\left[ 
+U^{b}_{ri}\Pi^{a}_{rjji} +
+U^{b}_{rj}\Pi^{a}_{irji}  
+\right] + \Pi^{ab}_{ijji}
+  \end{split}
+\end{equation}
+
+Now let's firstly deal with these three terms:
+\begin{equation}
+ \label{SOD_energy_hf_derivatives_eq:5}
+\begin{split}
+ &\sum_{i}^{occ}H_{ii}^{a[b]} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ ( ii|jj)^{a[b]} - ( ij|ji)^{a[b]}
+    \right \}  \\
+&=\sum_{i}^{occ}H_{ii}^{ab} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ \Pi_{iijj}^{ab} - \Pi_{ijji}^{ab}
+    \right \}  \\
+&+ \sum_{r}^{ALL MO}\left\lbrace  \sum_{i}^{occ}H_{ir}^{a}U^{b}_{ri} +
+\sum_{ij}^{occ}\left[ U^{b}_{ri}\Pi_{rijj}^{a} -
+U^{b}_{ri}\Pi^{a}_{rjji}\right] 
+\right\rbrace \\
+&+ \sum_{r}^{ALL MO}\left\lbrace  \sum_{j}^{occ}H_{jr}^{a}U^{b}_{rj} +
+\sum_{ij}^{occ}\left[ U^{b}_{rj}\Pi^{a}_{iirj} -
+U^{b}_{rj}\Pi^{a}_{irji}\right] \right\rbrace
+\end{split}
+\end{equation}
+
+By similar techniques used in (\ref{FOD_energy_HF_derivatives_eq:3}) and
+(\ref{FOD_energy_HF_derivatives_eq:4}), the above equation is transformed into: 
+\begin{equation}
+ \label{SOD_energy_hf_derivatives_eq:6}
+\begin{split}
+ &\sum_{i}^{occ}H_{ii}^{a[b]} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ ( ii|jj)^{a[b]} - ( ij|ji)^{a[b]}
+    \right \}  \\
+&=\sum_{i}^{occ}H_{ii}^{ab} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ \Pi_{iijj}^{ab} - \Pi_{ijji}^{ab}
+    \right \} + 2\sum_{r}^{ALL MO}\sum_{i}^{occ}U^{b}_{ri}F^{a}_{ir}  \\
+\end{split}
+\end{equation}
+Here we note that for $F^{a}_{ir}$, it denotes that it has derivatives on the
+AO integrals so that we do not have relation \ref{TE_FM_HF_gradient_eq:3}
+established.
+
+Next, for the last term in (\ref{SOD_energy_hf_derivatives_eq:1}), we have:
+\begin{equation}
+ \label{SOD_energy_hf_derivatives_eq:7}
+\begin{split}
+ & 2\sum_{r}^{ALL
+MO}\sum_{j}^{occ}\left\lbrace F_{rj}\frac{\partial U^{a}_{rj}}{\partial
+\bm{R}_{b}} + U^{a}_{rj}\frac{\partial F_{rj}}{\partial
+\bm{R}_{b}}\right\rbrace \\
+&= 2\sum_{r}^{ALL
+MO}\sum_{j}^{occ} \left\lbrace F_{rj}\left[U^{ab}_{rj}  -
+\sum_{s}^{ALL MO}U^{b}_{rs}U^{a}_{sj} \right] +  U^{a}_{rj} 
+F_{rj}^{[b]}\right\rbrace 
+\end{split}
+\end{equation}
+We have already got the $F_{rj}^{[b]}$ in the last section, and for $F_{rj}$,
+according to the relation in (\ref{TE_FM_HF_gradient_eq:3}) it equals to
+$\delta_{rj}\epsilon_{j}$; so the (\ref{SOD_energy_hf_derivatives_eq:7})
+becomes:
+\begin{equation}
+  \label{SOD_energy_hf_derivatives_eq:8}
+\begin{split}
+ & 2\sum_{r}^{ALL
+MO}\sum_{j}^{occ}\left\lbrace F_{rj}\frac{\partial U^{a}_{rj}}{\partial
+\bm{R}_{b}} + U^{a}_{rj}\frac{\partial F_{rj}}{\partial
+\bm{R}_{b}}\right\rbrace \\
+&= 2\sum_{j}^{occ} \epsilon_{j}U^{ab}_{jj} -  2\sum_{s}^{ALL MO}\sum_{j}^{occ}
+\epsilon_{j}U^{b}_{js}U^{a}_{sj} + \sum_{r}^{ALL MO}\sum_{j}^{occ}U^{a}_{rj} 
+F_{rj}^{[b]}
+\end{split}
+\end{equation}
+According to Winger's theorem, the second order perurbation term should not
+appear in the $E^{[ab]}$, hence let's use the relation of
+(\ref{overlap_MO_INT_gradient_eq:8}), by setting $p=q=j$ it gives:
+\begin{align}
+  U^{ab}_{jj}  + U^{ab}_{jj} &= 
+2\sum_{r}\left[ S^{b}_{jr} S^{a}_{jr} 
+-U^{b}_{jr}U^{a}_{jr}  \right]  - S^{ab}_{jj} \nonumber \\ 
+&= 2\eta_{jj} - S^{ab}_{jj}\Longrightarrow \nonumber \\ 
+ U^{ab}_{jj} &= \eta_{jj} - \frac{1}{2}S^{ab}_{jj}
+\end{align}
+
+finally, the second derivatives for the Hatree-Fock energy can be expressed as: 
+\begin{equation}
+  \label{SOD_energy_hf_derivatives_eq:9}
+\begin{split}
+ E^{[ab]} &= \sum_{i}^{occ}H_{ii}^{ab} + \frac{1}{2}
+    \sum_{ij}^{occ}
+    \left \{ \Pi_{iijj}^{ab} - \Pi_{ijji}^{ab}
+    \right \} + 2\sum_{r}^{ALL MO}\sum_{i}^{occ}U^{b}_{ri}F^{a}_{ir}  \\
+& +  2\sum_{j}^{occ} \epsilon_{j}\left(\eta_{jj} - \frac{1}{2}S^{ab}_{jj}
+\right)  -  2\sum_{s}^{ALL MO}\sum_{j}^{occ}
+\epsilon_{j}U^{b}_{js}U^{a}_{sj} + \sum_{r}^{ALL MO}\sum_{j}^{occ}U^{a}_{rj} 
+F_{rj}^{[b]}
+\end{split}
+\end{equation}
+In this expression, it explicitly contains the MO rotation $U^{a}$ and $U^{b}$
+matrix. They will be evaluated in the CPHF equation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Comparision with General Perturbed Theory}
+%
+%
+%
+So far we have derived the first order and second order gradient for the
+Hatree-Fock energy. Now it's time for us to give some interesting comparison
+between the gradient results we made here and the general perturbed theory
+which is presented in section \ref{Time_independent_perturbation_theory}.
+
+The gradient expression for the total energy, similar with the expansion for
+MO coefficients in the (\ref{orbital_response_gradient_eq:9}); can be also
+expressed as:
+\begin{align}
+\label{comparision_hf_derivatives_eq:1}
+E(\bm{R}_{0} + \Delta \bm{R}) &=  E(\bm{R}_{0}) + \Delta
+\bm{R}_{a}\frac{\partial E}{\partial \bm{R}_{a}} + \Delta
+\bm{R}_{b}\frac{\partial E}{\partial \bm{R}_{b}} \nonumber \\
+& + \Delta\bm{R}_{a}\Delta\bm{R}_{a}\frac{\partial^{2} E}{\partial
+\bm{R}_{a}^{2}} +  \Delta\bm{R}_{b}\Delta\bm{R}_{b}\frac{\partial^{2}
+E}{\partial \bm{R}_{b}^{2}} +
+\Delta\bm{R}_{a}\Delta\bm{R}_{b}\frac{\partial^{2} E }{\partial\bm{R}_{a}
+\partial\bm{R}_{b}}
+\end{align}
+It's same that in this expression, $\Delta\bm{R}_{a}$(it can be named as
+$\lambda_{a}$) and $\Delta\bm{R}_{b}$ (named as $\lambda_{b}$) are equivalent to
+the first order perturbation multipliers, and
+$\Delta\bm{R}_{a}\Delta\bm{R}_{a}$($\lambda_{a}\lambda_{a}$),
+$\Delta\bm{R}_{a}\Delta\bm{R}_{b}$($\lambda_{a}\lambda_{b}$) and
+$\Delta\bm{R}_{b}\Delta\bm{R}_{b}$($\lambda_{b}\lambda_{b}$) are equivalent to
+the second order multipliers. Hence the $E^{[a]}$, $E^{[ab]}$ are the first
+order perturbation and second perturbation for the total energy. Compared with
+(\ref{PTIQMeq:5}), they are just the $E^{1}$ and $E^{2}$ in the general
+expression.
+
+In section \ref{Time_independent_perturbation_theory}, there's another job that
+to get the perturbed coefficients of $a^{1}$ and $a^{2}$. Similarly, in the
+Hatree-Fock equation it corresponds to the derivation of MO rotation of $U$
+matrix. In section \ref{Time_independent_perturbation_theory}, the $a^{1}$ and
+$a^{2}$ are derived through the corresponding Schrodinger equation, similarly;
+we can guess that the $U$ matrix are derived through the Hatree-Fock equation.
+Hence, we come to the coupled-perturbed Hatree-Fock equation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Couped-Perturbed Hatree-Fock Equation}\label{CPHF}
+%
+%
+%
+The primary target for the coupled pertubed Hatree-Fock equation, is
+to solve the MO rotation matrix of $U$.
+
+Let's start fom the matrix form of Hatree-Fock equation:
+\begin{equation}
+  \label{CPHF_hf_derivatives_eq:1}
+  F_{pq} = \epsilon_{p}\delta_{pq}
+\end{equation}
+
+From the (\ref{FOD_FOCK_hf_derivatives_eq:4}), we have already get the
+$F_{pq}^{[a]}$:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:2}
+  F_{pq}^{[a]} &= H^{a}_{pq} + \sum_{k}^{occ}\left \{\Pi^{a}_{pqkk} -
+    \Pi^{a}_{pkkq} \right\}
+  \nonumber \\
+  &+ \sum_{t}^{ALL MO}\left(U^{a}_{tp}F_{qt} + U^{a}_{tq}F_{pt}\right)
+  + \sum_{k}^{occ}\sum_{t}^{ALL MO}U^{a}_{tk}A_{pq,kt}
+\end{align}
+Where the $A_{pq,kt}$ is given by:
+\begin{equation}
+  \label{CPHF_hf_derivatives_eq:3}
+  A_{pq,kt}  = 2\Pi_{pqtk} - \Pi_{ptkq} - \Pi_{pktq}
+\end{equation}
+
+By using the relation in (\ref{CPHF_hf_derivatives_eq:1}), the
+(\ref{CPHF_hf_derivatives_eq:2}) becomes:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:4}
+  F_{pq}^{[a]} &= H^{a}_{pq} + \sum_{k}^{occ}\left \{\Pi^{a}_{pqkk} -
+    \Pi^{a}_{pkkq} \right\}
+  \nonumber \\
+  &+ \left(U^{a}_{qp}\epsilon_{q} + U^{a}_{pq}\epsilon_{p}\right)
+  + \sum_{k}^{occ}\sum_{t}^{ALL MO}U^{a}_{tk}A_{pq,kt} \nonumber \\
+  &= H^{a}_{pq} + \sum_{k}^{occ}\left \{\Pi^{a}_{pqkk} -
+    \Pi^{a}_{pkkq} \right\}
+  \nonumber \\
+  &+ U^{a}_{qp}\left(\epsilon_{q} - \epsilon_{p}\right) -
+  S^{a}_{pq}\epsilon_{p} + \sum_{k}^{occ}\sum_{t}^{ALL
+    MO}U^{a}_{tk}A_{pq,kt}
+\end{align}
+We note that in this derivation, we have used the relation of
+(\ref{overlap_MO_INT_gradient_eq:5}).
+
+Next let's deal with the $A_{pq.kt}$:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:5}
+  \sum_{k}^{occ}\sum_{t}^{ALL MO}U^{a}_{tk}A_{pq,kt} &=
+  \sum_{k}^{occ}\sum_{t}^{ALL MO}U^{a}_{tk}\left\{ 2\Pi_{pqtk} -
+    \Pi_{ptkq} - \Pi_{pktq} \right\} \nonumber \\
+  &= \sum_{k}^{occ}\sum_{t}^{occ}U^{a}_{tk}\left\{ 2\Pi_{pqtk} -
+    \Pi_{ptkq} - \Pi_{pktq} \right\} \nonumber \\
+  &+ \sum_{k}^{occ}\sum_{t}^{vir}U^{a}_{tk}\left\{ 2\Pi_{pqtk} -
+    \Pi_{ptkq} - \Pi_{pktq} \right\} \nonumber \\
+  &= \frac{1}{2}\sum_{k}^{occ}\sum_{t}^{occ}(U^{a}_{tk} +U^{a}_{kt})
+  \left\{ 2\Pi_{pqtk} - \Pi_{ptkq} - \Pi_{pktq} \right\} \nonumber \\
+  &+ \sum_{k}^{occ}\sum_{t}^{vir}U^{a}_{tk}\left\{ 2\Pi_{pqtk} -
+    \Pi_{ptkq} - \Pi_{pktq} \right\} \nonumber \\
+  &= -\frac{1}{2}\sum_{k}^{occ}\sum_{t}^{occ}S^{a}_{kt}
+  \left\{ 2\Pi_{pqtk} - \Pi_{ptkq} - \Pi_{pktq} \right\} \nonumber \\
+  &+ \sum_{k}^{occ}\sum_{t}^{vir}U^{a}_{tk}\left\{ 2\Pi_{pqtk} -
+    \Pi_{ptkq} - \Pi_{pktq} \right\}
+\end{align}
+Here in the above derivation, we note that the integrals are
+symmetrical for $k$ and $t$ if they are both referred to occupied
+orbitals. Hence we can exchange the label of $t$ and $k$ without
+changing anything. This further gives:
+\begin{equation}
+  \label{CPHF_hf_derivatives_eq:6}
+  \sum_{k}^{occ}\sum_{t}^{occ}S^{a}_{kt}\Pi_{ptkq} =
+  \sum_{k}^{occ}\sum_{t}^{occ}S^{a}_{kt}\Pi_{pktq} 
+\end{equation}
+Finally it leads to:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:7}
+  \sum_{k}^{occ}\sum_{t}^{ALL MO}U^{a}_{tk}A_{pq,kt} &=
+  -\sum_{k}^{occ}\sum_{t}^{occ}S^{a}_{kt}
+  \left\{ \Pi_{pqtk} - \Pi_{ptkq} \right\} \nonumber \\
+  &+ \sum_{k}^{occ}\sum_{t}^{vir}U^{a}_{tk}\left\{ 2\Pi_{pqtk} -
+    \Pi_{ptkq} - \Pi_{pktq} \right\}
+\end{align}
+It turns out that only the occupied-virtual block of $U$ matrix is
+left.
+
+All in all, according to what we have got; the
+(\ref{CPHF_hf_derivatives_eq:2}) finally becomes:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:8}
+  F_{pq}^{[a]} &= H^{a}_{pq} + \sum_{k}^{occ}\left \{\Pi^{a}_{pqkk} -
+    \Pi^{a}_{pkkq} \right\}
+  \nonumber \\
+  &+ U^{a}_{qp}\left(\epsilon_{q} - \epsilon_{p}\right) -
+  S^{a}_{pq}\epsilon_{p} \nonumber \\
+  &- \sum_{k}^{occ}\sum_{t}^{occ}S^{a}_{kt}
+  \left\{ \Pi_{pqtk} - \Pi_{ptkq} \right\} \nonumber \\
+  &+ \sum_{k}^{occ}\sum_{t}^{vir}U^{a}_{tk}\left\{ 2\Pi_{pqtk} -
+    \Pi_{ptkq} - \Pi_{pktq} \right\}
+\end{align}
+
+For $F^{[a]}_{pq}$, generally we have:
+\begin{equation}
+  \label{CPHF_hf_derivatives_eq:9}
+  \frac{\partial F_{pq}}{\partial \bm{R}_{a}} = \delta_{pq}
+  \frac{\partial \epsilon_{p}}{\partial \bm{R}_{a}}
+\end{equation}
+
+We see that if $p=q$, it becomes:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:10}
+  F_{pp}^{[a]} &= H^{a}_{pp} + \sum_{k}^{occ}\left \{\Pi^{a}_{ppkk} -
+    \Pi^{a}_{pkkp} \right\}
+  \nonumber \\
+  &- S^{a}_{pp}\epsilon_{p} - \sum_{k}^{occ}\sum_{t}^{occ}S^{a}_{kt}
+  \left\{ \Pi_{pptk} - \Pi_{ptkp} \right\} \nonumber \\
+  &+ \sum_{k}^{occ}\sum_{t}^{vir}U^{a}_{tk}\left\{ 2\Pi_{pptk} -
+    \Pi_{ptkp} - \Pi_{pktp} \right\}
+\end{align}
+
+In the (\ref{CPHF_hf_derivatives_eq:10}), we can find two interesting
+points. The first point is that this expression contains the first
+order $U$ matrix, while the $E^{[a]}$ does not. The second point is,
+the expression only contains the occupied-virtual blocks of $U$
+matrix. So why??
+
+The first question is easy to answer. As what we can see from section
+\ref{General_Derivatives_Expressions_hf_derivatives}, the total energy
+for the system is stationary for the variation of variational
+coefficients; so the gradient of energy should not contain $U$
+matrix. However, the MO energy is not variational; hence it contains
+the first order $U$ matrix and it's worthy to note that
+$\dfrac{\partial \epsilon_{p}}{\partial \bm{R}_{a}} \neq 0$.
+
+On the other hand, the second question is not easy to answer. In
+section (\ref{overlap_int_general_derivatives}), we have found that
+$U^{a}_{pp}$ can not be determined. Now let's generally consider the
+four blocks of $U$ matrix:
+\begin{equation}
+  \label{CPHF_hf_derivatives_eq:11}
+  \begin{bmatrix}
+    U_{oo} & U_{ov} \\
+    U_{vo} & U_{vv}
+  \end{bmatrix}
+\end{equation}
+
+For the $U_{vv}$, physically, we can not determine it. The expression
+of total energy under Hatree-Fock framework, only involves the
+occupied orbitals, and for the other physical properties, they only
+involve the electron density to describe it(see \ref{HFT:3} for
+details). Therefore, we at least have one label in $U$ matrix in signaling
+occupied orbitals, hence it's unable for us to determine the $U_{vv}$ block.
+
+For the $U_{oo}$ block, mathematically it's related two
+indices. Generally in the energy expression as well as physical
+properties expression (such as $F^{[a]}$ and $S^{[a]}$ etc.), both of
+the two indices are always symmetrical so that we can always use
+$U_{oo} + U^{T}_{oo} = S^{a}_{oo}$ to eliminate it. Hence this block
+can not be determined, too.
+
+In conclusion, similar to the treatment in \ref{1st_approximation_WT}
+for the term $a^{1}_{kk}$; we can safely set the two block as zero. So
+(\ref{CPHF_hf_derivatives_eq:10}) becomes:
+\begin{equation}
+  \label{CPHF_hf_derivatives_eq:12}
+  \begin{bmatrix}
+    0 & U_{ov} \\
+    U_{vo} & 0
+  \end{bmatrix}
+\end{equation} 
+
+For the $U_{ov}$, we can see that through
+(\ref{CPHF_hf_derivatives_eq:8}) we can directly calculate
+it. Furthermore, since $U$ matrix is some unitary matrix $U^{+}U = I$;
+we can generally have:
+\begin{equation}
+  \label{CPHF_hf_derivatives_eq:13}
+  \begin{bmatrix}
+    0 & U^{+}_{vo} \\
+    U^{+}_{ov} & 0
+  \end{bmatrix}
+  \begin{bmatrix}
+    0 & U_{ov} \\
+    U_{vo} & 0
+  \end{bmatrix} =
+  \begin{bmatrix}
+    U^{+}_{vo}U_{vo} & 0 \\
+    0 & U^{+}_{ov}U_{ov}
+  \end{bmatrix}
+  =   \begin{bmatrix}
+    I & 0 \\
+    0 & I
+  \end{bmatrix}
+\end{equation}
+hence both $U_{vo}$ and $U_{ov}$ exist, and they are forming some unitary
+matrix. On the other hand, it's worthy to note that the $U_{vo}$ and $U_{ov}$
+are not independent with each other. According to the relation defined in
+(\ref{overlap_MO_INT_gradient_eq:3}), which is:
+\begin{equation}
+S_{pq}^{[a]} = \frac{\partial S_{pq}}{\partial \bm{R}_{a}} = U^{a}_{qp} +
+U^{a}_{pq} + S^{a}_{pq} = 0
+\end{equation}
+Then the $U^{a}_{vo} + U^{a}_{ov} = S^{a}_{ov} = S^{a}_{vo}$. Hence if we get
+the $U^{a}_{vo}$, we then get the $U^{a}_{ov}$. 
+
+Finally, for the $U$ matrix in the Hatree-Fock approximation, we can
+see that the expression in (\ref{orbital_response_gradient_eq:4})
+\begin{equation}
+  c^{per}_{\mu p} = c_{\mu p} + \lambda\sum_{q}^{ALL
+    MO}c_{\mu q}U_{qp}
+\end{equation}
+has to be separated into two parts:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:14}
+  c^{per}_{\mu i} &= c_{\mu i} + \lambda\sum_{a}^{vir}c_{\mu a}U_{ai}
+  \nonumber \\
+  c^{per}_{\mu a} &= c_{\mu a} + \lambda\sum_{i}^{occ}c_{\mu i}U_{ia}
+\end{align}
+and the $U$ matrix inside (\ref{CPHF_hf_derivatives_eq:14}) will be
+solved through (\ref{CPHF_hf_derivatives_eq:8}).
+
+By the way, it's worthy to note more about the $U$ matrix defined through
+(\ref{CPHF_hf_derivatives_eq:14}). We know it's some unitary matrix, which
+satisfy $U^{+}U = I$; however, we should note that it's not hermitian matrix
+which means $U = U^{+}$. In this circumstance, we have $U_{ai} = U_{ia}$
+(suppose that $U$ matrix is real). However, according to its physical
+definition in (\ref{CPHF_hf_derivatives_eq:14}); it's clear that $U_{ai} =
+U_{ia}$ does not hold because $U_{ai}$ is the response for occupied orbital and
+$U_{ia}$ denotes the response for virtual orbitals. They should be different.  
+ 
+Let's turn to (\ref{CPHF_hf_derivatives_eq:8}) to get the
+CPHF equation. Since $F^{[a]}_{pq} = 0$ for $p \neq q$, then we can
+have:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:15}
+U^{a}_{qp}\left(\epsilon_{q} - \epsilon_{p}\right) + 
+\sum_{k}^{occ}\sum_{t}^{vir}U^{a}_{tk}\left\{ 2\Pi_{pqtk} -
+    \Pi_{ptkq} - \Pi_{pktq} \right\} &= B_{pq}
+\end{align}
+Where $B_{pq}$ is given by:
+\begin{align}
+  \label{CPHF_hf_derivatives_eq:16}
+  B_{pq} &= H^{a}_{pq} + \sum_{k}^{occ}\left \{\Pi^{a}_{pqkk} - \Pi^{a}_{pkkq}
+  \right\} \nonumber \\
+  &-S^{a}_{pq}\epsilon_{p} - \sum_{k}^{occ}\sum_{t}^{occ}S^{a}_{kt}
+  \left\{ \Pi_{pqtk} - \Pi_{ptkq} \right\} 
+ \end{align}
+Which only involves the gradient on AO integrals.
+
+The equation in (\ref{CPHF_hf_derivatives_eq:15}) is also some
+equation which need to solve self-consistently. The $U$ matrix has the
+dimension of $occ\times vir$ (the another half part can be got automatically
+as we get the first half part!). In the first order gradient, it's clear
+that we do not need the $U$ matrix, but in the second order gradient, we need
+both of the $U_{occ,vir}$ and $U_{vir, occ}$. 
+
+Finally, let's rewrite the CPHF equation in (\ref{CPHF_hf_derivatives_eq:15})
+into some matrix form. By setting $p$ to $i$, $q$ to $a$ we have:
+\begin{equation}
+  \label{CPHF_hf_derivatives_eq:17}
+AU^{a} = B^{a}\Leftrightarrow \sum_{jb}A_{ij, ab}U^{a}_{bj} =
+B^{a}_{ia}
+\end{equation}
+Where
+\begin{equation}
+\begin{split}
+ A_{ij, ab} &= \left(\epsilon_{a} - \epsilon_{i}\right)\delta_{ij}\delta_{ab} + 
+\left\{ 2\Pi_{iabj} -
+    \Pi_{ibja} - \Pi_{ijba} \right\} \\
+B^{a}_{ia} &= H^{a}_{ia} + \sum_{k}^{occ}\left \{\Pi^{a}_{iakk} - \Pi^{a}_{ikka}
+  \right\}  \\
+  &-S^{a}_{ia}\epsilon_{i} - \sum_{j}^{occ}\sum_{b}^{occ}S^{a}_{jb}
+  \left\{ \Pi_{iabj} - \Pi_{ibja} \right\} 
+\end{split}
+ \label{CPHF_hf_derivatives_eq:18}
+\end{equation}
+For clarity, we do not use the index of $t$, $k$ etc. anymore, since
+we have already demonstrated that $U$ matrix must be $occ\times vir$ dimension.
+Hence again, we use $i$ to replace $p$, $a$ replace $q$, $b$ replace $t$ and $j$
+replace $k$ in original (\ref{CPHF_hf_derivatives_eq:15}). Furthermore, we note
+that the superscript of ``a'' in (\ref{CPHF_hf_derivatives_eq:17}) means this
+term has the derivatives with respect
+to $\bm{R}_{a}$.  
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

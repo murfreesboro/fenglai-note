@@ -1,0 +1,343 @@
+%
+% OK
+%
+% setting up at Aug. third, 2009
+% finished at Aug 5th, 2009
+% seems to be OK
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction to delta function}
+\label{sec:delta_function}
+
+As what we can see, in the discussion of quantum mechanics or even the
+quantum chemistry, we always meet the situation that the delta
+function has to be used (for example, the normalization of free
+particle wave function, the discussion of position and momentum
+operator in \ref{sec:PRAMR_in_position_representation} etc. For the
+case of the continuous basis functions, the delta function is
+frequently used). Hence in this part, we are going to give some
+mathematical introduction for the delta function.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definition of delta function}
+\label{sec:definition_delta_function}
+%
+%
+%
+%
+The delta function can be considered as some ``peculiar'' function
+which has two features below:
+\begin{equation}
+\label{DELTAeq:1}
+\delta (x) = \begin{cases}
+    \infty & x = 0 \\
+    0 & x \neq 0
+  \end{cases}
+\end{equation}
+
+\begin{equation}
+\label{DELTAeq:2}
+ \int_{-\infty}^{+\infty}\delta (x)dx =
+\int_{-\epsilon}^{+\epsilon}\delta (x)dx = 1
+\end{equation}
+Here $(-\epsilon, \epsilon)$ is some ``small enough'' open interval
+around the $0$. The (\ref{DELTAeq:1}) and (\ref{DELTAeq:2}) are also
+the definition for the delta function, which indicates that the
+delta function is infinity at $0$, but quickly tends to $0$ as is
+apart from the $0$ point.
+
+Now let's give some examples. Firstly, consider the function below:
+\begin{equation}\label{}
+\Psi_{n}(x) = \frac{\sin nx}{\pi x} \quad \text{$n$ is some natural
+number }
+\end{equation}
+Firstly, we can prove that:
+\begin{align}\label{}
+\lim_{x \rightarrow 0}\Psi_{n}(x) = \lim_{x \rightarrow 0}\frac{\sin
+nx}{\pi x} = \lim_{x \rightarrow 0}\frac{\sin nx}{n x}\frac{n}{\pi}
+= \frac{n}{\pi}
+\end{align}
+So we can think that $\Psi_{n}(0) = \frac{n}{\pi}$. Here as $n
+\rightarrow +\infty$, $\Psi_{\infty}(0) \rightarrow +\infty$. Hence
+the (\ref{DELTAeq:1}) is satisfied.
+
+Secondly, from the improper integral theory, we can know that:
+\begin{equation}\label{}
+\int_{0}^{+\infty}\frac{\sin nx}{x}dx = \frac{\pi}{2}
+\end{equation}
+Hence we have the integral as:
+\begin{align}\label{}
+\int_{-\infty}^{+\infty}\frac{\sin nx}{\pi x}dx &=
+2\frac{1}{\pi}\int_{0}^{+\infty}\frac{\sin nx}{x}dx \quad
+ \text{here the $\Psi_{n}(x)$ is even function}\nonumber \\
+&=2\frac{1}{\pi}\times\frac{\pi}{2} \nonumber \\
+&=1
+\end{align}
+So the (\ref{DELTAeq:2}) is satisfied. Thus we can have
+$\Psi_{\infty}(x) = \delta(x)$.
+
+From the definition of $\Psi_{n}(x)$, we can even prove that the
+function below is also the delta function:
+\begin{equation}\label{}
+\Phi(x) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} e^{ikx}dk
+\end{equation}
+
+This function is very important in discussing the property related
+to plane wave functions. Firstly, as $x = 0$, it's easy to see tat
+the $\Phi(0) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} dk \Rightarrow
+\infty$, so the (\ref{DELTAeq:1}) is satisfied.
+
+As for the (\ref{DELTAeq:2}) since we have (suggest that $a$ is some
+natural number):
+\begin{align}\label{}
+\Phi_{a}(x) = \frac{1}{2\pi}\int_{-a}^{+a} e^{ikx}dk &=
+\frac{1}{i2x\pi}e^{ikx}\Big|^{a}_{-a} \nonumber \\
+&=\frac{1}{i2x\pi}2i\sin ax \quad \cos(a) = \cos(-a)\nonumber \\
+&=\frac{\sin ax}{x\pi}
+\end{align}
+Hence the integral for the $\Phi(x)$ in the whole real space has
+been resorted to the $\Psi_{a\rightarrow \infty}(x)$; so we have:
+\begin{equation}\label{}
+\Phi(x) = \delta(x)
+\end{equation}
+
+Finally, let's consider the Gauss distribution function:
+\begin{equation}\label{}
+\Omega_{\sigma}(x) =
+\frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{x^{2}}{2\sigma}}
+\end{equation}
+
+Firstly, we can see that:
+\begin{align}\label{}
+\Omega_{\sigma}(0) &= \frac{1}{\sqrt{2\pi\sigma}}\times 1 \quad
+\underrightarrow{\sigma \rightarrow 0} \nonumber
+\\
+\Omega_{\sigma \rightarrow 0 }(0) &= \infty
+\end{align}
+
+On the other hand, since from the improper integral theory, we have:
+\begin{equation}\label{DELTAeq:20}
+\int_{0}^{+\infty}e^{-x^{2}}dx = \frac{\sqrt{\pi}}{2}
+\end{equation}
+Then we have the integral for the $\Omega_{\sigma}(x)$ as:
+\begin{align}\label{}
+\int_{-\infty}^{+\infty}
+\frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{x^{2}}{2\sigma}} dx &=
+\frac{1}{\sqrt{2\pi\sigma}}\int_{-\infty}^{+\infty}
+e^{-\frac{x^{2}}{2\sigma}} dx \nonumber \\
+&= \frac{2}{\sqrt{2\pi\sigma}}\int_{0}^{+\infty}\sqrt{2\sigma}
+e^{-(\frac{x}{\sqrt{2\sigma}})^{2}} d\frac{x}{\sqrt{2\sigma}} \quad
+\text{$\Omega_{\sigma}(x)$ is even} \nonumber \\
+&=\frac{2}{\sqrt{\pi}}\times\frac{\sqrt{\pi}}{2} \quad
+\text{From the \ref{DELTAeq:20}}\nonumber \\
+&= 1
+\end{align}
+Hence we have $\Omega_{0}(x) = \delta(x)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Characters of delta function}
+\label{sec:character_delta_function}
+%
+%
+%
+%
+In this section let's state some characters of delta function.
+
+\begin{theorem}
+$\delta(x)$ is some even function: $\delta(x) = \delta(-x)$
+\end{theorem}
+
+\begin{proof}
+the proof is straightforward. For (\ref{DELTAeq:1}), the
+$\delta(-x)$ is naturally satisfied, and for the integral in the
+(\ref{DELTAeq:2}) we have:
+\begin{equation}\label{}
+\int_{-\infty}^{+\infty}\delta(-x)dx =
+-\int_{-\infty}^{+\infty}\delta(-x)d(-x) =
+\int_{-\infty}^{+\infty}\delta(t)dt = 1
+\end{equation}
+Hence  $\delta(x) = \delta(-x)$. \qedhere
+\end{proof}
+
+\begin{theorem}
+$\delta(ax) = \frac{1}{|a|}\delta(x)$
+\end{theorem}
+
+\begin{proof}
+Firstly suggest that $a>0$, then:
+\begin{equation}\label{DELTAeq:3}
+\begin{split}
+  \int_{-\infty}^{+\infty}\delta(ax)dx &=
+  \frac{1}{a}\int_{-\infty}^{+\infty}\delta(ax)d(ax) \\
+    &= \frac{1}{a}\delta(x)
+\end{split}
+\end{equation}
+
+For the $a < 0$ (in this case, if we simply repeat the progress in
+\ref{DELTAeq:3}; the upper limit and the lower limit in integral
+should change), since we have $\delta(ax) = \delta(-ax)$; then we
+can replace the $a$ with $|a|$ to repeat the demonstration in
+(\ref{DELTAeq:3}). So finally we can get the conclusion. \qedhere
+\end{proof}
+
+\begin{theorem}
+\label{DELTA:4}
+$\int_{-\infty}^{+\infty}f(x)\delta(x)dx = f(0)$.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\begin{split}
+  \int_{-\infty}^{+\infty}f(x)\delta(x)dx &=
+  \int_{-\epsilon}^{+\epsilon}f(x)\delta(x)dx \\
+    &= f(0)\int_{-\epsilon}^{+\epsilon}\delta(x)dx \\
+    &= f(0)
+\end{split}
+\end{equation} \qedhere
+\end{proof}
+
+The theorem (\ref{DELTA:4}) is some important expression for delta
+function. Now consider the delta function $\delta (x - x^{'})$,
+where $x^{'}$ is some arbitrary number; it can be easily understood
+that the (\ref{DELTAeq:1}) and (\ref{DELTAeq:2}) are converted as:
+\begin{equation}
+\label{DELTAeq:5} \delta (x - x^{'}) = \begin{cases}
+    \infty & x = x^{'} \\
+    0 & x \neq x^{'}
+  \end{cases}
+\end{equation}
+
+\begin{equation}
+\label{DELTAeq:6}
+ \int_{-\infty}^{+\infty}\delta (x - x^{'})dx =
+\int_{-\epsilon}^{+\epsilon}\delta (x - x^{'})dx = 1
+\end{equation}
+The (\ref{DELTAeq:1}) and (\ref{DELTAeq:2}) can be considered as the
+special case while $x^{'} = 0$. Through this expansion, by using the
+theorem (\ref{DELTA:4}) we can prove that the relation below is
+true:
+\begin{theorem}
+\begin{equation}\label{DELTAeq:7}
+\int_{-\infty}^{+\infty}f(x)\delta(x - x^{'})dx =
+\int_{-\infty}^{+\infty}f(x^{'})\delta(x - x^{'})dx^{'} =f(x)
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For the first equation in the (\ref{DELTAeq:7}), we can directly use
+the even function character to prove it. For the second equation in
+(\ref{DELTAeq:7}), we have:
+\begin{equation}\label{}
+\begin{split}
+  \int_{-\infty}^{+\infty}f(x)\delta(x - x^{'})dx &=
+   \int_{-\infty}^{+\infty}f(t+x^{'})\delta(t)dt
+   \quad t = x - x^{'}\\
+    &= f(t+x^{'})\Big|_{t=0} \quad \text{From theorem \ref{DELTA:4}}\\
+    &= f(x^{'})
+\end{split}
+\end{equation}
+ \qedhere
+\end{proof}
+
+\begin{theorem}
+$\delta(x) = \delta^{*}(x)$
+\end{theorem}
+
+\begin{proof}
+Suggest that we have some arbitrary real function of $f(x)$,
+\begin{equation}\label{}
+\begin{split}
+  \left[\int_{-\infty}^{+\infty}f(x)\delta(x)dx\right]^{*} &=
+   \int_{-\infty}^{+\infty}f(x)\delta^{*}(x)dx \\
+    &=f^{*}(0) = f(0) \\
+    &= \int_{-\infty}^{+\infty}f(x)\delta(x)dx \Rightarrow \\
+    &= \int_{-\infty}^{+\infty}f(x)
+    \Big(\delta(x)-\delta^{*}(x)\Big)dx = 0
+\end{split}
+\end{equation}
+Hence we have $\delta(x) = \delta^{*}(x)$. \qedhere
+\end{proof}
+
+\begin{theorem}
+$\int_{-\infty}^{+\infty}\delta(x - x^{'}) \delta(x - x^{''})dx =
+\delta(x^{'} - x^{''})$. Here $x^{'}$ and $x^{''}$ are both of
+arbitrary real number.
+\end{theorem}
+
+\begin{proof}
+From  (\ref{DELTAeq:7}), we set the $f(x) = \delta(x)$ so according
+to the (\ref{DELTAeq:7}):
+\begin{equation}\label{}
+\begin{split}
+  \int_{-\infty}^{+\infty}f(x- x^{''})\delta(x - x^{'})dx
+  &= f(x- x^{''})\Big|_{x =x^{'}} \\
+    &= f(x^{'}- x^{''})
+\end{split}
+\end{equation}
+\qedhere
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example to use delta function:
+the normalization of plane wave functions}
+\label{sec:normalization_delta_function}
+%
+%
+%
+%
+Now by using the delta function let's solve some important problem
+in quantum mechanics: how to normalize the plane wave function?
+
+According to the (\ref{BASICeq:14}), the plane wave function can be
+expressed as:
+\begin{equation}\label{}
+\Psi_{p}(x) = e^{\frac{ipx}{\hbar}}
+\end{equation}
+Actually it's the eigen state for the $\hat{p}$:
+\begin{equation}\label{}
+\hat{p}\Psi_{p}(x) = p\Psi_{p}(x)
+\end{equation}
+
+Now let's go to see how to normalize this function:
+\begin{equation}\label{}
+\begin{split}
+  \langle \Psi_{p}(x^{'})|\Psi_{p}(x)\rangle
+  =\int_{-\infty}^{+\infty}\Psi^{*}(x')\Psi(x)dp
+  &= \int_{-\infty}^{+\infty} e^{\frac{ip(x-x^{'})}{\hbar}}dp \\
+  &= \hbar\int_{-\infty}^{+\infty} e^{\frac{ip(x-x^{'})}{\hbar}}
+  d\left(\frac{p}{\hbar}\right) \\
+  &= 2\pi\hbar\delta(x-x^{'})
+\end{split}
+\end{equation}
+
+Hence if we integrate over all the $x$:
+\begin{equation}\label{}
+\begin{split}
+  \int_{-\infty}^{+\infty}
+  \langle \Psi_{p}(x^{'})|\Psi_{p}(x)\rangle dx
+  &= \int_{-\infty}^{+\infty} 2\pi\hbar\delta(x-x^{'}) dx \\
+    &= 2\pi\hbar
+\end{split}
+\end{equation}
+
+Thus finally we can express the plane wave function as:
+\begin{equation}\label{}
+\Psi_{p}(x) = \frac{1}{\sqrt{2\pi\hbar}}e^{\frac{ipx}{\hbar}}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End:

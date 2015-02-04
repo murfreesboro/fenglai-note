@@ -1,0 +1,706 @@
+% 
+% firstly set up on May, 2011
+%
+% for direct calculation:
+% checked the results for kinetic integral,  overlap integral, 
+% and derivations for overlap.   June 2ed
+% checked the derivation for nuclear attraction integral, fine.  June 13th
+%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Direct Integrals Calculation}
+%
+%
+%
+%
+In this section, we will show how to derive the one electron integrals in terms of the 
+basic form of shell pair data shown in \ref{basic_shell_pair_data_form}. Generally, such
+way of derivation is simple and the efficiency is low; therefore in the modern quantum 
+chemistry package it's not used anymore. However, it's still listed here for archive reason.
+Furthermore, from the derivation we could clearly see how to make integral from the basic
+way.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overlap Integrals}
+%
+%
+%
+%
+Now let's step into overlap integral. Firstly let's consider the simple S type of integral 
+without contraction:
+\begin{equation}
+ \label{overlap_direct_int_eq:1}
+\begin{split}
+S_{\mu\nu}  &= \int \phi_{\mu}^{*}\phi_{\nu} dr \\
+&= \int e^{-\alpha r_{A}^{2} - \beta r_{B}^{2}} dr \\
+&= e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}}\int e^{-(\alpha+\beta)r_{P}^{2}} dr \\
+&= e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}} \int e^{-(\alpha+\beta)x_{P}^{2}} dx
+\int e^{-(\alpha+\beta)y_{P}^{2}} dy \int e^{-(\alpha+\beta)z_{P}^{2}} dz \\
+&= e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}}\left( \frac{\pi}{\alpha+\beta}\right)
+^{\frac{3}{2}}   
+\end{split}
+\end{equation}
+
+The more common form of overlap integral between two arbitrary Gaussian primitives without 
+contraction, will be given according to the \ref{gaussian_product_rule_eq:19} and 
+\ref{gaussian_product_rule_eq:20}:
+\begin{equation}
+ \label{overlap_direct_int_eq:2}
+\begin{split}
+S_{\mu\nu}  &= \int \phi_{\mu}^{*}\phi_{\nu} dr \\
+&= \int x_{A}^{l_{1}}y_{A}^{m_{1}}z_{A}^{n_{1}}
+        x_{B}^{l_{2}}y_{B}^{m_{2}}z_{B}^{n_{2}}
+        e^{-\alpha r_{A}^{2} - \beta r_{B}^{2}} dr \\
+&= \int \sum_{i=0}^{l_{1}+l_{2}}\sum_{j=0}^{m_{1}+m_{2}}\sum_{k=0}^{n_{1}+n_{2}}
+   x_{P}^{i}y_{P}^{j}z_{P}^{k}
+   e^{-(\alpha+\beta)r_{P}^{2}} e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}}
+   F_{ijk} dr \\
+&= e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}}
+   \sum_{i=0}^{l_{1}+l_{2}}\sum_{j=0}^{m_{1}+m_{2}}\sum_{k=0}^{n_{1}+n_{2}}F_{ijk}
+   \int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}} dr \\
+&= e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}}
+   \sum_{i=0}^{l_{1}+l_{2}}\sum_{j=0}^{m_{1}+m_{2}}\sum_{k=0}^{n_{1}+n_{2}}F_{ijk}
+   \int x_{P}^{i}e^{-(\alpha+\beta)x_{P}^{2}} dx \\
+&\times
+   \int y_{P}^{j}e^{-(\alpha+\beta)y_{P}^{2}} dy \int z_{P}^{k}e^{-(\alpha+\beta)z_{P}^{2}} dz  
+\end{split}
+\end{equation}
+
+Now the integral has been retreated into simpler form. Now let's consider the integral form
+of:
+\begin{equation}
+ \label{overlap_direct_int_eq:3}
+ \int x^{i}e^{-\gamma x^{2}} dx
+\end{equation}
+
+This is the general form of integrals appearing in the \ref{overlap_direct_int_eq:2}. 
+Firstly, we can
+see that this integral only exists when $i$ is even number; that is to say:
+\begin{equation}
+\label{overlap_direct_int_eq:even}
+ \int x^{i}e^{-\gamma x^{2}} dx = 0 \quad i = 2k+1
+\end{equation}
+This is because the function of $x^{i}e^{-\gamma x^{2}}$ is odd function when $i = 2k+1$. Hence 
+here we have to make additional treatment, that to replace all of $i$, $j$ and $k$ in 
+\ref{overlap_direct_int_eq:2} into $i^{'}$, $j^{'}$ and $k^{'}$:
+\begin{equation}
+ \begin{split}
+  i &= 2*i^{'} \\ 
+  j &= 2*j^{'} \\
+  k &= 2*k^{'} 
+ \end{split}
+ \label{overlap_direct_int_eq:4}
+\end{equation}
+
+So the result in the \ref{overlap_direct_int_eq:2} can be rewritten as:
+\begin{equation}
+ \label{overlap_direct_int_eq:5}
+\begin{split}
+S_{\mu\nu}  &= \int \phi_{\mu}^{*}\phi_{\nu} dr \\
+&= e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}}
+   \sum_{i^{'}=0}^{\left[ \frac{l_{1}+l_{2}}{2}\right] }
+   \sum_{j^{'}=0}^{\left[ \frac{m_{1}+m_{2}}{2}\right] }
+   \sum_{k^{'}=0}^{\left[ \frac{n_{1}+n_{2}}{2}\right] }
+   F_{2i^{'},2j^{'},2k^{'}}
+   \int x_{P}^{2i^{'}}e^{-(\alpha+\beta)x_{P}^{2}} dx \\
+&\times
+   \int y_{P}^{2j^{'}}e^{-(\alpha+\beta)y_{P}^{2}} dy 
+   \int z_{P}^{2k^{'}}e^{-(\alpha+\beta)z_{P}^{2}} dz  
+\end{split}
+\end{equation}
+
+This integral, actually can be decomposed into three pieces:
+\begin{equation}
+ \label{overlap_direct_int_eq:6}
+S_{\mu\nu} = e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}}
+S_{\mu\nu}^{x}S_{\mu\nu}^{y}S_{\mu\nu}^{z}
+\end{equation}
+
+All of the three pieces are sharing the same structure:
+\begin{align}
+ \label{overlap_direct_int_eq:7}
+S_{\mu\nu}^{x} &= \sum_{i^{'}=0}^{\left[ \frac{l_{1}+l_{2}}{2}\right] }
+                  f_{2i^{'}}(l_{1},l_{2},\overline{PA}_{x},\overline{PB}_{x})
+                  \int x_{P}^{2i^{'}}e^{-(\alpha+\beta)x_{P}^{2}} dx \nonumber \\
+S_{\mu\nu}^{y} &= \sum_{j^{'}=0}^{\left[ \frac{m_{1}+m_{2}}{2}\right] }
+                  f_{2j^{'}}(m_{1},m_{2},\overline{PA}_{y},\overline{PB}_{y})
+                  \int y_{P}^{2j^{'}}e^{-(\alpha+\beta)y_{P}^{2}} dy \nonumber \\
+S_{\mu\nu}^{z} &= \sum_{k^{'}=0}^{\left[ \frac{n_{1}+n_{2}}{2}\right] }
+                  f_{2k^{'}}(n_{1},n_{2},\overline{PA}_{z},\overline{PB}_{z})
+                  \int z_{P}^{2k^{'}}e^{-(\alpha+\beta)z_{P}^{2}} dz
+\end{align}
+According to the \ref{int_sec2_eq:8}, where the integral can be expressed as:
+\begin{equation}
+\int x^{2k}e^{-\alpha x^{2}} dx = 
+\frac{(2k-1)!!\sqrt{\pi}}{(2\alpha)^{k}\sqrt{\alpha}}
+\end{equation}
+we can have that:
+\begin{align}
+ \label{overlap_direct_int_eq:8}
+S_{\mu\nu}^{x} &= \sum_{i^{'}=0}^{\left[ \frac{l_{1}+l_{2}}{2}\right] }
+                  f_{2i^{'}}(l_{1},l_{2},\overline{PA}_{x},\overline{PB}_{x})
+                  \frac{(2i^{'}-1)!!\sqrt{\pi}}{(2(\alpha+\beta))^{i^{'}}\sqrt{\alpha+\beta}}
+                  \nonumber \\
+S_{\mu\nu}^{y} &= \sum_{j^{'}=0}^{\left[ \frac{m_{1}+m_{2}}{2}\right] }
+                  f_{2j^{'}}(m_{1},m_{2},\overline{PA}_{y},\overline{PB}_{y})
+                  \frac{(2j^{'}-1)!!\sqrt{\pi}}{(2(\alpha+\beta))^{j^{'}}\sqrt{\alpha+\beta}}
+                  \nonumber \\
+S_{\mu\nu}^{z} &= \sum_{k^{'}=0}^{\left[ \frac{n_{1}+n_{2}}{2}\right] }
+                  f_{2k^{'}}(n_{1},n_{2},\overline{PA}_{z},\overline{PB}_{z})
+                  \frac{(2k^{'}-1)!!\sqrt{\pi}}{(2(\alpha+\beta))^{k^{'}}\sqrt{\alpha+\beta}}
+\end{align}
+Now this is the result for the overlap integral between two arbitrary Gaussian primitives with
+different centers.
+
+For the overlap integral on the same center, according to the result in 
+\ref{gaussian_product_rule_eq:21}, we will have that ($A=B$):
+\begin{equation}
+ \begin{split}
+&\int x_{A}^{l_{1}}y_{A}^{m_{1}}z_{A}^{n_{1}}
+        x_{B}^{l_{2}}y_{B}^{m_{2}}z_{B}^{n_{2}}
+        e^{-\alpha r_{A}^{2} - \beta r_{B}^{2}} dr \\
+&= \int x_{A}^{l_{1}+l_{2}}y_{A}^{m_{1}+m_{2}}z_{A}^{n_{1}+n_{2}}e^{-(\alpha+\beta)r_{A}^{2}} dr\\
+&= 
+\int x_{A}^{l_{1}+l_{2}}e^{-(\alpha+\beta)x_{A}^{2}} dx
+\int y_{A}^{m_{1}+m_{2}}e^{-(\alpha+\beta)y_{A}^{2}} dy
+\int z_{A}^{n_{1}+n_{2}}e^{-(\alpha+\beta)z_{A}^{2}} dz
+ \end{split}
+\label{overlap_direct_int_eq:9}
+\end{equation}
+According to the result in \ref{overlap_direct_int_eq:even}, the result will 
+be quite interesting that
+this integral is not zero only if $l_{1}+l_{2} = 2i$, $m_{1}+m_{2} = 2j$, $n_{1}+n_{2} = 2k$. 
+Hence it's easy to see that integrals between S and P shell etc. are all zero. However, it does 
+not mean that different shell types in the same center are orthogonal. For example, the integral
+between PX and FXY2 are not zero.
+
+For the integral, according to the result in \ref{int_sec2_eq:8}; the final result 
+between same center could be expressed as:
+\begin{equation}
+ \label{overlap_direct_int_eq:10}
+\begin{split}
+ & 
+\int x_{A}^{l_{1}+l_{2}}e^{-(\alpha+\beta)x_{A}^{2}} dx
+\int y_{A}^{m_{1}+m_{2}}e^{-(\alpha+\beta)y_{A}^{2}} dy
+\int z_{A}^{n_{1}+n_{2}}e^{-(\alpha+\beta)z_{A}^{2}} dz \\
+&= \left( \frac{\pi}{\alpha+\beta}\right)^{\frac{3}{2}} 
+\frac{(l_{1}+l_{2}-1)!!(m_{1}+m_{2}-1)!!(n_{1}+n_{2}-1)!!}
+{(2(\alpha+\beta))^{\frac{l_{1}+l_{2}+m_{1}+m_{2}+n_{1}+n_{2}}{2}}}
+\end{split}
+\end{equation}
+ 
+Finally, we step into the overlap integral for an arbitrary basis function of $\phi$, which is 
+a set of contracted Gaussian primitives. Firstly we can record the result in 
+\ref{overlap_direct_int_eq:6}
+as $\langle\chi_{\mu}|\chi_{\nu}\rangle$ (but usually we express it as 
+$\langle\chi_{i}|\chi_{j}\rangle$, since the $\mu$, $\nu$ label are related to the indices of 
+basis set functions). The basis set function can be expressed as:
+\begin{equation}
+\begin{split}
+\label{overlap_direct_int_eq:11}
+ \phi_{\mu} &= \sum_{i}d_{\mu i}\chi_{i} \\
+ \phi_{\nu} &= \sum_{j}d_{\mu j}\chi_{j} 
+\end{split}
+\end{equation}
+
+Then based on the results in \ref{overlap_direct_int_eq:6}, \ref{overlap_direct_int_eq:7} 
+and \ref{overlap_direct_int_eq:8}
+we have:
+\begin{equation}
+ \label{overlap_direct_int_eq:12}
+ S_{\mu\nu} = \sum_{i}\sum_{j}d_{\mu i}d_{\mu j}\langle\chi_{i}|\chi_{j}\rangle
+\end{equation}
+This is the final result for overlap integral.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Derivatives for Overlap Integral} 
+
+There's more advantages if we use Gaussian primitive function rather than the Slater type of function
+in getting the derivatives of the integral. For a common Gaussian primitive, let's derive its 
+derivatives we can see that:
+\begin{equation}
+ \label{derivative_overlap_direct_int_eq:1}
+\frac{\partial \chi_{i}}{\partial R_{x}} = \frac{\partial (x^{l}y^{m}z^{n}e^{-\alpha r^{2}})}
+{\partial R_{x}} =  -lx^{l-1}y^{m}z^{n}e^{-\alpha r^{2}} + 2\alpha x^{l+1}y^{m}z^{n}e^{-\alpha r^{2}}
+\end{equation}
+Here the $x$ is expressed as:
+\begin{equation}
+ x = x_{e} - R_{x} 
+\end{equation}
+Which is the $x$ difference between the electron position and the nuclear position. 
+
+The expression is exactly equal to the form below:
+\begin{equation}
+ \label{derivative_overlap_direct_int_eq:2}
+\frac{\partial \chi^{lmn}_{i}}{\partial R_{x}} = -l\chi_{i}^{l-1mn} + 2\alpha\chi_{i}^{l+1mn}
+\end{equation}
+This result shows that the derivatives for the Gaussian primitive can be expressed as the linear 
+sum of two Gaussian primitives, one is with higher angular momentum and the other with lower
+angular momentum; it indicates that the derivatives for the integral of Gaussian primitives 
+can be simply expressed as some summation between the integrals.
+
+The overlap integral between two Gaussian primitives, can be expressed as:
+\begin{equation}
+ \label{derivative_overlap_direct_int_eq:3}
+\frac{\partial\langle\chi_{i}|\chi_{j}\rangle}{\partial R_{x}} = 
+\begin{cases}
+ 0  \\
+\left\langle \frac{\partial \chi_{i} }{\partial R_{x}}|\chi_{j}\right\rangle \quad \text{or}
+\quad \left\langle \chi_{i}|\frac{\partial \chi_{j} }{\partial R_{x}}\right\rangle \\
+\left\langle \frac{\partial \chi_{i} }{\partial R_{x}}|\chi_{j}\right\rangle +
+\left\langle \chi_{i}|\frac{\partial \chi_{j} }{\partial R_{x}}\right\rangle
+\end{cases}
+\end{equation}
+If both $\chi_{i}$ and $\chi_{j}$ do not center on the given atom ($R_{x}$), then the derivatives
+is zero; if either $\chi_{i}$ or $\chi_{j}$ center on the given atom, the derivatives will be like
+the second equation; finally if both $\chi_{i}$ and $\chi_{j}$ center on the given atom, the 
+derivatives will be expressed as in the third equation. Now let's go to see how to express the 
+second equation in terms of the \ref{derivative_overlap_direct_int_eq:2}:
+\begin{equation}
+ \begin{split}
+  \left\langle \frac{\partial \chi_{i} }{\partial R_{x}}|\chi_{j}\right\rangle &=
+-l_{i}\langle\chi_{i}^{l_{i}-1m_{i}n_{i}}|\chi_{j}\rangle
++2\alpha_{i}\langle\chi_{i}^{l_{i}+1m_{i}n_{i}}|\chi_{j}\rangle
+ \end{split}
+\label{derivative_overlap_direct_int_eq:4}
+\end{equation}
+while in literature, the integral shown above usually expressed in the other way:
+\begin{equation}
+ \label{derivative_overlap_direct_int_eq:5}
+\left\langle \frac{\partial \chi_{i} }{\partial R_{x}}|\chi_{j}\right\rangle
+= -l_{i}\langle -1|0\rangle_{x} + 2\alpha_{i}\langle +1 | 0\rangle_{x}
+\end{equation}
+Here ``0'' indicates its original form (like for the $\chi_{j}$, it's not changed so we label it
+as 0), and ``$+1$'' or ``$-1$'' means the angular momentum is ascending or descending. Finally,
+the subscript of ``x'' means the changing of angular momentum is on the x. This expression is 
+simpler than the \ref{derivative_overlap_direct_int_eq:4}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Kinetic Energy Integral}
+%
+%
+%
+Kinetic energy integral is defined as:
+\begin{equation}
+ \label{kinetic_direct_int_eq:1}
+\begin{split}
+ T_{ij} &= \int \chi_{i}(-\frac{1}{2}\nabla^{2})\chi_{j} dr \\
+&= -\frac{1}{2} \int 
+x^{l_{i}}y^{m_{i}}z^{n_{i}}e^{-\alpha_{i} r_{i}^{2}}
+\left( 
+  \frac{\partial^{2}}{\partial x^{2}}
++ \frac{\partial^{2}}{\partial y^{2}}
++ \frac{\partial^{2}}{\partial z^{2}}\right)
+x^{l_{j}}y^{m_{j}}z^{n_{j}}e^{-\alpha_{j} r_{j}^{2}}
+\end{split}
+\end{equation}
+It's easy to see that the integral here can be restored to the overlap integrals. We can do it directly
+by expanding each term inside \ref{kinetic_direct_int_eq:1}, however; as we know, the kinetic energy should
+be symmetric (as physically it's Hermitian operator); hence usually we evaluate the kinetic energy 
+in another way. Here below is a simple example:
+\begin{equation}
+ \begin{split}
+ & -\frac{1}{2} \int 
+x^{l_{i}}y^{m_{i}}z^{n_{i}}e^{-\alpha_{i} r_{i}^{2}} 
+  \frac{\partial^{2}}{\partial x^{2}}
+x^{l_{j}}y^{m_{j}}z^{n_{j}}e^{-\alpha_{j} r_{j}^{2}} dxdydz \\
+&=
+-\frac{1}{2}  \int \left\lbrace 
+x^{l_{i}}y^{m_{i}}z^{n_{i}}e^{-\alpha_{i} r_{i}^{2}}\left. 
+\frac{\partial (x^{l_{j}}y^{m_{j}}z^{n_{j}}e^{-\alpha_{j} r_{j}^{2}})}{\partial x}
+\right\rbrace 
+\right|^{+\infty}_{-\infty} dydz
+\\
+&+ \frac{1}{2}  \int 
+\frac{\partial (x^{l_{i}}y^{m_{i}}z^{n_{i}}e^{-\alpha_{i} r_{i}^{2}})}{\partial x}
+\frac{\partial (x^{l_{j}}y^{m_{j}}z^{n_{j}}e^{-\alpha_{j} r_{j}^{2}})}{\partial x} dxdydz \\
+&= \frac{1}{2}  \int 
+\frac{\partial (x^{l_{i}}y^{m_{i}}z^{n_{i}}e^{-\alpha_{i} r_{i}^{2}})}{\partial x}
+\frac{\partial (x^{l_{j}}y^{m_{j}}z^{n_{j}}e^{-\alpha_{j} r_{j}^{2}})}{\partial x} dxdydz
+ \end{split}
+\label{kinetic_direct_int_eq:2}
+\end{equation}
+The \ref{kinetic_direct_int_eq:2} is done through integral by parts. Here we can see that the $T_{ij}$
+becomes symmetric, and the $T_{ij}$ is always larger than zero between two Gaussian primitives.
+
+Let's make the evaluation a bit of simpler. If we denote the integral in \ref{kinetic_direct_int_eq:2} 
+as $I_{x}$, it's easy to see that :
+\begin{equation}
+ T_{ij} = I_{x} + I_{y} + I_{z}
+\end{equation}
+for $I_{x}$ we have that:
+\begin{equation}
+ \label{kinetic_direct_int_eq:3}
+\begin{split}
+ I_{x} &=\frac{1}{2}   \int 
+          \left[ l_{i}x^{l_{i}-1} - 2\alpha_{i}x^{l_{i}+1}\right]
+          y^{m_{i}}z^{n_{i}}e^{-\alpha_{i} r_{i}^{2}} \\
+       &\times
+          \left[ l_{j}x^{l_{j}-1} - 2\alpha_{j}x^{l_{j}+1}\right]
+          y^{m_{j}}z^{n_{j}}e^{-\alpha_{j} r_{j}^{2}} dr \\
+       &= \frac{1}{2}\Big(
+          l_{i}l_{j}\langle -1|-1\rangle_{x} 
+        - 2\alpha_{i}l_{j}\langle +1|-1\rangle_{x}    \\
+       &- 2\alpha_{j}l_{i}\langle -1|+1\rangle_{x}
+        + 4\alpha_{i}\alpha_{j}\langle +1|+1\rangle_{x} 
+          \Big) 
+\end{split}
+\end{equation}
+
+Similarly for the $I_{y}$ and $I_{z}$ we have:
+\begin{equation}
+\label{kinetic_direct_int_eq:4}
+\begin{split}
+I_{y} &=  \frac{1}{2}\Big(
+          m_{i}m_{j}\langle -1|-1\rangle_{y} 
+        - 2\alpha_{i}m_{j}\langle +1|-1\rangle_{y}   \\ 
+       &- 2\alpha_{j}m_{i}\langle -1|+1\rangle_{y}
+        + 4\alpha_{i}\alpha_{j}\langle +1|+1\rangle_{y} 
+          \Big) \\
+I_{z} &=  \frac{1}{2}\Big(
+          n_{i}n_{j}\langle -1|-1\rangle_{z} 
+        - 2\alpha_{i}n_{j}\langle +1|-1\rangle_{z}   \\ 
+       &- 2\alpha_{j}n_{i}\langle -1|+1\rangle_{z}
+        + 4\alpha_{i}\alpha_{j}\langle +1|+1\rangle_{z} 
+          \Big) 
+\end{split}
+\end{equation}
+Now the kinetic energy integral is done.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Nuclear Attraction Integral}
+\label{direct_NAI_derivation}
+%
+%
+%
+The common nuclear attraction integral between two arbitrary Gaussian primitives can be expressed
+as:
+\begin{equation}
+ \begin{split}
+  V &= \int \chi_{i}(r)\frac{1}{r_{C}}\chi_{j}(r) dr \\
+&= \int x^{l_{A}}_{A}y^{m_{A}}_{A}z^{n_{A}}_{A}e^{-\alpha r_{A}^{2}}
+        \frac{1}{r_{C}}
+        x^{l_{B}}_{B}y^{m_{B}}_{B}z^{n_{B}}_{B}e^{-\beta  r_{B}^{2}} dr
+ \end{split}
+\label{nuclear_attraction_direct_int_eq:1}
+\end{equation}
+$r_{A}, r_{B}$ and $r_{c}$ denotes the distance between electron position and the given
+nuclear (A, B or C).
+
+This difficulty to solve this integral is for the $1/r_{C}$. However, we can use standard
+Laplace transformation to convert it into another form:
+\begin{equation}
+\label{nuclear_attraction_direct_int_eq:2}
+ \frac{1}{r_{C}} = \frac{1}{\sqrt{\pi}}\int^{\infty}_{0} e^{-sr_{C}^{2}} s^{-\frac{1}{2}} ds
+\end{equation}
+So that we have:
+\begin{equation}
+ \begin{split}
+V &= \frac{1}{\sqrt{\pi}}\int^{\infty}_{0} e^{-sr_{C}^{2}} s^{-\frac{1}{2}} ds 
+          \int x^{l_{A}}_{A}y^{m_{A}}_{A}z^{n_{A}}_{A}e^{-\alpha r_{A}^{2}}
+          x^{l_{B}}_{B}y^{m_{B}}_{B}z^{n_{B}}_{B}e^{-\beta  r_{B}^{2}} dr \\
+       &= \frac{1}{\sqrt{\pi}}\int^{\infty}_{0}  s^{-\frac{1}{2}} ds  
+          \int e^{-sr_{C}^{2}} 
+          x^{l_{A}}_{A}y^{m_{A}}_{A}z^{n_{A}}_{A}e^{-\alpha r_{A}^{2}}
+          x^{l_{B}}_{B}y^{m_{B}}_{B}z^{n_{B}}_{B}e^{-\beta  r_{B}^{2}} dr
+ \end{split}
+\label{nuclear_attraction_direct_int_eq:3}
+\end{equation}
+Basically, this is equivalent to three-center overlap integral. So now let's think about
+how to derive it.
+
+Let's begin from the shell pair. In the \ref{nuclear_attraction_direct_int_eq:3} we could combine the 
+A and B center together. According to the results in the 
+\ref{gaussian_product_rule_eq:19} and \ref{gaussian_product_rule_eq:20}, we can express 
+the integral above as:
+\begin{multline}
+  V = e^{-\frac{\alpha\beta}{\alpha+\beta}\overline{AB}^{2}} 
+\sum_{i=0}^{l_{A}+l_{B}}f_{i}(l_{A},l_{B},\overline{PA}_{x},\overline{PB}_{x})
+\sum_{j=0}^{m_{A}+m_{B}}f_{j}(m_{A},m_{B},\overline{PA}_{y},\overline{PB}_{y}) \times \\
+\sum_{k=0}^{n_{A}+n_{B}}f_{k}(n_{A},n_{B},\overline{PA}_{z},\overline{PB}_{z}) 
+   \frac{1}{\sqrt{\pi}} 
+   \int^{\infty}_{0} s^{-\frac{1}{2}} ds 
+   \int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr
+\label{nuclear_attraction_direct_int_eq:6}
+\end{multline}
+So the problem is left to solve the integral inside the \ref{nuclear_attraction_direct_int_eq:6}.
+
+Before proceeding on solving the integrals, it's very interesting to note that the function of 
+$x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}}$ will not be zero if 
+$i$, $j$ and $k$ is even number. So this is different from the overlap integral situation. 
+The reason is because of $r_{C}$. For example, 
+$ x_{P}^{i} e^{-(\alpha+\beta)x_{P}^{2}}e^{-sx_{C}^{2}} $ is not 
+even or odd function as $i$ is even or odd number, that's all because of the $x_{C}$ in the 
+integral.
+
+Firstly let's concentrate on the integral over $r$, which is:
+\begin{equation}
+  \int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr
+\end{equation}
+According to the Gaussian primitive product theorem, this term can be finally expressed 
+into:
+\begin{equation}
+\begin{split}
+&\int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr  \\
+&=
+e^{-\frac{(\alpha+\beta)s}{\alpha+\beta + s} \overline{PC}^{2}}\times
+\int(x_{Q}+\overline{QP}_{x})^{i}(y_{Q}+\overline{QP}_{y})^{j}(z_{Q}+\overline{QP}_{z})^{k}
+e^{-(\alpha+\beta + s)r_{Q}^{2}} dr \\ 
+&=
+e^{-\frac{(\alpha+\beta)s}{\alpha+\beta + s} \overline{PC}^{2}}\times
+\sum_{i^{'}=0}^{i}\sum_{j^{'}=0}^{j}\sum_{k^{'}=0}^{k}
+\binom{i}{i^{'}}\binom{j}{j^{'}}\binom{k}{k^{'}}
+\overline{QP}_{x}^{i-i^{'}}\overline{QP}_{y}^{j-j^{'}}\overline{QP}_{z}^{k-k^{'}} \\
+&\int x_{Q}^{i^{'}}y_{Q}^{j^{'}}z_{Q}^{k^{'}} e^{-(\alpha+\beta+s)r_{Q}^{2}} dr
+\end{split}
+ \label{nuclear_attraction_direct_int_eq:7}
+\end{equation}
+Here Q is determined by the P point and C point.
+
+For the expression in \ref{nuclear_attraction_direct_int_eq:7}, we note that 
+$\int x_{Q}^{i^{'}}y_{Q}^{j^{'}}z_{Q}^{k^{'}} e^{-(\alpha+\beta+s)r_{Q}^{2}} dr$ is even function; 
+which requires that the $i^{'}$, $j^{'}$ and $k^{'}$ are all even numbers. Therefore the integral
+in the \ref{nuclear_attraction_direct_int_eq:7} could be transformed into:
+\begin{equation}
+\begin{split}
+&\int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr  \\
+&=
+e^{-\frac{(\alpha+\beta)s}{\alpha+\beta + s} \overline{PC}^{2}}\times
+\sum_{i^{'}=0}^{\left[ \frac{i}{2}\right] }
+\sum_{j^{'}=0}^{\left[ \frac{j}{2}\right]}
+\sum_{k^{'}=0}^{\left[ \frac{k}{2}\right]}
+\binom{i}{2i^{'}}\binom{j}{2j^{'}}\binom{k}{2k^{'}}
+\overline{QP}_{x}^{i-2i^{'}}\overline{QP}_{y}^{j-2j^{'}}\overline{QP}_{z}^{k-2k^{'}} \\
+&\int x_{Q}^{2i^{'}}y_{Q}^{2j^{'}}z_{Q}^{2k^{'}} e^{-(\alpha+\beta+s)r_{Q}^{2}} dr
+\end{split}
+ \label{nuclear_attraction_direct_int_eq:7_1}
+\end{equation}
+
+The $\overline{QP}$ is also connected with variable $s$, according to the 
+\ref{gaussian_product_rule_eq:8}, it has the form that:
+\begin{equation}
+ \overrightarrow{QP} = \frac{s}{\alpha+\beta+s}\overrightarrow{CP}
+\end{equation}
+Therefore the \ref{nuclear_attraction_direct_int_eq:7_1} could be further transformed into:
+\begin{equation}
+\begin{split}
+&\int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr  \\
+&=
+e^{-\frac{(\alpha+\beta)s}{\alpha+\beta + s} \overline{PC}^{2}}\times
+\sum_{i^{'}=0}^{\left[ \frac{i}{2}\right] }
+\sum_{j^{'}=0}^{\left[ \frac{j}{2}\right]}
+\sum_{k^{'}=0}^{\left[ \frac{k}{2}\right]}
+\left( \frac{s}{\alpha+\beta+s}\right)^{i+j+k-2(i^{'}+j^{'}+k^{'})} \\
+&\binom{i}{2i^{'}}\binom{j}{2j^{'}}\binom{k}{2k^{'}}
+\overline{CP}_{x}^{i-2i^{'}}\overline{CP}_{y}^{j-2j^{'}}\overline{CP}_{z}^{k-2k^{'}} \\
+&\int x_{Q}^{2i^{'}}y_{Q}^{2j^{'}}z_{Q}^{2k^{'}} e^{-(\alpha+\beta+s)r_{Q}^{2}} dr
+\end{split}
+ \label{nuclear_attraction_direct_int_eq:7_2}
+\end{equation}
+
+The integration result for the \ref{nuclear_attraction_direct_int_eq:7_2} can be expressed as according 
+to \ref{int_sec2_eq:8}:
+\begin{equation}
+\begin{split}
+ &\int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr  \\
+&=
+e^{-\frac{(\alpha+\beta)s}{\alpha+\beta + s} \overline{PC}^{2}}\times
+\sum_{i^{'}=0}^{\left[ \frac{i}{2}\right]}
+\sum_{j^{'}=0}^{\left[ \frac{j}{2}\right]}
+\sum_{k^{'}=0}^{\left[ \frac{k}{2}\right]}
+\left( \frac{s}{\alpha+\beta+s}\right)^{i+j+k-2(i^{'}+j^{'}+k^{'})} \\
+&\binom{i}{2i^{'}}\binom{j}{2j^{'}}\binom{k}{2k^{'}}
+\overline{CP}_{x}^{i-2i^{'}}\overline{CP}_{y}^{j-2j^{'}}\overline{CP}_{z}^{k-2k^{'}} \\
+&\left( \frac{\pi}{\alpha+\beta+s}\right)^{\frac{3}{2}}\times
+\frac{(2i^{'}-1)!!(2j^{'}-1)!!(2k^{'}-1)!!}
+{(2(\alpha+\beta+s))^{i^{'}+j^{'}+k^{'}}} 
+\end{split}
+ \label{nuclear_attraction_direct_int_eq:8}
+\end{equation}
+
+Now let's consider the outer integral which is over $s$:
+\begin{equation}
+\begin{split}
+&\frac{1}{\sqrt{\pi}} 
+ \int^{\infty}_{0} s^{-\frac{1}{2}} ds 
+ \int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr \\
+&= 
+\frac{1}{\sqrt{\pi}}
+\sum_{i^{'}=0}^{\left[ \frac{i}{2}\right]}
+\sum_{j^{'}=0}^{\left[ \frac{j}{2}\right]}
+\sum_{k^{'}=0}^{\left[ \frac{k}{2}\right]} 
+\pi^{\frac{3}{2}}\binom{i}{2i^{'}}\binom{j}{2j^{'}}\binom{k}{2k^{'}}
+\overline{CP}_{x}^{i-2i^{'}}\overline{CP}_{y}^{j-2j^{'}}\overline{CP}_{z}^{k-2k^{'}} \\
+&\frac{(2i^{'}-1)!!(2j^{'}-1)!!(2k^{'}-1)!!}{2^{i^{'}+j^{'}+k^{'}}} 
+\int^{\infty}_{0} ds s^{-\frac{1}{2}}
+e^{-\frac{(\alpha+\beta)s}{\alpha+\beta + s} \overline{PC}^{2}} \\
+&(\alpha+\beta+s)^{-\left( i^{'}+j^{'}+k^{'}+\frac{3}{2}\right) } 
+\left( \frac{s}{\alpha+\beta+s}\right)^{i+j+k-2(i^{'}+j^{'}+k^{'})}
+\end{split}
+ \label{nuclear_attraction_direct_int_eq:11}
+\end{equation}
+
+Let's suggest to make variable transformation, that:
+\begin{equation}
+ \label{nuclear_attraction_direct_int_eq:12}
+\frac{s}{\alpha+\beta + s} = t^{2}
+\end{equation}
+So that as $s$ goes from $0$ to $\infty$, then $t$ could be from $0$ to $1$.
+
+If we differentiate it, we could get:
+\begin{equation}
+ \label{nuclear_attraction_direct_int_eq:13}
+\frac{\alpha+\beta}{(\alpha+\beta + s)^{2}} ds = 2tdt \Rightarrow ds = 
+2s^{\frac{1}{2}}\frac{(\alpha+\beta + s)^{\frac{3}{2}}}{\alpha+\beta} dt
+\end{equation}
+
+Now let's bring the \ref{nuclear_attraction_direct_int_eq:13} into the 
+\ref{nuclear_attraction_direct_int_eq:11}. Furthermore, we write:
+\begin{equation}
+ \begin{split}
+  i+j+k             &= L \\
+  i^{'}+j^{'}+k^{'} &= L^{'}
+ \end{split}
+\end{equation}
+
+Therefore we have:
+\begin{equation}
+ \label{nuclear_attraction_direct_int_eq:14}
+\begin{split}
+&\frac{1}{\sqrt{\pi}} 
+ \int^{\infty}_{0} s^{-\frac{1}{2}} ds 
+ \int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr \\
+&= 
+\frac{2\pi}{\alpha+\beta}
+\sum_{i^{'}=0}^{\left[ \frac{i}{2}\right]}
+\sum_{j^{'}=0}^{\left[ \frac{j}{2}\right]}
+\sum_{k^{'}=0}^{\left[ \frac{k}{2}\right]} 
+\binom{i}{2i^{'}}\binom{j}{2j^{'}}\binom{k}{2k^{'}}
+\overline{CP}_{x}^{i-2i^{'}}\overline{CP}_{y}^{j-2j^{'}}\overline{CP}_{z}^{k-2k^{'}} \\
+&\frac{(2i^{'}-1)!!(2j^{'}-1)!!(2k^{'}-1)!!}{2^{i^{'}+j^{'}+k^{'}}} 
+\int^{1}_{0} dt
+e^{-(\alpha+\beta)(\overline{PC}t)^{2}}
+(\alpha+\beta+s)^{-L^{'} }t^{2(L-2L^{'})} 
+\end{split}
+\end{equation}
+
+Now let's do further transformation to the $\alpha+\beta+s$, we can see that:
+\begin{equation}
+ \label{nuclear_attraction_direct_int_eq:15}
+\alpha+\beta+s = \frac{\alpha+\beta}{1-t^{2}} \Rightarrow (\alpha+\beta+s)^{-1} = 
+\frac{1-t^{2}}{\alpha+\beta}
+\end{equation}
+
+Therefore the nuclear integral in the \ref{nuclear_attraction_direct_int_eq:14}
+further simplifies as:
+\begin{equation}
+\begin{split}
+&\frac{1}{\sqrt{\pi}} 
+ \int^{\infty}_{0} s^{-\frac{1}{2}} ds 
+ \int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr \\
+&= 
+\sum_{i^{'}=0}^{\left[ \frac{i}{2}\right]}
+\sum_{j^{'}=0}^{\left[ \frac{j}{2}\right]}
+\sum_{k^{'}=0}^{\left[ \frac{k}{2}\right]} 
+\frac{2\pi}{(\alpha+\beta)^{L^{'}+1}}
+\binom{i}{2i^{'}}\binom{j}{2j^{'}}\binom{k}{2k^{'}}
+\overline{CP}_{x}^{i-2i^{'}}\overline{CP}_{y}^{j-2j^{'}}\overline{CP}_{z}^{k-2k^{'}} \\
+&\frac{(2i^{'}-1)!!(2j^{'}-1)!!(2k^{'}-1)!!}{2^{i^{'}+j^{'}+k^{'}}} 
+\int^{1}_{0} dt
+e^{-(\alpha+\beta)(\overline{PC}t)^{2}}
+(1-t^{2})^{L^{'} }t^{2(L-2L^{'})} 
+\end{split}
+\label{nuclear_attraction_direct_int_eq:16}
+\end{equation}
+
+Up to this point, we note that the \ref{nuclear_attraction_direct_int_eq:16} establishes for both
+$P = C$ and $P \neq C$. However, as the derivation going further, we may have to consider them
+separately.
+
+If $P \neq C$, by dropping the $\overline{PC}$, that means we set $v = \overline{PC}t$; it yields:
+\begin{equation}
+ \begin{split}
+&\int^{1}_{0} dt
+e^{-(\alpha+\beta)(\overline{PC}t)^{2}}
+(1-t^{2})^{L^{'} }t^{2(L-2L^{'})} \\  
+&=\frac{1}{\overline{PC}}\int^{\overline{PC}}_{0}dv e^{-(\alpha+\beta)v^{2}} 
+\frac{1}{\overline{PC}^{2L^{'}}}\frac{1}{\overline{PC}^{2(L-2L^{'})}}
+(\overline{PC}^{2}-v^{2})^{L^{'}}v^{2(L-2L^{'})} \\
+&=\frac{1}{\overline{PC}^{2(L-L^{'})+1}}\int^{\overline{PC}}_{0}dv e^{-(\alpha+\beta)v^{2}} 
+(\overline{PC}^{2}-v^{2})^{L^{'}}v^{2(L-2L^{'})}
+ \end{split}
+\label{nuclear_attraction_direct_int_eq:17}
+\end{equation}
+Then the integral can be finally transformed as:
+\begin{equation}
+ \label{nuclear_attraction_direct_int_eq:14}
+\begin{split}
+&\frac{1}{\sqrt{\pi}} 
+ \int^{\infty}_{0} s^{-\frac{1}{2}} ds 
+ \int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr \\
+&= 
+\sum_{i^{'}=0}^{\left[ \frac{i}{2}\right]}
+\sum_{j^{'}=0}^{\left[ \frac{j}{2}\right]}
+\sum_{k^{'}=0}^{\left[ \frac{k}{2}\right]} 
+\frac{2\pi}{(\alpha+\beta)^{L^{'}+1}}
+\binom{i}{2i^{'}}\binom{j}{2j^{'}}\binom{k}{2k^{'}}
+\overline{CP}_{x}^{i-2i^{'}}\overline{CP}_{y}^{j-2j^{'}}\overline{CP}_{z}^{k-2k^{'}} \\
+&\frac{(2i^{'}-1)!!(2j^{'}-1)!!(2k^{'}-1)!!}{2^{i^{'}+j^{'}+k^{'}}} 
+\frac{1}{\overline{PC}^{2(L-L^{'})+1}} \\
+&\int^{\overline{PC}}_{0}dv e^{-(\alpha+\beta)v^{2}} 
+(\overline{PC}^{2}-v^{2})^{L^{'}}v^{2(L-2L^{'})} 
+\end{split}
+\label{nuclear_attraction_direct_int_eq:18}
+\end{equation}
+
+Finally, let's analyze the integral given in \ref{nuclear_attraction_direct_int_eq:18}, such integral
+can be calculated on the base of:
+\begin{equation}
+\Gamma(x, a, m) = \int^{x}_{0} e^{-at^{2}}t^{2m} dt
+ \label{nuclear_attraction_direct_int_eq:19}
+\end{equation}
+Where $a$ and $m$ are both positive real numbers. $a$ is $(\alpha+\beta)$, and 
+$m$ is determined by the binomial expansion.
+
+This integral could be transformed into the  ``incomplete gamma function'' by setting 
+$t^{2}=w$:
+\begin{align}
+&\Gamma(x, a, m) = \int^{x}_{0} e^{-at^{2}}t^{2m} dt = 
+ \frac{1}{2}\int^{x^{2}}_{0} e^{-aw}w^{m-\frac{1}{2}} dw \nonumber \\
+&=
+\frac{1}{2a^{m+\frac{1}{2}}}\int^{ax^{2}}_{0} 
+e^{-y}y^{m-\frac{1}{2}} dy
+\label{nuclear_attraction_direct_int_eq:20}
+\end{align}
+Where the fundamental integral of $\int^{ax^{2}}_{0} e^{-y}y^{m-\frac{1}{2}} dy$
+could be got from standard math library. 
+
+For the case that $P = C$, we can see that in the \ref{nuclear_attraction_direct_int_eq:16}
+The CPx, CPy and CPz all become zero; it's only $2i^{'}=i$, $2j^{'}=j$ and $2k^{'}=k$
+that the integral is not zero. Hence we have:
+\begin{equation}
+\begin{split}
+&\frac{1}{\sqrt{\pi}} 
+ \int^{\infty}_{0} s^{-\frac{1}{2}} ds 
+ \int x_{P}^{i}y_{P}^{j}z_{P}^{k} e^{-(\alpha+\beta)r_{P}^{2}}e^{-sr_{C}^{2}} dr \\
+&= 
+\sum_{i^{'}=0}^{\left[ \frac{i}{2}\right]}
+\sum_{j^{'}=0}^{\left[ \frac{j}{2}\right]}
+\sum_{k^{'}=0}^{\left[ \frac{k}{2}\right]} 
+\frac{2\pi}{(\alpha+\beta)^{L^{'}+1}}
+\binom{i}{2i^{'}}\binom{j}{2j^{'}}\binom{k}{2k^{'}}
+\overline{CP}_{x}^{i-2i^{'}}\overline{CP}_{y}^{j-2j^{'}}\overline{CP}_{z}^{k-2k^{'}} \\
+&\frac{(2i^{'}-1)!!(2j^{'}-1)!!(2k^{'}-1)!!}{2^{i^{'}+j^{'}+k^{'}}} 
+\int^{1}_{0} dt
+e^{-(\alpha+\beta)(\overline{PC}t)^{2}}
+(1-t^{2})^{L^{'} }t^{2(L-2L^{'})} \underrightarrow{ P = C} \\
+&=\frac{2\pi}{(\alpha+\beta)^{L^{'}+1}}\frac{(i-1)!!(j-1)!!(k-1)!!}{2^{L^{'}}} 
+\int^{1}_{0} dt
+(1-t^{2})^{L^{'}} \\
+&=\frac{2\pi}{(\alpha+\beta)^{L^{'}+1}}\frac{(i-1)!!(j-1)!!(k-1)!!}{2^{L^{'}}} 
+\sum_{m=0}^{L^{'}}\binom{L^{'}}{m}(-1)^{m}\frac{1}{2m+1}
+\end{split}
+\label{nuclear_attraction_direct_int_eq:21}
+\end{equation}
+

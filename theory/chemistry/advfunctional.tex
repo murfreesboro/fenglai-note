@@ -1,0 +1,139 @@
+%
+%  set up at March 9th, 2011
+%
+%
+%
+\chapter{Advanced Discussion for Functionals}
+%
+%
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$\lambda$ dependent functionals}
+%
+% this part is coded in q-chem, from weitao yang's original paper
+%
+
+The MCY functional, is actually based on the idea that how to find a way to
+construct the adiabatic connection path:
+\begin{equation}
+ E_{XC}[\rho] = \int_{0}^{1} W_{\lambda}[\rho] d \lambda
+\label{MCY_functional_eq:1}
+\end{equation}
+If the $W_{\lambda}[\rho]$ is known, then we can know how to calculate the
+exchange correlation energy.
+
+MCY functional starts from the Pade form:
+\begin{equation}
+ W_{\lambda}[\rho] = a + \frac{\lambda b}{1 + \lambda c}
+\label{MCY_functional_eq:2}
+\end{equation}
+
+Through integral by parts we can get that:
+\begin{equation}
+ E_{XC}[\rho] = a + \frac{b}{c}\left(1 - \frac{\ln
+(1+c)}{c}\right)
+\label{MCY_functional_eq:3}
+\end{equation}
+Hence the unknown $E_{xc}$ is then determined by the $a$, $b$ and $c$.
+
+According to the already known exact information for the adiabatic connection
+path, we have:
+\begin{itemize}
+ \item As $\lambda \rightarrow 0$, then $W_{\lambda}[\rho]\rightarrow E_{x}$.
+The $E_{x}$ is the exact exchange energy.
+\item  As $\lambda \rightarrow 0$, then
+$\frac{\partial W_{\lambda}[\rho]}{\partial \lambda}\rightarrow
+2 E_{c}^{GL}$. This is the known ``Gorling-Levy'' functional expression.
+\end{itemize}
+
+According to the (\ref{MCY_functional_eq:2}), we can know that as $\lambda
+\rightarrow 0$, the $W_{\lambda}[\rho] = a$. Hence the functional of $a$ just
+characterizes the exact exchange energy in this functional. On the other hand,
+for the one electron system; we have $E_{xc} = a = E_{x}$ so that to cancel the
+SIE error. So this functional is also SIE free functional.
+ 
+The next step is to associate the $b$ functional with the ``Gorling-Levy''
+expression. According to the (\ref{MCY_functional_eq:2}), assume that $a$, $b$
+and $c$ are independent of $\lambda$ variable, we can have:
+\begin{align}
+\frac{\partial W_{\lambda}[\rho]}{\partial \lambda} 
+&= \left. \frac{b(1+\lambda c) - \lambda cb}{(1+\lambda c)^{2}}\right |_{\lambda
+= 0} \nonumber \\
+&= b
+\label{MCY_functional_eq:4} 
+\end{align}
+Hence $b$ is related to the initial slope for $\lambda = 0$ on the adiabatic
+connection path, then we can have:
+\begin{equation}
+b = 2\lim_{\lambda \rightarrow 0}E_{c}[\rho_{1/\lambda}]
+\label{MCY_functional_eq:5}  
+\end{equation}
+Now to find a proper form of $b$ is necessary.
+
+In order to retain the SIE free functional, it requires that the selected
+correlation functional should be vanished in one electron system.  Hence they
+choose the TPSS correlation functional, then we can have such expression:
+\begin{equation}
+b =2 \lim_{\lambda \rightarrow 0}E_{tpss}[\rho_{1/\lambda}]
+\label{MCY_functional_eq:6}   
+\end{equation}
+
+Now it's only the last component of $c$ need to be determined. For the
+adiabatic connection path, we already have the initial point and initial
+slope, which is characterized by $a$ and $b$ respectively; to determine the
+adiabatic connection path we only need another point on this path, that is:
+\begin{equation}
+  W_{\lambda}[\rho] =  W_{\lambda_{p}}[\rho]
+\label{MCY_functional_eq:7}   
+\end{equation}
+So that to determine the component $c$. 
+
+Therefore, as $\lambda = \lambda_{p}$, according to the
+(\ref{MCY_functional_eq:2}) the $c$ is expressed as:
+\begin{equation}
+c =\frac{W_{\lambda_{p}}[\rho] - \lambda_{p}b - a}{
+\lambda_{p}(a - W_{\lambda_{p}}[\rho])}
+\label{MCY_functional_eq:8}    
+\end{equation}
+Now we finished the work to produce the MCY functional.
+
+On the other hand, from the given Fortran file of xc\_getv.F; we can see that
+the subroutine scf\_adiabatic is used to calculate the MCY total energy and Fock
+matrix components. In this program, it's rather strange to see that $b$ is
+instead some composite functional, which is expressed as:
+\begin{equation}
+ b = \frac{-a^{2} + aE_{blyp} - \lambda_{p}E_{tpss}E_{blyp}}{
+\lambda_{p}a(a-E_{blyp})}
+\end{equation}
+Here the $E_{tpss}$ is the energy for scaled $\lambda$-dependent TPSS
+correlation functional, which is characterized in (\ref{MCY_functional_eq:6});
+the $E_{blyp}$ is the energy for the $\lambda$-dependent BLYP functional, which
+is just the $W_{\lambda_{p}}[\rho]$ in the (\ref{MCY_functional_eq:7}). On the
+other hand, the components of $a$ and $c$ are still same.
+
+What's more, the exchange-correlation functional, is also quite different from
+the expression (\ref{MCY_functional_eq:3}); in the codes the total energy is
+expressed as:
+\begin{equation}
+ E_{xc} = \frac{ab}{c} + \frac{a(c-b)}{c^{2}}\ln(1+c) 
+\end{equation}
+This is different from what we have known from the published paper.
+
+Thanks and best wishes,
+
+fenglai  
+ 
+ 
+
+
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

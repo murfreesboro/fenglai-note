@@ -1,0 +1,66 @@
+%
+% now OS is already added in;
+% will add the MD algorithm as well as DRK too in the future
+% fm will be done in the near future
+% 
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Algorithms for Integral Evaluation Over Gaussian Functions}
+%
+%
+%
+%
+%
+
+In this chapter, we will focus on the electron integrals; which generally has the form as:
+\begin{equation}
+ V_{ij} = \int \chi_{i}(r)\chi_{j}(r)f(r,r^{'})
+\chi_{k}(r^{'})\chi_{l}(r^{'}) dr dr^{'}
+\end{equation}
+It is already shown in the shell pair data discussion\ref{shell_pair_eq:1}. Here $\chi$ is 
+the Gaussian primitive function with arbitrary angular momentum, and $f(r,r^{'})$ is the 
+electron operator for one or two electrons. In this chapter, we will discuss the integrals
+and its derivatives.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{History for Algorithms of Integral Evaluation}
+%
+%
+%
+%
+According to the general review given by Peter Gill\cite{gill1994molecular}, the history for
+the development of integral algorithm could be divided into three period of times. The first
+one is its infant period, at this time only simple SCF calculation could be performed. The 
+first algorithm for Gaussian functions was prompted by Boys\cite{SFBoys1950},
+then his methodology was subsequently developed by
+Shavitt\cite{1963_int_algorithm}, Clementi etc.
+\cite{clementi1969study,clementi1972computation}.
+
+In the second generation, the SCF algorithm was mean to be more general. The ``axis-switch''
+method of Pople and Hehre(PH)\cite{PH} revolutionized the algorithms of integral in a sense 
+that it enables the SCF calculations to be a standard tool for the chemists. However, this method
+is constructed primarily for the S and P type of Gaussian functions. Such deficiency motivated
+the development of Dupuis-Rys-King(DRK)\cite{DRK1976JCP, DRK1976JCOMP, DRK1983JCOMP} method 
+and McMurchie-Davidson(MD)\cite{MD} method to give more general derivation for the integrals.
+
+The third generation of integral algorithm started from the Obara-Saika method(OS)\cite{OS1986,
+OS1988} method, it is derived from the idea to solve the derivatives of integral\cite{HB1982,HB1989}. 
+Encouraged by its success, a number of new algorithms came out\cite{HGP,gill1989efficient,
+gill1990efficient,PRISM,coldprism} which constitutes the fundamental
+layer for modern quantum chemistry packages. 
+
+In this chapter, we will mainly focus on the second and third generation of integral algorithms. 
+Namely the MD and DRK methods, OS, HGP and PRISM methods.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% this is about the mathematically formulas for integral
+\input{./algorithm/technic/integral/direct}
+\input{./algorithm/technic/integral/os}
+\input{./algorithm/technic/integral/hgp}
+\input{./algorithm/technic/integral/fm}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../note"
+%%% End:

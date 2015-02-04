@@ -1,0 +1,2263 @@
+%
+% originally set up at Sep. 17th, 2009
+% 
+% working list:
+% TDDFT energy expression
+%
+%
+
+% problem list:
+%  1  why we have the expression of eq:functional:45 established?
+%   Why Can I use the chain rule of functional and delta function 
+%   (just the above content) can not prove it?
+%   By the way, if we replace the g(x^{'}) with the f(x^{'}) in the 
+%   functional chain rule and use the delta function, we can not get
+%   This result. Puzzling.....
+%
+
+
+
+
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction to the functional analysis}
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Original concepts for the functional and functional
+  derivatives}
+%
+% 1 how to make define the functional, and examples 2 how to usher
+% into the concept for the differential of functional from the limit
+% of the finite space case
+%  
+%
+%
+In mathematical analysis, the definition for the function is very
+clear; it's some relation that connects two number fields together:
+\begin{equation}\label{eq:functional:1}
+  x \xrightarrow{f}  y \quad \text{we can abbreviate the $y$ as $f(x)$}
+\end{equation}
+Here the $x$ and $y$ are varied in some given field, it's usually the
+real number field or the complex number field. As an example, the $y =
+\sin x$ just makes the $ (-\infty, +\infty)$ field correspond to the
+$[-1, +1]$ field.
+
+Furthermore, in mathematics a functional is also some ``mapping
+relation'' between some function and a number, here function is some
+basic variables and through the expression we can get some number:
+\begin{equation}\label{eq:functional:2}
+  f(x) \xrightarrow{F} y
+\end{equation}
+The $F$ is the functional for the functions of $f(x)$, here such
+relation can be abbreviated as $F[f(x)] = y$.
+
+there are many examples of functional that we can put forward in
+physics. In fact, in traditional quantum mechanics, the average
+expectation value of $\bra{\Psi}\hat{A}\ket{\Psi}$ is just some
+functional of wave function of $\Psi$:
+\begin{equation}\label{eq:functional:3}
+  \Psi \xrightarrow{F} \bra{\Psi}\hat{A}\ket{\Psi}
+\end{equation}
+If the operator is Hamiltonian, then the functional is just transform
+the wave function into it's energy.
+
+On the other hand, let's prompt some mathematical examples:
+\begin{equation}\label{eq:functional:4}
+  A[y(x)] = \int^{1}_{0} y^{2}(x) d x
+\end{equation}
+Here the $ A[y(x)]$ corresponds to some number which is depending on
+the function of $y(x)$. For example, if $y(x) = x^{2}$, then $A[y(x)]
+= \frac{1}{5}$; if $y(x) = e^{x}$, then $A[y(x)]$ gives
+$\frac{1}{2}(e^{2} - 1)$.
+
+Now let's proceed to the functional derivatives, which is very
+important in density functional theory. Firstly let's return back to
+the math analysis to recall the differential definition for function.
+Consider a function $F(y)$. If $y$ is making some infinitesimal change
+of $\bigtriangleup y$, the corresponding change for the function of
+$\bigtriangleup F(y)$ will be $\bigtriangleup F(y) =
+F(y+\bigtriangleup y) - F(y) = F^{'}(y)\bigtriangleup y + \alpha
+O(\bigtriangleup y)$.
+
+Here, the $\alpha$ means higher derivatives for the function $F(y)$
+with respect to the $y$. It can be made clear by the Talyor expansion
+(see the standard mathematical books for more detail).
+                                                                    
+Hence, for the infinitesimal change of some function, it mainly
+contains two parts; one is the linear part of $F^{'}(y)\bigtriangleup
+y$, and the other is the non-linear part of $\alpha O(\bigtriangleup
+y)$. The linear part means it's linear with $\bigtriangleup y$, so as
+$\bigtriangleup y$ becomes smaller and smaller; then the difference
+between the $\bigtriangleup F(y)$ and $F^{'}(y)\bigtriangleup y$ will
+be very small, that means we can safely replace the $\bigtriangleup
+F(y)$ with $F^{'}(y)\bigtriangleup y$. That's the key idea for the
+differential of function.
+
+For the functional differential, we have the similar case. When the
+function of $y(x)$ is making some infinitesimal changes $\delta y(x)$;
+then the corresponding changes for the functional can always be
+expressed as:
+\begin{equation}
+  \delta A[f(x)] = A[f(x) + \delta f(x)] - A[f(x)] = M[f(x)]\delta
+  f(x) + N[f(x)]O(\delta f(x))
+\end{equation}
+Here, the $O(\delta f(x))$ is just the higher order changes of $\delta
+f(x)$, and compared with the definition of function differential, we
+can see that the functional differential is just the linear part of
+$M[f(x)]\delta f(x)$. Hence, the functional derivative is the
+$M[f(x)]$.   
+
+Now let's put forward the definition for the functional derivative
+with respect to the functional in the form of $F[f(x)] = \int L[f(x)]
+dx$. Firstly let's define the infinitesimal of the functional:
+\begin{equation}
+  \label{eq:functional:5}
+ \delta F[ f(x)] = \int \left(\frac{\delta L}{\delta
+      f(x)}\delta f(x)\right)dx
+\end{equation}
+Here the $\delta F[ f(x)]$ means the functional corresponding to
+infinitesimal of $\delta f(x)$, and we can see that $\dfrac{\delta
+L}{\delta f(x)}$ is made in certain $x$ point, for example; the
+$x_{0}$ point; Then the integration over all the $x$ gives the
+infinitesimal of the functional. 
+
+The derivation of the functional derivative, should be made to fit for
+the expression of (\ref{eq:functional:5}). On the other hand,
+(\ref{eq:functional:5}) has some equivalent form that:
+\begin{align}
+  \label{eq:functional:6}
+ \delta F[ f(x)] &= \lim_{\epsilon \rightarrow 0}\Bigg[ \frac{F[f(x)
+    +\epsilon \delta f(x) ] - F[f(x)]}{\epsilon}\Bigg] \nonumber \\
+  &= F^{'}_{\epsilon=0}[f(x) + \epsilon \delta f(x) ]
+\end{align}
+Hence in the (\ref{eq:functional:6}) the functional derivative
+expression is degenerated into some common function derivatives
+expression.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{How to derive the functional derivative}
+%
+%
+%
+%
+%
+The preceding discussion gives a definition of the functional
+derivative, but it does not give a useful method for calculating it.
+Mathematically, We can start with (\ref{eq:functional:5}) as a
+definition of the functional derivative, and use it to calculate.
+
+As an example to show that how to perform this process, it's better
+for us to start with an simple case; hence let's derive the functional
+derivative for the kinetic energy gotten from the uniform electron gas
+model: $T_{TF}[\rho] = c_{F}\int \rho^{\frac{5}{3}}(r) d^{3}r$:
+\begin{equation}\label{eq:functional:9}
+  \begin{split}
+    T_{TF}[\rho] + \delta T_{TF}[\rho] &= c_{F}\int \left(\rho(r) +
+      \delta\rho(r) \right)^{\frac{5}{3}} d^{3}r \\
+    &= c_{F}\int \left(\rho^{\frac{5}{3}}(r) +
+      \frac{5}{3}\rho^{\frac{2}{3}}(r)\delta\rho(r)
+      + O(\delta\rho(r)) \right) d^{3}r  \\
+    &= T_{TF}[\rho] + \frac{5}{3}c_{F}\int
+    \rho^{\frac{2}{3}}(r)\delta\rho(r)d^{3}r
+    + O(\delta\rho(r)) \Rightarrow \\
+   \delta T_{TF}[\rho] &= \frac{5}{3}c_{F}\int\rho^{\frac{2}{3}}(r)
+    \delta\rho(r)d^{3}r
+  \end{split}
+\end{equation}
+Now if we compare the form in (\ref{eq:functional:9}) with the
+functional derivative in (\ref{eq:functional:5}), then we can see that
+the derivative for the $T_{TF}[\rho]$ is:
+\begin{equation}
+  \label{eq:functional:10}
+  \frac{\delta T_{TF}[\rho]}{\delta\rho(r)} = \frac{5}{3}c_{F}
+  \rho^{\frac{2}{3}}(r)   
+\end{equation}
+We note that in the (\ref{eq:functional:9}), we expand the
+$\left(\rho(r) + \delta\rho(r) \right)^{\frac{5}{3}}$ according to the
+Taylor expansion rule:
+\begin{equation}
+  \label{eq:functional:11}
+  f(x) = f(x_{0}) +
+  \sum_{n=1}^{\infty}\frac{\left.f^{(n)}(x)\right|_{x=x_{0}}}{n!}\times
+  (x-x_{0})^{n}   
+\end{equation}
+Here $x$ should be close enough to the $x_{0}$ so that the
+(\ref{eq:functional:11}) could be converged.
+
+Compared with (\ref{eq:functional:11}), in (\ref{eq:functional:9}) the
+variable of $x_{0}$ is replaced by the function of $\rho(r)$, and the
+variable of $x$ corresponds to the $\rho(r) + \delta\rho(r)$; then the
+similar expansion can be used. However, here we omit the convergence
+discussion, so we assume that all the expansion are mathematically
+converged.
+
+This simple example reveals how to derive the functional derivative
+for the more general expression. Suggest we have such more general
+form:
+\begin{equation}
+  \label{eq:functional:12}
+  F[f(x)] = \int A[f(x)] dx
+\end{equation}
+Here $A[f(x)]$ represents some analytical expression of the given
+function $f(x)$, for example; $A[f(x)] = c_{F}f^{\frac{5}{3}}(x)$ in
+the (\ref{eq:functional:9}). Then if $f(x)$ gets some infinitesimal
+change $f(x) + \delta f(x)$, by using the Taylor expansion defined in
+the (\ref{eq:functional:11}) we can expand the $A[f(x)] + \delta A[
+f(x)]$
+into the corresponding series and omitting all the higher order
+infinitesimal terms of $\delta f(x)$, finally we can reach the
+expression same with (\ref{eq:functional:5}) so that to obtain the
+functional derivative for the $F[f(x)]$.
+
+Finally we note that the discussion made for the
+(\ref{eq:functional:12}) is only for the one dimensional function of
+$f(x)$; however, it can be simply expanded into the multiple dimension
+function case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The general functional derivative expression}
+%
+%
+%
+%
+%
+When the functional is a simple integral (most of the functionals in
+physics belong to this type), the equation below gives a powerful
+formula for quick calculation of the functional derivative. Now let's
+start with the simplest case:
+\begin{equation}
+  F[y(x)] = \int L(x, y(x)) dx
+\end{equation}
+According to the general rule described in the
+(\ref{eq:functional:12}), we have:
+\begin{multline}
+  \label{eq:functional:13}
+  F[y(x)] + \delta F[ y(x)] =  \\
+  \int \left\{ L(x, y(x)) + \frac{\partial L(x, y(x))}{\partial y(x)}
+    \delta y(x) + O(\delta y(x))\right\} dx
+\end{multline}
+Now we omit the term of $O(\delta y(x))$, then the
+(\ref{eq:functional:13}) turns into:
+\begin{equation}
+  \label{eq:functional:14}
+  \delta F[ y(x)] = \int \left(\frac{\partial
+      L(x, y(x))}{\partial y(x)} \delta y(x)\right) dx
+\end{equation}
+Hence the functional derivative for the (\ref{eq:functional:13}) is:
+\begin{equation}
+  \label{eq:functional:15}
+  \frac{\delta  F[y(x)]}{\delta y(x)} =  \frac{\partial
+    L(x, y(x))}{\partial y(x)} 
+\end{equation}
+
+For example, the functional $T_{TF}[\rho]$ in (\ref{eq:functional:9})
+just belongs to this type, hence we have:
+\begin{equation}
+  \label{eq:functional:16}
+  \frac{\delta T_{TF}}{\delta \rho} =  c_{F}\frac{5}{3}\rho^{\frac{2}{3}} 
+\end{equation}
+
+Here we note something important, that the difference between the
+$\delta$ symbol and the $\partial$ symbol. Here in the left side of
+the equation (\ref{eq:functional:15}), the $\delta$ symbol means that
+the infinitesimal change of $f(x)$ will cause the corresponding
+functional change, too. However, in the right side, the $\partial$
+symbol means that only the change of $f(x)$ for the functional is
+considered, so it's partial derivative.
+
+For the functional in form of $F[y(x)] = \int L(x, y(x)) dx$,
+actually it's difficult to see their difference; however, as the
+functional is composed by many variables; such as 
+\begin{equation}
+ F[f(x)] = \int L(f(x), f^{'}(x), f^{''}(x), \cdots) dx
+\end{equation} 
+Then the partial derivative will be more clear, for example;
+$\dfrac{\partial L}{\partial f^{'}(x)}$ will only keep the $f^{'}(x)$
+component change but keep the $f(x), f^{''}(x), \cdots$ constant.
+However, since $\delta f(x)$ will also cause changes in the $f^{'}(x),
+f^{''}(x), \cdots$, hence the functional derivative in the left side
+of equation clearly demonstrates how much linear changes for the $F$
+with respect to the change of $\delta f(x)$. All in all, they
+possesses different meanings.
+
+Next, let's go to see a little more complicated case, where the
+functional has the general form as:
+\begin{equation}
+  \label{eq:functional:17}
+  F[y(x)] = \int L(x, y(x), y^{'}(x)) dx
+\end{equation}
+This functional depends on two type of functions: $y(x)$ and
+$y^{'}(x)$. If the $y(x)$ and $y^{'}(x)$ make some infinitesimal
+change, in terms of the Taylor expansion the (\ref{eq:functional:17})
+becomes:
+\begin{multline}
+  \label{eq:functional:18}
+  F[y(x)] + \delta F[ y(x)] =  \\
+  \int \left\{ L(x, y(x), y^{'}(x)) + \frac{\partial L(x, y(x),
+      y^{'}(x))} {\partial y(x)} \delta y(x) + \right. \\
+  \left. \frac{\partial L(x, y(x), y^{'}(x))} {\partial y^{'}(x)}
+    \delta y^{'}(x) + O(\delta y(x)) + O(\delta y^{'}(x)) \right\} dx
+\end{multline}
+
+Omitting the higher order terms of infinitesimal, then we have:
+\begin{multline}
+  \label{eq:functional:19}
+\delta  F[ y(x)] =  \\
+  \int \left\{ \frac{\partial L(x, y(x), y^{'}(x))} {\partial y(x)}
+    \delta y(x) + \frac{\partial L(x, y(x), y^{'}(x))} {\partial
+      y^{'}(x)} \delta y^{'}(x) \right\} dx
+\end{multline}
+
+However, it can not simply compare the (\ref{eq:functional:19}) with
+the (\ref{eq:functional:5}) to obtain the functional derivative, since
+in (\ref{eq:functional:19}) we have $ \delta y^{'}(x)$ but not the $
+\delta y(x)$; hence additional treatment must be appended, which is to
+turn $\delta y^{'}(x)$ into $\delta y(x)$ in the last term; we do this
+with an integration by parts:
+\begin{equation}
+  \label{eq:functional:20}
+  \begin{split}
+    \int^{b}_{a} \frac{\partial L(x, y(x), y^{'}(x))} {\partial
+      y^{'}(x)} \delta y^{'}(x) dx &= \int^{b}_{a} \frac{\partial L(x,
+      y(x), y^{'}(x))}
+    {\partial y^{'}(x)} d (\delta y(x)) \\
+    &= \left. \frac{\partial L(x, y(x), y^{'}(x))}
+      {\partial y^{'}(x)} \delta y(x) \right |^{b}_{a} -\\
+    &\int^{b}_{a} \frac{d}{dx} \left(\frac{\partial L(x, y(x),
+        y^{'}(x))} {\partial y^{'}(x)} \right) \delta y(x) dx
+  \end{split}
+\end{equation}
+
+Herein the first term in the (\ref{eq:functional:20}) is called
+``boundary term'' (in quantum physics the $a$ and $b$ usually denote
+the boundary condition for the wave functions), since it's
+proportional to the $\delta y(x)$ in the interval of $[a,b]$, then
+it's some infinitesimal hence we can safely omit it here.
+
+Finally, the (\ref{eq:functional:20}) turns into:
+\begin{equation}
+  \label{eq:functional:21}
+  \int^{b}_{a} \frac{\partial L(x, y(x), y^{'}(x))} {\partial
+    y^{'}(x)} \delta y^{'}(x) dx = - \int^{b}_{a} \frac{d}{dx}  
+  \left(\frac{\partial L(x, y(x), y^{'}(x))}
+    {\partial y^{'}(x)} \right) \delta y(x)  dx
+\end{equation}
+
+The differential of functional for the (\ref{eq:functional:17})
+becomes:
+\begin{multline}
+  \label{eq:functional:22}
+ \delta F[ y(x)] =  \\
+  \int \left\{ \frac{\partial L(x, y(x), y^{'}(x))} {\partial y(x)} -
+    \frac{d}{dx} \left(\frac{\partial L(x, y(x), y^{'}(x))} {\partial
+        y^{'}(x)} \right) \right\} \delta y(x) dx
+\end{multline}
+
+The functional derivative then becomes:
+\begin{equation}
+  \label{eq:functional:23}
+  \frac{\delta F[y(x)]}{\delta y(x)} = 
+  \frac{\partial L(x, y(x), y^{'}(x))} {\partial y(x)} -
+  \frac{d}{dx} \frac{\partial L(x, y(x), y^{'}(x))}
+  {\partial y^{'}(x)}
+\end{equation}
+
+Now the result in the (\ref{eq:functional:23}) are easily extended
+into higher orders derivatives of $y(x)$. For example, if the function
+is $L(x, y(x), y^{'}(x), y^{''}(x))$; then we have the functional as:
+\begin{equation}
+  \label{eq:functional:25}
+  F[y(x)] = \int L(x, y(x), y^{'}(x), y^{''}(x)) dx
+\end{equation}
+
+through the same procedure we can get it's derivative:
+\begin{multline}
+  \label{eq:functional:24}
+  \frac{\delta F[ y(x)]}{\delta y(x)} = \frac{\partial L(x, y(x),
+    y^{'}(x), y^{''}(x))} {\partial y(x)} - \frac{d}{dx}
+  \frac{\partial L(x, y(x), y^{'}(x), y^{''}(x))}
+  {\partial y^{'}(x)} + \\
+  \frac{d^{2}}{dx^{2}} \frac{\partial L(x, y(x), y^{'}(x), y^{''}(x))}
+  {\partial y^{''}(x)}
+\end{multline}
+The second derivative comes from the need to integrate by parts twice
+to deal with $y^{''}(x)$ in the (\ref{eq:functional:20}), and two
+minus signs make a plus sign.
+
+Finally, let's push the one dimension case to the three dimensional
+situation. For the simplest case in the (\ref{eq:functional:13}), now
+we have:
+\begin{equation}
+  \label{eq:functional:26}
+  F[y(r)] = \int L(r, y(r)) d^{3}r
+\end{equation}
+It's functional derivative becomes:
+\begin{equation}
+  \label{eq:functional:27}
+  \frac{\delta F}{\delta y(r)} =  \frac{\partial
+    L(r, y(r))}{\partial y(r)} 
+\end{equation}
+
+Now for the functional containing the first derivative, now it's
+general expression in three dimension is:
+\begin{equation}
+  \label{eq:functional:28}
+  F[y(r)] = \int L(r, y(r), \nabla y(r)) d^{3}r
+\end{equation}
+Compared with (\ref{eq:functional:23}), it's functional derivative is:
+\begin{equation}
+  \label{eq:functional:29}
+  \frac{\delta  F[y(r)]}{\delta y(r)} = 
+  \frac{\partial L(r, y(r), \nabla y(r))} {\partial y(r)} -
+  \nabla \cdot \frac{\partial L(r, y(r), \nabla y(r))}
+  {\partial (\nabla y(r))}
+\end{equation}
+
+Finally, for the functional containing the second derivative:
+\begin{equation}
+  \label{eq:functional:30}
+  F[y(r)] = \int L(r, y(r), \nabla y(r), \nabla^{2} y(r)) d^{3}r
+\end{equation}
+The (\ref{eq:functional:24}) becomes:
+\begin{multline}
+  \label{eq:functional:31}
+  \frac{\delta F[y(r)]}{\delta y(r)} = \frac{\partial L(r, y(r),
+    \nabla y(r), \nabla^{2} y(r))} {\partial y(r)} - \nabla \cdot
+  \frac{\partial L(r, y(r), \nabla y(r), \nabla^{2} y(r))}
+  {\partial (\nabla y(r))} \\
+  + \nabla^{2} \cdot \frac{\partial L(r, y(r), \nabla y(r), \nabla^{2}
+    y(r) )} {\partial (\nabla^{2} y(r))}
+\end{multline}
+
+In generality, for the functional which is in more general form, who
+contains $N$ order of function derivatives:
+\begin{equation}
+  \label{eq:functional:32}
+  F[y(r)] = \int L(r, y(r), \nabla y(r), \nabla^{2} y(r), \cdots
+  \nabla^{N} y(r)) d^{3}r 
+\end{equation}
+
+It's corresponding functional derivative can be expressed as:
+\begin{multline}
+  \label{eq:functional:33}
+  \frac{\delta  F[y(r)]}{\delta y(r)} = \frac{\partial L} {\partial
+    y(r)} - \nabla \cdot \frac{\partial L} {\partial (\nabla y(r))} +
+  \nabla^{2} \cdot \frac{\partial L} {\partial
+    (\nabla^{2} y(r))} \\
+  + \cdots + (-1)^{i} \nabla^{i} \cdot \frac{\partial L} {\partial
+    (\nabla^{i} y(r))} + \cdots
+\end{multline}
+All of these formulas can be derived in the similar way which we used
+for deriving the functional derivative for (\ref{eq:functional:23}).
+
+Finally, let's add some important note with respect to the evaluation
+of the expression below:
+\begin{equation}
+\int^{+\infty}_{-\infty}\frac{d L(f(x))}{dx} g(x) dx 
+\end{equation}
+If the $g(x)$ is vanishing at the boundary ($+\infty$ and $-\infty$);
+then we can use integration by parts to transform the above
+integration:
+\begin{align}
+ \int^{+\infty}_{-\infty}\frac{d L(f(x))}{dx} g(x) dx &= 
+ \int^{+\infty}_{-\infty} g(x) dL(f(x)) \nonumber \\
+&= g(x)L(f(x))|^{+\infty}_{-\infty} - \int^{+\infty}_{-\infty} L(f(x))
+dg(x) \nonumber \\
+&= - \int^{+\infty}_{-\infty} L(f(x)) dg(x)
+\end{align}
+Hence the differentiation on the $L(f(x))$ is dropped. Such
+transformation is usually very useful because the
+differentiation for $L(f(x))$ is always much more complicated then
+the differentiation for $g(x)$. In quantum chemistry, the $g(x)$ is
+the approximated wave function, which is the bound state so in the
+$\infty$ it becomes zero. 
+
+What's more, if it's not the first order but the $N$ times order of
+differentiation on $L(f(x))$:
+\begin{equation}
+ \int^{+\infty}_{-\infty}\frac{d^{N} L(f(x))}{dx^{N}} g(x) dx 
+\end{equation} 
+By repeating the above procedure, we can get:
+\begin{equation}
+  \int^{+\infty}_{-\infty}\frac{d^{N} L(f(x))}{dx^{N}} g(x) dx  =
+(-1)^{N} \int^{+\infty}_{-\infty} L(f(x)) d^{N}g(x)
+\end{equation} 
+Here we have assumed that the $g(x)$ can be differentiated up to $N$
+times, and the derivatives for the $g(x)$ are all vanished at the
+infinity.
+
+Finally, the result can be extended to the three-dimensional case,
+where it takes the form of:
+\begin{equation}
+ \label{eq:integration_rule_functional}
+  \int^{+\infty}_{-\infty}\nabla^{N}L(f(r)) g(r) d^{3}r  =
+(-1)^{N} \int^{+\infty}_{-\infty} L(f(r)) \nabla^{N}g(r) d^{3}r
+\end{equation} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{More rigorous explanation for the expansion of functional
+derivative}
+%
+%
+%
+%
+In the above conetent, generally we drive the functional derivative
+by expanding them to a series of partial derivatives according to
+Talyor expansion. However, why we can do this? In the following
+content, we will give a brief description for the reason. This is
+come from the rigorous functional derivative shown in the
+(\ref{eq:functional:6}). 
+
+Now let's start from the gradient form in (\ref{eq:functional:28}),
+but the other more complicated expressions are actually using the
+same way:
+\begin{equation}
+   F[y(r)] = \int L(r, y(r), \nabla y(r)) d^{3}r
+\end{equation}
+
+then according to the (\ref{eq:functional:6}), we have:
+\begin{equation}
+\begin{split}
+ \left.\frac{d F[y(r) + \epsilon \delta
+y(r)]}{d\epsilon}\right|_{\epsilon=0} &= \dfrac{d}{d\epsilon}\int L(r,
+y(r) + \epsilon \delta y(r), \nabla y(r) +
+\epsilon\nabla\delta y(r)) d^{3}r \\
+&= \int \left\lbrace \dfrac{\partial L}{\partial
+y}\delta y + \dfrac{\partial L}{\partial\nabla y}\nabla\delta
+y \right\rbrace d^{3}r \\
+&=  \int \left\lbrace \dfrac{\partial L}{\partial
+y}\delta y + \left[ \nabla \cdot\left( \dfrac{\partial
+L}{\partial\nabla y} \delta y\right) \right.\right. \\
+&-\left.\left.  \nabla \cdot\left( \dfrac{\partial f}{\partial\nabla
+y}\right) \delta y \right]\right\rbrace  d^{3}r \\
+&= \int \left\lbrace \dfrac{\partial L}{\partial
+y}\delta y - \nabla \cdot\left( \dfrac{\partial
+f}{\partial\nabla
+y}\right) \delta y \right\rbrace  d^{3}r 
+\end{split}
+\end{equation}
+Now we can see that it's same with the result in the
+(\ref{eq:functional:29}). What's more, we have used the integration
+by parts in the above derivation, which is same to the derivation
+of (\ref{eq:functional:20}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Other properties}
+\label{general_functional_other_properties}
+%
+%
+%
+%
+Here in this section, we are going to gather some common properties
+related to the functional. They are very useful in calculation of the
+functional derivatives.
+
+The first one we wish to prompt is the chain rule in functional
+derivatives. Suggest that we have a functional in expression of
+$F[f(x)] = \int L(f(x))dx$, then for $f(x)$; at each point of $x$ it
+turns to be some functional of $g(x^{'})$:
+\begin{equation}
+ f[g] = \int f[g(x^{'})] dx^{'}
+\end{equation}
+
+Then we can evaluate the
+$\delta f$ as:
+\begin{equation}
+  \delta f = \int \frac{\delta f}{\delta g(x^{'})} \delta
+g(x^{'}) dx^{'} 
+\end{equation}
+
+Now let's combine the functional derivative expression for the $f[g]$
+and $F[f(x)]$ together, we can get:
+\begin{equation}
+\begin{split}
+\delta F[ f(x)] &= \int \frac{\delta L}{\delta f(x)} \delta f(x) dx
+\\ 
+&= \int \int \frac{\delta L}{\delta f(x)} \frac{\delta f}{\delta
+g(x^{'})} \delta g(x^{'}) dx dx^{'}
+\end{split}
+\end{equation}
+On the other hand, since the variables of $x$ and $x^{'}$ are
+only two dummy variables and they are independent with each other, we
+can also have:
+\begin{equation}
+\delta F[ g(x^{'})] = \int \int \frac{\delta L}{\delta f(x)}
+\frac{\delta f}{\delta
+g(x^{'})} \delta g(x^{'}) dx dx^{'}
+\end{equation}
+then compared with the definition of the functional derivative, we
+can get that:
+\begin{equation}
+ \label{eq:functional:42}
+\frac{\delta F[ g(x^{'})]}{\delta g(x^{'})} = \int \frac{\delta
+L}{\delta
+f(x)}
+\frac{\delta f(x)}{\delta
+g(x^{'})} dx
+\end{equation} 
+This is the chain rule for the functional derivatives, and it can be
+easily extended to the three-dimensional case.
+
+By the way, there's something very interesting to see; that if we
+derive the chain rule for partial derivative of the functional; what
+is its expression? Actually it's same with the partial derivatives of
+variables:
+\begin{equation}
+\label{partial_derivative_functional}
+\frac{\partial F[ g(x^{'})]}{\partial g(x^{'})} = \frac{\partial
+L}{\partial f(x^{'})}\frac{\partial f(x^{'})}{\partial
+g(x^{'})}
+\end{equation} 
+Compared with (\ref{eq:functional:42}), we can see the difference
+between the partial derivative of functional and the derivative of
+the functional.
+
+the second important character for the functional derivative, is the
+use of delta function. the function itself can be expressed as some
+functional: 
+\begin{equation}
+  \label{eq:functional:43}
+  f(x) = \int f(x^{'})\delta(x-x^{'})dx^{'}
+\end{equation}
+In this sense, we can even calculate the functional derivative with
+respect to the function itself by using the equation above:
+\begin{align}
+  \label{eq:functional:44}
+\frac{\delta f(x)}{\delta f(x^{'})} = \frac{\partial
+  [f(x^{'})\delta(x-x^{'})]}{\partial f(x^{'})} = \delta(x-x^{'})  
+\end{align}
+This relation is very important in evaluating the functional such
+as $\dfrac{\delta F[f(x)]}{\delta f(x^{'})}$. Mathematically, it
+means that as function $f(x)$ make infinitesimal change of
+$\delta f(x)$ at the point of $x_{0}$, how can we calculate the
+response of $\delta F[f(x)]$ at another point of $x$? In physics we
+always meet such problems (for example; in TDDFT). For this case, we
+have:
+\begin{equation}
+  \label{eq:functional:45}
+  \frac{\delta F[f(x)]}{\delta f(x^{'})} = \frac{\delta
+    F[f(x)]}{\delta f(x^{'})} \delta(x-x^{'})
+\end{equation}
+
+Sometimes if the functional $F[f(x)]$ indirectly depends on some
+variable of $\lambda$, that is to say, $F[f(x)]$ depends on the
+$f(x)$ and $f(x)$ depends on some variable of $\lambda$. This is the
+usual case in variational method in quantum mechanics. In section
+(\ref{SE:2}) we have described the Ritz variation process in
+(\ref{SEeq:7}), there we have the basis functions fixed and the
+changing of wave function is depending on the variables of $c_{1},
+c_{2}, \cdots$. In practice, in the quantum chemistry we always meeet
+such case so it's very important.
+
+If we want to evaluate the functional derivative of for $F[f(x)]$
+based on the $\lambda$, according to the chain rule in the
+(\ref{eq:functional:42}) we can have:
+\begin{equation}
+ \label{lambda_variable:1}
+  \frac{\partial F[f(x)]}{\partial \lambda} = \int \frac{\delta
+F}{\delta f(x)}\frac{\partial f(x)}{\partial\lambda}dx
+\end{equation} 
+Here we have to mentioned that $\dfrac{\delta F}{\delta f(x)}$ is the
+functional derivative for the $F[f(x)]$, and $\frac{\partial
+f(x)}{\partial\lambda}$ is the partial derivative for the $f(x)$. We
+should care about the difference meaning between the symbol of
+$\partial$ and $\delta$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Functional derivatives etc. in DFT}
+\label{sec:examples_functional_derivative}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Minimization with respect to density VS. density matrix}
+\label{sec:minimization_density_vs_density_matrix}
+%
+%
+%
+%
+Before our further discussion, let's firstly talk about the energy
+minimization. In density functional theory, the energy is minimized
+with respect to the density, then we can get the optimized density
+and all the other physical properties related to the result density.
+
+However, there's something difficult in the evaluation process, that
+we have to use the functional derivatives expression. As the energy
+functional becomes more complicated, for example; as it is in META
+GGA form; to evaluate the functional derivatives through the
+minimization of density becomes more and more difficult. Hence how can
+we avoid this case?
+
+Fortunately, In quantum chemistry field, things could be easiler to
+solve. In this region, the density is actually solely depending on
+the density matrix:
+\begin{equation}
+ \label{minimization_density_vs_density_matrix_eq:1}
+\rho^{\sigma} = \sum_{\mu\nu}P_{\mu\nu}^{\sigma}\phi_{\mu}\phi_{\nu} 
+\end{equation} 
+Here the so called basis set functions, $\phi_{\mu}$ and
+$\phi_{\nu}$, are fixed in the whole calculation; only the density
+matrix are varied. Hence it's easy to see:
+\begin{equation}
+  \label{minimization_density_vs_density_matrix_eq:2}
+\delta\rho^{\sigma} =
+\sum_{\mu\nu}\delta P_{\mu\nu}^{\sigma}\phi_{\mu}\phi_{\nu} 
+\end{equation} 
+Hence as each $P_{\mu\nu}^{\sigma}$ is minimized, then the density is
+minimized. The density is solely determined by some $n\times n$
+matrix:
+\begin{equation}
+ \label{minimization_density_vs_density_matrix_eq:3}
+\rho \Leftrightarrow 
+\begin{bmatrix}
+ P_{11} & P_{12} & \cdots & P_{1n} \\
+ P_{21} & P_{22} & \cdots & P_{2n} \\
+ \cdots & \cdots & \cdots & \cdots \\
+ P_{n1} & P_{n2} & \cdots & P_{nn} \\
+\end{bmatrix}
+\end{equation}  
+As each element is minimized, then the whole density is minimized.
+Therefore, the minimization of energy with respect to the density
+could be transformed to the minimization of energy with respect to
+the density matrix:
+\begin{equation}
+ \label{minimization_density_vs_density_matrix_eq:4}
+\frac{\delta E_{XC}}{\delta \rho} \Leftrightarrow \frac{\partial
+E_{XC}}{\partial P_{\mu\nu}} (\mu,\nu = 1,2, \cdots, n)
+\end{equation}  
+Finally the energy functional of $F(\rho)$ is transformed back to the
+common multiple dimension function of $F(P_{\mu\nu})$, then we can
+use the partial derivatives to evaluate the function derivatives for
+any giving expression! As we can see in the following content, this
+is fairly important in the meta-GGA evaluation.
+
+Furthermore, down from this way we can get more similarities for the
+functional derivatives; as indicated below:
+\begin{equation}
+ \label{minimization_density_vs_density_matrix_eq:5}
+\begin{split}
+ \int d^{3}r\frac{\delta F}{\delta\rho(r)}\rho(r) 
+ &\Leftrightarrow
+ \sum_{\mu\nu}\frac{\partial E_{XC}}{\partial P_{\mu\nu}}P_{\mu\nu}\\
+ \int d^{3}r\int d^{3}r^{'}
+ \frac{\delta^{2} F}
+      {\delta\rho(r)\delta\rho(r^{'})}
+       \rho(r)\rho(r^{'})
+&\Leftrightarrow
+ \sum_{\lambda\eta}\sum_{\mu\nu}
+\frac{\partial^{2} E_{XC}}
+     {\partial P_{\mu\nu}\partial
+P_{\lambda\eta}}P_{\mu\nu}P_{\lambda\eta} \\
+&\cdots\cdots
+\end{split}
+\end{equation}  
+This is some enlightening but not rigorous comparison. Later from
+this clue, we will get more results. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Functional derivatives for ground state DFT}
+%
+%
+%
+%
+Consider the general functional expression for the density, it
+represents the skeleton of the formulation of GGA in DFT:
+\begin{equation}
+  \label{eq:functional:34}
+  E_{XC} = \int  F \Big(\rho_{\alpha}, \rho_{\beta},
+  \gamma_{\alpha\alpha}, \gamma_{\beta\beta},
+  \gamma_{\alpha\beta}\Big) d^{3}r
+\end{equation}
+Where we have:
+\begin{align}
+  \label{eq:functional:35}
+  \gamma_{\alpha\alpha} &= |\nabla\rho_{\alpha}|^{2} =
+\nabla\rho_{\alpha}\cdotp\nabla\rho_{\alpha}  \nonumber \\
+  \gamma_{\beta\beta}  &= |\nabla\rho_{\beta}|^{2} = 
+ \nabla\rho_{\beta}\cdotp\nabla\rho_{\beta}\nonumber \\
+  \gamma_{\alpha\beta} &=\nabla\rho_{\alpha} \cdot \nabla\rho_{\beta}
+\end{align}
+
+According to the (\ref{eq:functional:33}), we can easily derive their
+energy potential of $V_{XC}$ as:
+\begin{align}
+  \label{eq:functional:36}
+  V_{\alpha}^{XC} &= \frac{\delta E_{XC}} {\delta \rho_{\alpha}} =
+  \frac{\partial F} {\partial \rho_{\alpha}} - \nabla\cdot \left(
+    \frac{\partial F}{\partial (\nabla\rho_{\alpha})}
+  \right) \nonumber \\
+  &= \frac{\partial F}{\partial \rho_{\alpha}} - \nabla\cdot \left(
+    \frac{\partial F}{\partial \gamma_{\alpha\alpha}}\frac{\partial
+      \gamma_{\alpha\alpha}} {\partial (\nabla\rho_{\alpha})} \right)-
+  \nabla\cdot \left( \frac{\partial F}{\partial
+      \gamma_{\alpha\beta}}\frac{\partial \gamma_{\alpha\beta}}
+    {\partial (\nabla\rho_{\alpha})} \right)
+  \nonumber \\
+  &= \frac{\partial F}{\partial \rho_{\alpha}} - 2\nabla\cdot \left(
+    \frac{\partial F} {\partial \gamma_{\alpha\alpha}}
+    \nabla\rho_{\alpha}\right) - \nabla\cdot \left( \frac{\partial F}
+    {\partial \gamma_{\alpha\beta}} \nabla\rho_{\beta} \right)
+\end{align}
+Here we mention that $\frac{\partial F} {\partial
+\gamma_{\alpha\alpha}}$ is a number at given r point
+($\gamma_{\alpha\alpha}$ is a number), hence we neither have dot
+product nor cross product between this partial derivative and the
+$\nabla\rho_{\alpha}$.
+
+The potential for the beta electron density can be derived in the
+similar way. Because of the symmetric formation between the
+$\rho_{\alpha}$ and $\rho_{\beta}$ in the (\ref{eq:functional:34}), we
+can see that we only need to exchange the $\rho_{\alpha}$ and
+$\rho_{\beta}$ then we can get the $V_{\beta}^{XC}$. Finally, we
+note that this form has been gotten in some
+previous papers\cite{CPL_1992_6_557,johnson:5612}.
+
+Now the next question is, how can we express the energy in terms of
+the density matrix? In this sense, we can express the whole thing
+into real calculation. By the chain rule, we have:
+\begin{align}
+  \label{eq:XC_functional.9}
+F^{\alpha}_{\mu\nu} &= \frac{\partial E^{\alpha}_{XC}}{\partial
+P^{\alpha}_{\mu\nu}}
+\nonumber \\
+&=
+\int \frac{\delta F}{\delta
+  \rho^{\alpha}(r)}\frac{\partial \rho^{\alpha}(r)}{\partial
+P^{\alpha}_{\mu\nu}} d^{3}r
+\nonumber \\
+&= \int V^{\alpha}_{XC}(r) \phi^{*}_{\mu}(r)\phi_{\nu}(r) d^{3}r
+\end{align}
+
+Now let's discuss the formation of electron density. Generally we
+consider the unrestricted case, where the alpha electron and beta
+electron do not need to share the same spatial orbitals (the
+restricted type can be seen as the special case of unrestricted
+method). Hence we have:
+\begin{align}
+  \label{eq:XC_functional.5}
+  \rho_{\alpha} &=
+  \sum_{j}^{n}\sum_{k}^{n}P^{\alpha}_{jk}\phi_{j}^{*}\phi_{k}
+  \nonumber
+  \\
+  \rho_{\beta} &=
+  \sum_{j}^{n}\sum_{k}^{n}P^{\beta}_{jk}\phi_{j}^{*}\phi_{k}
+\end{align}
+
+The expression in (\ref{eq:XC_functional.9}) can be also got directly
+from the Kohn-Sham equation:
+\begin{equation}
+\begin{split}
+  \hat{H}_{KS}\varphi_{i} = \epsilon_{i}\varphi_{i} &\Rightarrow
+(\cdots + \frac{\delta E_{XC}}{\delta \rho})\varphi_{i} =
+\epsilon_{i}\varphi_{i} \Rightarrow 
+\nonumber \\
+\cdots + \int d^{3}r \varphi^{*}_{i}\frac{\delta E_{XC}}{{\delta
+\rho}}\varphi_{i} = \epsilon_{i} &\Rightarrow  
+\cdots + \sum_{\mu\nu}P_{\mu\nu}\int d^{3}r
+\phi^{*}_{\mu}\frac{\delta E_{XC}}{{\delta \rho}}\phi_{\nu}
+= \epsilon_{i} \Rightarrow 
+\nonumber \\
+& \cdots + \sum_{\mu\nu}P_{\mu\nu}F_{\mu\nu} = \epsilon_{i}
+\end{split}
+\end{equation} 
+
+In evaluating the (\ref{eq:XC_functional.9}), we will meet some
+difficulty in calculating the gradient part in
+(\ref{eq:functional:36}); however, we have some simple method to
+avoid it. Let's take a gradient part as example:
+\begin{equation}
+  \label{eq:XC_functional.7}
+  \begin{split}
+    & \int \phi^{*}_{\mu}(r) \Bigg\{2\nabla\cdot \left( \frac{\partial
+        f} {\partial \gamma_{\alpha\alpha}}
+      \nabla\rho_{\alpha}\right)\Bigg\}\phi_{\nu}(r) d^{3}r  \\
+    &=\int \Bigg\{2\nabla\cdot \left( \frac{\partial f} {\partial
+        \gamma_{\alpha\alpha}}
+      \nabla\rho_{\alpha}\right)\Bigg\}\phi^{*}_{\mu}(r) \phi_{\nu}(r)
+    d^{3}r  \\
+    &= 2\int \phi^{*}_{\mu}(r) \phi_{\nu}(r)\Bigg\{
+\triangle\cdot\left(
+      \frac{\partial f} { \gamma_{\alpha\alpha}}
+      \nabla\rho_{\alpha}\right) \Bigg\} \\
+    &= 2\phi^{*}_{\mu}(r) \phi_{\nu}(r)\left. \left( \frac{\partial f}
+        {\partial \gamma_{\alpha\alpha}}
+        \nabla\rho_{\alpha}\right)\right|^{+\infty}_{-\infty} - 2\int
+    \left( \frac{\partial f} {\partial \gamma_{\alpha\alpha}}     
+\nabla\rho_{\alpha}\right)\cdotp\Big\{\triangle(\phi^{*}_{\mu}(r)
+\phi_{\nu}(r))\Big\} \\
+    &= - 2\int \left( \frac{\partial f} {\partial
+        \gamma_{\alpha\alpha}}     
+\nabla\rho_{\alpha}\right)\cdotp\Big\{\nabla(\phi^{*}_{\mu}(r)
+    \phi_{\nu}(r))\Big\}d^{3}r
+  \end{split}
+\end{equation}
+Here in this derivation, we have used the integration by parts, and
+since the wave function should be zero at the $+\infty$ and $-\infty$,
+hence it's clear the first term is going zero. Then we get the final
+result. The $\triangle$ symbol means the differential in the three
+dimensional space, which can be specified as: $\triangle
+f(x,y,z) = f^{'}(x)d\vec{x} + f^{'}(y)d\vec{y} + f^{'}(z)d\vec{z}$.
+Later we will come back to this derivation for further discussion.
+
+In terms of the transformation in (\ref{eq:XC_functional.7}), we can
+finally reach the result:
+\begin{equation}
+  \label{eq:XC_functional.8}
+  \begin{split}
+      F^{\alpha}_{\mu\nu} &= \int
+  \phi^{*}_{\mu}(r)\hat{V}^{\alpha}_{XC}\phi_{\nu}(r) d^{3}r  \\
+  &= \int \frac{\partial f}{\partial
+      \rho_{\alpha}}\phi^{*}_{\mu}(r) \phi_{\nu}(r)d^{3}r + \\
+  &\int\Bigg\{2\left( \frac{\partial f} {\partial
+\gamma_{\alpha\alpha}}
+    \nabla\rho_{\alpha}\right) + \left( \frac{\partial f} {\partial
+      \gamma_{\alpha\beta}} \nabla\rho_{\beta} \right)
+  \Bigg\}\cdot\nabla(\phi^{*}_{\mu}(r) \phi_{\nu}(r))d^{3}r
+  \end{split}
+\end{equation}
+This is what we have got for calculating the ground state Kohn-Sham
+equation by the GGA.
+
+On the other hand, the energy for the GGA can be expressed in terms
+of the variable form:
+\begin{equation}
+ E_{XC} = \int F(\rho_{\alpha}, \rho_{\beta}, \nabla\rho_{\alpha},
+\nabla\rho_{\beta})d^{3}r
+\end{equation} 
+So we do not have the $\gamma$ terms.
+
+According to the chain rule of the functional, we have:
+\begin{align}\label{TDADDEDeq:2}
+F_{\mu\nu} &= \sum_{\sigma}\frac{\partial E_{XC}}{\partial
+P^{\sigma}_{\mu\nu}}
+\nonumber \\
+&=
+\sum_{\sigma}\int \frac{\delta F}{\delta
+  \rho^{\sigma}(r)}\frac{\partial \rho^{\sigma}(r)}{\partial
+P^{\sigma}_{\mu\nu}} d^{3}r
+\nonumber \\
+&= \sum_{\sigma}\int V^{\sigma}_{XC}
+\phi^{*}_{\mu}(r)\phi_{\nu}(r) d^{3}r
+\end{align}
+
+the $\hat{V}^{\sigma}_{XC}$ is the energy potential, which has the
+form
+that:
+ \begin{align}
+  \label{TDADDEDeq:3}
+  V_{\sigma}^{XC} &= \frac{\delta E_{XC}} {\delta \rho_{\sigma}} =
+  \frac{\partial F} {\partial \rho_{\sigma}} - \nabla\cdot \left(
+    \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+  \right) 
+\end{align} 
+These results are just coincided with the previous ones.
+
+Combined with (\ref{TDADDEDeq:2}), we can get:
+\begin{align}\label{TDADDEDeq:4}
+F_{\mu\nu} &= 
+\sum_{\sigma}\int \left\lbrace \frac{\partial f} {\partial
+\rho_{\sigma}} - \nabla\cdot \left(
+    \frac{\partial f}{\partial (\nabla\rho_{\sigma})}
+  \right) \right\rbrace 
+\phi^{*}_{\mu}(r)\phi_{\nu}(r) d^{3}r \nonumber \\
+&=  \sum_{\sigma}\int \frac{\partial f} {\partial
+\rho_{\sigma}} \phi^{*}_{\mu}(r)\phi_{\nu}(r) d^{3}r \nonumber \\
+&- \sum_{\sigma}\int 
+\nabla\cdot \left(
+    \frac{\partial f}{\partial (\nabla\rho_{\sigma})}
+  \right) 
+\phi^{*}_{\mu}(r)\phi_{\nu}(r) d^{3}r 
+\end{align}
+
+Since we have the following transformation:
+\begin{align}
+ &\sum_{\sigma}\int 
+\nabla\cdot \left(
+    \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+  \right) 
+\phi^{*}_{\mu}(r)\phi_{\nu}(r) d^{3}r \nonumber \\
+&= -\sum_{\sigma}\int 
+ \left(
+    \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+  \right)\cdot 
+\nabla(\phi^{*}_{\mu}(r)\phi_{\nu}(r)) d^{3}r 
+\end{align} 
+this can be easily got from the integration by parts method.
+
+Hence we can get the expression in (\ref{TDADDEDeq:2}) as:
+\begin{equation}
+ F_{\mu\nu} = \sum_{\sigma}\int \frac{\partial F} {\partial
+\rho_{\sigma}} \phi^{*}_{\mu}(r)\phi_{\nu}(r) d^{3}r 
++ \sum_{\sigma}\int 
+ \left(
+    \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+  \right)\cdot 
+\nabla(\phi^{*}_{\mu}(r)\phi_{\nu}(r)) d^{3}r 
+\end{equation} 
+This is for the ground state DFT evaluation, and it's in AO form.
+Finally we note that this form is easily transform into the
+$\gamma$ form. Let's take the case that $\sigma$ is $\alpha$ as an
+example: 
+\begin{align}
+\label{TDADDEDeq:1} 
+\frac{\partial F}{\partial (\nabla\rho_{\alpha})} &=
+\frac{\partial F}{\partial\gamma_{\alpha\alpha}}
+\frac{\partial\gamma_{\alpha\alpha}}{\partial(\nabla\rho_{\alpha})} 
++ 
+\frac{\partial F}{\partial\gamma_{\alpha\beta}}
+\frac{\partial\gamma_{\alpha\beta}}{\partial(\nabla\rho_{\alpha})}
+\nonumber \\
+&= 2\frac{\partial F} {\partial \gamma_{\alpha\alpha}}
+   \nabla\rho_{\alpha} + \frac{\partial F}
+   {\partial \gamma_{\alpha\beta}} \nabla\rho_{\beta} 
+\end{align}
+Hence in terms of the $\alpha$ component, we come back to the
+expression in (\ref{eq:XC_functional.8}).
+
+Because this method to derive the functional derivatives of DFT is
+much more clear, hence in the following conent we will stick to this
+form of expression.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Extention to the meta-GGA form}
+%
+%
+%
+%
+%
+Now let' extend the discussion to the meta-GGA form, while the energy
+expression is expressed as:
+\begin{equation}
+ \label{functional_mega_gga_eq:1}
+E_{XC} = \int  F(\rho_{\alpha}, \rho_{\beta}, \nabla\rho_{\alpha},
+\nabla\rho_{\beta}, \nabla^{2}\rho_{\alpha},
+\nabla^{2}\rho_{\beta}, \tau_{\alpha}, \tau_{\beta})d^{3}r
+\end{equation} 
+Here we note that the $ \nabla^{2}\rho_{\alpha}$ and
+$\nabla^{2}\rho_{\beta}$ are some number rather than the vector
+because of the operator form: $\nabla^{2} = \nabla\cdotp\nabla$. On
+the other hand, the $\tau_{\sigma}$ is expressed as:
+\begin{equation}
+ \begin{split}
+  \tau_{\sigma} 
+&= \frac{1}{2}\sum_{i=1}^{occ}|\nabla\varphi_{i\sigma}|^{2} \\
+&= \frac{1}{2}\sum_{i=1}^{occ}(\nabla\varphi_{i\sigma}\cdotp
+\nabla\varphi_{i\sigma}) \\
+&= \frac{1}{2}P_{\mu\nu}(\nabla\phi_{\mu\sigma}\cdotp
+\nabla\phi_{\nu\sigma})
+ \end{split}
+\label{functional_mega_gga_eq:2}
+\end{equation} 
+Here in the above expression, the $\varphi$ express the KS orbitals,
+and the $\phi$ is the AO basis set function, so the $P_{\mu\nu}$
+corresponds the the density matrix. This term in meta-GGA is termed
+as ``kinetic energy density''. 
+
+However, here we meet some problems; that the kinetic energy density
+is not directly associated with the density; thus if we just minimize
+the energy with respect to the density, then it's difficult to deal
+with the kinetic energy density term. However, as what we have stated
+in the (\ref{sec:minimization_density_vs_density_matrix}), actually
+we can do it in the other way; by seeking he minimization with
+respect to the density matrix:
+\begin{align}
+\label{functional_mega_gga_eq:3}
+F_{\mu\nu}^{\sigma}  &= \frac{\partial E_{XC}}{\partial P_{\mu\nu}}
+\nonumber \\
+  &= \sum_{\xi}\sum_{\sigma}\int \frac{\partial F}{\partial
+\xi_{\sigma}} \frac{\partial \xi_{\sigma}}{\partial P_{\mu\nu}}
+d^{3}r 
+\end{align}
+Since in quantum chemistry, the energy finally turns out to be the
+function of density matrix, hence each of the variables in
+(\ref{functional_mega_gga_eq:1}) is some function for density matrix;
+then we can use the chain rule for multivariate function to evaluate
+the final expression.
+
+On the other hand, we note that the $\frac{\partial
+F}{\partial \xi_{\sigma}}$ is not the functional derivatives for the 
+(\ref{functional_mega_gga_eq:1}). Here the functional derivative for
+$F$ should be minimized with respect to the density, that is to say:
+\begin{equation}
+ \label{not_the_functional_derivatives}
+V_{XC} = \frac{\delta F(r)}{\delta \rho} \Leftrightarrow F_{pq} = \int V_{XC}
+\varphi_{p}(r)\varphi_{q}(r) d^{3} r
+\end{equation}
+By simple mathematical procedure we can see that if we do not count into the
+kinetic energy density, then the functional derivatives and the $\frac{\partial
+F}{\partial \xi_{\sigma}}$ are equivalent with each other, but in terms of the
+kinetic energy density, then they are not equal to each other anymore.
+That's all because the kinetic energy density is not directly related to the
+density.
+
+Here we introduce the ``$\xi$'', which is called ``variables'', it
+represents each term in the (\ref{functional_mega_gga_eq:1}):
+\begin{equation}
+\label{functional_mega_gga_eq:4}
+ \xi_{\sigma} = \rho_{\sigma}, \nabla\rho_{\sigma},
+\nabla^{2}\rho_{\sigma}, \tau_{\sigma}
+\end{equation} 
+the most important character for the variables is that they are all
+linear with the density matrix, that is to say:
+\begin{equation}
+ \label{functional_mega_gga_eq:5}
+\xi_{\sigma} = P_{\mu\nu}f(\phi_{\mu},\phi_{\nu})
+\end{equation} 
+The $f$ is determined by the variable form, e.g.; for the Laplacian
+operator, $f(\phi_{\mu},\phi_{\nu}) =
+\nabla^{2}(\phi_{\mu}\phi_{\nu})$, and for the kinetic energy
+density; it's $f(\phi_{\mu},\phi_{\nu}) =
+\nabla\phi_{\mu}\cdotp\nabla\phi_{\nu}$. However, as what we have
+noted; the variable is only determined by density matrix, the basis
+set functions are all fixed in variation.
+
+By bringing the potential into the expression, we can finally get the
+$F_{\mu\nu}^{\sigma}$ as:
+\begin{equation}
+\begin{split}
+F_{\mu\nu}^{\sigma} &= 
+\int \frac{\partial F} {\partial
+\rho_{\sigma}} \phi^{*}_{\mu}(r)\phi_{\nu}(r) d^{3}r 
++ 
+\int \left(
+     \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+     \right)\cdot 
+\nabla(\phi^{*}_{\mu}(r)\phi_{\nu}(r)) d^{3}r \\ 
+&+
+\int
+    \frac{\partial F}{\partial (\nabla^{2}\rho_{\sigma})}
+\nabla^{2}(\phi^{*}_{\mu}(r)\phi_{\nu}(r)) d^{3}r + \frac{1}{2}
+\int
+    \frac{\partial F}{\partial \tau_{\sigma}}
+(\nabla\phi^{*}_{\mu}(r)\cdotp\nabla\phi_{\nu}(r)) d^{3}r 
+\end{split}
+\label{functional_mega_gga_eq:6}
+\end{equation}    
+By further apply the linear relation between the variables and the
+density matrix, we can have:
+\begin{equation}
+ \label{functional_mega_gga_eq:7}
+\begin{split}
+ E_{XC} 
+&=\sum_{\sigma}\sum_{\mu\nu}F_{\mu\nu}^{\sigma}P_{\mu\nu}^{\sigma} \\
+&= \sum_{\sigma}\int \frac{\partial F} {\partial
+\rho_{\sigma}}\rho_{\sigma}d^{3}r 
++ 
+\sum_{\sigma}\int \left(
+     \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+     \right)\cdot 
+\nabla\rho_{\sigma} d^{3}r \\ 
+&+
+\sum_{\sigma}\int
+    \frac{\partial F}{\partial (\nabla^{2}\rho_{\sigma})}
+\nabla^{2}\rho_{\sigma} d^{3}r + \sum_{\sigma}
+\int
+    \frac{\partial F}{\partial \tau_{\sigma}}\tau_{\sigma}
+ d^{3}r \\
+&= \sum_{\sigma}\sum_{\xi}\int
+    \frac{\partial F}{\partial \xi_{\sigma}}
+\xi_{\sigma}d^{3}r
+\end{split}
+\end{equation} 
+Hence we can get some very simplied term.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Variable expression for TDDFT}
+%
+%
+%
+%
+%
+In TDDFT, the exchange correlation part is defind as:
+\begin{equation}
+ \label{functional_derivatives_TDDFT_new_variable:1}
+\int d^{3}r \int d^{3}r^{'}
+\varphi_{p\sigma}^{*}(r)\varphi_{q\sigma}(r)
+\frac{\delta^{2} F(r) }{\delta\rho_{\sigma}(r)
+\delta\rho_{\tau}(r^{'})}
+\varphi_{s\tau}^{*}(r^{'})\varphi_{t\tau}(r^{'})
+\end{equation}
+Moreover, we know that this expression is equivalent to the
+expression below:
+\begin{equation}
+\label{functional_derivatives_TDDFT_new_variable:2}
+\begin{split}
+&\sum_{\mu\nu}\sum_{\lambda\eta}
+c^{*}_{\mu p,\sigma}c^{*}_{\nu q, \sigma}
+c^{*}_{\lambda s, \tau}c^{*}_ {\eta q, \tau} 
+\frac{\partial F_{\mu\nu\sigma}}{\partial P_{\lambda\eta\tau}} \\
+&=\sum_{\mu\nu}\sum_{\lambda\eta}
+c^{*}_{\mu p,\sigma}c^{*}_{\nu q, \sigma}
+c^{*}_{\lambda s, \tau}c^{*}_ {\eta q, \tau}
+\int d^{3}r \frac{\delta F_{\mu\nu\sigma}}
+{\delta\rho_{\tau}(r^{'})}
+\frac{\partial\rho_{\tau}(r^{'})}
+{\partial P_{\lambda\eta\tau}} \\ 
+&=\sum_{\mu\nu}\sum_{\lambda\eta}
+c^{*}_{\mu p,\sigma}c^{*}_{\nu q, \sigma}
+c^{*}_{\lambda s, \tau}c^{*}_ {\eta q, \tau}
+\int d^{3}r^{'} 
+\frac{\delta F_{\mu\nu\sigma}}
+{\delta\rho_{\tau}(r^{'})}
+\phi^{*}_{\lambda\tau}(r^{'})\phi_{\eta\tau}(r^{'})
+\\
+&=\sum_{\mu\nu}\sum_{\lambda\eta}
+c^{*}_{\mu p,\sigma}c^{*}_{\nu q, \sigma}
+c^{*}_{\lambda s, \tau}c^{*}_ {\eta q, \tau}
+\int d^{3}r\int d^{3}r^{'}
+\phi^{*}_{\mu\sigma}(r)\phi_{\nu\sigma}(r)
+\frac{\delta V^{\sigma}_{XC}(r)}{\delta\rho_{\tau}(r^{'})}
+\phi_{\lambda\tau} (r^{'})\phi_{\eta\tau}(r^{'}) \\
+&=\sum_{\mu\nu}\sum_{\lambda\eta}
+c^{*}_{\mu p,\sigma}c^{*}_{\nu q, \sigma}
+c^{*}_{\lambda s, \tau}c^{*}_ {\eta q, \tau} \\
+&\int d^{3}r\int d^{3}r^{'}
+\phi^{*}_{\mu\sigma}(r)\phi_{\nu\sigma}(r)
+\frac{\delta^{2}
+F(r)}{\delta\rho_{\sigma}(r)\delta\rho_{\tau}(r^{'})}
+\phi_{\lambda\tau}(r^{'})\phi_{\eta\tau}(r^{'}) \\
+&= \int d^{3}r \int d^{3}r^{'}
+\varphi_{p\sigma}^{*}(r)\varphi_{q\sigma}(r)
+\frac{\delta^{2} F(r) }{\delta\rho_{\sigma}(r)
+\delta\rho_{\tau}(r^{'})}
+\varphi_{s\tau}^{*}(r^{'})\varphi_{t\tau}(r^{'})
+\end{split}
+\end{equation} 
+Actually this nasty long expression only demonstrates that we can
+evaluate the integral back to the AO space, further more; we can use
+new variable to calculate the Fock matrix element by avoding the
+functional derivatives expression.
+
+Now let's concentrate on the $\dfrac{\partial
+F_{\mu\nu\sigma}}{\partial P_{\lambda\eta\tau}}$, this is the
+centrail expression we need to express into variable form.
+According to the (\ref{functional_mega_gga_eq:6}), this Fock matrix
+element can be expressed as:
+\begin{equation}
+\begin{split}
+ \frac{\partial F_{\mu\nu\sigma}}{\partial P_{\lambda\eta\tau}}
+&= 
+\frac{\partial \sum_{\xi} \int d^{3}r 
+\frac{\partial F}{\partial \xi_{\sigma}}
+f(\phi_{\mu}(r)\phi_{\nu}(r))}
+{\partial P_{\lambda\eta\tau}} \\
+&=\sum_{\xi}\sum_{\zeta}\int d^{3} r^{'}\int d^{3}r 
+\frac{\partial^{2} F}
+{\partial \xi_{\sigma} \partial \zeta_{\tau}}
+f(\phi_{\mu}(r)\phi_{\nu}(r))
+f(\phi_{\lambda}(r^{'})\phi_{\eta}(r^{'}))
+\end{split}
+\end{equation}
+This is the kernel for the second functional derivatives, and by
+further considering the spin, density matrix etc. we can finally get
+the exchange correlation part expression in terms of variables.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The functional derivative for the gradient of DFT}
+\label{Func_Deriv_gradient_variable_GGA}
+%
+%
+%
+%
+%
+Now let's turn to the energy gradient of ground state DFT. Firstly,
+the energy expression for the exchange-correlation part is still
+expressed as:
+\begin{equation}
+\label{NUCLEAR_GRADIENT_DFTeq:1}
+ E_{XC} = \int F(\rho_{\alpha}, \rho_{\beta}, \nabla\rho_{\alpha},
+\nabla\rho_{\beta})d^{3}r
+\end{equation} 
+So we do not have the $\gamma$ terms.
+
+The variation with respect to the nuclear coordinate of $r_{A}$ is:
+\begin{align}
+\label{NUCLEAR_GRADIENT_DFTeq:2}
+ E_{XC}^{A} &=  \int  F^{A}(\rho_{\alpha}, \rho_{\beta},
+\nabla\rho_{\alpha},\nabla\rho_{\beta}) d^{3}r \nonumber \\
+  &= \sum_{\sigma}\int  \frac{\delta E_{XC} }{\delta\rho_{\sigma}
+}\rho_{\sigma}^{A} d^{3}r \nonumber \\
+  &=  \sum_{\sigma}\sum_{\mu\nu}\int 
+V^{\sigma}_{XC}(r)P_{\mu\nu}^{\sigma}(\phi_{\mu}\phi_{\nu
+})^{A} d^{3}r \nonumber \\
+  &=  \sum_{\mu\nu}\sum_{\sigma}\int\left\lbrace \frac{\partial F}
+{\partial \rho_{\sigma}} - \nabla\cdot \left(
+    \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+  \right) \right\rbrace  P_{\mu\nu}^{\sigma}(\phi_{\mu}\phi_{\nu
+})^{A} d^{3}r \nonumber \\
+  &= \sum_{\mu\nu} P_{\mu\nu}^{\sigma}\sum_{\sigma}\int\left\lbrace
+\left(
+\frac{\partial F}{\partial \rho_{\sigma}}(\phi_{\mu}\phi_{\nu
+})^{A}\right) + \left(
+    \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+    \cdotp\nabla(\phi_{\mu}\phi_{\nu
+})^{A}\right)\right\rbrace  d^{3}r
+\end{align}
+
+Now let's consider a little more about the $(\phi_{\mu}\phi_{\nu
+})^{A}$, this is short for the variation for the $(\phi_{\mu}\phi_{\nu
+})$ with respect to the $r_{A}$. Since the basis sets function is
+generally taking the form that:
+\begin{equation}
+ \phi = f(r)e^{-ar^{2}}
+\end{equation}
+Where the $r$ is $r = r_{e} - r_{I}$, th $r_{I}$ is the nuclear
+position, and the $r_{e}$ is the distance between the $r_{I}$ and the
+electron position. Hence we can see that if the $r_{I}$ is not
+$r_{A}$, then the differentiation for the $\phi$ will be zero, thus
+only the basis set functions centering the nuclear A has the gradient
+which is not zero. 
+
+On the other hand, since the movement for the nuclear A can be
+decomposd into three weights: $r_{Ax}$, $r_{Ay}$ and $r_{Az}$,
+the variation for the nuclear A actually is taken like:
+\begin{align}
+\label{NUCLEAR_GRADIENT_DFTeq:6}
+\frac{\partial \phi}{\partial r_{Ax}} &= \frac{\partial
+\phi}{\partial r_{x}}\frac{\partial r_{x}}{\partial r_{Ax}}
+=-\frac{\partial\phi}{\partial r_{x}}  \nonumber \\
+\frac{\partial \phi}{\partial r_{Ay}} &= \frac{\partial
+\phi}{\partial r_{y}}\frac{\partial r_{y}}{\partial r_{Ay}}
+=-\frac{\partial\phi}{\partial r_{y}}  \nonumber \\\frac{\partial
+\phi}{\partial r_{Az}} &= \frac{\partial
+\phi}{\partial r_{z}}\frac{\partial r_{z}}{\partial r_{Az}}
+=-\frac{\partial\phi}{\partial r_{z}} 
+\end{align}
+Where the $r_{i}$ ($i=x,y,z$) are the compnents for the the $r$:
+$r^{2} = \sum_{i}^{3}r_{i}^{2}$. Furthermore, we note that in the
+above process, the derivation has some important point that only
+$r_{i}$ is connected to the $r_{Ai}$, hence in the chain rule of
+the partial differentiation we only have the $r_{i}$ term.
+
+Finally, we can see that the $\phi^{A}$ is expressed as some vector
+has three components, and only the basis set functions centering the
+nuclear A has the gradient which is not zero:
+\begin{equation}
+\label{NUCLEAR_GRADIENT_DFTeq:3}
+\phi^{A} =
+ \begin{cases}
+ -\nabla\phi & r = r^{'} - r_{A} \\
+ 0           & r = r^{'} - r_{I}, I \neq A
+ \end{cases}
+\end{equation} 
+
+Now we can apply the (\ref{NUCLEAR_GRADIENT_DFTeq:3}) to the
+below expression:
+\begin{equation}
+  \sum_{\mu\nu}(\phi_{\mu}\phi_{\nu})^{A} = 
+  -2\sum_{\mu}^{A}\sum_{\nu}(\nabla\phi_{\mu}\phi_{\nu})
+\label{NUCLEAR_GRADIENT_DFTeq:4}
+\end{equation} 
+We suppose that the gradient is only taken on the $\phi_{\mu}$ who
+are centering on the A. Since that the $\mu$ and $\nu$ are
+symmetrical in the summation, hence we multiply factor of 2 before
+the summation and restrict the nuclear gradient is only applied on
+the $\phi_{\mu}$(see the \cite{CPL_1992_6_557,
+johnson:5612} etc.).
+
+Similarly, we have:
+\begin{equation}
+\label{NUCLEAR_GRADIENT_DFTeq:5}
+\begin{split}
+  \sum_{\mu\nu}\nabla(\phi_{\mu}\phi_{\nu})^{A} &= 
+  2\sum_{\mu}^{A}\sum_{\nu}\nabla(\phi_{\mu}\phi_{\nu})^{A} \\ 
+  &= 
+  2\sum_{\mu}^{A}\sum_{\nu}(\nabla\phi_{\mu}\phi_{\nu} +
+\phi_{\mu}\nabla\phi_{\nu})^{A} \\
+   &= 
+  2\sum_{\mu}^{A}\sum_{\nu}\left\lbrace
+(\nabla\phi_{\mu})^{A}\phi_{\nu} +
+\phi_{\mu}^{A}\nabla\phi_{\nu}\right\rbrace  \\
+&=-2\sum_{\mu}^{A}\sum_{\nu}\left\lbrace
+\nabla\cdotp(\nabla\phi_{\mu})^{T}\phi_{\nu} +
+\nabla\phi_{\mu}\cdotp\nabla\phi_{\nu}^{T}\right\rbrace
+\end{split}
+\end{equation}
+Where the supperscript of $T$ means ``tranpose'' the vector of
+$\nabla\phi$, so that the final result we can see is actually some
+number but not the vector. Hence we can label it as $X_{\mu\nu}$ by
+following the tradition in the \cite{CPL_1992_6_557,
+johnson:5612} etc.) 
+
+Now by applying the (\ref{NUCLEAR_GRADIENT_DFTeq:4}) and
+(\ref{NUCLEAR_GRADIENT_DFTeq:5}), we can improve the result in the
+(\ref{NUCLEAR_GRADIENT_DFTeq:2}) as:
+\begin{equation}
+\label{NUCLEAR_GRADIENT_DFTeq:7}
+\begin{split}
+ E_{XC}^{A} &=  \sum_{\mu\nu}
+P_{\mu\nu}^{\sigma}\sum_{\sigma}\int\left\lbrace
+\left(
+\frac{\partial F}{\partial \rho_{\sigma}}(\phi_{\mu}\phi_{\nu
+})^{A}\right) + \left(
+    \frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+    \cdotp\nabla(\phi_{\mu}\phi_{\nu
+})^{A}\right)\right\rbrace  d^{3}r \\
+&=  -2\sum_{\mu}^{A}\sum_{\nu}
+P_{\mu\nu}^{\sigma}\sum_{\sigma}\int\left\lbrace
+\left(
+\frac{\partial F}{\partial \rho_{\sigma}}(\nabla\phi_{\mu}\phi_{\nu
+})\right) + \left(
+    X_{\mu\nu}\frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+    \right)\right\rbrace  d^{3}r
+\end{split}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Extension to the meta-GGA form}
+\label{Func_Deriv_gradient_variable_META_GGA}
+%
+%
+%
+%
+%
+Now let's extend the gradient form into the meta-GGA by using the
+variables, in this case; the energy expressed as:
+\begin{equation}
+ \label{functional_meta_gga_gradient_eq:1}
+E_{XC} = \int  F(\rho_{\alpha}, \rho_{\beta}, \nabla\rho_{\alpha},
+\nabla\rho_{\beta}, \nabla^{2}\rho_{\alpha},
+\nabla^{2}\rho_{\beta}, \tau_{\alpha}, \tau_{\beta})d^{3}r
+\end{equation} 
+As suggested by the (\ref{NUCLEAR_GRADIENT_DFTeq:2}), the general
+gradient form in terms of the variable should be:
+\begin{equation}
+ \label{functional_meta_gga_gradient_eq:2}
+E_{XC}^{A} = \sum_{\mu\nu}\sum_{\sigma}\sum_{\xi}\int
+\frac{\partial F}{\partial \xi_{\sigma}} \xi_{\sigma}^{A} d^{3}r
+\end{equation} 
+Since we have got the functional derivatives of $\dfrac{\partial
+F}{\partial \xi_{\sigma}}$, hence the problem is how to obtain the
+gradient form of variables.
+
+For the tau, we have:
+\begin{equation}
+ \label{functional_meta_gga_gradient_eq:3}
+\begin{split}
+ \sum_{\mu\nu}(\nabla\phi_{\mu}\cdot\nabla\phi_{\nu})^{A}
+&=2
+\sum_{\mu}^{A}\sum_{\nu}(\nabla\phi_{\mu})^{A}\cdot(\nabla\phi_{\nu})
+\\
+&=-2
+\sum_{\mu}^{A}\sum_{\nu}\nabla^{2}\phi_{\mu}(\nabla\phi_{\nu})
+\end{split}
+\end{equation} 
+we note that this is some vector variable, we can label it as
+$\xi_{tau}^{A}$.
+
+For the laplacian variable, it gives:
+\begin{equation}
+ \begin{split}
+  \sum_{\mu\nu}\nabla^{2}(\phi_{\mu}\phi_{\nu})^{A} &= 
+  2\sum_{\mu}^{A}\sum_{\nu}\nabla^{2}(\phi_{\mu}\phi_{\nu})^{A} \\ 
+  &= 
+  2\sum_{\mu}^{A}\sum_{\nu}\left[
+\nabla\cdotp(\nabla\phi_{\mu}\phi_{\nu} +
+\phi_{\mu}\nabla\phi_{\nu})\right]^{A} \\
+   &= 2\sum_{\mu}^{A}\sum_{\nu}\left[
+(\nabla^{2}\phi_{\mu})\phi_{\nu} +
+2\nabla\phi_{\mu}\cdotp\nabla\phi_{\nu} +
+\phi_{\mu}(\nabla^{2}\phi_{\nu})\right]^{A} \\
+&=2\sum_{\mu}^{A}\sum_{\nu}\left[
+(\nabla^{2}\phi_{\mu})^{A}\phi_{\nu} +
+2(\nabla\phi_{\mu})^{A}\cdotp\nabla\phi_{\nu} +
+(\phi_{\mu})^{A}(\nabla^{2}\phi_{\nu})\right] \\
+&=-2\sum_{\mu}^{A}\sum_{\nu}\left[
+(\nabla^{3}\phi_{\mu})\phi_{\nu} +
+2(\nabla^{2}\phi_{\mu})\cdotp\nabla\phi_{\nu} +
+(\nabla\phi_{\mu})(\nabla^{2}\phi_{\nu})\right] 
+ \end{split}
+\label{functional_meta_gga_gradient_eq:4}
+\end{equation} 
+We note that this is also some vector form variable, since the
+$\nabla^{3}$ and $\nabla$ are some vector operator, and the
+$\nabla^{2}$ is a scalar operator. We label it as $\xi_{lap}^{A}$.
+
+Finally, the gradient for the meta-GGA form can be expressed as:
+\begin{equation}
+ \label{functional_meta_gga_gradient_eq:4}
+\begin{split}
+E_{XC}^{A} &= -2\sum_{\mu}^{A}\sum_{\nu}\sum_{\sigma}
+P_{\mu\nu}^{\sigma}\int\left\lbrace
+\left(
+\frac{\partial F}{\partial \rho_{\sigma}}(\nabla\phi_{\mu}\phi_{\nu
+})\right) + \left(
+    X_{\mu\nu}\frac{\partial F}{\partial (\nabla\rho_{\sigma})}
+\right)
+\right. \\
+&\left. + 
+ \frac{1}{2}\left(
+    \xi_{tau}^{A}\frac{\partial F}{\partial \xi_{tau}}\right) +
+ \left(
+    \xi_{lap}^{A}\frac{\partial F}{\partial \xi_{lap}}\right)
+    \right\rbrace  d^{3}r 
+\end{split}
+\end{equation}   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The functional derivative for the time dependent DFT}
+%
+%
+%
+%
+%
+The XC term in the time dependent density functional theory is
+expressed as:
+\begin{equation}
+ \label{eq:functional:38}
+E_{TD} = \int d^{3}r \int d^{3}r^{'}
+\varphi_{p}^{*}(r)\varphi_{q}(r)
+f_{xc}\varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})
+\end{equation}
+Here the $f_{XC}$ is called exchange-correlation kernel, which is
+expressed as:
+\begin{equation}
+ \label{eq:functional:39}
+f_{XC} = \frac{\delta^{2} E_{XC} }{\delta\rho(r)
+\delta\rho(r^{'})}
+\end{equation} 
+Hence we need to derive the second functional derivative for the
+$E_{XC}$. Additionaly, compared with (\ref{eq:XC_functional.8}), this
+term is expressed in the MO space. 
+
+Let's start from the $\dfrac{\delta V_{\sigma}^{XC}(r)}{\delta
+\rho_{\sigma^{'}}(r^{'})}$ (now the spin term is generally considered)
+and assume that the exchange-correlation energy is generally expressed
+as:
+\begin{equation}
+ E_{XC} = \int F(\rho_{\alpha}, \rho_{\beta}, \nabla\rho_{\alpha},
+\nabla\rho_{\beta})d^{3}r
+\end{equation} 
+It's in GGA's form and express in variables. Furthermore, we can also
+express it in the $\gamma$ form by slight changes.
+
+Here the only expression need to evaluate is the second implicit
+derivatives for the $E_{XC}$, hence with the result from
+(\ref{TDADDEDeq:3}),
+we can have:
+\begin{equation}
+ \begin{split}
+\frac{\delta^{2}
+E_{XC}}{\delta \rho_{\sigma}(r)\delta \rho_{\sigma^{'}}(r^{'})} 
+&= \frac{\partial V_{\sigma}^{XC}(r)} {\partial
+\rho_{\sigma^{'}}(r^{'})}
+- \nabla_{r^{'}}\cdot \left(
+    \frac{\partial V_{\sigma}^{XC}(r)} {\partial
+(\nabla_{r^{'}}\rho_{\sigma^{'}}(r^{'}))}
+  \right) \\
+&= \frac{\partial^{2} E_{XC} }{\partial\rho_{\sigma}(r)
+\partial\rho_{\sigma^{'}}(r^{'})} - \nabla_{r}\cdotp\frac{\partial^{2}
+E_{XC} }{\partial(\nabla_{r}\cdotp\rho_{\sigma}(r))
+\partial\rho_{\sigma^{'}}(r^{'})} \\
+&-
+\nabla_{r^{'}}\cdotp\frac{\partial^{2} E_{XC}}
+{\partial\rho_{\sigma}(r)
+\partial(\nabla_{r^{'}}\cdotp\rho_{\sigma^{'}}(r^{'}))} \\
+&+ 
+\nabla_{r}\nabla_{r^{'}}\cdotp\frac{\partial^{2} E_{XC}}
+{\partial(\nabla_{r}\cdotp\rho_{\sigma}(r))
+\partial(\nabla_{r^{'}}\cdotp\rho_{\sigma^{'}}(r^{'}))}
+ \end{split}
+\label{TDADDEDeq:5}
+\end{equation} 
+In this derivation, we just bring in the expression of exchange
+correlation potential then get the result.
+
+Finally, we can use the integration by parts method. Hence the
+gradient operator in the (\ref{TDADDEDeq:5}) can be all dropped. We
+note that for the $\nabla_{r}\nabla_{r^{'}}$ actually we have to use
+twice integration by parts method. Finally we can get:
+\begin{equation}
+\begin{split}
+  &XC_{ia, jb}   \\
+&=\sum_{\mu\nu}\sum_{\lambda\eta}c^{*}_{i\mu\sigma}c_{a\nu\sigma} 
+c^{*}_{j\lambda\sigma^{'}}c_{b\eta\sigma^{'}}\int d^{3}r \int
+d^{3}r^{'} \\
+&\phi_{i\mu}^{*}(r)\phi_{a\nu}(r) 
+\frac{\partial^{2} E_{XC} }{\partial\rho_{\sigma}(r)
+\partial\rho_{\sigma^{'}}(r^{'})}
+\phi_{j\lambda}^{*}(r^{'})\phi_{b\eta}(r^{'}) \\
+&+ \sum_{\mu\nu}\sum_{\lambda\eta}c^{*}_{i\mu\sigma}c_{a\nu\sigma} 
+c^{*}_{j\lambda\sigma^{'}}c_{b\eta\sigma^{'}}
+\int d^{3}r \int d^{3}r^{'} \\
+&\nabla_{r}\cdotp(\phi_{i\mu}^{*}(r)\phi_{a\nu}(r)) 
+\frac{\partial^{2}
+E_{XC} }{\partial(\nabla_{r}\cdotp\rho_{\sigma}(r))
+\partial\rho_{\sigma^{'}}(r^{'})}
+\phi_{j\lambda}^{*}(r^{'})\phi_{b\eta}(r^{'}) \\
+&+\sum_{\mu\nu}\sum_{\lambda\eta}c^{*}_{i\mu\sigma}c_{a\nu\sigma} 
+c^{*}_{j\lambda\sigma^{'}}c_{b\eta\sigma^{'}}
+\int d^{3}r \int d^{3}r^{'} \\
+&\phi_{i\mu}^{*}(r)\phi_{a\nu}(r) 
+\frac{\partial^{2} E_{XC}}
+{\partial\rho_{\sigma}(r)
+\partial(\nabla_{r^{'}}\cdotp\rho_{\sigma^{'}}(r^{'}))}
+\nabla_{r^{'}}\cdotp\phi_{j\lambda}^{*}(r^{'})\phi_{b\eta}(r^{'}) \\
+&+\sum_{\mu\nu}\sum_{\lambda\eta}c^{*}_{i\mu\sigma}c_{a\nu\sigma} 
+c^{*}_{j\lambda\sigma^{'}}c_{b\eta\sigma^{'}}
+\int d^{3}r \int d^{3}r^{'} \\
+&\nabla_{r}\cdotp(\phi_{i\mu}^{*}(r)\phi_{a\nu}(r)) 
+\frac{\partial^{2} E_{XC}}
+{\partial(\nabla_{r}\cdotp\rho_{\sigma}(r))
+\partial(\nabla_{r^{'}}\cdotp\rho_{\sigma^{'}}(r^{'}))}
+\nabla_{r^{'}}\cdotp\phi_{j\lambda}^{*}(r^{'})\phi_{b\eta}(r^{'})
+\end{split}
+\label{TDADDEDeq:6}
+\end{equation} 
+Now in this final expression we just spread out the MO expression
+into the AO expression. By using the (\ref{eq:functional:45}) and
+delta function we can finally drop the $r^{'}$ integral and change
+$r^{'}$ into $r$, then we get the final expression. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End: 
+
+
+%
+% here below is my first derivation for TDDFT functional expression.
+% wrong and not accurate. So abandan it.
+%
+%
+
+
+
+Now let's expand it in the careful way. Firstly, let's try to expand
+the $\dfrac{\partial V_{\alpha}^{XC}(r)}
+{\partial\rho_{\alpha}(r^{'})}$ by using the expression in
+(\ref{eq:functional:36}):
+\begin{equation}
+  \label{eq:functional:7}
+\begin{split}
+\frac{\partial V_{\alpha}^{XC}(r)} {\partial
+\rho_{\alpha}(r^{'})} &= 
+\frac{\partial^{2} f(r)} {\partial \rho_{\alpha}(r)\partial
+\rho_{\alpha}(r^{'})} 
+- 2\nabla_{r}\cdot 
+\left(\frac{ \partial
+\left(  \frac{\partial f(r)} {\partial
+\gamma_{\alpha\alpha}(r)}\nabla_{r}\rho_{\alpha}(r) \right) } 
+    {\partial \rho_{\alpha}(r^{'})}
+\right) \\
+&- 
+\nabla_{r}\cdot 
+\left( 
+\frac{\partial\left( \frac{\partial f(r)}
+    {\partial \gamma_{\alpha\beta}(r)} \nabla_{r}\rho_{\beta}(r)
+\right) }
+{\partial \rho_{\alpha}(r^{'})}
+\right) \\
+&= \frac{\partial^{2} f(r)} {\partial \rho_{\alpha}(r)\partial
+\rho_{\alpha}(r^{'})}  - 
+2\nabla_{r}\cdot 
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\alpha}(r)\partial\rho_{\alpha}(r^{'})}
+\nabla_{r}\rho_{\alpha}(r)\right) \\
+&- 
+\nabla_{r}\cdot 
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\beta}(r)\partial\rho_{\alpha}(r^{'})}
+\nabla_{r}\rho_{\beta}(r)\right)
+\end{split}
+\end{equation}
+Here in this derivation, we have to remember that if the partial
+derivative is applied, the $\nabla\rho$ and the $\rho$ are
+independent so if we differentiate with $\rho$, then $\nabla\rho$
+should be viewed as some constant.
+
+%Here in this derivation, we have omited some step:
+%\begin{align}
+% \label{eq:XC_functional.3}
+%& 2\nabla_{r}\cdot
+%\left(  \frac{\partial f(r)} {\partial
+%\gamma_{\alpha\alpha}(r)}\frac{\partial(\nabla_{r}\rho_{\alpha}(r))}{
+%\partial \rho_{\alpha}(r^{'})} \right) \nonumber \\
+%&= 2\nabla_{r}\cdot
+%\left(  \frac{\partial f(r)} {\partial
+%\gamma_{\alpha\alpha}(r)}\nabla_{r}\cdot\left(
+%\frac{\partial\rho_{\alpha}(r) } {
+%\partial \rho_{\alpha}(r^{'})} \right) \right) \nonumber \\
+%&= 2\nabla_{r}\cdot
+%\left(  \frac{\partial f(r)} {\partial
+%\gamma_{\alpha\alpha}(r)}\nabla_{r}\cdot\delta(r-r^{'}) \right)
+%\nonumber \\
+%&= 0
+%\end{align}
+
+Then we expand the second term in the (\ref{eq:functional:40}) again
+by using the (\ref{eq:functional:36}):
+\begin{equation}
+  \label{eq:functional:8}
+\begin{split}
+&\nabla_{r^{'}}\cdot \left(
+\frac{\partial V_{\alpha}^{XC}(r)} {\partial
+(\nabla_{r^{'}}\rho_{\alpha}(r^{'}))}  
+\right) \\
+&= 
+\nabla_{r^{'}}\cdot \left( \frac{\partial^{2} f(r)} {\partial
+\rho_{\alpha} (r)
+\partial(\nabla_{r^{'}}\rho_{\alpha}(r^{'}))}\right) 
+- 2\nabla_{r^{'}}\nabla_{r}\cdot 
+\left(\frac{ \partial
+\left(  \frac{\partial f(r)} {\partial
+\gamma_{\alpha\alpha}(r)}\nabla_{r}\rho_{\alpha}(r) \right) } 
+    {\partial (\nabla_{r^{'}}\rho_{\alpha}(r^{'}))}
+\right) \\ 
+&- 
+\nabla_{r^{'}}\nabla_{r}\cdot 
+\left( 
+\frac{\left( \frac{\partial f(r)}
+    {\partial \gamma_{\alpha\beta}(r)} \nabla_{r}\rho_{\beta}(r)
+\right) }
+{\partial (\nabla_{r^{'}}\rho_{\alpha}(r^{'}))}
+\right) \\
+&= \nabla_{r^{'}}\cdot \left( \frac{\partial^{2} f(r)} {\partial
+\rho_{\alpha}(r) \partial(\nabla_{r^{'}}\rho_{\alpha}(r^{'}))}\right) 
+- 
+2\nabla_{r^{'}}\nabla_{r}\cdot 
+\left(
+\frac{\partial f(r)}
+{\partial\gamma_{\alpha\alpha}(r)}
+\delta(r-r^{'})\right) \\
+&- 
+2\nabla_{r^{'}}\nabla_{r}\cdot 
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\alpha}(r)\partial(\nabla_{r^{'}}\rho_{\alpha}
+(r^{'})) }
+\nabla_{r}\rho_{\alpha}(r)\right) \\
+&- 
+\nabla_{r^{'}}\nabla_{r}\cdot 
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\beta}(r)\partial(\nabla_{r^{'}}\rho_{\alpha}
+(r^{'}))}
+\nabla_{r}\rho_{\beta}(r)\right)
+\end{split}
+\end{equation}
+Additionally, we note that here the $\nabla_{r}\rho_{\beta}(r)$ is
+actually independent with $\nabla_{r^{'}}\rho_{\alpha}(r^{'})$, since
+the alpha electron density and beta electron density are assumed into
+different and independent spatial space. For the colse shell case, it
+can be viewed as a special case that by forcing all the alpha
+electron density equals to the beta electron density, and the formula
+generated from the unrestricted type is still useful.
+
+
+Here we can use some old trick to drop the differentiation with
+$\nabla_{r^{'}}\rho_{\alpha}$, which has been used in
+(\ref{eq:functional:36}):
+\begin{align}
+ \label{eq:functional:52}
+\frac{\partial L(r)}{\partial(\nabla_{r^{'}}\rho_{\alpha}
+(r^{'}))} 
+&= \int \frac{\partial
+L(r)}{\partial\gamma_{\alpha\alpha}(r^{'})}
+\frac{\partial \gamma_{\alpha\alpha}(r^{'})}
+{\partial(\nabla_{r^{'}} \rho_{\alpha} (r^{'}))} 
+d^{3}r^{'} \nonumber \\
+&= \int \frac{\partial
+L(r)}{\partial\gamma_{\alpha\alpha}(r^{'})}
+2\nabla_{r^{'}} \rho_{\alpha} (r^{'})
+d^{3}r^{'} \nonumber \\
+&= \frac{\partial
+L(r)}{\partial\gamma_{\alpha\alpha}(r^{'})}
+2\nabla_{r^{'}} \rho_{\alpha} (r^{'}) \delta(r-r^{'})
+\end{align}
+
+By using the result in the (\ref{eq:functional:52}), the
+result expression in the (\ref{eq:functional:8}) can be transformed
+as:
+\begin{equation}
+ \begin{split}
+  &\nabla_{r^{'}}\cdot \left(
+\frac{\partial V_{\alpha}^{XC}(r)} {\partial
+(\nabla_{r^{'}}\rho_{\alpha}(r^{'}))}  
+\right) \\
+&= 2\nabla_{r^{'}}\cdot \left( \frac{\partial^{2} f(r)} {\partial
+\rho_{\alpha}(r) \partial\gamma_{\alpha\alpha}(r^{'})}
+\nabla_{r^{'}}\rho_{\alpha}(r^{'})\delta(r-r^{'})\right) \\ 
+&- 
+2\nabla_{r^{'}}\nabla_{r}\cdot 
+\left(
+\frac{\partial f(r)}
+{\partial\gamma_{\alpha\alpha}(r)}
+\delta(r-r^{'})\right) \\
+&-
+4\nabla_{r^{'}}\nabla_{r}\cdot 
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\alpha}(r)
+ \partial\gamma_{\alpha\alpha}(r^{'})}
+\nabla_{r^{'}}\rho_{\alpha}(r^{'})
+\nabla_{r}\rho_{\alpha}(r) \delta(r-r^{'}) \right) \\
+&-
+2\nabla_{r^{'}}\nabla_{r}\cdot 
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\beta}(r)
+ \partial\gamma_{\alpha\alpha}(r^{'})}
+\nabla_{r^{'}}\rho_{\alpha}(r^{'})
+\nabla_{r}\rho_{\beta}(r) \delta(r-r^{'}) \right)
+ \end{split}
+ \label{eq:functional:53}
+\end{equation} 
+
+Now let's begin to deal with the integral form shown in
+(\ref{eq:functional:38}). For the (\ref{eq:functional:53}), we can
+apply the general method in the (\ref{eq:integration_rule_functional})
+so that we can shift the $\nabla$ from the functional to the orbitals:
+\begin{align}
+  \label{eq:functional:54}
+&\int \int f(r) \left[ \nabla_{r^{'}}\nabla_{r}\cdot
+L(r,r^{'})\right] g(r^{'}) d^{3}r d^{3}r^{'} \nonumber \\
+&= \int f(r)d^{3}r \int \left[ \nabla_{r^{'}}\nabla_{r}\cdot
+L(r,r^{'})\right] g(r^{'}) d^{3}r^{'} \nonumber \\
+&= \int f(r)d^{3}r \left[ -\int \nabla_{r}\cdot L(r,r^{'})
+\nabla_{r^{'}}g(r^{'})
+d^{3}r^{'} \right] \nonumber \\
+&= -\int \nabla_{r^{'}}\cdot g(r^{'})
+d^{3}r^{'} \int \nabla_{r} \cdot L(r,r^{'}) f(r)d^{3}r  \nonumber \\
+&= -\int \nabla_{r^{'}}\cdot g(r^{'})
+d^{3}r^{'} \left[ -\int  L(r,r^{'}) \nabla_{r}\cdot f(r) d^{3}r\right]
+ \nonumber \\
+&= \int \int \nabla_{r}\cdot f(r) L(r,r^{'})
+\nabla_{r^{'}}\cdot g(r^{'})  
+d^{3}r d^{3}r^{'}    
+\end{align}
+By this result, we can safely transform the integral for
+(\ref{eq:functional:53}) as:
+\begin{equation}
+ \begin{split}
+&-\int d^{3}r \int d^{3}r^{'}
+\varphi_{p}^{*}(r)\varphi_{q}(r)
+\left[ \nabla_{r^{'}}\cdot \left(
+\frac{\partial V_{\alpha}^{XC}(r)} {\partial
+(\nabla_{r^{'}}\rho_{\alpha}(r^{'}))}  
+\right)\right] \varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'}) \\
+&=
+-2\int d^{3}r \int d^{3}r^{'}
+\left( \frac{\partial^{2} f(r)} {\partial
+\rho_{\alpha}(r) \partial\gamma_{\alpha\alpha}(r^{'})}
+\nabla_{r^{'}}\rho_{\alpha}(r^{'})\delta(r-r^{'})\right) \\
+&\left(\varphi_{p}^{*}(r)\varphi_{q}(r)\right)
+\nabla_{r^{'}}\cdot\left(
+\varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})\right) \\
+&+2
+\int d^{3}r \int d^{3}r^{'}
+\left(
+\frac{\partial f(r)}
+{\partial\gamma_{\alpha\alpha}(r)}
+\delta(r-r^{'})\right) \\
+&\nabla_{r}\cdot
+\left(\varphi_{p}^{*}(r)\varphi_{q}(r)\right)
+\nabla_{r^{'}}\cdot
+\left(\varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})\right) \\
+&+4
+\int d^{3}r \int d^{3}r^{'}
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\alpha}(r)
+ \partial\gamma_{\alpha\alpha}(r^{'})}
+\nabla_{r^{'}}\rho_{\alpha}(r^{'})
+\nabla_{r}\rho_{\alpha}(r) \delta(r-r^{'}) \right) \\
+&\nabla_{r}\cdot
+\left(\varphi_{p}^{*}(r)\varphi_{q}(r)\right)
+\nabla_{r^{'}}\cdot
+\left(\varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})\right) \\
+&+2
+\int d^{3}r \int d^{3}r^{'}
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\beta}(r)
+ \partial\gamma_{\alpha\alpha}(r^{'})}
+\nabla_{r^{'}}\rho_{\alpha}(r^{'})
+\nabla_{r}\rho_{\beta}(r) \delta(r-r^{'}) \right) \\
+&\nabla_{r}\cdot
+\left(\varphi_{p}^{*}(r)\varphi_{q}(r)\right)
+\nabla_{r^{'}}\cdot
+\left(\varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})\right)
+\end{split}
+\label{eq:functional:55}
+\end{equation} 
+
+Finally, let's use the delta function so that generally we have:
+\begin{equation}
+ \label{eq:functional:56}
+\int d^{3}r \int d^{3} r^{'} f(r^{'}) g(r) \delta (r-r^{'}) = 
+\int d^{3}r f(r) g(r)
+\end{equation} 
+Hence in the result of (\ref{eq:functional:55}), what we are going to
+do in presence of delta function is that to transform all the
+functions and variables that related to $r^{'}$ into $r$, and then
+drop the integration symbol of $\int d^{3} r^{'}$. After such
+procedure, the result in (\ref{eq:functional:55}) finally becomes:
+\begin{equation}
+ \begin{split}
+&-\int d^{3}r \int d^{3}r^{'}
+\varphi_{p}^{*}(r)\varphi_{q}(r)
+\left[ \nabla_{r^{'}}\cdot \left(
+\frac{\partial V_{\alpha}^{XC}(r)} {\partial
+(\nabla_{r^{'}}\rho_{\alpha}(r^{'}))}  
+\right)\right] \varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'}) \\
+&=
+-2\int d^{3}r 
+\left( \frac{\partial^{2} f} {\partial
+\rho_{\alpha} \partial\gamma_{\alpha\alpha}}
+\nabla\rho_{\alpha}\right) 
+\left(\varphi_{p}^{*}\varphi_{q}\right)
+\left[ \nabla\cdot\left(
+\varphi_{s}^{*}\varphi_{t}\right)\right]  \\
+&+2
+\int d^{3}r
+\left(
+\frac{\partial f}
+{\partial\gamma_{\alpha\alpha}}\right)
+\left[ \nabla\cdot
+\left(\varphi_{p}^{*}\varphi_{q}\right)\right] 
+\left[ \nabla\cdot
+\left(\varphi_{s}^{*}\varphi_{t}\right)\right] \\
+&+4
+\int d^{3}r
+\left(
+\frac{\partial^{2} f}
+{\partial\gamma_{\alpha\alpha}^{2}}
+\nabla\rho_{\alpha}
+\nabla\rho_{\alpha}\right)
+\left[ \nabla\cdot
+\left(\varphi_{p}^{*}\varphi_{q}\right)\right] 
+\left[ \nabla\cdot
+\left(\varphi_{s}^{*}\varphi_{t}\right)\right] \\
+&+2
+\int d^{3}r
+\left(
+\frac{\partial^{2} f}
+{\partial\gamma_{\alpha\beta}
+ \partial\gamma_{\alpha\alpha}}
+\nabla\rho_{\alpha}
+\nabla\rho_{\beta}\right) 
+\left[ \nabla\cdot
+\left(\varphi_{p}^{*}\varphi_{q}\right)\right] 
+\left[ \nabla\cdot
+\left(\varphi_{s}^{*}\varphi_{t}\right)\right] 
+\end{split}
+\label{eq:functional:57}
+\end{equation}
+
+Next let's repeat the same procedure to the first item in
+(\ref{eq:functional:40}), and we have got some explicit formula to
+express it in (\ref{eq:XC_functional.7}). We can just drive the
+integration form by the method shown in (\ref{eq:functional:54}):
+\begin{equation}
+ \begin{split}
+&\int d^{3}r \int d^{3}r^{'}
+\varphi_{p}^{*}(r)\varphi_{q}(r)
+\left[ \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+\rho_{\alpha}(r^{'})}\right] 
+\varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'}) \\
+&=\int d^{3}r \int d^{3}r^{'}
+\left( \varphi_{p}^{*}(r)\varphi_{q}(r)\right) 
+\frac{\partial^{2} f(r)} {\partial \rho_{\alpha}(r)\partial
+\rho_{\alpha}(r^{'})}
+\left( \varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})\right)  \\
+&+2\int d^{3}r \int d^{3}r^{'}
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\alpha}(r)\partial\rho_{\alpha}(r^{'})}
+\nabla_{r}\rho_{\alpha}(r)\right)
+\left[ \nabla\cdot\varphi_{p}^{*}(r)\varphi_{q}(r)\right] 
+\left( \varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})\right) \\
+&+\int d^{3}r \int d^{3}r^{'}
+\left(
+\frac{\partial^{2} f(r)}
+{\partial\gamma_{\alpha\beta}(r)\partial\rho_{\alpha}(r^{'})}
+\nabla_{r}\rho_{\beta}(r)\right)
+\left[ \nabla\cdot\varphi_{p}^{*}(r)\varphi_{q}(r)\right]
+\left( \varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})\right)
+ \end{split}
+\label{eq:functional:58}
+\end{equation} 
+According to the (\ref{eq:functional:45}), so we have:
+\begin{equation}
+ \label{eq:functional:59}
+\frac{\partial^{2} f(r)} {\partial \rho_{\alpha}(r)\partial
+\rho_{\alpha}(r^{'})} = \frac{\partial^{2} f(r)} {\partial
+\rho_{\alpha}(r)\partial
+\rho_{\alpha}(r^{'})}\delta(r-r^{'})
+\end{equation} 
+So we can drop all the $r^{'}$ then the (\ref{eq:functional:58})
+becomes:
+\begin{equation}
+ \begin{split}
+&\int d^{3}r \int d^{3}r^{'}
+\varphi_{p}^{*}(r)\varphi_{q}(r)
+\left[ \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+\rho_{\alpha}(r^{'})}\right] 
+\varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'}) \\
+&=\int d^{3}r 
+\left(
+\varphi_{p}^{*}\varphi_{q}\varphi_{s}^{*}\varphi_{t}
+\right) 
+\frac{\partial^{2} f} 
+{\partial^{2}\rho_{\alpha}} \\
+&+2\int d^{3}r
+\left(
+\frac{\partial^{2} f}
+{\partial\gamma_{\alpha\alpha}\partial\rho_{\alpha}}
+\nabla\rho_{\alpha}\right)
+\left[ \nabla\cdot\varphi_{p}^{*}\varphi_{q}\right] 
+\left( \varphi_{s}^{*}\varphi_{t}\right) \\
+&+\int d^{3}r
+\left(
+\frac{\partial^{2} f}
+{\partial\gamma_{\alpha\beta}\partial\rho_{\alpha}}
+\nabla\rho_{\beta}\right)
+\left[ \nabla\cdot\varphi_{p}^{*}\varphi_{q}\right]
+\left( \varphi_{s}^{*}\varphi_{t}\right)
+ \end{split}
+\label{eq:functional:60}
+\end{equation}
+
+
+
+
+
+From the (\ref{functional_mega_gga_eq:7}), it turns out that the
+functional derivative takes a very simple expression, it equals to
+the partial derivatives of the variables:
+\begin{equation}
+ \label{functional_mega_gga_functional_derivatives_eq:1}
+\frac{\delta E_{XC}}{\delta \rho(r)} = \sum_{\sigma}\sum_{\xi}
+    \frac{\partial F}{\partial \xi_{\sigma}}
+\end{equation} 
+
+Then from this expression we can easily get the higher order of
+functional derivatives:
+\begin{equation}
+ \label{functional_mega_gga_functional_derivatives_eq:2}
+\begin{split}
+\frac{\delta^{2} E_{XC}}{\delta \rho(r) \delta \rho(r^{'})} &=
+\sum_{\sigma^{'}}\sum_{\zeta}\left\lbrace \sum_{\sigma}\sum_{\xi}
+   \frac{\partial\left( {\frac{\partial F(r)}{\partial
+\xi_{\sigma}(r)}}\right)}{\partial\zeta_{\sigma^{'}}(r^{'})}
+\right\rbrace  \\
+&= \sum_{\sigma^{'}}\sum_{\zeta}\sum_{\sigma}\sum_{\xi}
+   \frac{\partial^{2} F(r)}{\partial
+\xi_{\sigma}(r)\partial\zeta_{\sigma^{'}}(r^{'})}
+\end{split}
+\end{equation}
+Here the $\xi$ and $\zeta$ are both representing the variables.
+
+Furthermore, even the third functional derivatives can be derived in
+the similar way:
+\begin{equation}
+ \label{functional_mega_gga_functional_derivatives_eq:3}
+\begin{split}
+\frac{\delta^{3} E_{XC}}{\delta \rho(r) \delta \rho(r^{'})\delta
+\rho(r^{''})} 
+&=
+\sum_{\sigma^{''}}\sum_{\kappa}
+\sum_{\sigma^{'}}\sum_{\zeta}
+\sum_{\sigma }\sum_{\xi}
+   \frac{\partial^{3} F(r)}{\partial
+\xi_{\sigma}(r)\partial\zeta_{\sigma^{'}}(r^{'})\partial\kappa_{
+\sigma^{''}(r^{''}) } }
+\end{split}
+\end{equation}
+
+
+% First, the expression for the
+% $f_{XC}$ is related to two variables: $r$ and $r^{'}$. We can make
+% use of (\ref{eq:functional:45}) to drop the additional $r^{'}$:
+% \begin{align}
+%   \label{eq:functional:41}
+% f_{XC} &= \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% \rho_{\alpha}(r^{'})}
+% - \nabla\cdot \left(
+%     \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% (\nabla\rho_{\alpha}(r^{'}))}
+%   \right) \nonumber \\
+% &= \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% \rho_{\alpha}(r)} \delta(r-r^{'}) - \nabla\cdot \left(
+%     \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% (\nabla\rho_{\alpha}(r))} \delta(r-r^{'}) \right)
+% \end{align} 
+% Combined with integration form in (\ref{eq:functional:38}), we can
+% see that the integration for the $r^{'}$ is droped:
+% \begin{equation}
+%  \begin{split}
+%   \label{eq:functional:46}
+% E_{XC} &= \int d^{3}r \int d^{3}r^{'} \varphi_{p}^{*}(r)\varphi_{q}(r)
+% \left\lbrace \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% \rho_{\alpha}(r)}
+% \delta(r-r^{'})\right\rbrace \varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})
+% \\
+% &- \int d^{3}r \int d^{3}r^{'} \varphi_{p}^{*}(r)\varphi_{q}(r)
+% \left\lbrace \nabla\cdot \left(
+%     \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% (\nabla\rho_{\alpha}(r))}  \right)\delta(r-r^{'})\right\rbrace
+% \varphi_{s}^{*}(r^{'})\varphi_{t}(r^{'})
+% \\
+% &= \int d^{3}r \varphi_{p}^{*}(r)\varphi_{q}(r)
+% \left\lbrace \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% \rho_{\alpha}(r)}
+% \right\rbrace \varphi_{s}^{*}(r)\varphi_{t}(r) \\
+% &- \int d^{3}r \varphi_{p}^{*}(r)\varphi_{q}(r)
+% \left\lbrace \nabla\cdot \left(
+%     \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% (\nabla\rho_{\alpha}(r))}  \right)\right\rbrace
+% \varphi_{s}^{*}(r)\varphi_{t}(r)
+%  \end{split} 
+% \end{equation} 
+% We can get it because of the defintion of delta function. Then the
+% $f_{XC}$ is transformed into:
+% \begin{equation}
+%  \label{eq:functional:47}
+% f_{XC} = \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% \rho_{\alpha}(r)} - \nabla\cdot \left(
+%     \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% (\nabla\rho_{\alpha}(r))}  \right)
+% \end{equation} 
+% In the later content, since it's merely functional on the $r$, hence
+% we will omit it in the expression.
+
+
+% Next let's evaluate the second term of $\nabla\cdot \left(
+%     \dfrac{\partial V_{\alpha}^{XC}(r)} {\partial
+% (\nabla\rho_{\alpha}(r))}  \right)$ in (\ref{eq:functional:47}):
+% \begin{equation}
+%   \label{eq:functional:49}
+% \begin{split}
+% \nabla\cdot \left(
+% \frac{\partial V_{\alpha}^{XC}(r)} {\partial
+% (\nabla\rho_{\alpha}(r))}  
+% \right) &= 
+% \nabla\cdot \left( \frac{\partial^{2} f} {\partial
+% (\nabla\rho_{\alpha})\partial \rho_{\alpha}}\right) 
+% - 2\nabla^{2}\cdot 
+% \left(\frac{ \partial
+% \left(  \frac{\partial f} {\partial
+% \gamma_{\alpha\alpha}}\nabla\rho_{\alpha} \right) } 
+%     {\partial (\nabla\rho_{\alpha})}
+% \right) \\ 
+% &- 
+% \nabla^{2}\cdot 
+% \left( 
+% \frac{\left( \frac{\partial f}
+%     {\partial \gamma_{\alpha\beta}} \nabla\rho_{\beta} \right) }
+% {\partial (\nabla\rho_{\alpha})}
+% \right) \\
+% &= \nabla\cdot \left( \frac{\partial^{2} f} {\partial
+% (\nabla\rho_{\alpha})\partial \rho_{\alpha}}\right)  - 
+% 2\nabla^{2}\cdot 
+% \left(
+% \frac{\partial f}
+% {\partial\gamma_{\alpha\alpha}}
+% \right) \\
+% &- 
+% 2\nabla^{2}\cdot 
+% \left(
+% \frac{\partial^{2} f}
+% {\partial\gamma_{\alpha\alpha}\partial(\nabla\rho_{\alpha})}
+% \nabla\rho_{\alpha}\right) \\
+% &- 
+% \nabla^{2}\cdot 
+% \left(
+% \frac{\partial^{2} f}
+% {\partial\gamma_{\alpha\beta}\partial(\nabla\rho_{\alpha})}
+% \nabla\rho_{\beta}\right)
+% \end{split}
+% \end{equation}
+
+% Now we begin to deal with the integration. For the first term in the
+% (\ref{eq:functional:46}), according to the derivation in the
+% (\ref{eq:integration_rule_functional}), its result is:
+% \begin{equation}
+%  \begin{split}
+% &\int d^{3}r \varphi_{p}^{*}(r)\varphi_{q}(r)
+% \left\lbrace \frac{\partial V_{\alpha}^{XC}(r)} 
+% {\partial\rho_{\alpha}(r)}
+% \right\rbrace 
+% \varphi_{s}^{*}(r)\varphi_{t}(r) \\
+% &=
+% \int d^{3}r \varphi_{p}^{*}\varphi_{q}
+% \left\lbrace 
+% \frac{\partial^{2} f} {\partial \rho^{2}_{\alpha}}
+% \right\rbrace 
+% \varphi_{s}^{*}\varphi_{t} + \int \left[ 
+% 2
+% \left(
+% \frac{\partial^{2} f}
+% {\partial\gamma_{\alpha\alpha}\partial\rho_{\alpha}}
+% \nabla\rho_{\alpha}\right) \right. \\
+% &+
+% \left. \left(
+% \frac{\partial^{2} f}
+% {\partial\gamma_{\alpha\beta}\partial\rho_{\alpha}}
+% \nabla\rho_{\beta}\right) \right] \nabla
+% (\varphi_{p}^{*}\varphi_{q}\varphi_{s}^{*}\varphi_{t})d^{3}r
+%  \end{split}
+%   \label{eq:functional:50}
+% \end{equation} 
+
+% For the second term, we apply the same idea; so the operator
+% of $\nabla$ and the Laplacian operator can all be dropped from the
+% functional. Hence we can get the result:
+% \begin{equation}
+%  \begin{split}
+%   &\int d^{3}r \varphi_{p}^{*}(r)\varphi_{q}(r)
+% \left\lbrace \nabla\cdot \left(
+%     \frac{\partial V_{\alpha}^{XC}(r)} 
+%          {\partial (\nabla\rho_{\alpha}(r))} \right)
+% \right\rbrace
+% \varphi_{s}^{*}(r)\varphi_{t}(r) \\
+% &=- \int d^{3}r
+% \frac{\partial^{2} f} {\partial
+% (\nabla\rho_{\alpha})\partial \rho_{\alpha}} 
+% \nabla (\varphi_{p}^{*}\varphi_{q}\varphi_{s}^{*}\varphi_{t}) \\
+% &+ \int d^{3}r
+% \left[ 
+% -2\left(
+% \frac{\partial f}
+% {\partial\gamma_{\alpha\alpha}}
+% \right) 
+% -2 
+% \left(
+% \frac{\partial^{2} f}
+% {\partial\gamma_{\alpha\alpha}\partial(\nabla\rho_{\alpha})}
+% \nabla\rho_{\alpha}\right) \right. \\
+% &-\left. 
+% \left(
+% \frac{\partial^{2} f}
+% {\partial\gamma_{\alpha\beta}\partial(\nabla\rho_{\alpha})}
+% \nabla\rho_{\beta}\right)
+%  \right]
+% \nabla^{2}(\varphi_{p}^{*}\varphi_{q}\varphi_{s}^{*}\varphi_{t})
+%  \end{split}
+% \label{eq:functional:51}
+% \end{equation} 
+
+\end{comment}
+

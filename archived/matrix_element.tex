@@ -1,0 +1,302 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{booktabs}
+\usepackage[dvipdfm,colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%defining the bra and ket
+\newcommand{\bra}[1]{\langle #1| }
+\newcommand{\ket}[1]{|#1 \rangle }
+
+%here the definition used in text
+\newcommand{\brat}[1]{$\langle #1|$ }
+\newcommand{\kett}[1]{$|#1 \rangle $}
+
+%here define the math bold font for the vector operator:
+\newcommand{\hei}[1]{\mathbf{\hat{#1}} }
+\newcommand{\heit}[1]{$\mathbf{\hat{#1}}$}
+\newcommand{\heiti}[1]{\mathbf{#1} }
+
+%% define the mathbf type of characters
+\newcommand{\vect}[1]{$\mathbf{#1}$}
+
+%% define the theorem enviroment for the whole text
+\theoremstyle{definition}\newtheorem{law}{Law}
+\theoremstyle{plain}\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+\theoremstyle{axiom}\newtheorem{axiom}{Axiom}
+
+
+%opening
+\title{Matrix Element}
+
+\begin{document}
+
+\maketitle
+Let's start by considering the equation 10 in Yihan's note, there we generally
+have:
+\begin{equation}
+ \label{eq:1}
+\langle\Psi_{I}|\Psi_{J}^{[x]}\rangle = T_{I}T_{J}^{[x]} +
+\sum_{ia}\sum_{jb}T_{I,ia}T_{J,jb}\langle\Phi^{a}_{i}|\Phi^{b[x]}_{j}\rangle
+\end{equation}
+Here in this expression, we follow the general convention that to use $T$ to
+represent the Slater determinant coefficients in CIS state, to use $C$ to
+designate the MO coefficients, $\Psi$ is used to refer to CIS state, and $\Phi$
+means the Slater determinants, $\varphi$ is MO.
+
+For the index, all the capital letters such as $I,J,K,L$ etc. indicates it's
+CIS states, and the lowercase letter is used to refer to MO. $\Phi^{a}_{i}$
+means the electron is excited from occupied orbital $i$ to virtual orbital $a$.
+For simplicity, here in this derivation we omit the spin state. 
+
+In (\ref{eq:1}), the first term $T_{I}T_{J}^{[x]}$ generally needs to solve the
+CP-CIS equation to get the response for CIS amplitude, now all the remaining
+problems now concentrates on $\langle\Phi^{a}_{i}|\Phi^{b[x]}_{j}\rangle$.
+
+\section{The first step: general consideration}
+%
+%
+%
+%
+For some general Slater determinant, we have:
+\begin{equation}
+ \label{eq:2}
+\Phi = \frac{1}{\sqrt{n!}}
+\begin{vmatrix}
+   \varphi_{1}(1) & \varphi_{2}(1) & \cdots & \varphi_{n}(1) \\
+  \varphi_{1}(2) & \varphi_{2}(2) & \cdots & \varphi_{n}(2) \\
+  \cdots & \cdots & \cdots & \cdots                                \\
+  \varphi_{1}(n) & \varphi_{2}(n) & \cdots & \varphi_{n}(n) \\
+\end{vmatrix}
+\end{equation}
+For it's derivatives, from mathematical derivation we know that:
+\begin{equation}
+ \label{eq:3}
+\Phi^{[x]} = \sum_{p=1}^{n}\frac{1}{\sqrt{n!}}
+\begin{vmatrix}
+   \varphi_{1}(1) & \varphi_{2}(1) & \cdots & 
+  \frac{\partial \varphi_{p}(1)}{\partial \bm{x}} &
+   \cdots & \varphi_{n}(1) \\
+   \varphi_{1}(2) & \varphi_{2}(2) & \cdots &
+   \frac{\partial \varphi_{p}(2)}{\partial \bm{x}} &
+   \cdots  & \varphi_{n}(2) \\
+   \cdots & \cdots & \cdots & \cdots  & \cdots   & \cdots     \\
+   \varphi_{1}(n) & \varphi_{2}(n) & \cdots & 
+   \frac{\partial \varphi_{p}(n)}{\partial \bm{x}}  
+   &\cdots & \varphi_{n}(n) \\
+\end{vmatrix}
+\end{equation}
+
+Firstly, let's think about the second order Slater
+determinants. After calculation, it turns out that
+$\langle\Phi|\Phi^{[x]}\rangle$ equals to
+$\sum_{p}^{2}\langle\varphi_{p}|\varphi^{[x]}_{p}\rangle$. Hence we can suggest
+some hypothesis below:
+\begin{theorem}
+\begin{equation}
+\label{eq:8}
+ \langle\Phi|\Phi^{[x]}\rangle =
+\sum_{p}^{n}\langle\varphi_{p}|\varphi^{[x]}_{p}
+\rangle
+\end{equation}
+establishes for the $nth$ order Slater determinants.
+\end{theorem}
+
+Now let's go to prove it by starting from the definition of determinant:
+\begin{equation}
+ \label{eq:4}
+\Phi = \sum_{1\leq i1<i2\cdots<in\leq n}(-1)^{P( i1, i2, \cdots,
+in)}\varphi_{i1}(1)\varphi_{i2}(2)\cdots\varphi_{in}(n)
+\end{equation}
+$P$ is the permutation operator.
+
+Accordingly, for $\Phi^{[x]}$, we have similar expansion:
+\begin{equation}
+ \label{eq:5}
+\Phi^{[x]} = \sum_{p}\sum_{1\leq i1<i2\cdots<in\leq n}(-1)^{P( i1, i2, \cdots,
+in)}\varphi_{i1}(1)\varphi_{i2}(2)\cdots\varphi_{p}^{'}(k)\cdots\varphi_{in}(n)
+\end{equation} 
+We use $\varphi_{p}^{'}(n)$ to designate the MO derivatives.
+
+For $\langle\Phi|\Phi^{[x]}\rangle$, we can see; there's always have MO
+derivatives in the ket. So generally we have have two cases:
+\begin{itemize}
+ \item $\ket{\varphi_{p}^{'}}$ and $\bra{\varphi_{p}}$ have same electron
+residing on
+ \item $\ket{\varphi_{p}^{'}}$ and $\bra{\varphi_{p}}$ have different electron
+residing on
+\end{itemize}
+For the second situation, it's easy to see that $\bra{\varphi_{p}}$ is
+impossible to find ``correct'' MO to make the integral equal to $1$. Hence the
+whole expression, in the second situation will goes to zero.
+
+For the first situation, it's easy to know that (below $p$ is fixed):
+\begin{align}
+ \label{eq:6}
+&\frac{1}{n!}
+\begin{vmatrix}
+   \varphi_{1}(1) & \varphi_{2}(1) & \cdots & \varphi_{n}(1) \\
+  \varphi_{1}(2) & \varphi_{2}(2) & \cdots & \varphi_{n}(2) \\
+  \cdots & \cdots & \cdots & \cdots                                \\
+  \varphi_{1}(n) & \varphi_{2}(n) & \cdots & \varphi_{n}(n) \\
+\end{vmatrix}
+\begin{vmatrix}
+   \varphi_{1}(1) & \varphi_{2}(1) & \cdots & 
+  \frac{\partial \varphi_{p}(1)}{\partial \bm{x}} &
+   \cdots & \varphi_{n}(1) \\
+   \varphi_{1}(2) & \varphi_{2}(2) & \cdots &
+   \frac{\partial \varphi_{p}(2)}{\partial \bm{x}} &
+   \cdots  & \varphi_{n}(2) \\
+   \cdots & \cdots & \cdots & \cdots  & \cdots   & \cdots     \\
+   \varphi_{1}(n) & \varphi_{2}(n) & \cdots & 
+   \frac{\partial \varphi_{p}(n)}{\partial \bm{x}}  
+   &\cdots & \varphi_{n}(n) \\
+\end{vmatrix} \nonumber \\
+&= \frac{1}{n!}\sum_{i}^{n}\langle\varphi_{p}(i)|\frac{\partial
+\varphi_{p}(i)}{\partial \bm{x}}\rangle
+\times\langle\bigtriangleup^{(p, i)}|\bigtriangleup^{(p,
+i)}\rangle \nonumber \\
+&= \frac{1}{n}\sum_{i}^{n}\langle\varphi_{p}(i)|\frac{\partial
+\varphi_{p}(i)}{\partial \bm{x}}\rangle \nonumber \\
+&=  \langle\varphi_{p}|\frac{\partial
+\varphi_{p}}{\partial \bm{x}}\rangle
+\end{align}
+Here we have used the Laplace theorem to expand the Slater determinant, and 
+in deriving the final conclusion we have used the relation that
+electrons are indistinguishable.
+
+Finally, combined with expression in (\ref{eq:3}), we get:
+\begin{equation}
+ \label{eq:7}
+\langle\Phi|\Phi^{[x]}\rangle =
+\sum_{p}^{n}\langle\varphi_{p}|\varphi^{[x]}_{p}\rangle
+\end{equation}
+
+\section{The second step: considering the CIS Slater determinants}
+%
+%
+%
+%
+So far what we have demonstrated, is only for two identical determinants; the
+only difference is that the one in the ket has MO derivatives. 
+Generally, for the CIS case, the integration of Slater determinants can have
+following four
+choices:
+\begin{itemize}
+\item $\langle\Phi^{a}_{i}|\Phi^{a[x]}_{i}\rangle$, which has been proved
+\item $\langle\Phi^{a}_{i}|\Phi^{b[x]}_{i}\rangle$, $a \neq b$
+\item $\langle\Phi^{a}_{i}|\Phi^{a[x]}_{j}\rangle$, $i \neq j$
+\item $\langle\Phi^{a}_{i}|\Phi^{b[x]}_{j}\rangle$, $i \neq j$ and $a \neq
+b$
+\end{itemize}
+We can analyze each of the situation in the similar way.
+
+For the second case, we may have the following possibilities:
+ \begin{itemize}
+ \item $\ket{\varphi_{b}^{'}}$, MO derivatives is on orbital b 
+ \item $\ket{\varphi_{i}^{'}}$, MO derivatives is on orbital i 
+ \item $\ket{\varphi_{p}^{'}}$, $p \neq i$ and $p \neq b$
+\end{itemize} 
+In the third situation, it's easy to see the integral of
+$\langle\Phi^{a}_{i}|\Phi^{b[x]}_{i}\rangle$ definitely goes to
+zero. Since the orbital b in the ket can not find its ``pair'' to make the
+integral equal to 1. In the second situation,  while the MO derivatives is on
+orbital i; for the same reason the integral will go to zero, too. Hence the MO
+derivatives can be only on orbital b.
+
+Next, let's consider the bra corresponds to $\ket{\varphi_{b}^{'}}$. It's easy
+to see only the integral below is not zero:
+\begin{equation}
+ \label{eq:10}
+\langle\varphi_{a}|\varphi_{b}^{'}\rangle
+\end{equation}
+Since if we have $\bra{\varphi_{p}}$ ($p \neq a$), then the orbital a in the
+bra can not find its corresponding orbital in ket so that to make integral
+equal to 1.Hence finally, we see:
+\begin{equation}
+\label{eq:11}
+ \langle\Phi^{a}_{i}|\Phi^{b[x]}_{i}\rangle =
+\langle\varphi_{a}|\varphi_{b}^{'}\rangle
+\end{equation}
+Similarly, for the $\langle\Phi^{a}_{i}|\Phi^{a[x]}_{j}\rangle$ we have:
+\begin{align}
+\label{eq:12}
+ \langle\Phi^{a}_{i}|\Phi^{a[x]}_{j}\rangle &=
+\langle\varphi_{i}|\varphi_{j}^{'}\rangle 
+\end{align}
+and by applying the same technique, for the
+$\langle\Phi^{a}_{i}|\Phi^{b[x]}_{j}\rangle$ we can see it's always zero. 
+
+Finally, we can express (\ref{eq:1}) as:
+\begin{equation}
+ \label{eq:13}
+\begin{split}
+ \langle\Psi_{I}|\Psi_{J}^{[x]}\rangle &= T_{I}T_{J}^{[x]} +
+\sum_{ia}T_{I,ia}\sum_{p}T_{J,ia}\langle\varphi_{p}|\varphi^{[x]}_{p}\rangle
+\nonumber \\
+&+\sum_{iab}T_{I,ia}T_{J,ib}\langle\varphi_{a}|\varphi_{b}^{[x]}\rangle
++\sum_{ija}T_{I,ia}T_{J,ja}\langle\varphi_{i}|\varphi_{j}^{[x]}\rangle 
+\end{split}
+\end{equation}
+ 
+So far we do not consider how to express the response the MO, what we do here
+is just to find a way converting the Sater determinants into the MO expression.
+In the next step, we will begin to consider the detailed expression of
+$\varphi^{[x]}$.
+
+\section{Detailed discussion for $\varphi^{[x]}$} 
+%
+%
+%
+Generally, the MO can be expressed as:
+\begin{equation}
+ \label{eq:14}
+\varphi_{p} = \sum_{\mu}C_{\mu p}\phi_{\mu}
+\end{equation}
+Hence the MO derivatives can be expressed as:
+\begin{equation}
+ \label{eq:15}
+\varphi_{p}^{[x]} = \sum_{\mu}C^{[x]}_{\mu p}\phi_{\mu} + \sum_{\mu}C_{\mu
+p}\phi^{[x]}_{\mu}
+\end{equation}
+The $C^{[x]}_{\mu p}$ characterizes the MO response to the external Hamiltonian
+change, and as we know; for occupied orbitals virtual part is added in, and for
+virtual orbitals the occupied part added in. Hence determining from the
+expression of (\ref{eq:13}), it's clear that there will be no MO response terms
+appearing in the expression. Hence we can re-express the (\ref{eq:15}) as:
+\begin{equation}
+ \label{eq:16}
+\varphi_{p}^{[x]} = \sum_{\mu}C_{\mu p}\phi^{[x]}_{\mu}
+\end{equation}
+
+Now we can bring in the (\ref{eq:16}) into the (\ref{eq:13}) to get the final
+expression:
+\begin{equation}
+ \label{eq:17}
+\begin{split}
+ \langle\Psi_{I}|\Psi_{J}^{[x]}\rangle &= T_{I}T_{J}^{[x]} +
+\sum_{ia}T_{I,ia}T_{J,ia}\sum_{p}^{ALL MO}
+\sum_{\mu}\sum_{\nu}C_{\mu p}C_{\nu p}
+\langle\phi_{\mu}|\phi^{[x]}_{\nu}\rangle
+\nonumber \\
+&+\sum_{iab}T_{I,ia}T_{J,ib}\sum_{\mu}\sum_{\nu}C_{\mu a}C_{\nu
+b}\langle\phi_{\mu}|\varphi_{\nu}^{[x]}\rangle \nonumber \\
+&+\sum_{ija}T_{I,ia}T_{J,ja}\sum_{\mu}\sum_{\nu}C_{\mu i}C_{\nu
+j}\langle\phi_{\mu}|\varphi_{\nu}^{[x]}\rangle 
+\end{split}
+\end{equation}
+
+\end{document}

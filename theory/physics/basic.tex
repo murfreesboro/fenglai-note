@@ -1,0 +1,747 @@
+%
+% OK
+%
+% revised on Jan. 29th; 2009
+% problems behind:
+%   this part is not fully finished. we wish to evaluate simple
+% Heisenberg relationship through free wave packets.
+%
+% revised at July, 26th, 2009
+% make a whole revision to the chapter, free particle part rewrite
+% and correct the bug related to the h
+% and do many corrections
+%
+% revised at Aug. 1st, 2009
+% only small modifications made, so far all has been satisfied, leaving
+% only the Heisenberg relation unsolved
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic Framework In Quantum Mechanics:
+% the main target of this chapter is to set up the general framework
+% to understand the QM in a very coarse way and conceptual way. we
+% decide that only provide the concept below :
+% 1 wave function and its general meaning
+%   1.1 it contains everything about the quantum state
+%   1.2 probability waves
+%   1.3 all the wave functions composed into a function space
+% 2 physical quantity:
+%   2.1 represented as operator
+%   2.2 eigen value and eigen vector
+% 3 schrodinger equation
+% 4 Principle of Superposition the discussing examples we are  involved:
+%   1 the free particle wave function
+%   2 infinite well case
+%   3 simple heisenberg relationship through free wave packets
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Basic framework in quantum mechanics}
+\label{basic_chapter}
+%
+% only provide the conceptual framework to understand
+% the quantum mechanics
+%
+%
+This chapter here is providing a general way to understand the
+quantum mechanics, here only the physical concepts are introduced;
+the rigorous expressions for them will be given in the following
+chapters.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some basic idea}
+%
+% quantum mechanics is concentrated on small particles
+%
+Quantum mechanics is created around the first decades in 20th century,
+while the physicist had found that some experiments could not get
+explanation within classical mechanics, these experiments were all
+related to the small particles, such as atom, electron, light,
+etc. After a long time effort, a new framework was established to
+explain the phenomenon occurring in such particles of very small mass
+at very small distance, this is the fundamental modification to the
+foundamental physical concepts and law; called quantum mechanics.
+
+How can we understand the difference between the classical mechanics
+and the quantum mechanics? What's the general feature of the quantum
+mechanics? Here in the following content, we will concentrate on the
+phenomenon related to the electromagnetic radiation to see the
+difference and the characteristic of quantum mechanics.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Planck-Einstein relations}
+%
+% introduce the photons
+%
+%
+In 19th century, light is considered as a kind of electromagnetic
+wave; and its motion complies with the Maxwell equation. However, in
+the beginning of 20th century, in the study of the blackbody
+radiation, where the electron magnetic theory failed to give a
+satisfied explanation; Planck suggested that to use the quantization
+of energy to solve this problem: $E = h\nu$. That is, for an
+electromagnetic wave of frequency of $\nu$, the only possible energy
+are integral multiples of quantum $h\nu$; where the $h$ is a
+new physical constant.
+
+Basically this result implies that the ``light'' is composed by some
+elementary indivisible components(called photon); so the character
+of light depends on the summation of such individual components.
+
+Later, Einstein used this idea to successfully explain the
+photo-electron effects. It has been found that for the photons, the
+equation below is satisfied:
+\begin{eqnarray}\label{BASICeq:1}
+% \nonumber to remove numbering (before each equation)
+  E &=& h\nu \nonumber \\
+  p &=& \frac{h}{\lambda}
+\end{eqnarray}
+Here the $h$ is the same new constant, as a very small number; it
+approximates to $10^{-34}Joule\cdot second$. We call this constant as
+Planck constant to memorize the physicist of Planck. Additionally, we
+note that in quantum mechanics, we will frequently meet another
+physical constant of $\hbar$, which is equal to $\frac{h}{2\pi}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Wave-particle duality: analysis on Young's
+experiment}\label{sec:WPDAOYE_in_basic}
+%
+% how can we understand the phenomenon based on the photons
+% concept? Introduce the feature of the quantum particles
+%
+However, as a kind of wave; light behaves just like waves has the
+phenomenon of interference; where such character does not retain in
+particles, such as bullets.  Therefore, the existence of the photon,
+and the wave character of the lights; both combined into the
+"wave-particle paradox".
+
+The famous Young's experiments clearly demonstrates the interference
+character of the light. Herein this experiment, the light emits from
+the source, falls onto an opaque screen which pierced by two split
+of $A_{1}$ and $A_{2}$; the light penetrates through the $A_{1}$ and
+$A_{2}$ interacted with each other and forming an interference
+pattern on the final project screen; where used for display the
+result.
+
+If $E_{1}(x)$ and $E_{2}(x)$ represents the electric field produced
+by split $A_{1}$ and $A_{2}$; we have:
+\begin{equation}\label{}
+E(x)= E_{1}(x) + E_{2}(x)
+\end{equation}
+and the intensity is:
+\begin{equation}\label{}
+|E(x)|^{2}= |E_{1}(x) + E_{2}(x)|^{2}
+\end{equation}
+How can we understand such phenomenon based on the photons?
+
+There's an experiments developed for further understanding this
+situation. If the project screen is a kind of photographic plate,
+firstly to make the light as ``weak'' as possible that they are
+passing through the split nearly one by one; then the project screen
+receives a kind of pattern on which some dots are irregularly
+arranged, these dots are the final position of the photons on the
+project screen. Next, while increasing the intensity of the light;
+more dots are on the project screen; and finally composed into the
+interference pattern.
+
+There are many efforts had been made to try to understand this
+circumstance; for example, such interference pattern is considered
+as a result of interaction between photons. However, after many
+attempts to understand such phenomenon, the people recognized that
+there's only one way to understand such circumstance; that the
+motion of the photons in this experiment should be only considered
+as some ``waves'', such wave portrays the probability of the
+particle's motion; finally the most important property for the wave
+is that it should satisfy the superposition principle so that the
+interference phenomenon can occur.
+
+More specifically, we can arrive such conclusion:
+\begin{center}
+  \begin{quote}
+    \begin{itemize}
+    \item the motion of quantum particle is described by some wave
+      function of $\Psi(\bm{r},t)$, which is related to the coordinate
+      vector of $\bm{r}$ and time $t$. Thus as a kind of wave, the
+      classical concept of trajectory has to be abandoned. Sometimes
+      in the wave function we can separate the time part and the
+      position part from each other, so in this case the wave function
+      can be shorten as $\Psi(\bm{r})$.
+    \item the quantum character in the motion of small particles is
+      its inherent property, so even the single quantum particle will
+      have the quantum pattern.
+    \item wave function of $\Psi(\bm{r},t)$ contains all the
+      information related to the motion of the corresponding quantum
+      particle.
+    \item wave function of $\Psi(\bm{r},t)$ is interpreted as a
+      probability amplitudes of the particle presence.
+    \item the principle of superposition is satisfied by the wave
+      function.
+\end{itemize}
+    \end{quote}
+\end{center}
+
+The declaration above are all fundamental concepts; they are only
+derived from facts; so such concepts is considered as the foundation
+of the whole quantum mechanics.
+
+As for the wave-particle paradox, the wave function is some kind of
+integration between wave and particle. In classical mechanics, a
+particle means that such object has properties of mass, charge etc.,
+which is its ``corpuscularity'' or ``atomicity''; also such classical
+particle possess definite velocity and coordinate while in moving. In
+quantum mechanics, the property of ``atomicity'' is conserved and the
+concept of the trajectory is swept out so as to adapt to the
+experiment facts. That's what we mean the ``particle'' in quantum
+mechanics.
+
+Similarly, the wave we discussed in classical mechanics is always
+referred to periodic change on some real physical objects, just like
+the waves in water, sound, or the electromagnetic field. However, such
+understanding has to be abandoned in quantum mechanics and only leaves
+the inherent superposition property of the wave, which is the essence
+behind the interference and the diffraction phenomenon.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Probability waves character}
+\label{sec:PWC_in_basic}
+%
+% how to understand the probability wave?
+% 1  definition
+% 2  property
+%
+As a probability wave, the wave function states that $
+|\Psi(\bm{r})|^{2} dxdydz$ represents the probability to find such
+particle in a little volume of $dxdydz$ around $\bm{r}$; if the
+integration is over all space, that is the probability of the particle
+over the whole space; this should  equal to $1$.
+
+For the multi-particle system, $ |\Psi(\bm{r}_{1}, \bm{r}_{2}, \cdots,
+\bm{r}_{N})|^{2} d\tau_{1}d\tau_{2}\cdots d\tau_{N}$ represents the
+probability of finding:
+\begin{center}
+particle 1 existed in the $(\bm{r}_{1}, \bm{r}_{1}+d\tau_{1})$; \\
+particle 2 existed in the $(\bm{r}_{2}, \bm{r}_{2}+d\tau_{2})$; \\
+$\cdots$ \\
+particle $N$ existed in the $(\bm{r}_{N}, \bm{r}_{N}+d\tau_{N})$.
+\end{center}
+
+There are some distinct requirements by the probability waves.
+First, the wave function should be normalized; that:
+\begin{equation}\label{}
+\int |\Psi(\bm{r})|^{2} d\tau = 1
+\end{equation}
+This property does not exist in classical mechanics.
+
+Secondly, the amplitude of wave function is not uniquely determined.
+If the wave function is multiplied by a constant, after
+normalization this new function is same with the old one. Thus only
+the relative probability distribution is meaningful.
+
+Thirdly, the phase of the wave function is also not uniquely
+determined. the $\Psi$ is same with the $e^{i\alpha}\Psi$. Actually,
+the phase is the most difficult concept in understanding the wave
+functions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiment Of spectral decomposition}
+%
+% introduce the concept of eigen value and eigen states
+%
+%
+%
+This experiment consists of directing a polarized plane
+monochromatic light wave onto an analyzer of A. This light is
+directly through Z axis, and the unit vector of $\bm{e_{p}}$ is used
+to indicate its polarization. The analyzer A transmits light
+polarized parallel to X axis, and absorbs the light polarized
+parallel to Y axis.
+
+Suggest that the wave for the light is:
+\begin{equation}\label{}
+E(\bm{r},t) = E_{0}\bm{e_{p}}e^{i(kz-\omega t )}
+\end{equation}
+After passing the analyzer of A, the wave becomes:
+\begin{equation}\label{}
+E^{'}(\bm{r},t) = E_{0}\bm{e_{x}}e^{i(kz-\omega t )}
+\end{equation}
+
+It's known that after passing the A the intensity ($I^{'}$) has some
+relation with the original intensity of $I$:
+\begin{equation}\label{}
+I^{'} = I \cos^{2}\theta
+\end{equation}
+
+So what happens on the quantum level, while the intensity is as weak
+as possible for the photons to pass the analyzer one by one?
+
+First, only the entire photons are found to pass the A; and it's
+impossible to predict whether a given incident photon will pass or
+absorbed by the analyzer, only the corresponding probability is
+known. Finally, if a larger number of photons are sent out, there
+are $N\cos^{2}\theta$ photons will be detected by the analyzer, this
+is coordinated with the intensity: $I \sim NE^{2}_{0}$.
+
+Compared with the Young's experiment, it has something new in this
+one. The analyzer of A gives a determined result while the wave
+function for each photon is passing through: whether it entirely
+passed or not. In quantum mechanics, the A works as a measurement
+device; and the measuring result is called eigen value of the
+measurement.
+
+Each of the eigen value corresponds an eigen state. Here the two
+eigen states character as: $\bm{e_{x}}, \bm{e_{y}}$. While the light
+is polarized in $\bm{e_{x}}$ direction, all the light are passing
+through; but for the light in the $\bm{e_{y}}$ direction, all the
+light are absorbed. Here the measurement to the eigen state leads to
+definite result of eigen value.
+
+However, for an arbitrary light, only the passing probability can be
+predicted. In fact, any arbitrary light can be decomposed as:
+\begin{equation}\label{}
+\bm{e_{p}} = \bm{e_{x}}\cos\theta+ \bm{e_{y}}\sin\theta
+\end{equation}
+Thus for the light, in which composing of $N$ photons ($N$ is a huge
+number); for each photon we can predict its function (it's wave
+function):
+\begin{equation}\label{}
+E(\bm{r},t) = E_{0}\bm{e_{x}}e^{i(kz-\omega t )}\cos\theta +
+E_{0}\bm{e_{y}}e^{i(kz-\omega t )}\sin\theta
+\end{equation}
+For this wave function, its measurement probability is:
+\begin{equation}\label{}
+|\hat{A}E(\bm{r},t)|^{2} = |E_{0}|^{2}\cos^{2}\theta
+\end{equation}
+While for the large number of $N$, the probability is
+$N|E_{0}|^{2}\cos^{2}\theta$; coincident with the result. Here the
+$\hat{A}$ is the representation of the measurement, it cause the
+wave function to collapse on to single direction of $\bm{e_{x}}$; so
+this phenomenon is called spectral decomposition.
+
+Through this experiment, something more fundamental is revealed;
+actually the rules we concluded below can be extended to all the
+quantum systems:
+\begin{center}
+\begin{quote}
+\begin{itemize}
+  \item compared with the wave function,  the measurement is used to
+  extract useful information from it. Mathematically it is
+  represented by operator, and corresponds to an arbitrary physical
+  quality.
+  \item For the specific measurement, it has a set of eigen state
+  function corresponding to it; each one gives an definite value
+  after the measurement; these values are the eigen value (result of the
+  measurement).
+  \item For any $\Psi(\bm{r},t)$, the probability to find the eigen value
+  of $a_{i}$ for a measurement is found by decomposing $\Psi(\bm{r},t)$
+  in  terms of eigen function of $\Psi_{i}(\bm{r},t)$:
+  \begin{equation}\label{BASICeq:2}
+  \Psi(\bm{r},t) = \sum_{i}a_{i}\Psi_{i}(\bm{r},t)
+  \end{equation}
+  the probability to find $a_{i}$ is: $\frac{|a_{i}|^{2}}{\sum|a_{i}|^{2}}$
+  \item For such mixing state of $\Psi$ defined in
+  (\ref{BASICeq:2}); the measurement will cause the wave function to
+  collapse:
+  \begin{equation}\label{}
+  \hat{A}\Psi(\bm{r},t) = a \Psi_{a}(\bm{r},t)
+  \end{equation}
+\end{itemize}
+\end{quote}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Matter wave function}
+%
+% matter also obeys the quantum relation
+%
+%
+\label{MWF_in_basic}
+%
+%
+It's strikingly to find out that the unusual behavior for the light
+is not unique but universal to all the small particles which fall
+into the arrange of quantum mechanics.
+
+Inspiring by the discovery on light, De Brogile put forward his
+matter wave hypothesis:
+\begin{eqnarray}
+\label{BASICeq:16}
+% \nonumber to remove numbering (before each equation)
+  E &=& h\nu = \frac{h\omega}{2\pi} = \hbar\omega \nonumber \\
+  \bm{p} &=& \frac{h}{\lambda} = \frac{h\bm{k}}{2\pi} = \hbar \bm{k}
+\end{eqnarray}
+Here the $\nu$ is the frequency of the wave, and $\omega$ is the
+corresponding angular frequency which is $\nu =
+\frac{\omega}{2\pi}$. Similarly, the $\bm{k}$ is the wave vector so we
+also have $\bm{k}\lambda = 2\pi$.
+
+This equation is same with (\ref{BASICeq:1}); it implies that motion
+of electrons and photons are controlled by the same equation with
+light.  After discussing so much over the light experiment, we can see
+the characteristic of quantum mechanics; however, it still need a
+function to determine the wave function. This function is the famous
+Schrodinger function.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Schrodinger equation}
+\label{SE_in_basic}
+%
+% Schrodinger equation
+%
+%
+Schrodinger equation is the equivalent function of Newton function
+in quantum mechanics. It's some kind of fundamental law in quantum
+mechanics.
+
+The Schrodinger equation states:
+\begin{equation}\label{BASICeq:3}
+  \left( -\frac{\hbar^{2}}{2m}\nabla^{2} + \hat{V}\right)\Psi(\bm{r},t)
+= i \hbar \frac{\partial \Psi(\bm{r},t)}{\partial t}
+\end{equation}
+The $\hat{V}$ is the potential energy operator. Here we can
+understand the operator as some ``function generating machine'' which
+is used to transform one function (the waves) to another form, they
+are all related to the details of the given quantum system.  By
+solving this equation, we can get the wave function of $\Psi(\bm{r},t)$.
+
+Here we can write the $\hat{V}$ and kinetic part together as
+$\hat{H}$, which is called Hamiltonian operator. Actually the
+expression of this operator can be compared with the Hamiltonian
+function in the classic mechanics (see the detailed
+discussion\cite{Landau}); in the following content, we can see that
+this operator possesses central position.
+
+If the potential energy operator does not contain the time factor, the
+wave function can be separated into $\Psi(\bm{r},t) =
+\Psi(\bm{r})f(t)$.  While inserting this form into (\ref{BASICeq:1}),
+we can finally get (more detailed derivation see the chapter
+discussing the Schrodinger equation):
+\begin{equation}\label{BASICeq:5}
+\hat{H}\Psi(\bm{r}) = E\Psi(\bm{r})
+\end{equation}
+This expression can be abbreviated as $\hat{H}\Psi = E\Psi$. So
+finally the time dependent wave function of $\Psi(\bm{r},t) =
+\Psi(\bm{r})exp(-iEt/\hbar)$. Where in this expression, the $E$ is the
+energy of this system.
+
+For an arbitrary molecule system, the Schrodinger equation under
+Born-Oppenheimer condition is:
+\begin{multline}\label{BASICeq:4}
+  \left\{\sum_{i=1}^{n}\left(\frac{-\hbar^{2}}{2m}\times\nabla_{i}^2\right)+
+    \sum_{i=1}^{n}\sum_{\alpha=1}^{N}
+    \left(\frac{-Z_{\alpha}e}{4\pi\epsilon_{0}}\frac{1}{\bm{r_{i\alpha}}}\right)+
+  \right. \\
+\left. \sum_{i<j}\left(\frac{e^{2}}{4\pi\epsilon_{0} \bm{r_{ij}}}\right)
+    \right\}\,\Psi=E\Psi
+\end{multline}
+In this equation, $n$ is the number of electrons, $N$ is the number of
+nucleus; $\alpha$ refers to indicate the nuclear, and index of $i,j$
+is used for the electrons. $Z_{\alpha}$ is the charge for the
+corresponding nuclear.In this equation, only the electrons are
+considered as the quantum particles existing in the wave function. In
+quantum chemistry, most of the problems are directly or indirectly
+related to the solving of this equation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Atomic units}
+%
+%
+%
+%
+Now it's time to introduce the atom unit which is frequently used
+across the quantum mechanics. In this case, the physical constants
+below are appointed to $1$:
+\begin{equation}
+  \label{BASICeq:7}
+  \frac{h}{2\pi} = m_{electron} = \frac{e^{2}}{4\pi\epsilon_{0}} = 1
+\end{equation}
+
+Then the above Schrodinger equation in (\ref{BASICeq:3}) is shorten
+as:
+\begin{equation}\label{BASICeq:8}
+  \left( -\frac{1}{2}\nabla^{2} + \hat{V}\right)\Psi(\bm{r},t)
+= i  \frac{\partial \Psi(\bm{r},t)}{\partial t}
+\end{equation}
+
+The Schrodinger equation shown in the (\ref{BASICeq:4}) can be written
+as:
+\begin{equation}
+  \label{BASICeq:9}
+  \left\{\sum_{i=1}^{n}(\frac{-1}{2}\times\nabla_{i}^2)+
+\sum_{i=1}^{n}\sum_{\alpha=1}^{N}(\frac{-Z}{\bm{r_{i\alpha}}})+
+\sum\sum_{i<j}(\frac{1}{\bm{r_{ij}}})
+\right\}\,\Psi=E\Psi
+\end{equation}
+It can see this equation is much more simple by dropping the
+constants.
+
+In the new form of Schrodinger equations, the energy gotten by solving
+the equation is named with ``Hatree'', where we have such
+transformation relations:
+\begin{equation}
+  \label{BASICeq:10}
+  1Hatree = 27.211 eV = 627.51 kcal/mol = 2625.5 kj/mol
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{ Superposition principle}
+\label{SP_in_basic}
+%
+% this part of contents may contains two folders of meanings:
+%  1  the description of the quantum mechanics may be different mathematically
+%  2  the superposition character deeply portray the wave character of the
+%     quantum particles
+%
+
+The wave functions are the result of the corresponding Schrodinger
+equation. Just like the Maxwell equations, if $\Psi_{1}$ and
+$\Psi_{2}$ are two solutions of the Schrodinger equation in
+(\ref{BASICeq:3}), it can see that
+$\lambda_{1}\Psi_{1}+\lambda_{2}\Psi_{1}$($\lambda_{i}$ is some
+coefficient) is also the solution of this equation. Thus the
+superposition character of the wave functions is satisfied in the
+quantum mechanics.
+
+This is a very important character to understanding the essence of the
+quantum mechanics. Unlike the classical mechanics, in which we use
+only one function to describe the state of the objects(this function
+may be defined by the Newton equation). In the macroscopic word,
+generally to say, to solve the function we only need information
+related to coordinates and velocities (or momentum), then all the
+physical quantity can be derived.
+
+However, in the quantum mechanics; we need a function space to
+describe the state of the quantum particle. Such different way of
+description implies that we may potentially have different choice to
+represent the same system (later in the content, we will discuss the
+representation; that is what we are talking here); thus we may use
+some very different mathematical way to tackle the problems in the
+quantum mechanics.
+
+On the other hand, the character of superposition is some essential
+property to understand the behavior of the quantum particles. Since
+the wave functions is some dispersed function among all the space,
+the superposition character implies that two wave functions may have
+the chance to mix together to form a more stable quantum state (we
+consider the two system together to form a one); that's the origin
+of the interference phenomenon in the quantum mechanics.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A simple case: wave function for free particle}
+\label{ASCWFFFP_in_basic}
+%
+%
+%
+%
+Here we are going to present the most simplest example in solving
+the Schrodinger equation: the wave function for the free particles.
+
+What is the free particle? Imagine that in the space only a quantum
+particle exists, so that there's nothing affecting it's motion.
+Under this state, such quantum particle is called free particle. In
+the above content, the matter wave function actually describe the
+motion of free particles.
+
+Thus, in the Schrodinger equation we have only the kinetic operator,
+and the potential operator always equals to zero. So the corresponding
+Schrodinger equation is (in atom units):
+\begin{equation}
+  \label{BASICeq:6}
+  -\frac{1}{2}\nabla^{2}\Psi(\bm{r},t) = i \frac{\partial
+\Psi(\bm{r},t)}{\partial t}
+\end{equation}
+
+Since that the left part in the (\ref{BASICeq:6}) is irrelevant to the
+time, so according to the (\ref{BASICeq:5}) we can rewrite the
+(\ref{BASICeq:6}) as:
+\begin{equation}
+  \label{BASICeq:11}
+    -\frac{1}{2}\nabla^{2}\Psi(\bm{r},t) = E \Psi(\bm{r},t)
+\end{equation}
+Here $E$ characterizes the energy of the free particle.
+
+Since that it's kinetic energy contained in this system, so it's
+appropriate to express the total energy via the momentum of $\bm{p}$:
+\begin{equation}
+  E = \frac{\bm{p} \cdot \bm{p}}{2m} = \frac{\bm{p} \cdot \bm{p}}{2} =
+  \frac{p^{2}}{2}
+\end{equation}
+Therefore we can have the (\ref{BASICeq:11}) as:
+\begin{equation}
+  \label{BASICeq:12}
+      -\nabla^{2}\Psi(\bm{r},t) = p^{2} \Psi(\bm{r},t)
+\end{equation}
+
+The equation in the (\ref{BASICeq:12}) is simple to solve, actually
+it's solution is $A exp(i\bm{p}\cdot\bm{r})$ ($A$ is some
+constant). Combining with the time part, we can express the whole
+solution as:
+\begin{equation}
+  \label{BASICeq:13}
+  \Psi(\bm{r},t) = Ae^{i(\bm{p}\cdot\bm{r} - Et)}
+\end{equation}
+
+Now we can prove that the solution of (\ref{BASICeq:13}) will lead to
+the character of matter wave function in the (\ref{MWF_in_basic}). For
+simplicity we only consider the one dimension case, then the
+(\ref{BASICeq:13}) is (without considering the time part):
+\begin{equation}
+  \label{BASICeq:14}
+    \Psi(x,t) = Ae^{ip_{x}x}
+\end{equation}
+If $x^{'} = x + \lambda$, then we should have $\Psi(x^{'},t) =
+\Psi(x,t)$; so this implies that:
+\begin{equation}
+  \label{BASICeq:15}
+  p_{x}\lambda = 2\pi \rightarrow  p_{x} = \frac{2\pi}{\lambda} = k_{x}
+\end{equation}
+Which is identical to the (\ref{BASICeq:16}).
+
+For the energy, similarly we have $\Psi(x,t) = \Psi(x,t+T)$ while $T$
+is the period of the wave. So by the same derivation we can have:
+\begin{equation}
+  \label{BASICeq:17}
+  ET = 2\pi \rightarrow E = \frac{2\pi}{T} = 2\pi\nu =
+  \frac{h}{\hbar}\nu = h\nu
+\end{equation}
+So we finally arrive at the matter wave functions!
+
+Now let's concentrate on the time independent state, where the wave
+function is $\Psi(\bm{r}) = Aexp ( i\bm{p}\cdot\bm{r})$. It's amusing
+to see that this function indicates that the probability distribution
+in every location of $\bm{r}$ is constant: $|\Psi(\bm{r})|^{2} =
+A^{2}$. The same relative probability distribution implies that
+particle's position can not fixed anywhere, while this particle has a
+fixed momentum everywhere.
+
+Furthermore, the energy of this free particle is changing in
+continuously way, that the E changes from $0$ to $\infty$. For each
+definite energy, we get a corresponding wave function of
+$\Psi(\bm{r})$. For different wave function (corresponding to
+different energy), it's easy to prove that
+$\int\Psi_{\bm{p}}(\bm{r})\Psi_{\bm{p}^{'}}(\bm{r})dp = 0$; so this
+implies that all the wave functions corresponding to the solution of
+(\ref{BASICeq:3}) are composed into a full space, this space is in
+$\infty$ dimension.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{How to express an arbitrary wave function for free particle }
+\label{sec:HTEAAWFFFP_in_basic}
+
+Now let's go to see how to express an arbitrary state for free
+particles. First, let's rewrite the plane wave function in
+(\ref{BASICeq:13}) into another form (for simplicity the constant of
+$A$ is dropped):
+\begin{equation}
+  \label{BASICeq:18}
+  \psi(\bm{r},t) = e^{i(\bm{k}\cdot\bm{r} - \omega t)}
+\end{equation}
+Since that $E$ and $\bm{p}$ only differ with $\omega$ and $\bm{k}$
+with constant of $\hbar$.
+
+From the principle of superposition shown in the (\ref{SP_in_basic}),
+we can express such arbitrary wave function through the Fourier
+integration as:
+\begin{equation}
+  \label{BASICeq:19}
+  \Phi (\bm{r}, t) = \frac{1}{(2\pi)^{\frac{3}{2}}}\int \Psi(\bm{k}, t)
+e^{i(\bm{k}\cdot\bm{r} - \omega t)}d^{3}\bm{k}
+\end{equation}
+Here the $t$ is considered to be fixed and the $\psi$ characterizes
+each ``component'' within the composite wave function of $\Phi$, and
+the $\Psi$ characterizes the weight of the component(equivalent to the
+coefficient of $\lambda$ in the \ref{SP_in_basic}). Mathematically to
+say, any wave function which is square-integrable across the whole
+space can be expressed through the (\ref{BASICeq:19}).
+
+The wave function in the (\ref{BASICeq:19}), as a form of
+superposition of plane waves; is called ``wave packet''. It's
+interesting to see that through the Fourier transformation, we can get
+another expression similar to the (\ref{BASICeq:19}):
+\begin{equation}
+  \label{BASICeq:20}
+    \Psi (\bm{k}, t) = \frac{1}{(2\pi)^{\frac{3}{2}}}\int \Phi(\bm{r}, t)
+e^{-i(\bm{k}\cdot\bm{r} - \omega t)}d^{3}\bm{r}
+\end{equation}
+
+It's amazing to see that both of the $\Phi$ and $\Psi$ are the ``dual
+functions'', one is expressed in the momentum space (related to wave
+vector of $\bm{k}$) and the other is expressed in coordinate space of
+$\bm{r}$. Such relation will be further investigated in the following
+content.
+
+Finally we note that the transformation in the (\ref{BASICeq:19}) and
+(\ref{BASICeq:20}) are not only limited to the free particle system
+wave function, but can be applied to any square integrable wave
+functions; this is because the generality of the Fourier integration.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Heisenberg Uncertainty Principle}
+\label{sec:HUP_in_basic}
+%
+% to derive this through the wave packets
+%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Another case: particle in infinite deep well}
+\label{ASPIIDW_in_basic}
+%
+%
+%
+%
+After make some small modification on the free particle, we can get
+another case: particle in the infinite deep well; in which we have
+the potential operator as:
+\begin{equation}\label{}
+ V(x) = \left\{
+  \begin{array}{ll}
+    0,      & \hbox{ $0 < x < a$} \\
+    \infty, & \hbox{ $x<0, x>a$}
+  \end{array}
+\right.
+\end{equation}
+Here in this case for simplicity the Hamiltonian is restricted into X
+axis.
+
+It's easy to see that the Schrodinger function have got two
+independent solutions, one is $exp(ipx)$, the other is $exp(-ipx)$ ($p
+$ is the momentum on the X axis); so the solution can be written as:
+\begin{equation}\label{}
+  \Psi(x) = a \times exp(ipx) + b
+\times exp(-ipx)
+\end{equation}
+Now we use the boundary condition to determine the real solution.  The
+physical condition requires that $\Psi(0)=0$ and $\Psi(a)=0$; so from
+$\Psi(0)=0$ we know that $\Psi = 2ia \sin px$; it can be further
+written as $\Psi = A \sin px$ (the imaginary number does not affect the
+wave function, so simply drop it). From the $\Psi(a)=0$, the energy is
+achieved: $E = (n\pi)^{2}/2ma^{2}$ ($n=1,2,\cdots$).
+
+Finally, we can get the specific wave function: $\Psi (x) =
+\sqrt{\frac{2}{a}} \sin (\frac{n\pi}{a})$.
+
+It's very interesting to make some analysis to this system. First,
+compared with the free particle, the system has a discrete energy
+level; and at the lowest energy level, the energy of the particle is
+not zero (this can be demonstrated by the uncertainty law).  For
+each energy, it corresponds a wave function. For different wave
+function, they are also orthogonal with each other. So here the
+Hamiltonian defined in this system also forms a space.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

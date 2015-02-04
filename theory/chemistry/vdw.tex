@@ -1,0 +1,213 @@
+%
+% set up on June 2013
+%
+\chapter{Van der Waals Interaction in Density Functional Theory}
+%
+%
+The dispersion or Van der Waals interaction is classical in Chemistry. 
+Given two widely separated systems, an instantaneous dipole moment on 
+one system induces a dipole moment on the other. The attraction between 
+these moments results in an interaction is expressed as following:
+\begin{equation}
+ \label{VDW_DFT_eq:1}
+ E_{VDW} = -\frac{C_{6}}{R^{6}}
+\end{equation}
+where $C_{6}$ is some constant whose value depends on the systems
+involved, and $R$ is the distance between the two separated systems.
+
+%
+% let's state that in density functional theory 
+% it's hard to include VDW
+%
+
+\section{XDM Model}
+%
+%
+
+\subsection{Oringinal Idea for XDM Model}
+%
+%
+%
+The XDM model is promoted by A. D. Becke and his colleagues. It's 
+trying to provide a clear model to explain the Van der Waals interaction
+in Density functional theory. Basically, it trys to give an answer to
+the following question, that How do ``instantaneous'' dipole moments arise 
+in systems which may have a zero permanent dipole moment? For example, 
+in the noble gas system? XDM model suggests that the ``instantaneous'' 
+dipole moments actually arise from the assymetrical exchange hole.
+
+Consider an electron with $\sigma$ spin in an molecular system. As it moves 
+through the system it is accompanied by an exchange hole whose shape depends 
+on the electron’s instantaneous position $r_{1}$. The hole is given by the
+expression(This is constructed based on the Slater determinant. 
+see \ref{DHF_in_density_matrices} for more information):
+\begin{equation}
+\label{XDM_exchange_hole}
+ h_{X\sigma}(r_{1},r_{2}) = -\frac{
+\sum_{ij}\varphi_{i\sigma}(r_{1})\varphi_{i\sigma}(r_{2})\varphi_{j\sigma}(r_{1})
+\varphi_{j\sigma}(r_{2})}{\rho_{\sigma}(r_{1})}
+\end{equation}
+where $i,j$ are both occupied electron orbitals. Here $r_{2}$ defines the shape 
+of the hole and $r_{1}$ is called the ``reference'' point. The spin exchange 
+energy $E_{X}$ is related to the exchange hole by:
+\begin{equation}
+ \label{XDM_exchange_energy}
+E_{X\sigma} = \frac{1}{2}\int dr_{1}dr_{2} \rho_{\sigma}(r_{1}) 
+\frac{h_{X\sigma}(r_{1},r_{2})}{r_{12}}
+\end{equation}
+
+The exchange-hole definition enables us to visualize the effects of self-interaction 
+correction and exchange. When an electron is at $r_{1}$, the hole measures the depletion 
+of probability with respect to the total electron density of finding another same-spin 
+electron at $r_{2}$. The probability of finding
+another same-spin electron at $r_{1} = r_{2}$ is completely extinguished because of the 
+Pauli principle. In general, the depletion of the electron density because of the Fermi hole
+is same with the integration of electron density itself:
+\begin{equation}
+ \label{XDM_eq:1}
+\int dr_{2} h_{X\sigma}(r_{1},r_{2}) = -\int dr_{1} \rho(r_{1}) = -1
+\end{equation}
+Therefore, the electron density plus its Fermi hole has zero charge overall.
+
+However, the hole is not, in general, spherically symmetric around $r_{1}$. Only in a uniform 
+electron gas it has spherical symmetry. Thus the electron density plus its Fermi hole,
+although it's zero charge overall, since it's not symmetrical therefore it will produce
+a dipole moment for the reference point of $r_{1}$. We note that such induced dipole moment
+is not affecting total energy. Since in equation \ref{XDM_exchange_hole}, the hole only
+senses the spherical average around $r_{1}$ (see \ref{hole_function_pair_distribution} 
+for more details that why the hole function is symmetrical); therefore such assymetrical
+deformation of the hole does not alter the exchange enegry.
+
+Based on the above analysis, we can define some ``operator'' to evaluate the dipole 
+moment triggered by the aspherical exchange hole:
+\begin{equation}
+ \label{XDM_model}
+d_{X\sigma}(\bm{r_{1}}) = 
+\frac{
+\sum_{ij}\varphi_{i\sigma}(r_{1})\varphi_{j\sigma}(r_{1})}{\rho_{\sigma}(r_{1})}
+\left[ \int dr_{2} \varphi_{i\sigma}(r_{2})
+\varphi_{j\sigma}(r_{2}) \bm{r_{2}} \right] - \bm{r_{1}}
+\end{equation}
+This term is used to describe the difference between position of $\bm{r_{1}}$ and
+the average exchange hole at $\bm{r_{1}}$. 
+
+Based on this operator form, the induced dipole could be expressed as:
+\begin{equation}
+\label{XDM_eq:0}
+ \langle d_{X\sigma}\rangle = \int \rho_{\sigma}(r_{1})d_{X\sigma}(\bm{r_{1}}) dr_{1}
+\end{equation}
+This is the hypothesis for the whole XDM model.
+
+Now let's derive the induced dipole for multiple systems from such assumption. 
+Suggest that we have two  separated systems A and B and they are far away from 
+each other ($R$ is large enough)
+comparing with their size. If the system B is approaching to A then there will be
+an induced electric field generated because of the assymetrical deformation of the 
+exchange hole. This electric field could be expressed as\footnote{This expression 
+could be got from the classic induced dipole moment expression}:
+\begin{equation}
+ \label{XDM_eq:2}
+\bm{E} = \frac{(3\bm{d}_{X\sigma}\cdot \bm{R})\bm{R}}{R^{5}} - 
+\frac{\bm{d}_{X\sigma}}{R^{3}}
+\end{equation}
+Here $\bm{d}_{X\sigma}$ is defined in \ref{XDM_model}.
+
+For system B, let's assume that it's Polarizability is $\alpha_{B}$ The corresponding 
+induced diploe moment is:
+\begin{equation}
+\label{XDM_eq:3}
+ \bm{d}_{ind} = \alpha_{B} \bm{E}
+\end{equation}
+
+Then the dipole energy on the point of $\bm{r_{1}}$could be expressed as:
+\begin{equation}
+ \label{XDM_eq:4}
+V = \frac{\bm{d}_{X\sigma}\cdotp \bm{d}_{ind}}{R^{3}} - 
+\frac{3 (\bm{d}_{X\sigma}\cdotp \bm{R})(\bm{d}_{ind}\cdotp \bm{R})}{R^{5}}
+\end{equation}
+
+Now we can bring \ref{XDM_eq:2} and \ref{XDM_eq:3} into the \ref{XDM_eq:4} and omit
+these terms with $R^{10}$, we can get:
+\begin{equation}
+ \label{XDM_eq:5}
+ V= -\alpha_{B}\frac{\bm{d}_{X\sigma}\cdotp \bm{d}_{X\sigma}}{R^{6}}
+-3\alpha_{B}\frac{(\bm{d}_{X\sigma}\cdotp \bm{R})^{2}}{R^{8}}
+\end{equation}
+ 
+The average dipole moment energy could be got by integrating over the angles:
+\begin{align}
+\label{XDM_eq:6}
+ V^{avg} &= -\frac{\alpha_{B}}{4\pi}\int^{\pi}_{0} \int^{2\pi}_{0} \sin\theta d\theta d\phi 
+\left[ \frac{\bm{d}_{X\sigma}\cdotp \bm{d}_{X\sigma}}{R^{6}}
++3\alpha_{B}\frac{(\bm{d}_{X\sigma}\cdotp \bm{R})^{2}}{R^{8}}\right]   \nonumber \\
+&= -2\frac{\alpha_{B}d_{X\sigma}^{2}}{R^{6}}
+\end{align}
+By integrating over $r_{1}$ (the reference point), we can have:
+\begin{equation}
+\label{XDM_eq:7}
+ U_{\sigma} = \int \rho(r_{1}) V^{avg} dr_{1} = 
+-2\frac{\alpha_{B}\langle d_{X\sigma}^{2}\rangle}{R^{6}}
+\end{equation}
+Where $\langle d_{X\sigma}^{2}\rangle$ is
+ \begin{equation}
+ \langle d_{X\sigma}^{2}\rangle = \int \rho_{\sigma}(r_{1})d_{X\sigma}(\bm{r_{1}})\cdotp 
+d_{X\sigma}(\bm{r_{1}}) dr_{1}
+\end{equation}
+comparing with \ref{XDM_eq:0}.
+
+So far the dipole moment is only given for one spin state, for spin-resolved state
+it has:
+\begin{equation}
+ \label{XDM_eq:8}
+\langle d_{X}^{2} \rangle = \langle d_{X\alpha}^{2}\rangle + \langle d_{X\beta}^{2}\rangle
+\end{equation}
+therefore the spin-resolved energy is expressed as:
+\begin{equation}
+ \label{XDM_eq:9}
+U = -2\frac{\alpha_{B}\langle d_{X}^{2}\rangle}{R^{6}}
+\end{equation}
+and the coefficient of $C_{6}$ in \ref{VDW_DFT_eq:1} is given as:
+\begin{equation}
+ C_{6} = -2\alpha_{B}\langle d_{X}^{2}\rangle
+\end{equation}
+
+However, in the original paper Becke etc. found that \ref{XDM_eq:9} yields four times larger result 
+compared with experimental data, therefore, they take a heuristic approach to modify \ref{XDM_eq:9}
+into:
+\begin{equation}
+ \label{XDM_eq:10}
+U = -\frac{\alpha_{B}\langle d_{X}^{2}\rangle}{2R^{6}}
+\end{equation}
+so the corresponding $C_{6}$ is changing to:
+\begin{equation}
+\label{XDM_eq:12}
+ C_{6} = -\frac{1}{2}\alpha_{B}\langle d_{X}^{2}\rangle
+\end{equation}
+
+
+Expression \ref{XDM_eq:10} describes the dipole energy for B induced from A, and symmetrically;
+we also have dipole energy for A induced from B; which is:
+\begin{equation}
+ \label{XDM_eq:11}
+U_{AB} = -\frac{\alpha_{A}\langle d_{BX}^{2}\rangle}{2R^{6}}
+\end{equation}
+If A and B are different system, then how can we count \ref{XDM_eq:10} and \ref{XDM_eq:11} 
+together?
+
+For this case, Becke etc. defined the $C_{6}$ parameter as:
+\begin{equation}
+ \frac{2}{C_{6}} = \frac{1}{C_{6,AB}} + \frac{1}{C_{6,BA}}
+\end{equation}
+By bring \ref{XDM_eq:11} into this expression, we can have the final $C_{6}$ expression:
+\begin{equation}
+ \label{XDM_eq:13}
+C_{6} = \frac{\alpha_{A}\alpha_{B}\langle d_{AX}^{2}\rangle\langle d_{BX}^{2}\rangle}
+{\alpha_{A}\langle d_{BX}^{2}\rangle + \alpha_{B}\langle d_{AX}^{2}\rangle}
+\end{equation}
+
+
+
+ 
+
+
+

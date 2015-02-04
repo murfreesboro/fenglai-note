@@ -1,0 +1,1516 @@
+% 
+% firstly set up on Jan 2012
+%
+% fully derived the ERI in OS framework
+% derived the overlap, kinetic and nuclear integral in OS framework
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{OS Method}
+%
+%
+%
+%
+OS method is based on two cognitions for the integral of Gaussian primitive
+functions. The first cognition is that all of integral could be reduced into the
+form of three body overlap integrals. The second cognition is based on
+derivatives of Gaussian primitive function:
+\begin{equation}
+ \label{OS_general_int_eq:1}
+\frac{\partial \chi}{\partial R_{x}} = \frac{\partial
+(x^{l}y^{m}z^{n}e^{-\alpha r^{2}})}
+{\partial R_{x}} =  -lx^{l-1}y^{m}z^{n}e^{-\alpha r^{2}} + 2\alpha
+x^{l+1}y^{m}z^{n}e^{-\alpha r^{2}}
+\end{equation}
+Here the $x$ is expressed as:
+\begin{equation}
+ x = x_{e} - R_{x} 
+\end{equation}
+In such relation, it's clear that the $\chi(l,m,n)$, its derivatives and the
+higher angular momentum one $\chi(l+1,m,n)$ are connected with each other so
+that it provides an potential opportunity to link the $\chi(l+1,m,n)$
+and $\chi(l,m,n)$ together through $\chi$'s derivatives.
+
+Now following the definition in the OS method, we can express such 
+relation as:
+\begin{equation}
+ \label{OS_general_int_eq:2}
+ \frac{\partial \chi(r,\alpha,l,R)}{\partial R_{i}} = 
+2\alpha\chi(r,\alpha,l+\iota_{i},R) - N_{i}(l)\chi(r,\alpha,l-\iota_{i},R)
+\end{equation}
+as $i = x, y, z$. Original $\chi$ is $\chi(r,\alpha,l,R)$, so $r$ is the
+electron coordinate, $R$ is the nuclear coordinate, $\alpha$ is the exponent
+and $l$ is the angular momentum (actually it's a three dimensional vector).
+$\iota$ characterizes the arising or descending of the angular momentum,
+it's actually Kronecker symbol:
+\begin{equation}
+ \iota_{i} = (\delta_{ix}, \delta_{iy}, \delta_{iz})
+\label{OS_general_int_eq:3}
+\end{equation}
+Similarly, $N_{i}(l)$ is:
+\begin{equation}
+N_{i}(l) = 
+\begin{cases}
+ l_{x} & i = x \\
+ l_{y} & i = y \\
+ l_{z} & i = z 
+\end{cases}
+ \label{OS_general_int_eq:4}
+\end{equation}
+
+By moving the exponent to the left side, the \ref{OS_general_int_eq:2}
+could be further expressed into:
+\begin{equation}
+ \label{OS_general_int_eq:5}
+\chi(r,\alpha,l+\iota_{i},R) =  
+\frac{1}{2\alpha}\frac{\partial \chi(r,\alpha,l,R)}{\partial R_{i}}
++ \frac{N_{i}(l)}{2\alpha}\chi(r,\alpha,l-\iota_{i},R)
+\end{equation} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Three Center Overlap Integral}
+%
+%
+%
+The purpose for this section, is to employ the relation in the \ref{OS_general_int_eq:5}
+to derive a recursive relation for evaluating the three center overlap integral
+in terms of the corresponding lower angular momentum integrals. 
+
+Now let's suggest a three body overlap integral between $\chi_{a}, \chi_{b}$
+and $\chi_{c}$:
+\begin{equation}
+ \begin{split}
+(a|b|c) &= \int \chi_{a}(r)\chi_{b}(r)\chi_{c}(r) dr \\
+&= \int x^{l_{A}}_{A}y^{m_{A}}_{A}z^{n_{A}}_{A}e^{-\alpha r_{A}^{2}}
+        x^{l_{B}}_{B}y^{m_{B}}_{B}z^{n_{B}}_{B}e^{-\beta  r_{B}^{2}} 
+        x^{l_{C}}_{C}y^{m_{C}}_{C}z^{n_{C}}_{C}e^{-\gamma r_{C}^{2}}dr
+ \end{split}
+\label{OS_three_overlap_int_eq:1}
+\end{equation}
+A,B and C could be the same center, or different centers. From the previous
+chapter to evaluate the overlap integral, we know that we could combine
+$\chi_{a}$ and $\chi_{b}$ together and then combine the new Gaussian primitive
+which centers at $p$ with the $\chi_{c}$. The integral could be generally expressed as:
+\begin{equation}
+\label{general_expression_for_3_overlap_os}
+\begin{split}
+ \int \chi_{a}(r)\chi_{b}(r)\chi_{c}(r) dr &= 
+\kappa_{abc}I_{abc}^{x}I_{abc}^{y}I_{abc}^{z} \\
+&= e^{-\frac{\alpha\beta}{\alpha+\beta}|AB|^{2}}
+e^{-\frac{(\alpha+\beta)\gamma}{\alpha+\beta+\gamma}|PC|^{2}} \\
+& \int x^{l_{A}}_{A}y^{m_{A}}_{A}z^{n_{A}}_{A}
+       x^{l_{B}}_{B}y^{m_{B}}_{B}z^{n_{B}}_{B}
+       x^{l_{C}}_{C}y^{m_{C}}_{C}z^{n_{C}}_{C} 
+e^{-(\alpha+\beta+\gamma)|r_{G}|^{2}} dr        
+\end{split}
+\end{equation}
+In the combination of Gaussian primitives, new centers generated are given as:
+\begin{equation}
+ \begin{split}
+  \overrightarrow{P} &= \frac{\alpha \overrightarrow{A} + 
+\beta \overrightarrow{B}}{\alpha+\beta}
+\Rightarrow \\
+  \overrightarrow{G} &= \frac{(\alpha+\beta)\overrightarrow{P} + \gamma
+\overrightarrow{C}}{ \alpha+\beta +\gamma } \\
+    &= \frac{\alpha \overrightarrow{A} + \beta \overrightarrow{B} + 
+\gamma \overrightarrow{C}}{ \alpha+\beta +\gamma }
+ \end{split}
+\label{OS_three_overlap_int_eq:2}
+\end{equation}
+Here we intentionally do not expand the multiplication of 
+$x^{l_{A}}_{A}y^{m_{A}}_{A}z^{n_{A}}_{A}$ etc. since we want to keep it
+into some symmetrical form. The essence for deriving the three center of 
+overlap integral, is not to really calculate it; but gain some recursive relationship
+among the integrals. Here the symmetry of the integral \ref{general_expression_for_3_overlap_os}
+is some key feature.
+
+Firstly, for the pre-factor we could express it into:
+\begin{equation}
+\kappa_{abc} = e^{-\frac{\alpha\beta}{\alpha+\beta}|AB|^{2}}
+e^{-\frac{(\alpha+\beta)\gamma}{\alpha+\beta+\gamma}|PC|^{2}}
+\label{OS_three_overlap_int_eq:3}
+\end{equation}
+Now we expand the \ref{OS_three_overlap_int_eq:3} into (We use $A_{i}$, $B_{i}$
+and $C_{i}$ to represent it's component on X, Y or Z direction, i could be
+x, y, or z):
+\begin{equation}
+ \begin{split}
+ &e^{-\frac{\alpha\beta}{\alpha+\beta}(A_{i}-B_{i})^{2}}
+e^{-\frac{(\alpha+\beta)\gamma}{\alpha+\beta+\gamma}(P_{i}-C_{i})^{2}} \\
+&=e^{-\frac{\alpha\beta}{\alpha+\beta}(A_{i}-B_{i})^{2}} 
+e^{-\frac{\gamma}{(\alpha+\beta)(\alpha+\beta+\gamma)}
+((\alpha+\beta)C_{i}-\alpha A_{i} - \beta B_{i})^{2}} \\
+ \end{split}
+\label{OS_three_overlap_int_eq:4}
+\end{equation}
+For the exponents we have:
+\begin{equation}
+ \begin{split}
+ & \frac{\alpha\beta}{\alpha+\beta}(A_{i}-B_{i})^{2}
++ \frac{\gamma}{(\alpha+\beta)(\alpha+\beta+\gamma)}
+((\alpha+\beta)C_{i} -\alpha A_{i} - \beta B_{i})^{2} \\
+&=  \frac{\alpha\beta(\alpha+\beta+\gamma)(A_{i}-B_{i})^{2}
++ \gamma((\alpha+\beta)C_{i} -\alpha A_{i} - \beta B_{i})^{2}}
+{(\alpha+\beta)(\alpha+\beta+\gamma)} \\
+&= \frac{\alpha^{2}\beta(A_{i}-B_{i})^{2} 
++ \alpha\beta^{2}(A_{i}-B_{i})^{2}+\alpha\beta\gamma(A_{i}-B_{i})^{2}}
+{(\alpha+\beta)(\alpha+\beta+\gamma)} \\
+&+ \frac{\gamma(\alpha+\beta)^{2}C_{i}^{2}+\alpha^{2}\gamma A_{i}^{2} +
+\beta^{2}\gamma B_{i}^{2} }{(\alpha+\beta)(\alpha+\beta+\gamma)} \\
+&+ \frac{-2\alpha\gamma(\alpha+\beta)A_{i}C_{i}
+- 2\beta\gamma(\alpha+\beta)B_{i}C_{i} + 2\alpha\beta\gamma A_{i}B_{i}}
+{(\alpha+\beta)(\alpha+\beta+\gamma)}  \\
+ \end{split}
+\label{OS_three_overlap_int_eq:5}
+\end{equation}
+Now let's re-arrange the terms in terms of the order of $\alpha, \beta$
+and $\gamma$:
+\begin{equation}
+ \begin{split}
+  & \frac{\alpha\beta}{\alpha+\beta}(A_{i}-B_{i})^{2}
++ \frac{\gamma}{(\alpha+\beta)(\alpha+\beta+\gamma)}
+((\alpha+\beta)C_{i}-\alpha A_{i} - \beta B_{i})^{2} \\
+&= \frac{\alpha^{2}\beta(A_{i}-B_{i})^{2} 
++ \alpha\beta^{2}(A_{i}-B_{i})^{2}+
+\alpha^{2}\gamma(A_{i}-C_{i})^{2} 
++ \beta^{2}\gamma(B_{i}-C_{i})^{2}}{(\alpha+\beta)(\alpha+\beta+\gamma)} \\
+& +\frac{
+  \alpha\beta\gamma(A_{i}^{2}+B_{i}^{2}+2C_{i}^{2}-2A_{i}C_{i}-2B_{i}C_{i})}
+{(\alpha+\beta)(\alpha+\beta+\gamma)}  \\
+&= \frac{\alpha^{2}\beta(A_{i}-B_{i})^{2} 
++ \alpha\beta^{2}(A_{i}-B_{i})^{2}+
+\alpha^{2}\gamma(A_{i}-C_{i})^{2} 
++ \beta^{2}\gamma(B_{i}-C_{i})^{2}}{(\alpha+\beta)(\alpha+\beta+\gamma)} \\
+&+\frac{
+  \alpha\beta\gamma\left( (C_{i}-A_{i})^{2} + (C_{i}-B_{i})^{2}\right)}
+{(\alpha+\beta)(\alpha+\beta+\gamma)} \\
+&= \frac{\alpha\beta(A_{i}-B_{i})^{2}(\alpha+\beta) +
+\alpha\gamma(A_{i}-C_{i})^{2}(\alpha+\beta) 
++ \beta\gamma(B_{i}-C_{i})^{2}(\alpha+\beta)}
+{(\alpha+\beta)(\alpha+\beta+\gamma)} \\
+&= \frac{\alpha\beta(A_{i}-B_{i})^{2} +
+\alpha\gamma(A_{i}-C_{i})^{2} 
++ \beta\gamma(B_{i}-C_{i})^{2}}
+{(\alpha+\beta+\gamma)}
+ \end{split}
+\label{OS_three_overlap_int_eq:6}
+\end{equation}
+The expression in \ref{OS_three_overlap_int_eq:6} is symmetric. Furthermore, we 
+could re-form it by using the \ref{OS_three_overlap_int_eq:2} since $G$ will also
+appears in the integral part:
+\begin{equation}
+ \begin{split}
+ &\frac{\alpha\beta(A_{i}-B_{i})^{2} + \alpha\gamma(A_{i}-C_{i})^{2}  +
+\beta\gamma(B_{i}-C_{i})^{2}}
+ {(\alpha+\beta+\gamma)} \\
+&= -(\alpha+\beta+\gamma)\left( G_{i}^{2} - \frac{\alpha A_{i}^{2} + \beta
+B_{i}^{2} + \gamma C_{i}^{2}}
+{\alpha+\beta+\gamma}\right)  
+ \end{split}
+\label{OS_three_overlap_int_eq:7}
+\end{equation}
+Therefore, for the pre-factor we have:
+\begin{align}
+\kappa_{abc} &= e^{-\frac{\alpha\beta}{\alpha+\beta}|A-B|^{2}}
+e^{-\frac{(\alpha+\beta)\gamma}{\alpha+\beta+\gamma}|P-C|^{2}} \nonumber \\
+&= e^{(\alpha+\beta+\gamma)\left( |G|^{2} - \frac{\alpha |A|^{2} + \beta |B|^{2} + \gamma |C|^{2}}
+{\alpha+\beta+\gamma}\right)}
+\label{OS_three_overlap_int_eq:8}
+\end{align}
+Its derivatives for the $R_{i}$ is:
+\begin{equation}
+ \label{OS_three_overlap_int_eq:9}
+\frac{\partial \kappa_{abc}}{R_{i}} = (2\alpha G_{Ai} - 2\alpha
+A_{i})\kappa_{abc}
+\end{equation}
+
+Now let's expand the integral of $I^{x}_{abc}$:
+\begin{equation}
+ \begin{split}
+  I^{x}_{abc}(l_{A},l_{B},l_{C}) &= \sum_{l_{1}=0}^{l_{A}}\sum_{l_{2}=0}^{l_{B}}
+\sum_{l_{3}=0}^{l_{C}}  
+\binom{l_{A}}{l_{1}}\binom{l_{B}}{l_{2}}\binom{l_{C}}{l_{3}} \\
+&(G_{x}-A_{x})^{(l_{A}-l_{1})} 
+ (G_{x}-B_{x})^{(l_{B}-l_{2})}
+ (G_{x}-C_{x})^{(l_{C}-l_{3})} \\
+&\int (x-G_{x})^{l_{1}+l_{2}+l_{3}}
+e^{-(\alpha+\beta+\gamma)(x-G_{x})^{2}} dx \\
+&= \sqrt{\frac{\pi}{\alpha+\beta+\gamma}}\sum_{l_{1}=0}^{l_{A}}\sum_{l_{2}=0}^{l_{B}}
+\sum_{l_{3}=0}^{l_{C}}  
+\binom{l_{A}}{l_{1}}\binom{l_{B}}{l_{2}}\binom{l_{C}}{l_{3}} \\
+&(G_{x}-A_{x})^{(l_{A}-l_{1})} 
+ (G_{x}-B_{x})^{(l_{B}-l_{2})}
+ (G_{x}-C_{x})^{(l_{C}-l_{3})} \\
+&\frac{(l_{1}+l_{2}+l_{3}-1)!!}
+{\left\lbrace 2(\alpha+\beta+\gamma)\right\rbrace^{l_{1}+l_{2}+l_{3}} }
+ \end{split}
+\label{OS_three_overlap_int_eq:10}
+\end{equation}
+We note that $l_{1}+l_{2}+l_{3}$ should be even number else the integral is zero. For
+the integral on the y, z direction, we have the similar result, too.
+It's derivative could be expressed as:
+\begin{equation}
+\begin{split}
+ \frac{\partial I^{x}_{abc}}{\partial R_{x}} &= 
+l_{A}\left( \frac{\alpha}{\alpha+\beta+\gamma} -1\right)I^{x}_{abc}(l_{A}-1,l_{B},l_{C}) \\
+&+ l_{B}\left( \frac{\alpha}{\alpha+\beta+\gamma}\right)I^{x}_{abc}(l_{A},l_{B}-1,l_{C}) \\
+&+ l_{C}\left( \frac{\alpha}{\alpha+\beta+\gamma}\right)I^{x}_{abc}(l_{A},l_{B},l_{C}-1) 
+\end{split}
+ \label{OS_three_overlap_int_eq:11}
+\end{equation}
+We note that for the derivatives of $I^{i}_{abc}$ in terms of $R_{j}$ ($j \neq i$), the result
+is obviously zero. 
+
+Now let's combine the result in \ref{OS_three_overlap_int_eq:9} and \ref{OS_three_overlap_int_eq:11},
+and also employing the relation in \ref{OS_general_int_eq:5}; we can arrive at some symmetrical
+recursive relation for the $(a|b|c)$:
+\begin{equation}
+ \begin{split}
+ (a+\iota_{x}|b|c) &= \frac{1}{2\alpha}\frac{\partial }{\partial R_{Ax}}(a|b|c) 
++ \frac{l_{A}}{2\alpha}(a-\iota_{x}|b|c) \\
+&= (G_{Ax} - A_{x})(a|b|c) + 
+l_{A}\left(\frac{1}{2(\alpha+\beta+\gamma)} -\frac{1}{2\alpha}\right)(a-\iota_{x}|b|c) \\
+&+ l_{B}\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a|b-\iota_{x}|c)  \\
+&+ l_{C}\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a|b|c-\iota_{x}) +  
+\frac{l_{A}}{2\alpha}(a-\iota_{x}|b|c) \\
+&= (G_{Ax} - A_{x})(a|b|c) + 
+l_{A}\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a-\iota_{x}|b|c) \\
+&+ 
+l_{B}\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a|b-\iota_{x}|c) \\
+&+
+l_{C}\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a|b|c-\iota_{x}) 
+ \end{split}
+\label{OS_three_overlap_int_eq:12}
+\end{equation}
+Such relation could be generalized into the derivative for $R_{Xi}$ for all of 
+center of X and all of components of $i=x,y,z$. The relation is the starting point for 
+all of following derivations.
+
+At last, let's consider that if one of primitive function is ``S'' type of 
+function, how to reduce the recursive relation in
+\ref{OS_three_overlap_int_eq:12}. For the S type of function it does not have
+the angular momentum part, the pre-factor part part still exists; but for the
+integral in \ref{OS_three_overlap_int_eq:10}, the derivatives for the S type 
+function will be zero. For example, suggest that $a$ is the S type of function,
+then it's obvious that:
+\begin{equation}
+\begin{split}
+ \frac{\partial I^{x}_{abc}}{\partial R_{x}} &= 
+l_{B}\left(
+\frac{\alpha}{\alpha+\beta+\gamma}\right)I^{x}_{abc}(l_{A},l_{B}-1,l_{C}) \\
+&+ l_{C}\left(
+\frac{\alpha}{\alpha+\beta+\gamma}\right)I^{x}_{abc}(l_{A},l_{B},l_{C}-1) 
+\end{split}
+ \label{OS_three_overlap_int_eq:13}
+\end{equation}
+Then combined with \ref{OS_three_overlap_int_eq:12}, it gives:
+\begin{equation}
+ \begin{split}
+ (0+\iota_{x}|b|c) &= \frac{1}{2\alpha}\frac{\partial }{\partial R_{Ax}}(0|b|c) 
+\\
+&= (G_{Ax} - A_{x})(0|b|c) 
++ l_{B}\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(0|b-\iota_{x}|c) \\ 
+&+ l_{C}\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(0|b|c-\iota_{x}) 
+ \end{split}
+\label{OS_three_overlap_int_eq:14}
+\end{equation}
+For the other S type centers we have the similar relation, too. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Electron Repulsion Integrals}
+%
+%
+%
+%
+Now we begin to use the conclusion got in the previous section to solve the
+real problems. This section we are going to tackle down the most difficult one,
+the double electrons integral.
+
+Let's consider some electronic repulsion integral over the
+Gaussian primitive functions:
+\begin{equation}
+ \label{OS_ERI_eq:1}
+(ab|cd) = \int dr \int dr^{'} \chi_{a}(r)\chi_{b}(r)\frac{1}{|r-r^{'}|}
+\chi_{c}(r^{'})\chi_{d}(r^{'})
+\end{equation}
+a,b,c,d are just some general Gaussian primitive functions.
+
+Firstly we do transformation to the $\frac{1}{|r-r^{'}|}$:
+\begin{equation}
+ \frac{1}{|r-r^{'}|} = \frac{2}{\pi^{1/2}}\int^{\infty}_{0}
+e^{(r-r^{'})^{2}u^{2}}du
+\end{equation}
+Here $(r-r^{'})^{2}$ is 
+\begin{equation}
+(r-r^{'})^{2} = (x_{r}-x_{r^{'}})^{2} +  (y_{r}-y_{r^{'}})^{2} +
+(z_{r}-z_{r^{'}})^{2}
+\end{equation}
+We note the $r$ and $r^{'}$ are more like the A, B defined in the 
+\ref{OS_three_overlap_int_eq:4}. Based on this transformation,
+the integral could be reformed as:
+\begin{equation}
+ \begin{split}
+ (ab|cd) &= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du 
+\int dr \int dr^{'} \chi_{a}(r)\chi_{b}(r) e^{(r-r^{'})^{2}u^{2}}
+\chi_{c}(r^{'})\chi_{d}(r^{'}) \\
+&= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du
+\int dr^{'}\chi_{c}(r^{'})\chi_{d}(r^{'}) 
+\left( \int dr  \chi_{a}(r)\chi_{b}(r) e^{(r-r^{'})^{2}u^{2}}\right) \\ 
+&= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du
+\int dr^{'}\chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}|b) \\
+&= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du (ab|u|cd)
+ \end{split}
+\label{OS_ERI_eq:2}
+\end{equation}
+Therefore, the two electron integral now is converted into the three
+center overlap integral.
+
+Before we move on, it's useful to remind us the key idea of the derivation
+we are going to. We are going to use the recursive relation for the three
+center overlap integral, to derive the potential recursive relation for the
+ERI. Furthermore, before we really move into the ERI section, actually there are
+some very fancy formulas needed to be introduced first. Suggest that there are
+three variables, $u$, $\epsilon$ and $\eta$, they are all independent with each
+other; we can prove that:
+\begin{equation}
+ \frac{1}{\epsilon+u^{2}} = \frac{1}{\epsilon}\left( 1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right) - \frac{1}{\epsilon+\eta}
+\frac{u^{2}}{\epsilon+u^{2}}\frac{u^{2}}{\rho+u^{2}} 
+\label{OS_ERI_eq:3}
+\end{equation}
+Where the $\rho$ is:
+\begin{equation}
+ \rho = \frac{\epsilon\eta}{\epsilon+\eta}
+\end{equation}
+This intelligent identity is not so obvious by judging from its appearance.
+However, this identity possesses a key path to the final form of expression.
+Now let's go to see how to prove it.
+\begin{equation}
+ \begin{split}
+ &\frac{u^{2}}{\rho+u^{2}}\left( \frac{\rho}{\epsilon^{2}} + 
+\frac{1}{\epsilon+\eta}\frac{u^{2}}{\epsilon+u^{2}}\right) \\
+&= \frac{u^{2}}{\rho+u^{2}}\left(
+\frac{\epsilon\eta}{\epsilon^{2}(\epsilon+\eta)} + 
+\frac{1}{\epsilon+\eta}\frac{u^{2}}{\epsilon+u^{2}}\right) \\
+&= \frac{u^{2}}{\rho+u^{2}}\frac{1}{\epsilon+\eta}\left(
+\frac{\epsilon\eta}{\epsilon^{2}} + 
+\frac{u^{2}}{\epsilon+u^{2}}\right) \\
+&= \frac{u^{2}}{\rho+u^{2}}\frac{1}{\epsilon+\eta}\left(
+\frac{\eta}{\epsilon} + 
+\frac{u^{2}}{\epsilon+u^{2}}\right) \\
+&= \frac{u^{2}}{\rho+u^{2}}\frac{1}{\epsilon+\eta}
+\frac{\epsilon\eta + \eta u^{2} + \epsilon u^{2}}{\epsilon(\epsilon+u^{2})} \\
+&= \frac{u^{2}}{\rho+u^{2}}\frac{1}{\epsilon+\eta}
+\frac{\epsilon\eta + (\eta+ \epsilon)u^{2}}{\epsilon(\epsilon+u^{2})} \\
+&= \frac{u^{2}}{\rho+u^{2}}\frac{1}{\epsilon+\eta}
+\frac{(\rho + u^{2})(\eta+ \epsilon)}{\epsilon(\epsilon+u^{2})} \\
+&= \frac{u^{2}}{\epsilon(\epsilon+u^{2})}
+ \end{split} 
+\label{OS_ERI_eq:4}
+\end{equation}
+Now let's combine the result in (\ref{OS_ERI_eq:4}) with the last term in
+\ref{OS_ERI_eq:3}, then it gives:
+\begin{equation}
+ \begin{split}
+  \frac{1}{\epsilon}-\frac{u^{2}}{\epsilon(\epsilon+u^{2})}  
+= \frac{1}{\epsilon}\left( \frac{\epsilon}{\epsilon+u^{2}}\right) 
+= \frac{1}{\epsilon+u^{2}}
+ \end{split}
+\label{OS_ERI_eq:5}
+\end{equation}
+Which is the final result in \ref{OS_ERI_eq:3}. Here we note, that the result
+in the \ref{OS_ERI_eq:3} will provide us a chance to link the primitives on 
+$r$ and primitives on $r^{'}$ in \ref{OS_ERI_eq:1}.
+
+Now let's firstly solve this integral of $(a|0_{r^{'}}|b)$. We would apply
+the recursive relation we got in the \ref{OS_three_overlap_int_eq:12}:
+\begin{equation}
+ \begin{split}
+ (a+\iota_{i}|b|c) 
+&= (G_{Ai} - A_{i})(a|b|c) + 
+N_{i}(A)\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a-\iota_{i}|b|c) \\
+&+ 
+N_{i}(B)\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a|b-\iota_{i}|c) \\
+&+
+N_{i}(C)\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a|b|c-\iota_{i}) 
+ \end{split}
+\label{OS_ERI_eq:6}
+\end{equation}
+Here we extended it to the general form, and the $\iota_{i}$ and $N_{i}$ are just
+the same as \ref{OS_general_int_eq:4} etc. $i$ could be $x,y, z$.
+
+Let's consider to fit it to $(a|0_{r^{'}}|b)$. Here the $\gamma$ is $u^{2}$, and
+for the center B (it's the $r^{'}$) we only have a S type of orbital so the
+expression could be further expressed as:
+\begin{equation}
+ \begin{split}
+  (a+\iota_{i}|0_{r^{'}}|b)
+&=(G_{Ai} - A_{i})(a|0_{r^{'}}|b) +
+N_{i}(A)\left(\frac{1}{2(\alpha+\beta+u^{2})}\right)(a-\iota_{i}|0_{r^{'}}|b) \\
+&+
+N_{i}(B)\left(\frac{1}{2(\alpha+\beta+u^{2})}\right)(a|0_{r^{'}}|b-\iota_{i}) \\
+&=(G_{Ai} - A_{i})(a|0_{r^{'}}|b) +
+N_{i}(A)\left(\frac{1}{2(\epsilon+u^{2})}\right)(a-\iota_{i}|0_{r^{'}}|b) \\
+&+
+N_{i}(B)\left(\frac{1}{2(\epsilon+u^{2})}\right)(a|0_{r^{'}}|b-\iota_{i})
+ \end{split}
+\label{OS_ERI_eq:7}
+\end{equation}
+
+According to the \ref{OS_ERI_eq:3}, $\dfrac{1}{\epsilon+u^{2}}$ could be
+directly expanded; so the result could be reformed into:
+\begin{equation}
+ \begin{split}
+  (a+\iota_{i}|0_{r^{'}}|b)
+&=(G_{Ai} - A_{i})(a|0_{r^{'}}|b) \\
+&+
+\frac{N_{i}(A)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)(a-\iota_{i}|0_{r^{'}}|b) \\
+&-\frac{N_{i}(A)}{2}\left(\frac{1}{\epsilon+\eta}
+\frac{u^{2}}{\epsilon+u^{2}}\frac{u^{2}}{\rho+u^{2}}\right)(a-\iota_{i}|0_{r^{'}}|b) \\
+&+ \frac{N_{i}(B)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)(a|0_{r^{'}}|b-\iota_{i}) \\
+&-\frac{N_{i}(B)}{2}\left(\frac{1}{\epsilon+\eta}
+\frac{u^{2}}{\epsilon+u^{2}}\frac{u^{2}}{\rho+u^{2}}\right)(a|0_{r^{'}}|b-\iota_{i})
+ \end{split}
+\label{OS_ERI_eq:8}
+\end{equation}
+The $\eta$ and corresponding $\rho$ could be referred later. Now they are only
+arbitrary numbers ($\rho$ depends on $\eta$ and $\epsilon$). 
+
+Now we are trying to wrap up some terms in the \ref{OS_ERI_eq:8} into a new
+form:
+\begin{equation}
+ \begin{split}
+  &(a|0_{r^{'}}+\iota_{i}|b) \\
+  & =(0_{r^{'}}+\iota_{i}|a|b)  \\
+  &= \left( \frac{\alpha A_{i} + \beta B_{i} + u^{2}r^{'}_{i}}
+{\alpha +\beta + u^{2}} - r^{'}_{i}\right)(a|0_{r^{'}}|b)\\
+&+
+N_{i}(A)\left(\frac{1}{2(\epsilon+u^{2})}\right)(a-\iota_{i}|0_{r^{'}}|b) \\
+&+
+N_{i}(B)\left(\frac{1}{2(\epsilon+u^{2})}\right)(a|0_{r^{'}}|b-\iota_{i})
+ \end{split}
+\label{OS_ERI_eq:9}
+\end{equation}
+Since
+\begin{equation}
+ \begin{split}
+  \frac{\alpha A_{i} + \beta B_{i} + u^{2}r^{'}_{i}}
+{\alpha +\beta + u^{2}} - r^{'}_{i} = 
+ \frac{\alpha A_{i} + \beta B_{i} -r^{'}_{i}(\alpha+\beta)}
+{\epsilon + u^{2}} = \frac{P_{i}\epsilon -r^{'}_{i}\epsilon}
+{\epsilon + u^{2}}
+ \end{split}
+\end{equation}
+where 
+\begin{equation}
+ P_{i} = \frac{\alpha A_{i} + \beta B_{i}}{\alpha+\beta}
+\end{equation}
+and $\epsilon = \alpha+\beta$, therefore the \ref{OS_ERI_eq:9} could be
+expressed as:
+\begin{equation}
+ \begin{split}
+&(a|0_{r^{'}}+\iota_{i}|b) \\
+&=-\frac{\epsilon}{\epsilon + u^{2}}(r^{'}_{i} - P_{i})(a|0_{r^{'}}|b) \\
+&+
+N_{i}(A)\left(\frac{1}{2(\epsilon+u^{2})}\right)(a-\iota_{i}|0_{r^{'}}|b) \\
+&+
+N_{i}(B)\left(\frac{1}{2(\epsilon+u^{2})}\right)(a|0_{r^{'}}|b-\iota_{i})  
+ \end{split}
+\label{OS_ERI_eq:10}
+\end{equation}
+Here we note that our purpose here is try to build some expression, which
+could reduce the integral into some potential recursive forms.
+
+Now we can use the $(a|0_{r^{'}}+\iota_{i}|b)$ to transform the
+\ref{OS_ERI_eq:8}:
+\begin{equation}
+ \begin{split}
+    (a+\iota_{i}|0_{r^{'}}|b)
+&=(G_{Ai} - A_{i})(a|0_{r^{'}}|b) \\
+&+
+\frac{N_{i}(A)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)(a-\iota_{i}|0_{r^{'}}|b) \\
+&+ \frac{N_{i}(B)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)(a|0_{r^{'}}|b-\iota_{i}) \\
+&-\frac{u^{2}}{\epsilon+\eta}\frac{u^{2}}{\rho+u^{2}}(a|0_{r^{'}}+\iota_{i}|b) \\
+&-\frac{\epsilon}{\epsilon+u^{2}}
+\frac{u^{2}}{\epsilon+\eta}\frac{u^{2}}{\rho+u^{2}}(r^{'}_{i} - P_{i})((a|0_{r^{'}}|b)) 
+ \end{split}
+\label{OS_ERI_eq:11}
+\end{equation}
+
+Now let's use the relation defined in the \ref{OS_ERI_eq:3}
+to expand the $(G_{Ai} - A_{i})$. We note that the $G_{Ai}$ is:
+\begin{equation}
+ G_{Ai} = \frac{\alpha A_{i} + \beta B_{i} + u^{2} r^{'}_{i}}{\alpha + \beta +
+u^{2}}
+ = \frac{\alpha A_{i} + \beta B_{i} + u^{2} r^{'}_{i}}{\epsilon + u^{2}}
+\end{equation}
+Hence, for $(G_{Ai} - A_{i})$ according to \ref{OS_ERI_eq:3} it's:
+\begin{equation}
+ \begin{split}
+ G_{Ai} - A_{i} &= \left( \frac{\alpha A_{i} + \beta B_{i}}{\epsilon} -
+A_{i}\right) +
+\frac{u^{2} r^{'}_{i}}{\epsilon} \\
+&-(\alpha A_{i} + \beta B_{i} + u^{2} r^{'}_{i})\left(\frac{\rho}{\epsilon^{2}}
+\frac{u^{2}}{\rho+u^{2}} + \frac{1}{\epsilon+\eta}
+\frac{u^{2}}{\epsilon+u^{2}}\frac{u^{2}}{\rho+u^{2}} 
+\right)  \\
+&= \left( P_{i} - A_{i}\right) + \frac{u^{2} r^{'}_{i}}{\epsilon} \\
+&-\left( \frac{u^{2}r^{'}_{i}}{\epsilon} + P_{i}\right)
+\left(\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}} + \frac{\epsilon}{\epsilon+\eta}
+\frac{u^{2}}{\epsilon+u^{2}}\frac{u^{2}}{\rho+u^{2}} 
+\right) 
+ \end{split}
+\label{OS_ERI_eq:12}
+\end{equation}
+
+Now let's combine the terms for the $(a|0_{r^{'}}|b)$ in the \ref{OS_ERI_eq:11}
+and \ref{OS_ERI_eq:12}. For the $P_{i}$ term, we can see that:
+\begin{equation}
+ \left( P_{i} - A_{i}\right)(a|0_{r^{'}}|b) 
+-P_{i}\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}(a|0_{r^{'}}|b)
+\label{OS_ERI_eq:13}
+\end{equation}
+the terms for the $\dfrac{\epsilon}{\epsilon+\eta}
+\dfrac{u^{2}}{\epsilon+u^{2}}\dfrac{u^{2}}{\rho+u^{2}} $ canceled. 
+
+For the $r_{i}^{'}$, the remaining terms are:
+\begin{equation}
+ \begin{split}
+&\frac{u^{2} r^{'}_{i}}{\epsilon}
+-\frac{u^{2}r^{'}_{i}}{\epsilon}
+\left(\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}} + \frac{\epsilon}{\epsilon+\eta}
+\frac{u^{2}}{\epsilon+u^{2}}\frac{u^{2}}{\rho+u^{2}} 
+\right) \\
+&-\frac{\epsilon}{\epsilon+u^{2}}
+\frac{u^{2}}{\epsilon+\eta}\frac{u^{2}}{\rho+u^{2}}r^{'}_{i} 
+ \end{split}
+\end{equation}
+We do not include the integral of $(a|0_{r^{'}}|b)$ here since they are similar
+terms in terms of $(a|0_{r^{'}}|b)$.
+
+Here we have:
+\begin{equation}
+\frac{\epsilon}{\epsilon+\eta}
+\frac{u^{2}}{\epsilon+u^{2}}\frac{u^{2}}{\rho+u^{2}}\left(
+1+\frac{u^{2}}{\epsilon} \right)r^{'}_{i} = 
+\frac{u^{2}}{\epsilon+\eta}
+\frac{u^{2}}{\rho+u^{2}}r^{'}_{i} 
+\end{equation}
+Then
+\begin{equation}
+\begin{split}
+&\frac{u^{2}}{\epsilon+\eta}
+\frac{u^{2}}{\rho+u^{2}}r^{'}_{i} + 
+\frac{u^{2}r^{'}_{i}}{\epsilon}
+\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}} = \\
+&{u^{2}}r^{'}_{i}
+\frac{u^{2}}{\rho+u^{2}}\left(\frac{1}{\epsilon+\eta} + 
+\frac{\rho}{\epsilon^{2}} \right) \\
+&= {u^{2}}r^{'}_{i}
+\frac{u^{2}}{\rho+u^{2}}\left(\frac{1}{\epsilon+\eta} + 
+\frac{1}{\epsilon+\eta}\frac{\eta}{\epsilon} \right) \\
+&= {u^{2}}r^{'}_{i}
+\frac{u^{2}}{\rho+u^{2}}\frac{1}{\epsilon}
+\end{split}
+\end{equation}
+Finally
+\begin{equation}
+\frac{u^{2} r^{'}_{i}}{\epsilon}
+-{u^{2}}r^{'}_{i}
+\frac{u^{2}}{\rho+u^{2}}\frac{1}{\epsilon} = r^{'}_{i}
+\frac{u^{2}}{\rho+u^{2}}\frac{\rho}{\epsilon}
+\end{equation}
+Surprisingly, this term is directly corresponding to the terms for $P_{i}$
+in the \ref{OS_ERI_eq:13}, so totally we have the result that:
+\begin{equation}
+\begin{split}
+&(G_{Ai} - A_{i})(a|0_{r^{'}}|b)
+-\frac{\epsilon}{\epsilon+u^{2}}
+\frac{u^{2}}{\epsilon+\eta}\frac{u^{2}}{\rho+u^{2}}(r^{'}_{i} -
+P_{i})(a|0_{r^{'}}|b)  \\
+&= \left( P_{i} - A_{i}\right)(a|0_{r^{'}}|b) + 
+(r^{'}_{i}-P_{i})\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}(a|0_{r^{'}}|b)
+\end{split}
+\label{OS_ERI_eq:14}
+\end{equation}
+ 
+By using the \ref{OS_ERI_eq:14}, the \ref{OS_ERI_eq:8} could be finally
+expressed as:
+\begin{equation}
+ \begin{split}
+  (a+\iota_{i}|0_{r^{'}}|b)
+&=(P_{i} - A_{i})(a|0_{r^{'}}|b) \\
+&+
+\frac{N_{i}(A)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)(a-\iota_{i}|0_{r^{'}}|b) \\
+&+ \frac{N_{i}(B)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)(a|0_{r^{'}}|b-\iota_{i}) \\
+&+(r^{'}_{i}-P_{i})\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}(a|0_{r^{'}}|b) 
+-\frac{u^{2}}{\epsilon+\eta}\frac{u^{2}}{\rho+u^{2}}(a|0_{r^{'}}+\iota_{i}|b)
+ \end{split}
+\label{OS_ERI_eq:15}
+\end{equation}
+
+Now let's set the value of $\eta$ and $\rho$, so that to make the $(a+\iota_{i}|0_{r^{'}}|b)$
+related to the outer integral on $\chi_{c}$ and $\chi_{d}$:
+\begin{equation}
+ \label{OS_ERI_eq:16}
+\eta = \alpha^{'} + \beta^{'} 
+\end{equation}
+where $\alpha^{'}$ is the exponent factor for $\chi_{c}$, and $\beta^{'}$ is the exponent
+factor for $\chi_{d}$. Therefore, the $\rho$ could be expressed as:
+\begin{equation}
+ \label{OS_ERI_eq:17}
+\rho = \frac{(\alpha+\beta)(\alpha^{'} + \beta^{'})}{(\alpha+\beta)+(\alpha^{'} + \beta^{'})} 
+\end{equation}
+
+Let's consider the outer integral over $r^{'}$, it's easy to see that:
+\begin{equation}
+\label{OS_ERI_eq:18}
+ -\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}} +\iota_{i} |b)
+= \int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r} + \iota_{i}|d)
+\end{equation}
+This is because that for the term of $0_{r} + \iota_{i}$, which is converted from
+$r^{'}_{i} - r_{i}$ into $r_{i}-r^{'}_{i}$.Therefore, for the term of 
+$\dfrac{u^{2}}{\epsilon+\eta}\dfrac{u^{2}}
+{\rho+u^{2}}(a|0_{r^{'}}+\iota_{i}|b)$ in the integral it could be converted into:
+\begin{equation}
+ \label{OS_ERI_eq:19}
+\begin{split}
+&-\frac{u^{2}}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}+\iota_{i}|b) \\
+&=\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)u^{2}(c|0_{r}+\iota_{i}|d)
+\end{split}
+\end{equation}
+While according to the \ref{OS_ERI_eq:10}, the term of $u^{2}(c|0_{r}+\iota_{i}|d)$
+is:
+\begin{equation}
+ \begin{split}
+  u^{2}(c|0_{r}+\iota_{i}|d) &= 
+-\eta(r_{i} - Q_{i})(c|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(C)}{2}\right)(c-\iota_{i}|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(D)}{2}\right)(c|0_{r}|d-\iota_{i}) \\
+&-\eta(c|0_{r}+\iota_{i}|d)
+ \end{split}
+\label{OS_ERI_eq:20}
+\end{equation}
+and 
+\begin{equation}
+ Q_{i} = \frac{\alpha^{'}C + \beta^{'}D}{\alpha^{'} + \beta^{'}}
+\end{equation}
+
+Now let's take the result of \ref{OS_ERI_eq:20} into \ref{OS_ERI_eq:19}, it's:
+\begin{equation}
+ \begin{split}
+  &-\frac{u^{2}}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}+\iota_{i}|b) \\
+&=Q_{i}\frac{\eta}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c-\iota_{i}|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r}|d-\iota_{i}) \\
+&-\eta \frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r) r_{i} (c|0_{r}|d) \\
+&-\eta\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r}+\iota_{i}|d)
+ \end{split}
+\label{OS_ERI_eq:21}
+\end{equation}
+
+Now let's look into the details of \ref{OS_ERI_eq:21}. In terms of its last
+two terms, actually we have:
+\begin{equation}
+ \begin{split}
+ r_{i}(c|0_{r}|d) +(c|0_{r}+\iota_{i}|d) 
+&=
+\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})
+r_{i}e^{u^{2}(r^{'}-r)^{2}} \\
+&+ 
+\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})
+(r^{'}_{i}-r_{i})e^{u^{2}(r^{'}-r)^{2}}
+ \end{split}
+\label{OS_ERI_eq:22}
+\end{equation}
+Here according to our traditional notation (see \ref{OS_three_overlap_int_eq:4}),
+$r$ and $r^{'}$ represent the points in the space, and $i$ denotes its components
+on the X, Y or Z axis. Therefore, it's clear that:
+\begin{equation}
+  r_{i}(c|0_{r}|d) +(c|0_{r}+\iota_{i}|d) =
+\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})
+r^{'}_{i}e^{u^{2}(r^{'}-r)^{2}}
+\label{OS_ERI_eq:23}
+\end{equation}  
+If we go over integral by $r$, it yields:
+\begin{equation}
+\begin{split}
+&\int dr \chi_{a}(r)\chi_{b}(r) \int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})
+r^{'}_{i}e^{(r^{'}-r)^{2}} \\
+&= \int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'}) r^{'}_{i}
+\int dr \chi_{a}(r)\chi_{b}(r) e^{u^{2}(r^{'}-r)^{2}} \\
+&= \int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'}) r^{'}_{i}(a|0_{r^{'}}|b)
+\end{split}
+\label{OS_ERI_eq:24}
+\end{equation}
+Therefore the \ref{OS_ERI_eq:21} could be converted into:
+\begin{equation}
+ \begin{split}
+  &-\frac{u^{2}}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}+\iota_{i}|b) \\
+&=Q_{i}\frac{\eta}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c-\iota_{i}|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r}|d-\iota_{i}) \\
+&-\eta \frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'}) r^{'}_{i}(a|0_{r^{'}}|b)
+ \end{split}
+\label{OS_ERI_eq:25}
+\end{equation}
+
+Now let's combine the result in \ref{OS_ERI_eq:25} with the result in \ref{OS_ERI_eq:15}.
+By multiplying $\chi_{c}$ and $\chi_{d}$ and integrate over $r^{'}$ in 
+\ref{OS_ERI_eq:15}, we can get:
+\begin{equation}
+ \begin{split}
+&\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a+\iota_{i}|0_{r^{'}}|b) \\
+&=(P_{i} - A_{i})\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}|b) \\
+&+
+\frac{N_{i}(A)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})
+(a-\iota_{i}|0_{r^{'}}|b) \\
+&+ \frac{N_{i}(B)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})
+(a|0_{r^{'}}|b-\iota_{i}) \\
+&-P_{i}\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}|b) \\
+&+\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})r^{'}_{i}(a|0_{r^{'}}|b) \\
+&+Q_{i}\frac{\eta}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c-\iota_{i}|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r}|d-\iota_{i}) \\
+&-\eta \frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'}) r^{'}_{i}(a|0_{r^{'}}|b) \\
+&= (P_{i} - A_{i})\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}|b) \\
+&+
+\frac{N_{i}(A)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})
+(a-\iota_{i}|0_{r^{'}}|b) \\
+&+ \frac{N_{i}(B)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})
+(a|0_{r^{'}}|b-\iota_{i}) \\
+&+\left(W_{i} -P_{i}\right)
+\frac{u^{2}}{\rho+u^{2}}\int dr^{'} \chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}|b) \\
+&+
+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c-\iota_{i}|0_{r}|d) \\
+&+
+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}\int dr \chi_{a}(r)\chi_{b}(r)(c|0_{r}|d-\iota_{i}) 
+ \end{split}
+\label{OS_ERI_eq:26}
+\end{equation}
+Where in this long expression, it's clear that the integral term containing
+$r^{'}_{i}$ vanished, and we combine the terms of $P_{i}$ and $Q_{i}$ together
+so to give $W_{i}$:
+\begin{equation}
+ W_{i} = \frac{\epsilon P_{i} + \eta Q_{i}}{\epsilon + \eta}
+\end{equation}
+We note, that this surprising result has very beautiful symmetry among the 
+resulting integrals.
+
+By using the expression of $(ab|u|cd)$ in \ref{OS_ERI_eq:2}, the expression for
+the \ref{OS_ERI_eq:26} could be further simplified as:
+\begin{equation}
+ \begin{split}
+((a+\iota_{i})b|u|cd) &= (P_{i} - A_{i})(ab|u|cd) +
+\left(W_{i} -P_{i}\right)
+\frac{u^{2}}{\rho+u^{2}}(ab|u|cd) \\
+&+\frac{N_{i}(A)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)
+((a-\iota_{i})b|u|cd) \\
+&+\frac{N_{i}(B)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{u^{2}}{\rho+u^{2}}\right)
+(a(b-\iota_{i})|u|cd) \\
+&+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}(ab|u|(c-\iota_{i})d) \\
+&+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}\frac{u^{2}}
+{\rho+u^{2}}(ab|u|c(d-\iota_{i}))
+\end{split}
+\label{OS_ERI_eq:27}
+\end{equation}
+
+Now let's define some auxiliary integral function:
+\begin{equation}
+\label{OS_ERI_eq:28}
+ (ab|cd)^{(m)} = \frac{2}{\sqrt{\pi}}\int^{\infty}_{0} du \left( \frac{u^{2}}
+{\rho+u^{2}}\right)^{m}(ab|u|cd) 
+\end{equation}
+Then by multiplying with $\left( \dfrac{u^{2}}
+{\rho+u^{2}}\right)^{m}$ and integrating over $u$
+the above result could be written as:
+\begin{equation}
+ \begin{split}
+((a+\iota_{i})b|cd)^{(m)} &= (P_{i} - A_{i})(ab|cd)^{(m)} +
+\left(W_{i} -P_{i}\right)(ab|cd)^{(m+1)} \\
+&+\frac{N_{i}(A)}{2\epsilon}\left(((a-\iota_{i})b|cd)^{(m)}-\frac{\rho}{
+\epsilon }((a-\iota_{i})b|cd)^{(m+1)}\right)  \\
+&+\frac{N_{i}(B)}{2\epsilon}\left((a(b-\iota_{i})|cd)^{(m)}-\frac{\rho}{
+\epsilon }(a(b-\iota_{i})|cd)^{(m+1)}\right)  \\
+&+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}
+(ab|(c-\iota_{i})d)^{(m+1)} \\
+&+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}
+(ab|c(d-\iota_{i}))^{(m+1)}
+\end{split}
+\label{OS_ERI_result}
+\end{equation}
+We note that the true ERI is $(ab|cd)^{(0)}$. This is the final result 
+for deriving the ERI in the OS framework.
+
+Finally, let's make some complementary work. In the \ref{OS_ERI_result},
+it's clear all of integrals could be derived from the basic integral of
+$(00|00)^{(m)}$, which could be finally derived as:
+\begin{equation}
+ \begin{split}
+ (00|00)^{(m)} &=\frac{2}{\sqrt{\pi}} \int du \left( \frac{u^{2}}
+{\rho+u^{2}}\right)^{m}
+\int dr \int dr^{'} e^{-\alpha r_{A}^{2}} e^{-\beta r_{B}^{2}}
+e^{-\alpha^{'} (r^{'}_{C})^{2}}e^{-\beta^{'} (r^{'}_{D})^{2}} \\
+&= 2\left( \frac{\rho}{\pi}\right)^{\frac{1}{2}}(0_{A}|0_{B})
+(0_{C}|0_{D})\int^{1}_{0} t^{2m} e^{-(\rho|PQ|^{2})t^{2}} dt 
+ \end{split}
+\label{OS_ERI_complementary_result}
+\end{equation}
+Where we have the arguments as:
+\begin{align}
+ \overrightarrow{P} &= \frac{\alpha \overrightarrow{A} + \beta
+\overrightarrow{B}}{\alpha + \beta} \nonumber \\
+\overrightarrow{Q} &= \frac{\alpha^{'} \overrightarrow{C} + \beta^{'}
+\overrightarrow{D}}{\alpha^{'} + \beta^{'}} \nonumber \\
+\rho &= \frac{(\alpha+\beta)(\alpha^{'}+\beta^{'})}
+{(\alpha+\beta)+(\alpha^{'}+\beta^{'})}
+\end{align}
+This result could be got in the original reference.
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overlap Integral}
+%
+%
+%
+the basic overlap integral is:
+\begin{equation}
+ \label{OS_overlap_eq:1}
+I = \int dr \chi_{a}(r) \chi_{b}(r)
+\end{equation}
+
+By using the recursive relation derived in the three center overlap
+integral (see \ref{OS_three_overlap_int_eq:12}), set the middle Gaussian
+primitive to be zero; we can get the recursive relation for overlap:
+\begin{equation}
+\begin{split}
+(a+\iota_{i}|b) &= 
+(P_{i} - A_{i})(a|b) + 
+N_{i}(A)\left(\frac{1}{2(\alpha+\beta)}\right)(a-\iota_{i}|b) \\
+&+ 
+N_{i}(B)\left(\frac{1}{2(\alpha+\beta)}\right)(a|b-\iota_{i})  
+\end{split}
+\label{OS_overlap_result}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Derivatives of Basis Sets in Overlap}
+%
+%
+%
+Before we derive the recursive relation for kinetic energy, let's firstly 
+go to see another type of integral of 
+$\left( \dfrac{\partial a}{\partial x}|b\right)$.
+
+Firstly, we note that the derivatives can not directly be applied to the 
+recursive relation like \ref{OS_overlap_result}:
+\begin{equation}
+\begin{split}
+(\frac{\partial (a+\iota_{i})}{\partial x}|b) & \neq 
+(P_{i} - A_{i})(\frac{\partial a}{\partial x}|b) + 
+N_{i}(A)\left(\frac{1}{2(\alpha+\beta)}\right)(\frac{\partial(a-\iota_{i})}{\partial x}|b) \\
+&+ 
+N_{i}(B)\left(\frac{1}{2(\alpha+\beta)}\right)(\frac{\partial a}{\partial x}|b-\iota_{i})  
+\end{split}
+\end{equation}
+
+Let's prove this with some simple example. Suggest we have two Gaussian 
+primitives:
+\begin{align}
+ \chi_{i} &= x^{l_{i}}y^{m_{i}}z^{n_{i}} e^{-\alpha_{i} r^{2}} \nonumber \\
+ \chi_{j} &= x^{l_{j}}y^{m_{j}}z^{n_{j}} e^{-\alpha_{j} r^{2}} \nonumber \\
+ \gamma   &= \alpha_{i} + \alpha_{j}
+ \end{align}
+
+According to the \ref{derivative_overlap_direct_int_eq:2} and recursive relation
+for the overlap integral, we can have:
+\begin{equation}
+ \begin{split}
+ \left(\frac{\partial \chi_{i}}{\partial x}|\chi_{j}\right)  &= 
+ l_{i}(\chi_{i}^{l-1mn}|\chi_{j}) - 2\alpha_{i} (\chi_{i}^{l+1mn}|\chi_{j}) \\
+ &= l_{i}\left[ PA_{k}(\chi_{i}^{l-1mn}-\iota_{k}|\chi_{j}) + 
+ \frac{N_{k}(A)}{2 \gamma}(\chi_{i}^{l-1mn}-2\iota_{k}|\chi_{j})  \right. \\ 
+ &+ \left. \frac{N_{k}(B)}{2 \gamma}(\chi_{i}^{l-1mn}-\iota_{k}|\chi_{j}-\iota_{k})
+ \right] \\
+ &-2\alpha_{i} \left[ PA_{k}(\chi_{i}^{l+1mn}-\iota_{k}|\chi_{j}) + 
+ \frac{N_{k}(A)}{2 \gamma}(\chi_{i}^{l+1mn}-2\iota_{k}|\chi_{j}) \right. \\ 
+ &+ \left. \frac{N_{k}(B)}{2 \gamma}(\chi_{i}^{l+1mn}-\iota_{k}|\chi_{j}-\iota_{k})
+ \right] 
+ \end{split}
+ \label{deriv_os_overlap:1}
+\end{equation}
+Here the index of $i$ and $j$ are omitted for l, m and n. If the l, m and n do not 
+change, they are not listed neither.
+
+It's easy to see that if $k = y$ or $k = z$ then the above equation could be 
+written as:
+\begin{equation}
+ \begin{split}
+  \left(\frac{\partial \chi_{i}}{\partial x}|\chi_{j}\right)  &= 
+ l_{i}(\chi_{i}^{l-1mn}|\chi_{j}) - 2\alpha_{i} (\chi_{i}^{l+1mn}|\chi_{j}) \\ 
+ &=  PA_{k}(\frac{\partial(\chi_{i}^{lmn}-\iota_{k})}{\partial x}|\chi_{j}) + 
+ \frac{N_{k}(A)}{2 \gamma}(\frac{\partial(\chi_{i}^{lmn}-2\iota_{k})}{\partial x}|\chi_{j}) 
+ \\ 
+ &+ \frac{N_{k}(B)}{2 \gamma}
+ (\frac{\partial (\chi_{i}^{lmn}-\iota_{k}) }{\partial x}|\chi_{j}-\iota_{k}) 
+ \end{split}
+\end{equation}
+However, if $k = x$, the above equation does not hold.
+
+For $k = x$, the \ref{deriv_os_overlap:1} could be expressed as:
+\begin{equation}
+ \begin{split}
+ \left(\frac{\partial \chi_{i}}{\partial x}|\chi_{j}\right)  &= 
+ l_{i}(\chi_{i}^{l-1mn}|\chi_{j}) - 2\alpha_{i} (\chi_{i}^{l+1mn}|\chi_{j}) \\
+ &= l_{i}\left[ PA_{x}(\chi_{i}^{l-2mn}|\chi_{j}) + 
+ \frac{N_{x}(A)}{2 \gamma}(\chi_{i}^{l-3mn}|\chi_{j})  \right. \\ 
+ &+ \left. \frac{N_{x}(B)}{2 \gamma}(\chi_{i}^{l-2mn}|\chi_{j}^{l-1mn})
+ \right] \\
+ &-2\alpha_{i} \left[ PA_{x}(\chi_{i}|\chi_{j}) + 
+ \frac{N_{x}(A)}{2 \gamma}(\chi_{i}^{l-1mn}|\chi_{j}) \right. \\ 
+ &+ \left. \frac{N_{x}(B)}{2 \gamma}(\chi_{i}|\chi_{j}^{l-1mn})
+ \right] \\
+ &= PA_{x} \left( l_{i}(\chi_{i}^{l-2mn}|\chi_{j}) -2\alpha_{i} (\chi_{i}|\chi_{j}) 
+ \right) \\
+ &+ \frac{N_{x}(A)}{2 \gamma}\left(
+ l_{i}(\chi_{i}^{l-3mn}|\chi_{j}) -2\alpha_{i} (\chi_{i}^{l-1mn}|\chi_{j})
+ \right) \\
+ &+ \frac{N_{x}(B)}{2 \gamma}\left(
+ l_{i}(\chi_{i}^{l-2mn}|\chi_{j}^{l-1mn}) -2\alpha_{i} (\chi_{i}|\chi_{j}^{l-1mn})
+ \right) \\
+ &= PA_{x} (\frac{\partial \chi_{i}^{l-1mn}}{\partial x}|\chi_{j}) + 
+ PA_{x} (\chi_{i}^{l-1mn}|\chi_{j}) \\
+ &+ \frac{N_{x}(A)}{2 \gamma}(\frac{\partial \chi_{i}^{l-2mn}}{\partial x}|\chi_{j})
+ + 2\frac{N_{x}(A)}{2 \gamma}(\chi_{i}^{l-2mn}|\chi_{j}) \\
+ &+ \frac{N_{x}(B)}{2 \gamma}(\frac{\partial \chi_{i}^{l-1mn}}{\partial x}|\chi_{j}^{l-1mn})
+ + \frac{N_{x}(B)}{2 \gamma}(\chi_{i}^{l-1mn}|\chi_{j}^{l-1mn}) \\
+ &= PA_{x} (\frac{\partial \chi_{i}^{l-1mn}}{\partial x}|\chi_{j}) + 
+ \frac{N_{x}(A)}{2 \gamma}(\frac{\partial \chi_{i}^{l-2mn}}{\partial x}|\chi_{j}) \\
+ &+ \frac{N_{x}(B)}{2 \gamma}(\frac{\partial \chi_{i}^{l-1mn}}{\partial x}|\chi_{j}^{l-1mn}) \\
+ &+ PA_{x} (\chi_{i}^{l-1mn}|\chi_{j}) + \frac{N_{x}(A)}{2 \gamma}(\chi_{i}^{l-2mn}|\chi_{j}) \\
+ &+ \frac{N_{x}(B)}{2 \gamma}(\chi_{i}^{l-1mn}|\chi_{j}^{l-1mn}) \\
+ &+ \frac{N_{x}(A)}{2 \gamma}(\chi_{i}^{l-2mn}|\chi_{j})
+ \end{split}
+ \label{deriv_os_overlap:2}
+\end{equation}
+Therefore, we have additional terms in \ref{deriv_os_overlap:2}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Kinetic Energy Integral}
+%
+%
+%
+According to the \ref{kinetic_direct_int_eq:2}, the kinetic energy integral is:
+\begin{align}
+ \label{OS_kinetic_eq:1}
+I &= \frac{1}{2}\int dr (\nabla\chi_{i}(r)) \cdotp (\nabla\chi_{j}(r)) \nonumber \\
+  &= \frac{1}{2}\int d x \frac{\partial \chi_{i}(r)}{\partial x}
+  \frac{\partial \chi_{j}(r)}{\partial x} 
+  +  \frac{1}{2}\int d y \frac{\partial \chi_{i}(r)}{\partial y}
+  \frac{\partial \chi_{j}(r)}{\partial y} 
+  +  \frac{1}{2}\int d z \frac{\partial \chi_{i}(r)}{\partial z}
+  \frac{\partial \chi_{j}(r)}{\partial z} 
+\end{align}
+So the kinetic integral is actually a linear combination of overlap integrals,
+and the kinetic integral itself could be decomposed into three integrals sum:
+\begin{equation}
+ I = I_{x} + I_{y} + I_{z}
+\end{equation}
+In the following derivation, we will concentrate on one component, which is 
+in general named as $I_{i}$.
+
+For a general Gaussian primitive function of $\chi = x^{l}y^{m}z^{n}e^{-\alpha r^{2}}$, who 
+centers on $A$; we can express its derivatives as:
+\begin{align}
+ \frac{\partial \chi^{lmn}_{A}}{\partial v} &= 
+ N_{i}(A)(\chi_{A}^{lmn}-\iota_{i}) - 2\alpha(\chi_{A}^{lmn}+\iota_{i}) \nonumber \\
+ &= N_{i}(A)(-1)_{i} - 2\alpha(+1)_{i}
+ \label{OS_kinetic_eq:0}
+\end{align}
+$v$ denotes the possible derivatives, could be x, y or z. 
+
+Therefore, suggest that in \ref{OS_kinetic_eq:1} the $\chi_{i}$ resides 
+on $A$ with $\alpha$ exponential factor, and $\chi_{j}$ is on $B$ with
+$\beta$ exponential factor; we can have:
+\begin{equation}
+\begin{split}
+\left(  \frac{\partial \chi_{A}}{\partial v}|\frac{\partial \chi_{B}}{\partial v}
+\right)  &= N_{i}(A)N_{i}(B)(-1|-1)_{i} -2\alpha N_{i}(B)(+1|-1)_{i} \\
+&-2\beta N_{i}(A)(-1|+1)_{i} + 4\alpha\beta(+1|+1)_{i}
+\end{split}
+\label{OS_kinetic_eq:2}
+\end{equation}
+the $i$ is determined from the v. If v is x, then $N_{i}(A) = l_{A}$ and 
+$N_{i}(B) = l_{B}$; if v is y, then $N_{i}(A) = m_{A}$ and 
+$N_{i}(B) = m_{B}$ and if v is z, then $N_{i}(A) = n_{A}$ and 
+$N_{i}(B) = n_{B}$. 
+
+By expanding all of overlap integrals into its RR form, we can have:
+\begin{equation}
+ \begin{split}
+ \left(  \frac{\partial \chi_{A}}{\partial v}|\frac{\partial \chi_{B}}{\partial v}
+\right)  &=  N_{i}(A)N_{i}(B)
+\left[ PA_{k}(-1-\iota_{k}|-1)_{i} + \frac{N_{k}(A)}{2 \gamma}(-1-2\iota_{k}|-1)_{i} \right. \\ 
+ &+ \left. \frac{N_{k}(B)}{2 \gamma}(-1-\iota_{k}|-1-\iota_{k})_{i} \right] \\
+&- 2\alpha N_{i}(B)
+\left[ PA_{k}(+1-\iota_{k}|-1)_{i} + \frac{N_{k}(A)}{2 \gamma}(+1-2\iota_{k}|-1)_{i} \right. \\ 
+ &+ \left. \frac{N_{k}(B)}{2 \gamma}(+1-\iota_{k}|-1-\iota_{k})_{i} \right] \\ 
+&- 2\beta  N_{i}(A)
+\left[ PA_{k}(-1-\iota_{k}|+1)_{i} + \frac{N_{k}(A)}{2 \gamma}(-1-2\iota_{k}|+1)_{i} \right. \\ 
+ &+ \left. \frac{N_{k}(B)}{2 \gamma}(-1-\iota_{k}|+1-\iota_{k})_{i} \right] \\  
+&+ 4\alpha\beta
+\left[ PA_{k}(+1-\iota_{k}|+1)_{i} + \frac{N_{k}(A)}{2 \gamma}(+1-2\iota_{k}|+1)_{i} \right. \\ 
+ &+ \left. \frac{N_{k}(B)}{2 \gamma}(+1-\iota_{k}|+1-\iota_{k})_{i} \right] 
+ \end{split}
+ \label{OS_kinetic_eq:3}
+\end{equation}
+where $\gamma = \alpha + \beta$. $k$ denotes possible RR direction, which is 
+also x, y or z. $k$ is different from the $v$ here.
+
+Firstly, let's go to see a simple case that the derivatives direction $i$ is not
+same with RR direction $k$. It's easy to see, in this case the above result
+turns into:
+\begin{equation}
+ \begin{split}
+ \left(  \frac{\partial \chi_{A}}{\partial v}|\frac{\partial \chi_{B}}{\partial v}
+\right)  &= PA_{k}
+ \left(\frac{\partial (\chi_{A}-\iota_{k})}{\partial v}|
+ \frac{\partial \chi_{B}}{\partial v} \right) + 
+\frac{N_{k}(A)}{2 \gamma}
+ \left(\frac{\partial (\chi_{A}-2\iota_{k})}{\partial v}|
+ \frac{\partial \chi_{B}}{\partial v} \right) \\
+&+\frac{N_{k}(B)}{2 \gamma}
+ \left(\frac{\partial (\chi_{A}-\iota_{k})}{\partial v}|
+ \frac{\partial(\chi_{B}-\iota_{k})}{\partial v} \right) 
+ \end{split}
+ \label{OS_kinetic_eq:4} 
+\end{equation}
+
+For the case that RR direction $k$ is same with derivatives direction of $i$, according
+to the equation of \ref{OS_kinetic_eq:3}, we have:
+\begin{equation}
+ \begin{split}
+ \left(  \frac{\partial \chi_{A}}{\partial v_{i=k}}|
+ \frac{\partial \chi_{B}}{\partial v_{i=k}} \right)  &=  N_{i}(A)N_{i}(B)
+\left[ PA_{i}(-2|-1)_{i} + \frac{N_{i}(A)-2}{2 \gamma}(-3|-1)_{i} \right. \\ 
+ &+ \left. \frac{N_{i}(B)-1}{2 \gamma}(-2|-2)_{i} \right] \\
+&- 2\alpha N_{i}(B)
+\left[ PA_{i}(0|-1)_{i} + \frac{N_{i}(A)}{2 \gamma}(-1|-1)_{i} \right. \\ 
+ &+ \left. \frac{N_{i}(B)-1}{2 \gamma}(0|-2)_{i} \right] \\ 
+&- 2\beta  N_{i}(A)
+\left[ PA_{i}(-2|+1)_{i} + \frac{N_{i}(A)-2}{2 \gamma}(-3|+1)_{i} \right. \\ 
+ &+ \left. \frac{N_{i}(B)+1}{2 \gamma}(-2|0)_{i} \right] \\  
+&+ 4\alpha\beta
+\left[ PA_{i}(0|+1)_{i} + \frac{N_{i}(A)}{2 \gamma}(-1|+1)_{i} \right. \\ 
+ &+ \left. \frac{N_{i}(B)+1}{2 \gamma}(0|0)_{i} \right] \\
+&= PA_{i} \Bigg\{   
+(N_{i}(A)-1)N_{i}(B)(-2|-1)_{i} - 2\alpha N_{i}(B)(0|-1)_{i}  \\
+&- 2\beta(N_{i}(A)-1)(-2|+1)_{i} +4\alpha\beta (0|+1)_{i} \Bigg\}  \\
+&+ PA_{i}\Bigg\{ N_{i}(B)(-2|-1)_{i} -2\beta(-2|+1)_{i} \Bigg\} \\
+&+\frac{N_{i}(A)}{2 \gamma} \Bigg\{ 
+(N_{i}(A)-2)N_{i}(B)(-3|-1)_{i} - 2\alpha N_{i}(B)(-1|-1)_{i}  \\
+&-2\beta(N_{i}(A)-2)(-3|+1)_{i} + 4\alpha\beta(-1|+1)_{i} \Bigg \} \\
+&+\frac{N_{i}(B)}{2 \gamma} \Bigg\{ 
+(N_{i}(A)-1)(N_{i}(B)-1)(-2|-2)_{i} - 2\alpha (N_{i}(B)-1)(0|-2)_{i} \\ 
+&- 2\beta(N_{i}(A)-1)(-2|0)_{i} + 4\alpha\beta(0|0)_{i} \Bigg\} \\
+&+\frac{N_{i}(B)(N_{i}(B)-1)}{2 \gamma}(-2|-2)_{i} - 
+\frac{2\beta N_{i}(A)}{2 \gamma} (-2|0)_{i} \\
+&-\frac{2\beta N_{i}(B)}{2 \gamma} (-2|0)_{i}
+\end{split}
+ \label{OS_kinetic_eq:5}
+\end{equation}
+
+The above expression could be re-fomulated into more clearly way:
+\begin{equation}
+ \begin{split}
+ \left(  \frac{\partial \chi_{A}}{\partial v_{i=k}}|
+ \frac{\partial \chi_{B}}{\partial v_{i=k}} \right)  &=
+ PA_{i}
+ \left(\frac{\partial (\chi_{A}-\iota_{i})}{\partial v}|
+ \frac{\partial \chi_{B}}{\partial v} \right) + 
+\frac{N_{i}(A)}{2 \gamma}
+ \left(\frac{\partial (\chi_{A}-2\iota_{i})}{\partial v}|
+ \frac{\partial \chi_{B}}{\partial v} \right) \\
+&+\frac{N_{i}(B)}{2 \gamma}
+ \left(\frac{\partial (\chi_{A}-\iota_{i})}{\partial v}|
+ \frac{\partial(\chi_{B}-\iota_{i})}{\partial v} \right) \\
+&+ PA_{i}\left[ N_{i}(B)(-2|-1)_{i} -2\beta(-2|+1)_{i} \right] \\
+&+\frac{N_{i}(B)(N_{i}(B)-1)}{2 \gamma}(-2|-2)_{i} - 
+\frac{2\beta N_{i}(A)}{2 \gamma} (-2|0)_{i} \\
+&-\frac{2\beta N_{i}(B)}{2 \gamma} (-2|0)_{i}
+\end{split}
+ \label{OS_kinetic_eq:6}
+\end{equation}
+
+
+\begin{comment}
+
+
+%
+
+\begin{equation}
+ \begin{split}
+ \left(  \frac{\partial \chi_{A}}{\partial v_{i=k}}|
+ \frac{\partial \chi_{B}}{\partial v_{i=k}} \right)  &=  N_{i}(A)N_{i}(B)
+\left[ PA_{i}(-2|-1)_{i} + \frac{N_{i}(A)-2}{2 \gamma}(-3|-1)_{i} \right. \\ 
+ &+ \left. \frac{N_{i}(B)-1}{2 \gamma}(-2|-2)_{i} \right] \\
+&- 2\alpha N_{i}(B)
+\left[ PA_{i}(0|-1)_{i} + \frac{N_{i}(A)}{2 \gamma}(-1|-1)_{i} \right. \\ 
+ &+ \left. \frac{N_{i}(B)-1}{2 \gamma}(0|-2)_{i} \right] \\ 
+&- 2\beta  N_{i}(A)
+\left[ PA_{i}(-2|+1)_{i} + \frac{N_{i}(A)-2}{2 \gamma}(-3|+1)_{i} \right. \\ 
+ &+ \left. \frac{N_{i}(B)+1}{2 \gamma}(-2|0)_{i} \right] \\  
+&+ 4\alpha\beta
+\left[ PA_{i}(0|+1)_{i} + \frac{N_{i}(A)}{2 \gamma}(-1|+1)_{i} \right. \\ 
+ &+ \left. \frac{N_{i}(B)+1}{2 \gamma}(0|0)_{i} \right] \\
+&= PA_{i}
+ \left(\frac{\partial (\chi_{A}-\iota_{i})}{\partial v_{i}}|
+ \frac{\partial \chi_{B}}{\partial v_{i}} \right) + 
+\frac{N_{i}(A)}{2 \gamma}
+ \left(\frac{\partial (\chi_{A}-2\iota_{i})}{\partial v_{i}}|
+ \frac{\partial \chi_{B}}{\partial v_{i}} \right) \\
+&+\frac{N_{i}(B)}{2 \gamma}
+ \left(\frac{\partial (\chi_{A}-\iota_{i})}{\partial v_{i}}|
+ \frac{\partial(\chi_{B}-\iota_{i})}{\partial v_{i}} \right) \\
+&+\Biggl( 
+-\frac{2 N_{i}(A)N_{i}(B)}{2\gamma}(-3|-1)_{i} - 
+\frac{N_{i}(A)N_{i}(B)}{2\gamma}(-2|-2)_{i} \\
+&-
+\frac{2 \alpha N_{i}(B)}{2\gamma}(0|-2)_{i} +
+\frac{4 \beta N_{i}(A)}{2\gamma}(-3|+1)_{i} \\
+&-
+\frac{2 \beta N_{i}(A)}{2\gamma}(-2|0)_{i}  +
+\frac{4 \alpha\beta}{2\gamma}(0|0)_{i}
+\Biggr)
+ \end{split}
+ \label{OS_kinetic_eq:5}
+\end{equation}
+
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Three Body Kinetic Integral}
+%
+%
+%
+According to the \ref{kinetic_direct_int_eq:2}, the three body kinetic enegy
+could also be expressed as:
+\begin{equation}
+\frac{1}{2}\sum_{v = x, y, z}\int \chi_{A}(r)\chi_{B}(r)
+\frac{\partial^{2}}{\partial v^{2}} \chi_{C}(r) dr
+= \frac{1}{2}\int \nabla(\chi_{A}(r)\chi_{B}(r)) \cdot \nabla\chi_{C}(r) dr
+ \label{three_body_kinetic_integral_eq:1}
+\end{equation}
+
+According to the \ref{OS_kinetic_eq:0}, we have:
+\begin{align}
+ \frac{\partial \chi^{lmn}_{A}}{\partial v} &= 
+ N_{i}(A)(\chi_{A}^{lmn}-\iota_{i}) - 2\alpha(\chi_{A}^{lmn}+\iota_{i}) \nonumber \\
+ &= N_{i}(A)(-1)_{i} - 2\alpha(+1)_{i}
+ \label{three_body_kinetic_integral_eq:2}
+\end{align}
+We can further generate derivtives for \ref{three_body_kinetic_integral_eq:1}
+as:
+\begin{equation}
+ \begin{split}
+&\int \nabla(\chi_{A}(r)\chi_{B}(r)) \cdot \nabla\chi_{C}(r) dr \\
+&= \int \left[ (\nabla\chi_{A}(r)\chi_{B}(r) + \chi_{A}(r)\nabla\chi_{B}(r)\right] 
+\cdot \nabla\chi_{C}(r) dr \\
+&= \sum_{i = x, y, z} \int
+[ N_{i}(A)(\chi_{A}-\iota_{i}) - 2\alpha(\chi_{A}+\iota_{i})] \chi_{B} \\
+&[ N_{i}(C)(\chi_{C}-\iota_{i}) - 2\gamma(\chi_{C}+\iota_{i})] dr \\
+&+ \sum_{i = x, y, z} \int 
+\chi_{A}(r) \left[ 
+N_{i}(B)(\chi_{B}-\iota_{i}) - 2\beta(\chi_{B}+\iota_{i})\right] \\
+&\left[ N_{i}(C)(\chi_{C}-\iota_{i}) - 2\gamma(\chi_{C}+\iota_{i})\right]  dr
+ \end{split}
+\label{three_body_kinetic_integral_eq:3}
+\end{equation}
+$\alpha$ is the expotential factor for $\chi_{A}$, $\beta$ is for $\chi_{B}$
+and $\gamma$ is for $\chi_{C}$.
+
+Now let's expand all the terms:
+\begin{equation}
+ \begin{split}
+&\int \nabla(\chi_{A}(r)\chi_{B}(r)) \cdot \nabla\chi_{C}(r) dr \\
+&= \sum_{i = x, y, z} \int
+[ N_{i}(A)(\chi_{A}-\iota_{i}) - 2\alpha(\chi_{A}+\iota_{i})] \chi_{B} \\
+&[ N_{i}(C)(\chi_{C}-\iota_{i}) - 2\gamma(\chi_{C}+\iota_{i})] dr \\
+&+ \sum_{i = x, y, z} \int 
+\chi_{A}(r) \left[ 
+N_{i}(B)(\chi_{B}-\iota_{i}) - 2\beta(\chi_{B}+\iota_{i})\right] \\
+&\left[ N_{i}(C)(\chi_{C}-\iota_{i}) - 2\gamma(\chi_{C}+\iota_{i})\right]  dr \\
+&= \sum_{i = x, y, z} \int 
+ N_{i}(A)N_{i}(C)(\chi_{A}-\iota_{i})\chi_{B}(\chi_{C}-\iota_{i}) dr \\
+&- \sum_{i = x, y, z} \int 
+ 2\alpha N_{i}(C)(\chi_{A}+\iota_{i})\chi_{B}(\chi_{C}-\iota_{i}) dr \\
+&- \sum_{i = x, y, z} \int 
+ 2\gamma N_{i}(A)(\chi_{A}-\iota_{i})\chi_{B}(\chi_{C}+\iota_{i}) dr \\
+&+ \sum_{i = x, y, z} \int 
+ 4\alpha\gamma   (\chi_{A}+\iota_{i})\chi_{B}(\chi_{C}+\iota_{i}) dr \\ 
+&+ \sum_{i = x, y, z} \int 
+ N_{i}(B)N_{i}(C)\chi_{A}(\chi_{B}-\iota_{i})(\chi_{C}-\iota_{i}) dr \\
+&- \sum_{i = x, y, z} \int 
+ 2\beta  N_{i}(C)\chi_{A}(\chi_{B}+\iota_{i})(\chi_{C}-\iota_{i}) dr \\
+&- \sum_{i = x, y, z} \int 
+ 2\gamma N_{i}(B)\chi_{A}(\chi_{B}-\iota_{i})(\chi_{C}+\iota_{i}) dr \\
+&+ \sum_{i = x, y, z} \int 
+ 4\beta\gamma    \chi_{A}(\chi_{B}+\iota_{i})(\chi_{C}+\iota_{i}) dr  
+ \end{split}
+\label{three_body_kinetic_integral_eq:4}
+\end{equation}
+
+Particularly, for the bottom $SSS$ type integrals, it has the expression as:
+\begin{equation}
+\begin{split}
+ &\int \nabla(0_{A}0_{B}) \cdot \nabla 0_{C} dr \\
+ &= \sum_{i = x, y, z} \int 
+ 4\alpha\gamma   (0_{A}+\iota_{i})0_{B}(0_{C}+\iota_{i}) dr \\ 
+ &+ \sum_{i = x, y, z} \int 
+ 4\beta\gamma    0_{A}(0_{B}+\iota_{i})(0_{C}+\iota_{i}) dr \\
+\end{split}
+\label{three_body_kinetic_integral_eq:5}
+\end{equation}
+By using the RR expression for three body overlap integral, it becomes:
+\begin{equation}
+ \begin{split}
+ &\int \nabla(0_{A}0_{B}) \cdot \nabla 0_{C} dr \\
+ &= \sum_{i = x, y, z} \int 
+ 4\alpha\gamma   (0_{A}+\iota_{i})0_{B}(0_{C}+\iota_{i}) dr \\ 
+ &+ \sum_{i = x, y, z} \int 
+ 4\beta\gamma    0_{A}(0_{B}+\iota_{i})(0_{C}+\iota_{i}) dr \\
+ &= \sum_{i = x, y, z} \int 
+ 4\alpha\gamma\left\lbrace (G_{i}-C_{i})(0_{A}+\iota_{i})0_{B}0_{C}
+ +\frac{1}{2(\alpha+\beta+\gamma)}0_{A}0_{B}0_{C} \right\rbrace dr \\
+ &+ \sum_{i = x, y, z} \int 
+ 4\beta\gamma \left\lbrace (G_{i}-C_{i})0_{A}(0_{B}+\iota_{i})0_{C}
+ +\frac{1}{2(\alpha+\beta+\gamma)}0_{A}0_{B}0_{C} \right\rbrace dr \\
+ &= \sum_{i = x, y, z} \int 
+ 4\alpha\gamma\left\lbrace (G_{i}-C_{i})(G_{i}-A_{i})0_{A}0_{B}0_{C}
+ +\frac{1}{2(\alpha+\beta+\gamma)}0_{A}0_{B}0_{C} \right\rbrace dr \\
+ &+ \sum_{i = x, y, z} \int 
+ 4\beta\gamma \left\lbrace (G_{i}-C_{i})(G_{i}-B_{i})0_{A}0_{B}0_{C}
+ +\frac{1}{2(\alpha+\beta+\gamma)}0_{A}0_{B}0_{C} \right\rbrace dr \\ 
+ &= \sum_{i = x, y, z} \left\lbrace 
+ 4\gamma(G_{i}-C_{i}) \left[ \alpha(G_{i}-A_{i}) + \beta(G_{i}-B_{i})\right] 
+ + \frac{2\gamma(\alpha+\beta)}{\alpha+\beta+\gamma}
+ \right\rbrace \int 0_{A}0_{B}0_{C} dr
+\end{split}
+\label{three_body_kinetic_integral_eq:6}
+\end{equation}
+
+
+\begin{comment}
+ &+ \sum_{i = x, y, z} \int \Bigl{ 
+\chi_{A}(r) \left[ 
+N_{i}(B)(\chi_{B}-\iota_{i}) - 2\beta(\chi_{B}+\iota_{i})\right]
+\left[ N_{i}(C)(\chi_{C}-\iota_{i}) - 2\gamma(\chi_{C}+\iota_{i})\right] \Bigr} dr
+\end{comment}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Nuclear Attraction Integral}
+%
+%
+%
+In the section of \ref{direct_NAI_derivation}, we have derived the nuclear
+attraction integral explicitly. Here in this section, we will use the recursive
+relation to derive a simple algorithm to calculate the NAI.
+
+As we know, a general NAI is expressed as:
+\begin{equation}
+ \begin{split}
+  (a|\Lambda_{c}|b) &= \int \chi_{i}(r)\frac{1}{r_{C}}\chi_{j}(r) dr \\
+&= \int x^{l_{A}}_{A}y^{m_{A}}_{A}z^{n_{A}}_{A}e^{-\alpha r_{A}^{2}}
+        \frac{1}{r_{C}}
+        x^{l_{B}}_{B}y^{m_{B}}_{B}z^{n_{B}}_{B}e^{-\beta  r_{B}^{2}} dr
+ \end{split}
+\end{equation}
+$r_{A}, r_{B}$ and $r_{c}$ denotes the distance between electron position and
+the given nuclear (A, B or C).
+
+Through transformation, the $\frac{1}{r_{C}}$ becomes:
+\begin{equation}
+\label{OS_nuclear_eq:1}
+\frac{1}{r_{C}} = \frac{2}{\pi^{1/2}}\int^{\infty}_{0}e^{-u^{2}(r-C)^{2}} du
+\end{equation}
+Then it's fully converted into a S type of primitive function.
+
+Therefore, for the $(a|0_{c}|b)$ it could be expressed as:
+\begin{equation}
+ \label{OS_nuclear_eq:2}
+\begin{split}
+(a|\Lambda_{c}|b) &= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du
+ \int dr x^{l_{A}}_{A}y^{m_{A}}_{A}z^{n_{A}}_{A}e^{-\alpha r_{A}^{2}}
+        e^{-u^{2}(r-C)^{2}}
+        x^{l_{B}}_{B}y^{m_{B}}_{B}z^{n_{B}}_{B}e^{-\beta  r_{B}^{2}} \\
+&= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du  (a|0_{c}|b)
+\end{split}
+\end{equation}
+Then the NAI is converted back to the three center overlap integral.
+
+According to the recursive relation in \ref{OS_three_overlap_int_eq:12},
+the $(a|0_{c}|b)$ could be expressed as:
+\begin{equation}
+ \begin{split}
+  (a+\iota_{i}|0_{c}|b) 
+&= \left( \frac{\alpha A_{i} + \beta B_{i} + u^{2}C_{i}}{\alpha+\beta+u^{2}} -
+A_{i}\right) (a|0_{c}|b)  \\
+&+ 
+N_{i}(A)\left(\frac{1}{2(\alpha+\beta+u^{2})}\right)(a-\iota_{i}|0_{c}|b) \\
+&+
+N_{i}(C)\left(\frac{1}{2(\alpha+\beta+u^{2})}\right)(a|0_{c}|b-\iota_{i}) \\
+&= \left( P_{i}  - A_{i}\right) (a|0_{c}|b) - (P_{i} - C_{i})
+\frac{u^{2}}{\alpha+\beta+u^{2}}(a|0_{c}|b)  \\
+&+ 
+\frac{N_{i}(A)}{2(\alpha+\beta)}\left(1-\frac{u^{2}}{(\alpha+\beta+u^{2})}
+\right)(a-\iota_{i}|0_{ c }|b) \\
+&+
+\frac{N_{i}(C)}{2(\alpha+\beta)}\left(1-\frac{u^{2}}{(\alpha+\beta+u^{2})}
+\right)(a|0_{c}|b-\iota_{i}) \\
+ \end{split}
+\label{OS_nuclear_eq:3}
+\end{equation}
+Where $P_{i}$ is:
+\begin{equation}
+ P_{i} = \frac{\alpha A_{i} + \beta B_{i}}{\alpha+\beta}
+\end{equation}
+Here, we are carefully modifying the expression so that to make the result
+similar to the one we derived in ERI(see \ref{OS_ERI_eq:27}). Therefore,
+here for \ref{OS_nuclear_eq:3} a similar auxiliary function (see
+\ref{OS_ERI_eq:28}) could be defined($\epsilon = \alpha+\beta$):
+\begin{equation}
+\label{OS_nuclear_eq:4}
+  (a|0_{c}|b)^{(m)} = \frac{2}{\sqrt{\pi}}\int du \left( \frac{u^{2}}
+{\epsilon+u^{2}}\right)^{m}(ab|u|cd) 
+\end{equation}
+and we have:
+\begin{equation}
+ \begin{split}
+  (a+\iota_{i}|0_{c}|b)^{(m)} &=  
+\left( P_{i}  - A_{i}\right) (a|0_{c}|b)^{(m)} - (P_{i} - C_{i})
+(a|0_{c}|b)^{(m+1)}  \\
+&+ 
+\frac{N_{i}(A)}{2\epsilon}\left(
+(a-\iota_{i}|0_{ c }|b)^{(m)}-
+(a-\iota_{i}|0_{ c }|b)^{(m+1)}
+\right) \\
+&+
+\frac{N_{i}(C)}{2\epsilon}\left(
+(a|0_{c}|b-\iota_{i})^{(m)}-
+(a|0_{c}|b-\iota_{i})^{(m+1)}
+\right) \\
+ \end{split}
+\label{OS_nuclear_eq:5}
+\end{equation}
+The corresponding integral of $(0_{a}|0_{c}|0_{b})^{(m)}$ is:
+\begin{equation}
+\label{OS_nuclear_eq:6}
+ (0_{a}|0_{c}|0_{b})^{(m)} = 2\left(
+\frac{\epsilon}{\pi}\right)^{1/2}(0_{a}|0_{b})
+\int^{1}_{0} t^{2m} e^{-(\epsilon|PC|^{2})t^{2}} dt 
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+%%%
+%%%  the description here is not quite what we want. So just screen the
+%    contents.
+%%%
+
+\subsection{Implementation Considerations}
+%
+%
+%
+Now let's give some deep discussion on how to realize the algorithm. For the
+OS and its derived algorithm, the first thing we can note is that the recursive
+relationship is actually expressed based on ``shell'' rather than the basis set
+orders (for example, shell P has three basis set orders; Px, Py and Pz).
+
+This is easy to understand. Suggest for an arbitrary overlap integral,
+$(a|b)$, there will be $n_{a}n_{b}$ basis set pairs ($n$ is the number of
+Cartesian basis set). For the $(a+\iota_{i}|b)$, depending on the literal 
+meaning the basis set pairs would be $3n_{a}n_{b}$ since $\iota_{i}$ loop
+over x, y and z. However, if shell a is incremented to the shell a+1 (like
+from shell P to shell D), the basis set pairs would be:
+\begin{equation}
+ N_{1} = n_{b}\left(\frac{(L+2)(L+3)(L+4)-(L+1)(L+2)(L+3)}{6} \right) 
+\end{equation}
+$L$ is the angular momentum number for the shell a. If we expand the
+$3n_{a}n_{b}$ in terms of $L$, it's:
+\begin{equation}
+N_{2} = 3n_{b}\left(\frac{(L+1)(L+2)(L+3)-(L+1)(L+2)L}{6} \right) 
+\end{equation}
+Therefore $N_{1} - N_{2}$ gives:
+\begin{equation}
+ \begin{split}
+ N_{1} - N_{2} &= n_{b}\left( \frac{(L+2)(L+3)(L+4)-(L+1)(L+2)(L+3)}{6}\right.
+\\
+&-\left. \frac{3(L+1)(L+2)(L+3)-3(L+1)(L+2)L}{6}\right) \\
+&=  n_{b}(L+2)\left( \frac{(L+3)(L+4)-(L+1)(L+3)}{6}\right. \\
+&-\left.  \frac{3(L+1)(L+3)-3(L+1)L}{6}\right) \\
+&= n_{b}(L+2)\left( \frac{(L+3)(L+4)+3(L+1)L-4(L+1)(L+3)}{6}\right) \\
+&= n_{b}(L+2)\left( \frac{(L+3)(-3L)+3(L+1)L}{6}\right) \\
+&= n_{b}(L+2)L\left( \frac{-3(L+3)+3(L+1)}{6}\right) \\
+&= n_{b}(L+2)L\left( \frac{-6}{6}\right) \\
+&< 0
+ \end{split}
+\end{equation}
+Therefore, The incremental on the integral could be fully expressed by shell
+rather than basis set orders. What's more, it also indicates that for all of 
+recursive relations in the OS framework, the integral is meaningful to the
+``shells'', we need not to consider it in the basis set order level.
+
+\end{comment}
+
+

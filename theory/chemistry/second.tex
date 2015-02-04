@@ -1,0 +1,73 @@
+%
+%  set up at April 4th, 2009
+%
+%
+%
+\chapter{Second Quantization Methods}
+%
+%
+%
+The second Quantization methods is one of the powerful tools used in
+relativistic quantum theory and quantum field theory, where the
+physical problems that actually involves creation or destruction of
+particles, photons, etc. In a majority of the applications of the
+second quantization techniques to quantum-chemical problems, no
+electrons or other particles are created or destroyed. Thus, this
+method usually serve merely as a convenient and operationally useful
+approach. However, this methods deeply simplifies the discussion about 
+the system involving many identical interacting particles; e.g., the electrons
+in the molecules.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{General Discussion}
+%
+%
+%
+Now let's define some operator which is called ``creation operator'':
+$\hat{r}^{+}$. This operator is used to generate an electron which is on orbital
+of $\varphi_{r}$. Here we note that compared with traditional notion which
+requires the label of electron, the creation operator does not need it anymore.
+Hence we can generally express the Slater determinant of $\Phi$ as:
+\begin{equation}
+ \label{second_quantization_general_discussion:1}
+\Phi = \frac{1}{\sqrt[2]{n!}} \left | \begin{array}{cccc}
+  \varphi_{1}(1) & \varphi_{2}(1) & \cdots & \varphi_{n}(1) \\
+  \varphi_{1}(2) & \varphi_{2}(2) & \cdots & \varphi_{n}(2) \\
+  \cdots & \cdots & \cdots & \cdots                        \\
+  \varphi_{1}(n) & \varphi_{2}(n) & \cdots & \varphi_{n}(n)
+\end{array} \right | =
+\hat{n}^{+}\cdots\hat{3}^{+}\hat{2}^{+}\hat{1}^{+}\ket{vac}
+\end{equation}
+Again we follow the convention that to use a, b, c etc. to designate the virtual
+orbitals, the i, j, k etc. to refer to the occupied orbitals; and p,
+q, r etc. to specify the general orbitals. What's more, we note that
+$\hat{2}^{+}\hat{1}^{+}\ket{vac}$ denotes that firstly to generate an electron
+in the $\varphi_{1}$, then to generate another electron in $\varphi_{2}$. 
+
+Compared with the traditional Slater determinant expression in
+(\ref{second_quantization_general_discussion:1}), the most important thing is
+that the Slater determinant satisfies the Pauli principle that if we exchange
+two electrons in the wave function, then the wave function should change its
+sign. Hence how can we express it in the second quantization?
+
+For the creation operator, it generally follows the rule that:
+\begin{equation}
+  \label{second_quantization_general_discussion:2}
+\hat{r}^{+}\hat{s}^{+} + \hat{s}^{+}\hat{r}^{+} = [\hat{r}^{+}\hat{s}^{+}]_{+}
+= 0
+\end{equation}
+We note that it gives the Pauli principle. Let's generally consider some wave
+function in second quantization: $\Phi
+=\hat{r}^{+}\cdots\hat{s}^{+}\hat{t}^{+}\hat{u}^{+}\ket{vac}$, 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

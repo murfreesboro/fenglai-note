@@ -1,0 +1,371 @@
+%
+% modified at Dec. 14th, 2009
+%
+%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Numerical Quadrature Method}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+ Commonly to say, the exchange-correlation integrals we
+are dealing with in the KS-DFT equation adopt such form:
+\begin{equation}\label{}
+    I = \int F(\rho, \bigtriangledown \rho, \cdots) d \tau
+\end{equation}
+Since the functional has so complicated expression, that no
+analytical methods can be used to calculate its integrals. Hence the
+numerical quadrature method is indispensable. The general idea of
+numerical quadrature method is to transform the difficult integrals
+into a summation process as approximation:
+\begin{equation}\label{}
+    \int^{a}_{b}y(x)dx = \sum^{n}_{i=1}A_{i}y(x_{i})
+\end{equation}
+Here the $x_{i}$ is the grid point where the summation is taking;
+and $A_{i}$ is its integral coefficient.
+
+According to the above thoughts, the $I = \int F(\rho,
+\bigtriangledown \rho, \cdots) d \tau$ can be approximated as:
+\begin{equation}\label{NQMeq:1}
+\int F(\rho, \bigtriangledown \rho, \cdots) d \tau =
+\sum^{n}_{i=1}A_{i}F(\rho_{i}, \bigtriangledown \rho _{i}, \cdots)
+\end{equation}
+For the functional F is heavily depends on the density change, so
+the integral process can be well expected that two rules has to be
+followed:
+\begin{itemize}
+  \item Near the nuclear the $\rho$ has cusp, so the integral has
+  cusp near the nuclear
+  \item as the $r \rightarrow \infty$, $\rho \rightarrow 0$, so 
+$I \rightarrow 0$
+\end{itemize}
+For the reason of the first item, it's not appropriate to directly
+use the grid over the whole three dimensional space. As a good
+approximation method, Becke\cite{Becke} suggested an alternative way
+to calculate such integrals. The general main idea will be discussed
+in the following content, actually this idea has been taken in
+almost all of the quantum chemistry softwares (such as \cite{g03,
+QCHEM,turbomole}). As for conveniences, we will use the general
+function of $F(r)$ for discussion, and take functional of
+$f[\rho]=\rho ^{\frac{3}{4}}$ as an example to illustrate the whole
+process.
+
+For the common integral process, we have:
+\begin{equation}\label{}
+    \int \rho^{\frac{3}{4}}(r) d \tau \approx \sum_{i=1}^{n}
+A_{i} \rho^{\frac{3}{4}}(r_{i})
+\end{equation}
+Here the $n$ denotes the number of grids, and $r_{i}$  stands for
+the grid.
+
+Since the $\rho$ has cusp near the nuclear, so a very natural idea
+is to divide the multicentric integral into single center
+integration over nucleus, and then sum up them together:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  I &=& \sum_{n} I_{n} \nonumber \\
+    &=& \sum_{n} \int F_{n}(r) d \tau
+\end{eqnarray}
+Here the $\int F_{n}(r) d \tau$ denotes the single center
+integration over nuclear. After this step, then we can use numerical
+quadrature method to calculate each single center integral, then
+finish the whole process. The most important question in this
+process is: How to associate the $F_{n}(r)$ with the general
+expression of functional of $F(r)$? In other words, how to judge
+whether a single grid belongs to this atom? As for answering this
+question, Becke suggested weight function method. In this method, he
+express the $F_{n}(r)$ as:
+\begin{equation}\label{}
+F_{n}(r) = w_{n}(r)F(r)
+\end{equation}
+For the grid belongs to the atom n, it has $w_{n}(r) \approx 1$; and
+for the grid not belongs to the atom n, $w_{n}(r) \approx 0$. For
+all the atoms related to this grid, we have:
+\begin{equation}\label{}
+\sum_{A}w_{A}(r) = 1
+\end{equation}
+This process corresponds to divide the grid expression of
+$A_{i}F(r_{i})$ in the (\ref{NQMeq:1}) into some pieces, each has
+form of $w_{n}(r_{i})A_{i}F(r_{i})$, and if we add all the pieces
+together, that is $\sum^{atoms}_{n}w_{n}(r_{i})A_{i}F(r_{i}) =
+A_{i}F(r_{i}) $, we still get the summation in the (\ref{NQMeq:1}).
+
+Relative weight function which has the form of $w_{n}(r)$,
+has value unity in the vicinity of its own nucleus, but vanishes in
+a continuous and well behaved manner near any other nucleus. In a
+sense, the system is divided into some fuzzy, overlapping cells,
+each cell contains a nuclear, and on that nuclear the numerical
+quadrature method is taken on to calculating the single center
+integrals; the relative weight function is used to make sure that
+the grid in the calculation is belonged to the specific atom. 
+
+Now let's use some example of $\rho^{\frac{3}{4}}$ to show the above
+words, we have:
+\begin{equation}
+\label{NQM_general_eq}
+\begin{split}
+ \rho^{\frac{3}{4}}(r_{i}) &= \sum^{atoms}_{n} w_{n}(r_{i})
+\rho^{\frac{3}{4}}(r_{i}) \Rightarrow  \\
+I &= \int \rho^{\frac{3}{4}}(r) d^{3}r \\
+  &= \sum^{grids}_{g} A_{g}\rho^{\frac{3}{4}}(r_{g}) \\
+  &= \sum^{grids}_{g} A_{g} \sum^{atoms}_{n}
+w_{n}(r_{g})\rho^{\frac{3}{4}}(r_{g}) \\
+  &= \sum^{grids}_{g}\sum^{atoms}_{n}A_{g} 
+w_{n}(r_{g})\rho^{\frac{3}{4}}(r_{g}) \\
+\end{split}
+\end{equation}
+This is just the general method for us to evaluate the numerical
+quadrature for the arbitrary functional. 
+
+
+%In term of this process, we will discuss it from five aspect:
+%\begin{itemize}
+%  \item scheme to produce relative weight function
+%  \item radical integration
+%  \item numerical quadrature method to calculate the single center
+%  integral
+%  \item symmetry handling
+%  \item linear scaling scheme
+%\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Scheme to produce relative weight function}\label{weight_function_dft} 
+
+The first systematic approach to introduce the relative weight
+function is from Becke\cite{Becke}. where is this method we will know
+how to generate the concrete $w_{n}$ for evaluating the quadrature. 
+
+the scheme used by Becke involves the two-center coordinate
+system known as confocal elliptical coordinates $(\lambda, \mu,
+\phi)$. The coordinate $\phi$ denotes the angle about the
+internuclear axis, and coordinate $\lambda$ and $\mu$ are defined
+by:
+\begin{equation}\label{}
+ \lambda = \frac{r_{1}+ r_{2}}{R_{12}} \quad
+\mu = \frac{r_{1} - r_{2}}{R_{12}}
+\end{equation}
+Where $r_{1}, r_{2}, R_{12}$ denote distance to nuclear 1, distance
+to nuclear 2, and internuclear separation, respectively. Their range
+is indicated below:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+   & & 0 \leq \phi \leq 2\pi \nonumber \\
+   & & 1 \leq \lambda <\infty \nonumber \\
+   & & -1 \leq \mu \leq +1
+\end{eqnarray}
+Obviously the surface of $\mu=0$ is bisecting the internuclear axis,
+so it works as sign for separating two atoms. So simply the weight
+function can be:
+\begin{equation}\label{NQMeq:2}
+s(\mu_{ij})=\begin{cases}
+1, & -1 \leq \mu_{ij} \leq 0 \\
+0, & 0 \leq \mu_{ij} \leq +1
+\end{cases}
+\end{equation}
+Hence if we use this expression, conceptually for some grid it only
+belongs to only one atom so that we have the $w_{n} = 1$ for some
+atom $n$. Hence the summation over the atoms will disappeared.
+
+However, this expression is too simple so that it cause instability
+in the numerical quadrature. Further Becke suggest to use some
+"smooth" function to replace the expression of (\ref{NQMeq:2}), which
+should obey some boundary conditions:
+\begin{eqnarray}\label{NQMeq:5}
+% \nonumber to remove numbering (before each equation)
+  s(-1) &=& 0 \nonumber \\
+  s(+1) &=& 0 \nonumber \\
+  \frac{ds}{d \mu}(-1) &=& \frac{ds}{d \mu}(+1) = 0
+\end{eqnarray}
+Under this condition, he finally construct some polynomials
+expression which satisfy the condition above. It's worthy to note
+that this polynomial should vary as fast as possible so that it can
+avoid the cusp near the nuclear; so the final expression is:
+\begin{eqnarray}\label{NQMeq:3}
+% \nonumber to remove numbering (before each equation)
+  s(\mu_{ij}) &=& \frac{1}{2} \bigg[1- p 
+\Big\{p \big[ p(\mu_{ij}) \big] \Big\} \bigg] \nonumber \\
+  p(\mu_{ij}) &=& \frac{3}{2}\mu_{ij} - \frac{1}{2}\mu^{3}_{ij}
+\end{eqnarray}
+It yields a 27 degree analytical polynomial expression. Here the
+$\mu_{ij}$ is just the expression of $\dfrac{r_{i} - r_{j}}{R_{ij}}$. 
+
+So finally we have weight function defined as:
+\begin{eqnarray}\label{NQM_generation_eq}
+% \nonumber to remove numbering (before each equation)
+  P_{i}(r) &=&  \prod_{j \neq i}s(\mu_{ij}) \nonumber \\
+  w_{n}(r) &=& P_{n}(r)/\sum_{m} P_{m}(r)
+\end{eqnarray}
+Here i, j ,n, m all denote to the specific atoms.
+
+Murray et al.\cite{MHL}, Gill et al.\cite{PJM},Treutler et
+al.\cite{OR}, etc. all use this technic to decide the relative
+weight function; however, Stratman et al.\cite{EGM} further polished
+up the expression above, for speeding up the calculation efficiency.
+
+Stratman et al. use another step function which functions similar to
+the (\ref{NQMeq:3}), who has degree of 7, which is much lower than
+(\ref{NQMeq:3}):
+\begin{equation}\label{NQMeq:4}
+z(\mu_{ij}:a) = \frac{1}{16} \Big[ 35(\frac{\mu_{ij}}{a}) - 35 (
+\frac{\mu_{ij}}{a})^{3} + 21(\frac{\mu_{ij}}{a})^{5}
+-5(\frac{\mu_{ij}}{a})^{7} \Big]
+\end{equation}
+Here they set $a$ equals to 0.64. By introducing the $z(\mu_{ij}:a)$
+back into the (\ref{NQM_generation_eq}), we can get the weight for
+some specific $r$.
+
+In their paper\cite{EGM}, they presented another advantage brought
+by introducing this new polynomial expression, which is "screen
+weights". That means, in such scheme the weight which associated
+with a certain of grid can be efficiently determined that whether it
+equals to 1 or not, by the condition below:
+\begin{equation}\label{}
+\text{If} \quad r_{ig} < \frac{1}{2}(1-a)R_{in} \Rightarrow
+w_{i}(r_{g}) = 1
+\end{equation}
+Where $r_{ig}$ is the distance from the grid point $g$ to its parent
+atom $i$, $R_{in}$ is the distance to the nearest atomic neighbor of
+$i$, and $a$ is the constant defined above. Since a significant
+amount of grid has weight equals to 1, so this step avoids a lot of
+calculation time, but still be able to achieve same accuracy
+precision\cite{EGM}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Linear scaling of the computation}
+%
+%
+%
+%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Batch of the grid points}
+%
+%
+%
+%
+In modern quantum chemistry packages, we usually employ the Gaussian
+type of atomic orbitals. However, GTO has a fast decaying nature that
+for a certain grid point, only a few of basis functions (GTOs) are
+making contribution to it and the others can be safely neglected
+without affecting the accuracy. Based on this idea, we can introduce
+the ``batch'' concept.
+
+What does the batch mean? For an arbitrary grid point, we can
+determine that what kind of GTOs ( or shells, which is a group of
+GTOs who sharing the same center and angular parts) are making
+contribution to this point. Such group of GTOs are called ``batch''.
+On the other hand, we can also define that for a certain kind of
+shell (or GTOs), what kind of grids it making contribution to. That's
+two different types of definition, but should lead to the same
+result. 
+
+Now let's go to see how to put it into computation details. First, we
+have to define the ``size'' of every shell (it's represented by
+$\lambda$). That means, for a fixed shell, who is certering in
+$\bm{R_{a}}$ and it's radical part is $\psi_{a}$; it's size is
+defined as $|\psi_{a}| < \epsilon$. then for some grid point of
+$\bm{r_{g}}$, we use the formula below to determine that whether a
+shell contributing to the grid point or not:
+\begin{equation}
+ \label{linear_scale_numerical_quadrature_eq:1}
+if \quad |\bm{r_{g}} - \bm{R_{a}}| \leq \lambda_{a}, then \quad
+\psi_{a} \in S_{g}
+\end{equation}
+Finally, all the shells in this batch have the non-zero weight, and
+all the others shells (GTOs) has the zero weight. Then the weight
+calculation also becomes easier.  
+
+
+\begin{comment}
+\subsection{Batch of the grid points}
+Since in the grid methods, such as Gauss-Lebedev grid; requires the
+interval should be within in $-1 \leq x \leq +1$, but the radical
+interval in the single center integral is to be $0 \leq r \leq
+\infty$, so it's necessary to strike up a mapping between them.
+Moreover, this transformation may bring some delicate effects to the
+numerical integration process; which had been carefully discussed by
+Treutler\cite{OR}. We will carefully consider it as we encounter
+this problem.
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The single center integral}
+%
+%
+%
+Traditionally we have choices list below to achieve this process(here
+only some of them are listed):
+\begin{description}
+  \item[Gauss-Lebedev grid]: This method is adopted by many popular
+  programs.
+  \item[Lobatto grid]: used in turbomole.
+  \item[Euler-Maclaurin grid]: used in DGAUSS and discribled by
+  Murray et al.\cite{MHL}.
+\end{description}
+
+The numerical quadrature methods related to the single center, are
+very stable and the difference of result between methods of grid is
+little. However, the Lebedev grid method is widely used for its high
+efficiency.
+
+Generally, the grid methods can be described in the following form:
+\begin{equation}\label{}
+I_{n} = \int\int\int F_{n}(r,\theta,\phi)r^{2}\sin\theta dr
+d\theta d \phi \approx \sum^{N_{r}}_{i=1} A^{r}_{i}
+\sum^{N_{\Omega}}_{j=1}A^{\Omega}_{j} F(r_{i}, \theta_{j}, \phi_{j})
+\end{equation}
+Here in this expression the $A^{r}_{i}$(related to the radical
+quadrature) and $A^{\Omega}_{j}$(related to the angle quadrature)
+are constant parameters, actually they are the coefficients; and
+function of F has certain formation as expanding the integral into
+summation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Question With Radical Integration}
+Since in the grid methods, such as Gauss-Lebedev grid; requires the
+interval should be within in $-1 \leq x \leq +1$, but the radical
+interval in the single center integral is to be $0 \leq r \leq
+\infty$, so it's necessary to strike up a mapping between them.
+Moreover, this transformation may bring some delicate effects to the
+numerical integration process; which had been carefully discussed by
+Treutler\cite{OR}. We will carefully consider it as we encounter
+this problem.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Symmetry Handling}
+The grid based methods has some limitation with the symmetry
+handling, which was first pointed out by Gill et al. \cite{PGPOPLE}.
+This is induced by the transformation from the the angle portion of
+coordinate to the cartesian coordinate, which is closely related to
+the grid scheme.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Linear Scaling Scheme}
+So far, the most plentiful discussions about to speeding up the
+numerical quadrature methods is coming from Stratmann et
+al.\cite{EGM}; which is the default choice taken by Gaussian
+incorporation\cite{g03}. On the other hand, Q-CHEM\cite{QCHEM}
+company also published some articles related to the same
+issue\cite{IncDFT}. In Stratmann's paper, they presented several
+technics to speed up the calculation time, and they claimed that
+they finally had achieving linear scaling in the calculations. These
+technics are not complicated, just as using some new weight function
+to replace the old and inefficient ones; the screen weight methods
+etc.; which have been mentioned in the above content. Here in the
+first manuscript we do not carefully examine these technics, it will
+be carefully discussed as we step into the concrete program writing.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

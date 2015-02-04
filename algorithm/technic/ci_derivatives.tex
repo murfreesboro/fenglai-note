@@ -1,0 +1,256 @@
+\chapter{The Analytical Gradient for CI Methods}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CI Energy}
+%
+%
+%
+%
+In this chapter, we are going to consider the analytical gradients for general
+CI method. Here we follow the general convention that to use
+$C$ (capital C) to represent the Slater determinant amplitude in CI state,
+to use $c$ (lowercase c) to designate the MO coefficients, $\Psi$ is used to
+refer to CI wave function, $\Phi$ means the corresponding Slater
+determinant, and $\varphi$  is refer to MO.
+
+For the index, all the capital letters such as $I,J,K,L$ etc. indicates it's
+CI wave functions, and the lowercase letter is used to refer to MO. Again, we
+use a, b, c etc. to designate the virtual orbitals, the i, j, k etc. to refer to
+the occupied orbitals; and p, q, r etc. to specify the general orbitals.
+
+Suppose that we have gained a set of reference MO from HF calculation, then we
+are able to form the corresponding slater determinants:
+\begin{equation}
+ \label{CI_energy_CI_derivatives:1}
+\Psi_{K} = \sum_{I}C_{IK}\Phi_{I}
+\end{equation}
+Where the normalization condition for the wave functions requires:
+\begin{equation}
+ \label{CI_energy_CI_derivatives:2}
+\langle\Psi_{J}|\Psi_{K}\rangle = \delta_{JK} \rightarrow \sum_{I}C_{IJ}C_{IK} 
+= \delta_{JK}
+\end{equation}
+
+From the Schrodinger equation, we know:
+\begin{align}
+ \label{CI_energy_CI_derivatives:3}
+\hat{H}\Psi_{K} &= E_{K}\Psi_{K} \Longrightarrow \nonumber \\
+E_{K} &= \langle\Psi_{K}|\hat{H}|\Psi_{K}\rangle   \nonumber \\
+&=\sum_{I}\sum_{J}C_{IK}C_{JK}\langle\Phi_{I}|\hat{H}|\Phi_{J}\rangle \nonumber
+\\
+&= \sum_{I}\sum_{J}C_{IK}C_{JK}H_{IJ}
+\end{align}
+
+For $H_{IJ}$, if we express it into the MO representation, it becomes:
+\begin{equation}
+ \label{CI_energy_CI_derivatives:4}
+H_{IJ} = \sum_{pq}^{MO}Q_{pq}^{IJ}h_{pq} + \sum_{pqrs}^{MO}G_{pqrs}^{IJ}(pq|rs)
+\end{equation}
+From Slater rules, it turns out that $Q_{pq}^{IJ}$ and $G_{pqrs}^{IJ}$ are some
+numbers, which could be $0$, $\pm 1$ or $\pm 2$. 
+
+By further considering the CI amplitudes, we have:
+\begin{equation}
+ \label{CI_energy_CI_derivatives:5}
+E_{K} = \sum_{pq}^{MO}Q^{K}_{pq}h_{pq} + \sum_{pqrs}^{MO}G^{K}_{pqrs}(pq|rs)
+\end{equation}
+Where
+\begin{align}
+ \label{CI_energy_CI_derivatives:6}
+Q^{K}_{pq} &= \sum_{I}\sum_{J}C_{IK}C_{JK}Q_{pq}^{IJ} \nonumber \\
+G^{K}_{pqrs} &= \sum_{I}\sum_{J}C_{IK}C_{JK}G_{pqrs}^{IJ}
+\end{align}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The First Order Derivatives for CI Method}
+%
+%
+%
+%
+Now according to the (\ref{CI_energy_CI_derivatives:3}), the first order energy
+derivatives can be expressed as:
+\begin{equation}
+  \label{CI_1st_CI_derivatives:1}
+\begin{split}
+\frac{\partial E_{K}}{ \partial \bm{R}_{a}} &=
+\sum_{I}\sum_{J}\frac{\partial C_{IK}}{\partial \bm{R}_{a}}C_{JK}H_{IJ} + 
+\sum_{I}\sum_{J}C_{IK}\frac{\partial C_{JK}}{\partial \bm{R}_{a}}H_{IJ} \\
+&+\sum_{I}\sum_{J}C_{IK}C_{JK}\frac{\partial H_{IJ} }{\partial \bm{R}_{a}}
+\\ 
+&= 2\sum_{I}\sum_{J}\frac{\partial C_{IK}}{\partial \bm{R}_{a}}C_{JK}H_{IJ} +
+\sum_{I}\sum_{J}C_{IK}C_{JK}\frac{\partial H_{IJ} }{\partial \bm{R}_{a}}
+\end{split}
+\end{equation}
+In this derivation, we have used the relation that $I$ and $J$ are symmetrical.
+
+According to Winger's theorem (see \ref{Winger_theorem}), the derivatives for
+the variational parameters should not appear in the first order derivatives
+expression, this is because the $C_{I}$ has made the energy minimum. Hence by
+applying the CI equation in (\ref{CIeq:17}), we have:
+\begin{align}
+  \label{CI_1st_CI_derivatives:2}
+HC &= EC \Longrightarrow \nonumber \\
+\sum_{J}H_{IJ}C_{JK} &= E_{K}C_{IK} 
+\end{align}
+Here $C_{JK}$ indicates the amplitudes for the $K$th CI wave function. By bring
+(\ref{CI_1st_CI_derivatives:2}) into (\ref{CI_1st_CI_derivatives:1}), we have:
+\begin{align}
+ \label{CI_1st_CI_derivatives:3}
+\frac{\partial E_{K}}{ \partial \bm{R}_{a}} &= 2E_{K}\sum_{I}\frac{\partial
+C_{IK}}{\partial \bm{R}_{a}}C_{IK} +
+\sum_{I}\sum_{J}C_{IK}C_{JK}\frac{\partial H_{IJ} }{\partial \bm{R}_{a}}
+\nonumber \\
+&= \sum_{I}\sum_{J}C_{IK}C_{JK}\frac{\partial H_{IJ} }{\partial \bm{R}_{a}}
+\end{align}
+This is because that from the normalization condition, we have:
+\begin{equation}
+ \begin{split}
+  \frac{\partial \sum_{I}C_{IK}^{2}}{\partial \bm{R}_{a}} &= 0 \Longrightarrow
+\\
+2\sum_{I}\frac{\partial
+C_{IK}}{\partial \bm{R}_{a}}C_{IK} &= 0
+ \end{split}
+\label{CI_1st_CI_derivatives:4}
+\end{equation}
+
+Expanding the (\ref{CI_1st_CI_derivatives:3}) in terms of
+(\ref{CI_energy_CI_derivatives:5}), we can get that:
+\begin{equation}
+\label{CI_1st_CI_derivatives:5}
+ \frac{\partial E_{K}}{ \partial \bm{R}_{a}} =
+\sum_{pq}^{MO}Q^{K}_{pq}\frac{\partial h_{pq}}{\partial \bm{R}_{a}} +
+\sum_{pqrs}^{MO}G^{K}_{pqrs}\frac{\partial (pq|rs)}{\partial \bm{R}_{a}}
+\end{equation}
+
+Now the problem is back to the MO derivatives. From
+(\ref{core_Hamiltonian_MO_INT_gradient_eq:1}) and
+(\ref{two_electron_MO_INT_gradient_eq:1}), which are:
+\begin{align}
+ \label{CI_1st_CI_derivatives:6}
+\frac{\partial h_{pq}}{\partial \bm{R}_{a}} &= \sum_{t}\left[U^{a}_{tp}H_{qt} +
+U^{a}_{tq}H_{pt}\right]  + H^{a}_{pq} \nonumber \\
+(pq|rs)^{[a]} &= \Pi_{pqrs}^{[a]} =\sum_{t}\left[ 
+U^{a}_{tp}\Pi_{tqrs} +
+U^{a}_{tq}\Pi_{ptrs} + 
+U^{a}_{tr}\Pi_{pqts} + 
+U^{a}_{ts}\Pi_{pqrt}  
+\right] + \Pi^{a}_{pqrs}
+\end{align}
+the (\ref{CI_1st_CI_derivatives:5}) can be further expressed as:
+\begin{align}
+  \label{CI_1st_CI_derivatives:7}
+ \frac{\partial E_{K}}{ \partial \bm{R}_{a}} &=
+\sum_{pq}^{MO}Q^{K}_{pq}\left\lbrace \sum_{t}\left[U^{a}_{tp}H_{qt} +
+U^{a}_{tq}H_{pt}\right]  + H^{a}_{pq} \right\rbrace \nonumber \\
+&+
+\sum_{pqrs}^{MO}G^{K}_{pqrs}\left\lbrace \sum_{t}\left[ 
+U^{a}_{tp}\Pi_{tqrs} +
+U^{a}_{tq}\Pi_{ptrs} + 
+U^{a}_{tr}\Pi_{pqts} + 
+U^{a}_{ts}\Pi_{pqrt}  
+\right] + \Pi^{a}_{pqrs}\right\rbrace \nonumber \\
+&= \sum_{pq}^{MO}Q^{K}_{pq}H^{a}_{pq} +
+\sum_{pqrs}^{MO}G^{K}_{pqrs}\Pi^{a}_{pqrs} \nonumber \\
+&+ \sum_{pq}^{MO}Q^{K}_{pq}\left\lbrace \sum_{t}\left[U^{a}_{tp}H_{qt} +
+U^{a}_{tq}H_{pt}\right]  \right\rbrace \nonumber \\
+&+ \sum_{pqrs}^{MO}G^{K}_{pqrs}\left\lbrace \sum_{t}\left[ 
+U^{a}_{tp}\Pi_{tqrs} +
+U^{a}_{tq}\Pi_{ptrs} + 
+U^{a}_{tr}\Pi_{pqts} + 
+U^{a}_{ts}\Pi_{pqrt}  
+\right] \right\rbrace \nonumber \\
+\end{align}
+
+Now let's try to understand the symmetry behind the
+(\ref{CI_1st_CI_derivatives:7}). Compared with the Hatree-Fock derivatives,
+here a important distinguishment is that the MO index are ``sumed up'', which
+means, the $p$ and $q$ are identical with each other in the core Hamiltonian
+derivatives, and the four indices of $p$, $q$, $r$, $s$ are identical with each
+other in the double electron integral derivatives. That is to say:
+\begin{equation}
+ \begin{split}
+  \sum_{pq}^{MO}\sum_{t}Q^{K}_{pq}U^{a}_{tp}H_{qt} &=
+  \sum_{pq}^{MO}\sum_{t}Q^{K}_{pq}U^{a}_{tq}H_{pt} \\
+\sum_{pqrs}^{MO} \sum_{t}G^{K}_{pqrs}
+U^{a}_{tp}\Pi_{tqrs}  
+&= 
+\sum_{pqrs}^{MO} \sum_{t}G^{K}_{pqrs} 
+U^{a}_{tq}\Pi_{ptrs} \\ 
+&= 
+\sum_{pqrs}^{MO} \sum_{t}G^{K}_{pqrs} 
+U^{a}_{tr}\Pi_{pqts}  \\
+&=
+\sum_{pqrs}^{MO} \sum_{t}G^{K}_{pqrs} 
+U^{a}_{ts}\Pi_{pqrt}  
+ \end{split}
+\label{CI_1st_CI_derivatives:8}
+\end{equation}
+This can be further explained as below: since in the summation
+$\sum_{pq}^{MO}\sum_{t}$, $Q^{K}_{pq} = Q^{K}_{qp}$ (see its original
+definition); then if we exchange the index of $p$ and $q$, then everything
+should be same for the core integral:
+\begin{equation}
+  \sum_{pq}^{MO}\sum_{t}Q^{K}_{pq}U^{a}_{tq}H_{pt} \xrightarrow{p
+\leftrightarrow q} \sum_{pq}^{MO}\sum_{t}Q^{K}_{qp}U^{a}_{tp}H_{qt}
+\end{equation}
+Then the second integral changes into the first one, hence they should be
+identical with each other. For the double electron integrals, we can get the
+similar proof by remembering that $Q^{K}_{pqrs}$ does not change if we
+exchange the label of $p$, $q$, $r$ and $s$.
+
+By bringing the (\ref{CI_1st_CI_derivatives:8}) into the
+(\ref{CI_1st_CI_derivatives:7}), then we can get:
+\begin{align}
+ \label{CI_1st_CI_derivatives:9}
+\frac{\partial E_{K}}{ \partial \bm{R}_{a}} &=
+\sum_{pq}^{MO}Q^{K}_{pq}H^{a}_{pq} +
+\sum_{pqrs}^{MO}G^{K}_{pqrs}\Pi^{a}_{pqrs} \nonumber \\
+&+ 2\sum_{pq}^{MO}\sum_{t}Q^{K}_{pq}U^{a}_{tp}H_{qt} + 
+4\sum_{pqrs}^{MO}\sum_{t} G^{K}_{pqrs}
+U^{a}_{tp}\Pi_{tqrs} \nonumber \\
+&= \sum_{pq}^{MO}Q^{K}_{pq}H^{a}_{pq} +
+\sum_{pqrs}^{MO}G^{K}_{pqrs}\Pi^{a}_{pqrs} \nonumber \\
+&+ 2\sum_{tp}U^{a}_{tp}\left\lbrace 
+\sum_{q}^{MO}Q^{K}_{pq}H_{qt} + 
+2\sum_{qrs}^{MO}G^{K}_{pqrs}
+\Pi_{tqrs}
+\right\rbrace \nonumber \\
+&= \sum_{pq}^{MO}Q^{K}_{pq}H^{a}_{pq} +
+\sum_{pqrs}^{MO}G^{K}_{pqrs}\Pi^{a}_{pqrs}
++ 2\sum_{tp}U^{a}_{tp}X_{tp}
+\end{align}
+Where $X_{tp}$ is:
+\begin{equation}
+ \label{CI_1st_CI_derivatives:10}
+X_{tp} = 
+\sum_{q}^{MO}Q^{K}_{pq}H_{qt} + 
+2\sum_{qrs}^{MO}G^{K}_{pqrs}
+\Pi_{tqrs}
+\end{equation}
+Now here the only thing left we need to solve is the MO response matrix of $U$
+in (\ref{CI_1st_CI_derivatives:9}). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Z-Vector method}
+%
+%
+%
+%
+\cite{handy1984evaluation}
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 
+
+

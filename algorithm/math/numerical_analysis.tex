@@ -1,0 +1,684 @@
+%
+% originally set up on Feb. 13th, 2013
+%
+%
+\chapter{Numerical Analysis}
+%
+%
+In this chapter we will talk bout the numerical analysis methods used in building 
+the computational chemistry software. we will discuss the ideas,
+theorems and algorithms in the numerical analysis in general; reader could refer
+to the following material for more details. For understanding the mathematical 
+idea and theorems, you can refer to the book given by David R. Kincaid and 
+E. Ward Cheney\cite{Kincaid_2002_numerical_analysis}; for the book discussing the 
+algorithms and code in details, you can refer to the book of ``Numerical Recipes''
+\cite{numerical_recipes}.
+
+Additionally, we note that in this chapter we use small letter to indicate the vectors,
+and capitalized letter to indicate the matrix.
+
+\section{Floating Point}
+
+Floating point describes a method of representing an approximation 
+of a real number in a way that can support a wide range of values.
+Today, the most important standard to represent a floating point
+is IEEE 754 Standard.
+
+A real number could be expressed according to scientific notation as:
+\begin{equation}
+\label{Floating_Point_eq:1}
+ 123.45678 = +0.12345678\times 10^{+3}
+\end{equation}
+Such expression is divided into two parts: one is the mantissa,
+$+0.12345678$; the other is exponent, $10^{+3}$. Here we note that
+for mantissa we have it in the range of $\frac{1}{10}$ and $1$.
+
+In computer, since all of data is stored in binary way; therefore
+the real number in computer is actually expressed as:
+\begin{equation}
+\label{Floating_Point_eq:2}
+ x = \pm q\times 2^{m}
+\end{equation}
+where $q$ is between $\frac{1}{2}$ and $1$ if x is not 0.
+
+Now how we express a real number in computer system? Take the single
+precision as an example, for each real number the total storage is 
+32 bits; and the structure for usage is like:
+\begin{description}
+ \centering
+ \item[Sign of mantessa] 1 bit;
+ \item[Sign of exponent] 1 bit;
+ \item[exponent($|m|$)]  7 bits;
+ \item[mantissa($|q|$)]  23 bits
+\end{description}
+Therefore, from such structure we can derive the range the single precision.
+Since $2^{7} = 128$,  so the range for a single precision is between $2^{-127}$ 
+and $2^{127}$ in binary, which is approximated as $10^{-38}$ and $10^{38}$.
+
+Compared with the range of single precision, the accuracy for a single
+precision number is much lower. The total bits used to express the 
+mantissa is 23, where $2^{23}$(in binary) $\approx 10^{7}$ therefore it means that
+for a single precision there's only maximum of 7 significant digits 
+could be expressed. Since in \ref{Floating_Point_eq:1} the mantissa is between
+0.1 and 1; therefore for relatively larger number(for example, 12345.456),
+we may lose important accuracy if we store it in single precision. This is
+very important when we consider the basic data types.
+
+On the other hand, the storage for double precision is like this:
+\begin{description}
+ \centering
+ \item[Sign of mantessa] 1 bit;
+ \item[Sign of exponent] 1 bit;
+ \item[exponent($|m|$)]  10 bits;
+ \item[mantissa($|q|$)]  52 bits
+\end{description}
+The range for double precision is between $10^{-308}$ and $10^{308}$, and the 
+accuracy for double precision has 15-16 figures.
+
+\subsection{Chopping, Rounding up, Underflow and Overflow}
+%
+%
+Sometimes it's useful to find a nearby number for a given real number stored on
+computer. For example, the number is:
+\begin{equation}
+ n = (0.a_{1}a_{2}\cdots a_{n})_{2}\times 2^{m}
+\end{equation}
+If we drop the last digit of $a_{n}$ then such approximation is ``chopping''. If we 
+increase the $a_{n}$ it's called rounding up. It's easy to prove that the relative 
+error for both chopping and rounding up is smaller than $\dfrac{1}{2}2^{-n}$. 
+
+Occasionally, sometime the a provide real number may be outside the range of the 
+exponent. That means, its exponent is larger than the range. Such case is called 
+``overflow''. If the number smaller than the lower bound of the range, it's called
+``underflow''. In this case, the number could be safely set to 0 then the program
+could still continue; however, if the number's exponent is larger than the higher 
+bound of the range, this case is ``overflow'' and the state of the number is ``NAN''
+which means ``not a number''.
+
+\subsection{Error Propagation in Arithmetic}
+%
+%
+\label{error_propagation_numerical}
+In statistics, the error(either absolute error or relative error)\footnote{
+See \url{https://en.wikipedia.org/wiki/Error_propagation}} are propagating in
+the way of ``accumulation''. That means, the error is usually accumulating in
+the arithmetic process when we handle the floating point numbers. However, such
+drawback could be conquered by introducing higher precision way to store the 
+real number (I think that is also why we need FPU(Floating-point unit) to 
+handle the floating point operations). Therefore, usually for a programmer we 
+do not need to generally care about the accuracy lose in arithmetic operation.
+
+However, in some cases the lose of accuracy is introduced because of the ``
+inappropriate'' programming way. Here we will introduce some examples.
+
+The first example is to subtract two nearby real numbers. For example, if we 
+have two number of $a_{1}$ and $a_{2}$:
+\begin{equation}
+ a_{1} = 1.234556   a_{2} = 1.234557
+\end{equation}
+both of the two numbers are stored in single precision way, that means; we have
+6 significant figures. However, the difference between $a_{1}-a_{2}$, is 
+$1.0\times 10^{6}$ therefore the difference is already lying in the error range.
+The thing is that if we want this difference to be very accurate, since it's 
+in the error range therefore we may not be able to retain the accurate value.
+Therefore, such manipulation should be desiring special attention.
+
+The second example, compared with first one is more troublesome. It's called
+``numerical instability'' operations. It means that the numerical accuracy 
+is significantly increase because of the way we express the formula. For example,
+if we have a recursive expression:
+\begin{equation}
+ x_{n+1} = \frac{13}{3}x_{n} - \frac{4}{3}x_{n-1} (n\geq 1)
+\end{equation}
+if we set that $x_{0}$ is 1, $x_{1}$ is $\dfrac{1}{3}$; then the series 
+should be more and more approach to 0. However, if we use single precision
+to process the operation then it turns out that the error will surpass the 
+result in some point then the result will gradually get larger until to infinity! 
+Therefore, such recursive expression is ``numerical sensitive'' and could be 
+suffer from the error propagating.
+
+The reason for this case to be numerical instable is that as $n$ gets larger,
+the difference between $\dfrac{13}{3}x_{n}$ and $\dfrac{4}{3}x_{n-1}$ is getting 
+smaller. Therefore at some point, the numerical error will surpass the 
+real calculation result because two nearby number subtraction. Therefore, to use
+the recursive relation in numerical calculation it's necessary to keep en eye
+on the error propagation. 
+
+\section{Solution of Non-Linear Equations}
+
+In practical application, we usually meet the problem that to solve the non-linear
+equation like below:
+\begin{equation}
+ x - a\sin x = b
+\end{equation}
+It's root could be got iteratively. Therefore, in this section we will discuss about
+the method that how to iteratively solve the non-linear equations.
+
+\subsection{Newton-Raphson Method and Quasi-Newton Method}
+%
+%
+%
+Newton-Raphson method is the simplest case to derive a solution for linear equations. 
+Firstly, let's look at this method in one dimension.
+
+Suggest that we have a function of $f(x)$, and we want to get its solution of $x$
+when $f(x) = 0$. However, $x$ maybe difficult to be solved due to the complicated form
+of $f(x)$. Therefore, we use iterative way to get $x$.
+
+Let's assume that $x_{0}$ is a good approximation to the $x$, then we have:
+\begin{equation}\label{Newton-Raphson_eq:1}
+ f(x) = f(x_{0} + h) \approx f(x_{0}) + hf^{'}(x_{0})
+\end{equation}
+Since $f(x) = 0$, then we have:
+\begin{equation}
+ \label{Newton-Raphson_eq:2}
+ f(x_{0}) + hf^{'}(x_{0}) = 0 \Rightarrow h = -\frac{f(x_{0})}{f^{'}(x_{0})}
+\end{equation}
+Because $h$ is the difference between the new estimated solution $x_{1}$ and
+the original approximated solution $x_{0}$, therefore we have:
+\begin{equation}
+ \label{Newton-Raphson_eq:3}
+ h = -\frac{f(x_{0})}{f^{'}(x_{0})} \Rightarrow x_{1} = x_{0} - \frac{f(x_{0})}{f^{'}(x_{0})}
+\end{equation}
+If we solve the equation in iterative way, then it's easy to see that:
+\begin{equation}
+ \label{Newton-Raphson_eq:4}
+ x_{n} = x_{n-1} - \frac{f(x_{n-1})}{f^{'}(x_{n-1})}
+\end{equation}
+until the difference between $x_{n}$ and $x_{n-1}$ is small enough. 
+
+This method is quadratic convergence method, it's easy to see that the error is estimated
+as:
+\begin{equation}
+ \label{newton_raphson_error}
+ e_{n+1} = \frac{1}{2}\frac{f^{''}(\xi)}{f^{'}(\xi)}e_{n}^{2}
+\end{equation}
+That means, the successive error would be the square of its previous error, so the error
+lowers down in quadratic way.
+
+The above procedure only concerns the solution for the given function $f(x)$, however; if 
+we want to calculate its first derivatives, for example $f^{'}(x) = 0$ then how can we do?
+To answer this question we may use quasi-Newton method, which is a step further beyond the 
+Newton-Raphson method.
+
+Let's further consider the second derivatives of $f(x)$, by using the Taylor expansion, 
+we can have:
+\begin{equation}
+ \label{Newton-Raphson_eq:5}
+ f(x) = f(x_{0}) + f^{'}(x_{0})h + \frac{1}{2}f^{''}(x_{0})h^{2}
+\end{equation}
+Now let's take the directive for $x$, since $h = x - x_{0}$ then we can see that 
+\begin{equation}
+ \label{Newton-Raphson_eq:6}
+ f^{'}(x) = f^{'}(x_{0}) + f^{''}(x_{0})h = 0
+\end{equation}
+It leads to the result that:
+\begin{equation}
+\label{Newton-Raphson_eq:7}
+ h = -\frac{f^{'}(x_{0})}{f^{''}(x_{0})} \Rightarrow x = x_{0} - \frac{f^{'}(x_{0})}{f^{''}(x_{0})}
+\end{equation}
+All in all, we have:
+\begin{equation}
+\label{Newton-Raphson_eq:8}
+ x_{n} = x_{n-1} - \frac{f^{'}(x_{n-1})}{f^{''}(x_{n-1})}
+\end{equation}
+
+It's easy to extend the above equation into multi-dimensions variable:
+\begin{equation}
+\label{Newton-Raphson_eq:9}
+ \mathbf{x_{n}} = \mathbf{x_{n-1}} - H^{-1}G
+\end{equation}
+Here $H$ is the Hessian matrix, and $G$ is the derivative vectors for the $\mathbf{x_{n-1}}$
+vector.
+
+Generally, the convergence for the Newton-Raphson method and quasi-Newton method is fast, 
+it converges in quadratic way: as the method converges on the root, the difference between 
+the root and the approximation is squared (the number of accurate digits roughly doubles) 
+at each step.
+
+However, this method relies on the point that the initial guess of $x_{0}$ should be a good 
+approximation to the root. If a bad guess is given then the Newton-Raphson method may not 
+converge.
+
+\subsection{Secant Method}
+%
+%
+%
+In Newton-Raphson method, the iterative root is evaluated as:
+\begin{equation}
+ x_{n} = x_{n-1} - \frac{f(x_{n-1})}{f^{'}(x_{n-1})}
+\end{equation}
+The problem here is that we need the first derivatives for the $f(x)$. If the derivatives
+is hard to get, then the Newton-Raphson method could be suffer from this deficiency.
+
+One way to solve this problem is to replace the derivative term of $f^{'}(x)$ as:
+\begin{equation}
+ f^{'}(x_{n-1}) = \frac{f(x_{n-1}) - f(x_{n-2})}{x_{n-1} - x_{n-2}}
+\end{equation}
+Then the above equation is turning into:
+\begin{equation}
+\label{secant_eq:1}
+ x_{n} = x_{n-1} - \frac{f(x_{n-1})(x_{n-1} - x_{n-2})}{f(x_{n-1}) - f(x_{n-2})}
+\end{equation}
+This new equation is called ``Secant'' method.
+
+One of important question related to the new method is that how fast it's converging to
+the real root. Now let's try to evaluate it. Suggest that the error is $e_{n} = x_{n} -r$,
+where $r$ is the real root; then we have:
+\begin{align}
+\label{secant_eq:2}
+ e_{n} &= e_{n-1} - \frac{f(x_{n-1})(x_{n-1} - x_{n-2})}{f(x_{n-1}) - f(x_{n-2})}  \nonumber \\
+       &= e_{n-1} - \frac{(x_{n-1} - x_{n-2})}{1 - \frac{f(x_{n-2})}{f(x_{n-1})}} \nonumber \\
+       &= e_{n-1} - \frac{(e_{n-1} - e_{n-2})}{1 - \frac{f(x_{n-2})}{f(x_{n-1})}} \nonumber \\
+       &= \frac{f(x_{n-2})}{f(x_{n-2})-f(x_{n-1})}e_{n-1} + 
+\frac{f(x_{n-1})}{f(x_{n-1})-f(x_{n-2})}e_{n-2} \nonumber \\
+       &= \frac{f(x_{n-1})e_{n-2} - f(x_{n-2})e_{n-1}}{f(x_{n-1})-f(x_{n-2})} 
+\end{align}
+
+Now let's use Taylor expansion:
+\begin{equation}
+ f(x_{n}) = f(r) + e_{n}f^{'}(r) + \frac{1}{2}e^{2}_{n}f^{''}(r)
+\end{equation}
+Then the above expression turns into (remember that $f(r) = 0$):
+\begin{align}
+\label{secant_eq:3}
+ e_{n} &= \frac{\frac{1}{2}f^{''}(r)(e_{n-1}-e_{n-2})e_{n-1}e_{n-2}}{(e_{n-1}-e_{n-2})
+\Big ( f^{'}(r) +\frac{1}{2}f^{''}(r)(e_{n-1}+e_{n-2}) \Big ) } \nonumber \\
+&= \frac{\frac{1}{2}f^{''}(r)e_{n-1}e_{n-2}}{f^{'}(r) +\frac{1}{2}f^{''}(r)(e_{n-1}+e_{n-2})}
+\end{align}
+
+Here we meet a dilemma, since the size of $\frac{1}{2}f^{''}(r)(e_{n-1}+e_{n-2})$ is 
+approximated to be $-f^{'}(r)$ according to the Taylor expansion.
+From this point, we can see that the difficulty arises because that we are trying to 
+evaluate the $f(x_{n-1})-f(x_{n-2})$, which should be avoided. 
+
+Let's try to multiply $\dfrac{x_{n-1} - x_{n-2}}{x_{n-1} - x_{n-2}}$ on \ref{secant_eq:2}:
+\begin{align}
+\label{secant_eq:4}
+ e_{n}  &= \frac{x_{n-1} - x_{n-2}}{f(x_{n-1})-f(x_{n-2})}
+\frac{f(x_{n-1})e_{n-2} - f(x_{n-2})e_{n-1}}{x_{n-1} - x_{n-2}} \nonumber \\
+&= \frac{x_{n-1} - x_{n-2}}{f(x_{n-1})-f(x_{n-2})}
+\frac{f(x_{n-1})/e_{n-1} - f(x_{n-2})/e_{n-2}}{x_{n-1} - x_{n-2}}e_{n-1}e_{n-2}
+\end{align}
+such transformation is suggested by the dead end of \ref{secant_eq:3}, that we know there should
+be the $e_{n-1}e_{n-2}$ in the final expression. On the other hand, such transformation would 
+allow us to use the Taylor expansion:
+\begin{equation}
+ f(x_{n}) = f(r) + e_{n}f^{'}(r) + \frac{1}{2}e^{2}_{n}f^{''}(r)
+\end{equation}
+Now we try to get $f(x_{n})/e_{n}$:
+\begin{equation}
+ f(x_{n})/e_{n} = f^{'}(r) + \frac{1}{2}e_{n}f^{''}(r) 
+\end{equation}
+Therefore \ref{secant_eq:4} is finally becoming:
+\begin{equation}
+ e_{n}  = \frac{1}{2}\frac{f^{''}(r)}{f^{'}(r)}e_{n-1}e_{n-2} = Ce_{n-1}e_{n-2}
+\end{equation}
+More detailed analysis reveals that the convergence rate is about 1.6, which is 
+lower than the quadratic method of 2.
+
+\section{Solution of Linear Equations}
+%
+%
+%
+In this section, we will briefly talk about the solution of linear equations.
+Generally, to solve a linear equation is divided into two types of methods:
+\begin{enumerate}
+ \item directly solving the equations
+ \item iteratively solving the equations(indirect way)
+\end{enumerate}
+
+For the direct solving process, the key idea for the solution of linear equations, 
+is actually the decomposition of the left hand side matrix(this is also called 
+matrix factorization). Although we could apply the basic Cramer's rule to solve 
+the linear equations, however; the matrix factorization way is much faster.
+
+Why such roundabout way could be faster than the direct Cramer's rule? 
+Usually in solving the linear equations, we decompose the matrix into orthogonal 
+matrix and/or triangular matrix. For orthogonal matrix, it's inverse is just its 
+transpose form, therefore the expensive matrix inverse is avoided. On the other
+hand, from the following content(Gaussian elimination, see the back-substitution 
+etc.) we can see that triangular matrix is very easy to combine and separate with 
+the vectors. 
+
+The matrix factorization methods commonly used here for solving linear equations 
+are referred as:
+\begin{enumerate}
+ \item LU decomposition (L and U are two triangular matrices)
+ \item SVD(single value decomposition) decomposition 
+       (two orthogonal matrices plus the diagonal matrix)
+ \item QR decomposition (Q is orthogonal matrix and R is triangular matrix)
+\end{enumerate}
+
+For an arbitrary matrix it's decomposition methods could be divided into two types 
+according to the matrix is singular or not. When the given matrix is non-singular, 
+then the LU decomposition could be the best choice; on the other hand, when the given 
+matrix is singular, the SVD or QR is necessary for solving the linear equation. Furthermore, 
+we will discuss the symmetrical matrix decomposition, since this is the most cases we 
+encounter in the computational chemistry.
+
+
+\subsection{Gaussian Elimination}
+%
+%
+A typical linear equation could be generally expressed as:
+\begin{equation}
+ \label{Solution_Linear_Equations_eq:1}
+ \begin{pmatrix}
+a_{11}  &  a_{12}  & \cdots  & a_{1n} \\ 
+a_{21}  &  a_{22}  & \cdots  & a_{2n} \\ 
+\cdots  &  \cdots  & \cdots  & \cdots \\ 
+a_{m1}  &  a_{m2}  & \cdots  & a_{mn} \\ 
+\end{pmatrix}
+\begin{pmatrix}
+ x_{1} \\
+ x_{2} \\
+ \cdots \\
+ x_{n} \\
+\end{pmatrix}
+= 
+\begin{pmatrix}
+ b_{1} \\
+ b_{2} \\
+ \cdots \\
+ b_{m} \\
+\end{pmatrix}
+\end{equation}
+Which is in short, we can write it as:
+\begin{equation}
+ \label{Solution_Linear_Equations_eq:2}
+ Ax = b
+\end{equation}
+
+It's easy to see that the following elemental operations does not change the 
+solution of $x$ in the above equation:
+\begin{enumerate}
+ \item interchanging any two rows and columns of matrix $A$ (if we interchange
+ the rows, we note that $x$ and $b$ should change accordingly);
+ \item multiply any row of matrix $A$ with a factor of $\lambda$;
+ \item adding/subtracting any two rows of matrix $A$.
+\end{enumerate}
+
+Therefore, we can use the above operations to solve the equation in general, 
+this is called ``Gaussian Elimination''. Such algorithm is to convert the above 
+equation in the following form:
+\begin{equation}
+ \label{Solution_Linear_Equations_eq:3}
+ \begin{pmatrix}
+a_{11}^{'}  &  a_{12}^{'}  & \cdots  & a_{1n}^{'} \\ 
+0           &  a_{22}^{'}  & \cdots  & a_{2n}^{'} \\ 
+\cdots      &  \cdots      & \cdots  & \cdots \\ 
+0           &  0           & \cdots  & a_{mn}^{'} \\ 
+\end{pmatrix}
+\begin{pmatrix}
+ x_{1} \\
+ x_{2} \\
+ \cdots \\
+ x_{n} \\
+\end{pmatrix}
+= 
+\begin{pmatrix}
+ b_{1}^{'} \\
+ b_{2}^{'} \\
+ \cdots \\
+ b_{m}^{'} \\
+\end{pmatrix}
+\end{equation}
+that is to say, the matrix $A$ is transformed into a upper triangular form. Then
+we could use back-substitution to get the vector of $x$:
+\begin{equation}
+ \label{Solution_Linear_Equations_eq:4}
+ x_{i} = \frac{1}{a_{ii}^{'}}\left( b_{i}^{'} - \sum_{j=i+1}^{n}a_{ij}^{'}x_{j}\right) 
+\end{equation} 
+This is called ``back-substitution'' is because that the solution of $x$ is solved 
+recursively from $x_{n}, x_{n-1}$ to $x_{1}$. Similarly, we can also transform the 
+matrix into lower triangular form and use ``forward-substitution'' to get the solution
+of $x$.
+
+In applying the Gaussian elimination method, we note that we should make sure that 
+all of $A_{ii}$ should be at least larger than ZERO(the element of $A_{ii}$ is 
+referred as pivot or pivot element). this could be achieved by interchanging the 
+columns of matrix $A$. In practice, the requirement of larger than 0 is not enough
+for picking up the pivot element in terms of the rounding error. usually it should be 
+the largest value among the given row, however; there's no general algorithm to assign
+the pivot element(see book of numerical recipes for more details, section 2.1.2).
+
+We note, that the Gaussian elimination method is a very stable method for solving the 
+linear equations. This is also applied to the matrix without full rank(in this case, after
+transformation some row of matrix $A$ would be all zero). It's complexity is approximated
+as $O(n^{3})$. On the other hand, the disadvantage for this algorithm is that the solving 
+process requires the existence of the right hand side of the equation.
+
+
+\subsection{LU Decomposition}
+%
+%
+Now let's consider a special extension of Gaussian elimination method. In this method, 
+the matrix $A$ shown above in general performs the operation to the rows step by step; all of 
+these operations actually could be represented by a lower triangular form of matrix. Therefore,
+it implies a new matrix factorization method where the matrix $A$ could be decomposed into
+a product of lower triangular matrix and a upper triangular matrix:
+\begin{equation}
+ \label{Solution_Linear_Equations_eq:5}
+  \begin{pmatrix}
+a_{11}  &  a_{12}  & \cdots  & a_{1n} \\ 
+a_{21}  &  a_{22}  & \cdots  & a_{2n} \\ 
+\cdots  &  \cdots  & \cdots  & \cdots \\ 
+a_{m1}  &  a_{m2}  & \cdots  & a_{mn} \\ 
+\end{pmatrix} = 
+\begin{pmatrix}
+l_{11}  &  0       & \cdots  &  0     \\ 
+l_{21}  &  l_{22}  & \cdots  &  0     \\ 
+\vdots  &  \vdots  & \ddots  & \vdots \\ 
+l_{m1}  &  l_{m2}  & \cdots  & l_{mn} \\ 
+\end{pmatrix}
+\begin{pmatrix}
+u_{11}  &  u_{22}  & \cdots  & u_{1n} \\ 
+0       &  u_{22}  & \cdots  & u_{2n} \\ 
+\vdots  &  \vdots  & \ddots  & \vdots \\ 
+0       &  0       & \cdots  & u_{mn} \\ 
+\end{pmatrix}
+\end{equation} 
+We note that this is only applied when $m=n$
+in the matrix $A$.
+
+Furthermore, it could be proved that the LU decomposition
+should be used when $A$ is non-singular(full rank). To be
+precise, this is not strictly true. The exact requirement 
+to perform LU decomposition is that the first $k$th leading 
+principal minor is not zero for matrix $A$ if it's rank is $k$. 
+
+To carry out the LU decomposition in a given matrix is very easy.
+The practical algorithm to perform such decomposition is called 
+Doolittle factorization or Crout factorization. For the Doolittle 
+factorization, it's general algorithm could be got as:
+\begin{verbatim}
+for k = 1, 2, ... n;
+   l_{kk} = 1;
+   for j = k, k+1, .. n;
+      u_{kj} = a_{kj} - sum_{s=1}^{k-1}l_{ks}u_{sj}
+   end
+   for i = k+1, k+2, .. n;
+      l_{ik} = (a_{ik} - sum_{s=1}^{k-1}l_{is}u_{sk})/u_{kk}
+   end   
+end
+\end{verbatim} 
+
+Since the LU decomposition is essentially equal to the Gaussian
+elimination, therefore its complexity is similar with the Gaussian 
+elimination process.
+
+
+\subsection{Cholesky Decomposition}
+%
+%
+%
+In the above LU decomposition process, if the matrix $A$ is symmetrical;
+that means $A^{T} = A$; then it's easy to know that $U = L^{T}$ therefore
+$A = LL^{T}$. This is called Cholesky decomposition.
+
+Usually, the matrix for applying Cholesky decomposition is positively defined;
+that means all of eigenvalues for the matrix $A$ are positive. The matrix element
+in the $L$ could be evaluated as:
+\begin{align}
+ L_{ii} &= \left( A_{ii} - \sum_{k=1}^{i-1}L_{ik}^{2}\right) \nonumber \\
+ L_{ij} &= \frac{1}{L_{jj}}\left( A_{ij} - \sum_{k=1}^{j-1}L_{ik}L_{jk} \right) 
+\end{align}
+
+We note that the complexity for Cholesky decomposition is faster than LU decomposition.
+Approximately it's two times fast(see numerical recipes, section 2.9).
+
+\subsection{Pivoting in LU Decomposition and Cholesky Decomposition}
+%
+%
+%
+In the above paragraph, we have slightly discussed the pivoting used in Gaussian elimination.
+The improper pivoting process may result in wrong solution in applying the algorithms. In
+the book given by Kincaid, in section 4.3 of pivoting there's a very good example to illustrate
+that why the improper pivoting would cause huge errors.
+
+Here we just note that in practice the LU decomposition is heavily relying on the proper pivoting,
+but the Cholesky decomposition is very stable. It just failed when the given matrix is not 
+positively defined.
+
+\subsection{Single Value Decomposition}
+%
+%
+%
+the above algorithms shares a common feature, that the matrix could be applied should be 
+non-singular. However, the singular matrix is very common in computational chemistry. 
+For example, the matrix formed based on the auxiliary basis set functions could be a 
+singular matrix. Therefore, how to deal with the matrix which is in singular type? From
+this section we will briefly discuss it.
+
+Single value decomposition could be expressed as:
+\begin{align}
+ \label{Solution_Linear_Equations_eq:6}
+ \begin{pmatrix}
+a_{11}  &  a_{12}  & \cdots  & a_{1n} \\ 
+a_{21}  &  a_{22}  & \cdots  & a_{2n} \\ 
+\vdots  &  \vdots  & \ddots  & \vdots \\ 
+a_{m1}  &  a_{m2}  & \cdots  & a_{mn} \\ 
+\end{pmatrix} 
+&= 
+\begin{pmatrix}
+U_{11}  &  U_{12}  & \cdots  & U_{1m} \\ 
+U_{21}  &  U_{22}  & \cdots  & U_{2m} \\ 
+\vdots  &  \vdots  & \ddots  & \vdots \\ 
+U_{m1}  &  U_{m2}  & \cdots  & U_{mm} \\ 
+\end{pmatrix} \times \\ \nonumber 
+&
+\begin{pmatrix}
+w_{11}  &  0       & \cdots  & 0      \\ 
+0       &  w_{22}  & \cdots  & 0      \\ 
+\vdots  &  \vdots  & \ddots  & \vdots \\ 
+0       &  0       & \cdots  & \ddots \\ 
+\end{pmatrix}
+\begin{pmatrix}
+V_{11}  &  V_{12}  & \cdots  & V_{1n} \\ 
+V_{21}  &  V_{22}  & \cdots  & V_{2n} \\ 
+\vdots  &  \vdots  & \ddots  & \vdots \\ 
+V_{m1}  &  V_{m2}  & \cdots  & V_{nn} \\ 
+\end{pmatrix}
+\end{align} 
+Where the $U$ and $V$ are orthogonal matrix:
+\begin{align}
+ \label{Solution_Linear_Equations_eq:7}
+ UU^{T} &= I \nonumber \\
+ VV^{T} &= I
+\end{align}
+Mathematically, the $U$ is the eigenvectors of $AA^{T}$,
+and $V$ is eigenvectors of $A^{T}A$. 
+
+The middle matrix of $W$ is some rectangular diagonal matrix,
+it's diagonal elements are in a range of $1,min(M,N)$.
+We note, the diagonal elements
+are the square of eigenvalues of matrix $AA^{T}$ and $A^{T}A$:
+\begin{align}
+ \label{Solution_Linear_Equations_eq:8}
+ AA^{T} &= UWV^{T}VW^{T}U^{T} \nonumber \\
+        &= UWW^{T}U^{T}   
+\end{align}
+similar facts hold for the $A^{T}A$ matrix.
+
+The SVD method is numerically very stable, but the time consumption
+for SVD algorithm perhaps is the most among all of matrix factorization
+methods. The detailed time consumption evaluation could be referred to
+the math library.
+
+The SVD method could be used to factorize a singular matrix. For example,
+if the matrix $A$ is square matrix, then we can write its SVD decomposition
+as $A = UWV^{T}$, where both $U$ and $V$ are square matrix. The $W$ will appear
+as:
+\begin{equation}
+ \label{Solution_Linear_Equations_eq:9}
+ W = 
+ \begin{pmatrix}
+w_{11}  &  0       & \cdots  & 0      \\ 
+0       &  w_{22}  & \cdots  & 0      \\ 
+\vdots  &  \vdots  & \ddots  & \vdots \\ 
+0       &  0       & \cdots  & W_{nn} \\ 
+\end{pmatrix}
+\end{equation}
+
+Suggest that $w_{ii}, w_{i+1,i+1} \cdots w_{nn}$ are all zero, then here
+how can we evaluate $A^{-1}$, and more generally, the $A^{p}$ where $p$
+could be any integer?
+
+To answer this question, we need to review the mathematical meanings of SVD
+method. The matrix of $U$ and $V$, are actually composed into a set of 
+orthogonal basis sets for the $K^{M}$ space and $K^{N}$ space. The SVD
+means that for a given vector(here we consider $A$'s column),
+we pick up an orthogonal basis set in $K^{M}$ space(the $U$'s columns) 
+and it's ith vector(the ith column of $U$) is mapping into another vector
+in $K^{N}$ space(the column of $V$) by a positive value. This value is the element
+of $w_{i}$. 
+
+Furthermore, If we consider a general space, that means an arbitrary group of 
+vectors in space of $K^{N}$, then if there's linear dependency in the vectors
+the mapping factor between $K^{M}$ space and $K^{N}$ space would be zero. Therefore,
+we can see that if the given matrix has linear dependency, we can simply drop the 
+vectors in $U$ and $V$(that means to find a linear independent set in the two spaces)
+and perform the following operations\footnote{In the book of numerical recipes in 
+chapter 2 section 2.6.2 there's another interpretation for the above words, more precisely
+and strictly. Author could refer to the material for more information}.
+
+Therefore, to evaluate the inverse of matrix $A$, if $A$ is singular and there's no
+strict inverse for $A$; we could approximate the $A^{-1}$ as:
+\begin{equation}
+ \label{Solution_Linear_Equations_eq:10}
+ A = UWV^{T} \Rightarrow A^{-1} \approx V_{m,k}\times W_{k,k}U^{T}_{k,m}
+\end{equation}
+Where $k$ is the rank for matrix $A$. The matrix generated by such method is also 
+called Moore–Penrose pseudoinverse\footnote{see the web page of 
+\url{http://en.wikipedia.org/wiki/Moore\%E2\%80\%93Penrose_pseudoinverse}}.
+
+\subsection{Symmetrical Matrix Decomposition}
+%
+%
+%
+For a symmetrical matrix, if it's non-singular the best way to factorize the matrix
+is the Cholesky decomposition. However, usually in computational chemistry it's very hard
+to determine a given matrix is singular or not. For example, it's hard to judge that 
+whether there's linear dependency in the given basis set functions. Therefore, we usually
+take another way.
+
+From the spectrum's theorem, it's easy to know that for any given symmetrical matrix,
+it can be decomposed into:
+\begin{equation}
+  \label{Solution_Linear_Equations_eq:11}
+  A = UDU^{T}
+\end{equation}
+$U$ is some orthogonal matrix, and $D$ is diagonal matrix. The columns of $U$ represent
+the orthogonal set of eigenvectors for matrix $A$, $D$ contains its corresponding $n$
+eigenvalues. From mathematical point of view, such decomposition is to transform the 
+vectors of $A$ ($A$'s columns) into another orthogonal set in the same space.
+
+Therefore, by referring the point in the above section of SVD decomposition; it's easy 
+to know that even though $A$ is singular, we could apply the similar tricks to get its
+Moore–Penrose pseudoinverse:
+\begin{equation}
+  \label{Solution_Linear_Equations_eq:11}
+  A^{-1} = U_{m,k}D_{k}U^{T}_{k,m}
+\end{equation}
+just by simply dropping it's zero eigenvectors.

@@ -1,0 +1,319 @@
+%
+% revise the whole content at Aug 10th, 2009
+%
+%
+%
+
+\chapter{More discussion on operator}
+%
+% this chapter used to describe more on the
+% momentum operator and coordinate Operator; they are the foundations
+% to build more complicated operators, so we also give some
+% mathematical discussion to them. so that in the future, we can
+% use them to derive more properties for the given operator
+%
+\section{Momentum operator and position operator}
+%
+%
+%
+In the above content, we have rigorously introduced the momentum
+operator and position operator. Now we are going to give further
+discussions for them.
+
+As a kind of vector operator, the momentum operator and position
+operator can be defined as:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \mathbf{\hat{r}} &=& \hat{x}\overrightarrow{i} + \hat{y}\overrightarrow{j} + \hat{z}\overrightarrow{k} \nonumber \\
+  \mathbf{\hat{p}} &=& \hat{p}_{x}\overrightarrow{i} + \hat{p}_{y}\overrightarrow{j} + \hat{p}_{z}\overrightarrow{k}
+\end{eqnarray}
+
+For the $\hat{x}, \hat{y}, \hat{z}$; in the position representation
+according to the analysis in
+(\ref{sec:PRAMR_in_position_representation}) we can simply express
+them as:
+\begin{align}\label{OPERATORMOREeq:14}
+\hat{x} &= x \nonumber \\
+\hat{y} &= y \nonumber \\
+\hat{z} &= z
+\end{align}
+
+Accordingly, the x, y, z directions of the component for the
+momentum operator $\hei{p}$ is defined as:
+\begin{align}\label{OPERATORMOREeq:13}
+\hat{P}_{x} &= -i\hbar\frac{\partial}{\partial x}   \nonumber \\
+\hat{P}_{y} &= -i\hbar\frac{\partial}{\partial y}   \nonumber \\
+\hat{P}_{z} &= -i\hbar\frac{\partial}{\partial z}
+\end{align}
+
+As for the commutation relationship, it's defined in the axiom
+\ref{axiom5} and read as:
+\begin{equation}\label{OPERATORMOREeq:12}
+[\hat{x}_{i}, \hat{x}_{j}] = 0 \quad [\hat{P}_{i}, \hat{P}_{j}] = 0
+\quad [\hat{x}_{i}, \hat{P}_{j}] = i\hbar\delta_{ij}
+\end{equation}
+
+However, we can also get this expression from
+(\ref{OPERATORMOREeq:13}) and (\ref{OPERATORMOREeq:14}). For an
+arbitrary $\Psi(x)$ we can see that:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  x\hat{P}_{x}\Psi(x) &=& -i\hbar x\frac{\partial\Psi(x)}{\partial x} \nonumber \\
+  \hat{P}_{x}x\Psi(x) &=& -i\hbar\frac{\partial}{\partial x}(\Psi(x) x) \nonumber \\
+                   &=& -i\hbar x\frac{\partial\Psi(x)}{\partial x}
+                   -i\hbar\Psi(x)
+\end{eqnarray}
+Therefore we have:
+\begin{equation}\label{}
+[\hat{x}, \hat{P}_{x}]\Psi(x) = i\hbar\Psi(x) \rightarrow [\hat{x},
+\hat{P}_{x}] = i\hbar
+\end{equation}
+
+Now let's introduce an operator $\hat{R}$, which is defined as:
+\begin{equation}\label{}
+\hat{R}^{2} = \hei{r}^{2} = x^{2} + y^{2} + z^{2} \Rightarrow
+\hat{R} = \sqrt{x^{2} + y^{2} + z^{2}}
+\end{equation}
+The real Hamiltonian always refers to this scalar operator of
+$\hat{R}$ rather than the $\hei{r}$.
+
+On the other hand, we also use the inverse operator of $\hat{R}$
+(represented by $\hat{R}^{-1}$):
+\begin{equation}\label{}
+\hat{R}^{-1} = \frac{1}{\sqrt{x^{2} + y^{2} + z^{2}}}
+\end{equation}
+
+In quantum chemistry, for an ordinary molecule system its
+Hamiltonian only contains the kinetic operator of $\hat{T}$ and
+$\hat{R}^{-1}$ (for the electrons and nuclear-electron terms); this
+is clearly shown in (\ref{BASICeq:4}).
+
+By the way, both of $\hei{p}$ and $\hei{r}$ are hermitian operators.
+Specifically, in the position representation we have:
+\begin{align}\label{OPERATORMOREeq:1}
+\bra{\psi}\hei{r}\ket{\phi} &= \int\psi^{*}\bm{r}\phi d\tau   \nonumber \\
+&= \int\bm{r}\psi^{*}\phi d\tau   \nonumber \\
+&= \left\{\int\bm{r}\phi^{*}\psi d\tau \right \}^{*}   \nonumber \\
+&= \bra{\phi}\hei{r}\ket{\psi}^{*}
+\end{align}
+
+What's more, it's natural to see that any function that only related
+to the $\hei{r}$ or ($\hat{x}, \hat{y}, \hat{z}$) is the hermite
+operator. Consequently, the potential operator of $\hat{V}(r)$ (for
+example, the $\hat{R}$ and $\hat{R}^{-1}$)in the Hamiltonian
+operator is hermite, since the momentum operator is hermitian, then
+according to (\ref{hermitian_in_operator}) the kinetic operator
+$\hat{T} = \frac{\hei{p}^{2}}{2m}$ is also hermitian; so the
+Hamiltonian operator ($\hat{H} = \hat{T} + \hat{V}(r)$) itself is
+hermitian.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{More discussion on the algorithm of operator}
+%
+% only directly give more relations to the algorithm of operator
+% see below
+%
+%
+%
+The introduction to the momentum operator and position operator here
+can be wound up for a while, now let's go to present more algorithms
+on operators.
+
+The dot product and the cross product for the vector operators are
+defined as:
+\begin{equation}\label{OPERATORMOREeq:2}
+\hei{A}\cdot\hei{B} = \hat{A}_{x}\hat{B}_{x} +
+\hat{A}_{y}\hat{B}_{y} + \hat{A}_{z}\hat{B}_{z}
+\end{equation}
+\begin{equation} \label{OPERATORMOREeq:3}
+\hei{A}\times\hei{B} = \left\{ \begin{aligned}
+         (\hei{A}\times\hei{B})_{x} &= \hat{A}_{y}\hat{B}_{z} -  \hat{A}_{z}\hat{B}_{y} \nonumber \\
+         (\hei{A}\times\hei{B})_{y} &= \hat{A}_{z}\hat{B}_{x} -  \hat{A}_{x}\hat{B}_{z} \nonumber \\
+         (\hei{A}\times\hei{B})_{z} &= \hat{A}_{x}\hat{B}_{y} -  \hat{A}_{y}\hat{B}_{x}
+                          \end{aligned} \right.
+\end{equation}
+
+Here we can see that the cross product between operators are similar
+to the case in classical mechanics.
+
+The power for the operators is defined as:
+\begin{equation}\label{}
+\hat{A}^{n} = \underbrace{\hat{A}\cdot\hat{A}\cdots\hat{A}}_{n}
+\end{equation}
+Here we note that the definition of $\hat{R}^{2} = \hei{r}^{2}$ is
+the dot product between $\hei{r}$, also the kinetic operator is
+related to $\hat{P}^{2}$:
+\begin{equation}\label{}
+\frac{1}{2}\frac{\hat{P}^{2}}{2m} = \frac{\hbar^{2}}{2m}\left(
+\frac{\partial^{2}}{\partial x^{2}} + \frac{\partial^{2}}{\partial
+y^{2}} + \frac{\partial^{2}}{\partial z^{2}}  \right)
+\end{equation}
+
+Then we are going to focus on the commutative relationship, it's
+easy to prove that for any of the arbitrary operators, the
+expression below are correct(only use the definition of the
+commutation):
+\begin{align}\label{OPERATORMOREeq:4}
+[\hat{A}, \hat{B}] &= -[\hat{B}, \hat{A}] \nonumber \\
+[\hat{A}, \hat{A}] &= 0  \nonumber \\
+[\hat{A}, \hat{B} \pm \hat{C}] &= [\hat{A}, \hat{B}] \pm  [\hat{A},
+  \hat{C}] \nonumber \\
+[\hat{A}, \hat{B}\hat{C}] &= \hat{B}[\hat{A}, \hat{C}] + [\hat{A},
+  \hat{B}]\hat{C} \nonumber \\
+[\hat{A}\hat{B}, \hat{C}] &= \hat{A}[\hat{B}, \hat{C}] + [\hat{A},
+  \hat{C}]\hat{B} \nonumber \\
+[\hat{A}, \hei{B}\cdot\hei{C}] &= [\hat{A}, \hei{B}]\cdot\hei{C} +
+\hei{B}\cdot
+  [\hat{A}, \hei{C}] \nonumber \\
+[\hat{A}, \hei{B}\times\hei{C}] &= [\hat{A}, \hei{B}]\times\hei{C} +
+\hei{B}\times
+  [\hat{A}, \hei{C}]
+\end{align}
+These rules may be very useful when evaluating the characters of
+some particular operator.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Commutation relationship between $\hei{r}$ and $\hei{p}$}
+%
+% derive some important commutation relationship for the
+% p and r so that in the future we can use them to prove
+% more properties for the composite operators
+%
+%
+Commutation is a kind of important subject in quantum mechanics.
+Here in this section we focus on some commutation relationship
+between $\hei{r}$ and $\hei{p}$, which is very useful in proving the
+commutation relationship for composite operators. Here below for
+convenience, the vector operator is expressed as:
+\begin{equation}\label{}
+\hei{A} = \sum_{i=1}^{3}\overrightarrow{e}_{i}\hat{A}_{i} =
+\overrightarrow{e}_{1}\hat{A}_{1} +
+\overrightarrow{e}_{2}\hat{A}_{2} +
+\overrightarrow{e}_{3}\hat{A}_{3}
+\end{equation}
+For convenience, the $\overrightarrow{e}$ refers to $e$.
+
+First let's consider the $[\hei{p}, \hat{R}^{2}]$.
+\begin{align}\label{OPERATORMOREeq:6}
+[\hei{p}, \hei{r}^{2}] &= [\sum e_{i}\hat{p}_{i}, \sum
+e_{j}\hat{r}_{j} \cdot \sum e_{j}\hat{r}_{j}] \nonumber \\
+&=\sum_{ij} e_{i}e_{j}[\hat{p}_{i}, \hat{r}_{j}^{2}] \nonumber \\
+&=\sum_{ij} e_{i}e_{j}\left\{\hat{r}_{j}[\hat{p}_{i}, \hat{r}_{j}] +
+[\hat{p}_{i}, \hat{r}_{j}]\hat{r}_{j} \right\} \nonumber \\
+&=-\sum_{ij} e_{i}e_{j}2i\hbar\delta_{ij}r_{j} \nonumber \\
+&=-\sum_{j} e_{j}2i\hbar r_{j} \nonumber \\
+&=-2i\hbar\hei{r}
+\end{align}
+
+So far we can deduce the $[\hei{p}, \hat{R}^{2n}]$:
+\begin{equation}\label{}
+[\hei{p}, \hat{R}^{2n}] = \hat{R}^{2}[\hei{p}, \hat{R}^{2n-2}] +
+[\hei{p}, \hat{R}^{2n-2}]\hat{R}^{2}
+\end{equation}
+This is a clear recursion, so we can get that $[\hei{p},
+\hat{R}^{2n}] = -ni\hbar\hat{R}^{2n-2}\hei{r}$.
+
+Next we are going to derive the $[\hei{p}, \hat{R}]$ from $[\hei{p},
+\hat{R}^{2}]$.
+\begin{align}\label{OPERATORMOREeq:7}
+[\hei{p}, \hat{R}^{2}] &= \hat{R}[\hei{p}, \hat{R}]+ [\hei{p},
+\hat{R}]\hat{R} \nonumber \\
+-2i\hbar\hei{r} &= 2\hat{R}[\hei{p}, \hat{R}]
+\end{align}
+Thus the $[\hei{p}, \hat{R}] =i\hbar\frac{\hei{r}}{\hat{R}}$.
+
+Here in (\ref{OPERATORMOREeq:7}), why $\hat{R}$ and $[\hei{p},
+\hat{R}]$ commute with each other? Here we prove it. Since that we
+have $[\hei{p},\hat{R}^{2}] = \hat{R}[\hei{p}, \hat{R}]+ [\hei{p},
+\hat{R}]\hat{R}$, so the $[\hei{p},\hat{R}^{2}]$ directly related to
+the $[\hei{p}, \hat{R}]$; thus we start from
+$[\hei{p},\hat{R}^{2}]$:
+\begin{align}\label{}
+\left[\hat{R}, [\hei{p},\hat{R}^{2}]\right] &= \left[\hat{R},
+\hat{R}[\hei{p},
+\hat{R}]+ [\hei{p}, \hat{R}]\hat{R}\right] \nonumber \\
+&=\left[\hat{R}, \hat{R}[\hei{p}, \hat{R}]\right]+ \left[\hat{R},
+[\hei{p}, \hat{R}]\hat{R}\right]
+\end{align}
+By using the formula in (\ref{OPERATORMOREeq:4}) related to
+$[\hat{A}, \hat{B}\hat{C}]$, we have the expression above
+transforming into:
+\begin{align}\label{}
+\left[\hat{R}, [\hei{p},\hat{R}^{2}]\right] &=
+\hat{R}\left[\hat{R},[\hei{p}, \hat{R}] \right] + [\hat{R},
+\hat{R}][\hei{p}, \hat{R}] + [\hei{p}, \hat{R}][\hat{R}, \hat{R}] +
+\left[\hat{R},[\hei{p}, \hat{R}] \right]\hat{R} \nonumber \\
+&=\hat{R}\left[\hat{R},[\hei{p}, \hat{R}] \right]+
+\left[\hat{R},[\hei{p}, \hat{R}] \right]\hat{R}
+\end{align}
+Here we can see the relationship that the $\hat{R}$ commutes with
+$[\hei{p}, \hat{R}]$ is wholly determined by the $\left[\hat{R},
+[\hei{p},\hat{R}^{2}]\right]$. However, since we have proved that
+$[\hei{p},\hat{R}^{2}]$ equals to $-2i\hbar\hei{r}$, it commutes
+with $\hat{R}$; thus $\hat{R}$ commutes with $[\hei{p}, \hat{R}]$.
+The demonstration finished.
+
+By induction, we can prove the general expression between
+$\hat{R}^{n}$ and $\hei{p}$:
+\begin{equation}\label{OPERATORMOREeq:8}
+[\hei{p}, \hat{R}^{n}] = -ni\hbar\hat{R}^{n-2}\hei{r} \quad
+(n=1,2,3, \cdots)
+\end{equation}
+
+For the $[\hei{p}, \hat{R}^{-n}]$, we can derive it from the
+(\ref{OPERATORMOREeq:8}):
+\begin{align}\label{}
+[\hei{p}, 1] &= \left[\hei{p},
+\hat{R}^{n}\frac{1}{\hat{R}^{n}}\right] \Rightarrow \nonumber \\
+           0 &=\hat{R}^{n}\left[\hei{p}, \frac{1}{\hat{R}^{n}}\right] +
+\left[\hei{p}, \hat{R}^{n}\right]\frac{1}{\hat{R}^{n}}
+\end{align}
+Therefore $[\hei{p}, \hat{R}^{-n}] = -ni\hbar\hat{R}^{n-2}\hei{r}$;
+the $n$ ranges over all the negative number.
+
+Here, we note that by the same procedure in the
+(\ref{OPERATORMOREeq:6}), we can prove that:
+\begin{equation}\label{OPERATORMOREeq:9}
+[\hei{r}, \hei{p}\cdot\hei{p}] =-2i\hbar\hei{p}
+\end{equation}
+This is useful while considering the commutative relationship
+between angular momentum operator and the Hamiltonian operator.
+
+By the way, we will derive two useful relations which is needed in
+the later content. Suggest that $f(\hei{r})$ is the function for the
+$\hei{r}$, in the position representation we can see that:
+\begin{align}\label{OPERATORMOREeq:10}
+(\hei{p}f(\hei{r}) - f(\hei{r})\hei{p})\ket{\Psi} &=
+-i\hbar\nabla(f(\hei{r})\ket{\Psi}) + i\hbar
+f(\hei{r})(\nabla\ket{\Psi}) \quad \hei{p} = -i\hbar\nabla
+\nonumber \\
+&=-i\hbar\ket{\Psi}\nabla(f(\hei{r})) =
+-i\hbar\ket{\Psi}\frac{\partial f(\hei{r})}{\partial \hei{r}}
+\end{align}
+
+thus we have:
+\begin{equation}\label{}
+[\hei{p}, f(\hei{r})] = -i\hbar \nabla(f(\hei{r})) =
+-i\hbar\frac{\partial f(\hei{r})}{\partial \hei{r}}
+\end{equation}
+
+Similarly, if we express the $\hei{r} =
+i\hbar\frac{\partial}{\partial \hei{p}}$ in momentum representation,
+then by exchanging the position between \heit{p} and \heit{r} in the
+expression of (\ref{OPERATORMOREeq:10}), we can get similar
+expression:
+\begin{equation}\label{OPERATORMOREeq:11}
+[\hei{r}, f(\hei{p})] = i\hbar \frac{\partial f(\hei{p})}{\partial
+\hei{p}}
+\end{equation}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

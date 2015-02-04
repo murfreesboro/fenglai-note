@@ -1,0 +1,849 @@
+%
+%
+%
+%
+%
+%
+\chapter{Perturbation Treatment in Molecular Quantum Mechanics}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+% what does the perturbation treatment do in the quantum chemistry
+%
+%
+In quantum chemistry, the perturbation treatment is usually employed
+to tackle with the weak interactions in the molecular systems. Such
+weak interaction can be in variety kinds, such as the vibration of
+atom skeleton, or the magnetic susceptibility and
+shielding\cite{stevens:550}; or even the time dependent external
+field change etc. In general, such physical quantity are very small
+so that it's suitable to be the perturbation operator, and the
+perturbation treatment can usually yield good results.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The perturbed Hatree-Fock equation in differential form}
+%
+%  1  start from the Fock equation, the orbital is involved. we
+%     do not consider its expansion
+%  2  perturbation expansion for the orbital and the orbital energy
+%
+%
+Firstly let's derive the general procedure for the perturbation
+treatment in the Hatree-Fock framework\cite{PhysRev.118.167,
+Peng_H_W, RevModPhys.32.455}.
+
+As what has been shown in the Hatree-Fock chapter, the general
+Hatree-Fock equation in molecular orbital form can be expressed as:
+\begin{multline}\label{PTIMQMeq:1}
+\hat{H}_{1}(1)\varphi_{i}(1) + \sum_{j}\left[
+\left\{\int\varphi^{*}_{j}(2)\varphi_{j}(2)d\tau(2)\frac{1}{r_{12}}\right\}\varphi_{i}(1)
+\right] \\
+ -
+\sum_{j}\left[
+\left\{\int\varphi^{*}_{j}(2)\varphi_{i}(2)d\tau(2)\frac{1}{r_{12}}\right\}\varphi_{j}(1)
+\right] \\
+ = \epsilon_{i}\varphi_{i}(1)
+\end{multline}
+Here the $j$ goes over all the occupied orbitals. Here for
+simplicity we only consider the differential form of Hatree-Fock
+equation, the involvement of basis sets are left for the future.
+
+Suggest there's some perturbation in the Fock operator, and it's
+assumed to be the one electron operator-where such assumption can
+satisfy most of the perturbation cases. In the presence of the
+perturbed operator, the molecular orbitals and the its energy levels
+will make corresponding change; we can express such changes in
+progressive way:
+\begin{align}\label{PTIMQMeq:2}
+\varphi_{i} &= \varphi^{(0)}_{i} + \lambda\varphi^{(1)}_{i} +
+\lambda^{2}\varphi^{(2)}_{i} + \cdots \nonumber \\
+\epsilon_{i} &= \epsilon^{(0)}_{i} + \lambda\epsilon^{(1)}_{i} +
+\lambda^{2}\epsilon^{(2)}_{i} + \cdots
+\end{align}
+The new Fock operator can be expressed as:
+\begin{equation}\label{PTIMQMeq:3}
+\hat{F}^{'} = \hat{F} + \lambda \hat{V}
+\end{equation}
+Now we go to see how to get the perturbed HF equations.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{First order Hatree Fock perturbed equation}
+%
+%   to get the first order Fock equation
+%
+By taking the (\ref{PTIMQMeq:2}) and (\ref{PTIMQMeq:3}) into the
+original Hatree-Fock equation (\ref{PTIMQMeq:1}), then by gathering
+the terms with same power of $\lambda$, we can get a series of
+perturbation equations. The equation scales with $\lambda^{0}$ is:
+\begin{equation}\label{PTIMQMeq:4}
+\hat{F}\varphi^{(0)}_{i} = \epsilon^{(0)}_{i}\varphi^{(0)}_{i}
+\end{equation}
+That's the equation for the zero order approximation.
+
+By gathering the terms related to the $\lambda$, we can get the
+first order approximation:
+\begin{multline}\label{PTIMQMeq:6}
+\hat{H}_{1}\varphi^{(1)}_{i} + \hat{V}\varphi^{(0)}_{i} \\
++\sum_{j}\Bigg\{
+\int\varphi^{*(0)}_{j}\varphi^{(1)}_{j}d\tau\frac{1}{r_{12}}\varphi^{(0)}_{i}
++
+\int\varphi^{*(1)}_{j}\varphi^{(0)}_{j}d\tau\frac{1}{r_{12}}\varphi^{(0)}_{i}
++
+\int\varphi^{*(0)}_{j}\varphi^{(0)}_{j}d\tau\frac{1}{r_{12}}\varphi^{(1)}_{i}
+\Bigg\} \\
+-\sum_{j}\Bigg\{
+\int\varphi^{*(0)}_{j}\varphi^{(1)}_{i}d\tau\frac{1}{r_{12}}\varphi^{(0)}_{j}
++
+\int\varphi^{*(1)}_{j}\varphi^{(0)}_{i}d\tau\frac{1}{r_{12}}\varphi^{(0)}_{j}
++
+\int\varphi^{*(0)}_{j}\varphi^{(0)}_{i}d\tau\frac{1}{r_{12}}\varphi^{(1)}_{j}
+\Bigg\} \\
+=\epsilon^{(0)}_{i}\varphi^{(1)}_{i} +
+\epsilon^{(1)}_{i}\varphi^{(0)}_{i}
+\end{multline}
+However, we can arrange the above equation into the more convenient
+form:
+\begin{multline}\label{PTIMQMeq:5}
+\hat{F}\varphi^{(1)}_{i} - \epsilon^{(0)}_{i}\varphi^{(1)}_{i} =
+\epsilon^{(1)}_{i}\varphi^{(0)}_{i} - \hat{V}\varphi^{(0)}_{i} \\
+-\sum_{j}\Bigg\{
+\int\varphi^{*(0)}_{j}\varphi^{(1)}_{j}d\tau\frac{1}{r_{12}}\varphi^{(0)}_{i}
++
+\int\varphi^{*(1)}_{j}\varphi^{(0)}_{j}d\tau\frac{1}{r_{12}}\varphi^{(0)}_{i}
+\\
+-
+\int\varphi^{*(1)}_{j}\varphi^{(0)}_{i}d\tau\frac{1}{r_{12}}\varphi^{(0)}_{j}
+-
+\int\varphi^{*(0)}_{j}\varphi^{(0)}_{i}d\tau\frac{1}{r_{12}}\varphi^{(1)}_{j}
+\Bigg\}
+\end{multline}
+Here the items related to the $\varphi^{(1)}_{i}$ are put to the
+left of the equation, and the others related to the
+$\varphi^{(0)}_{i}$ are put to the right side. Furthermore the
+$\hat{F}\varphi^{(1)}_{i}$ is:
+\begin{multline}\label{PTIMQMeq:18}
+\hat{F}\varphi^{(1)}_{i} = \hat{H}_{1}\varphi^{(1)}_{i} +
+\sum_{j}\left[
+\left\{\int\varphi^{*(0)}_{j}\varphi^{(0)}_{j}d\tau\frac{1}{r_{12}}\right\}
+\varphi^{(1)}_{i}
+\right. \\
+ -
+\left.
+\left\{\int\varphi^{*(0)}_{j}\varphi^{(1)}_{i}d\tau\frac{1}{r_{12}}\right\}
+\varphi^{(0)}_{j} \right]
+\end{multline}
+Compared with the (\ref{PTIMQMeq:1}) we have omitted all the
+explicit electron labels for simplicity. Besides, the higher order
+equations can be obtained in a like manner, but here we concentrate
+on the discussion of first order perturbation equation.
+
+By multiply the equation with $\varphi^{*(0)}_{i}$, we can get the
+expression for the first order energy for the molecular orbitals:
+\begin{multline}\label{PTIMQMeq:13}
+\epsilon^{(1)}_{i}=
+\int\varphi^{*(0)}_{i}\hat{V}\varphi^{(0)}_{i}d\tau + \\
+\sum_{j}\Bigg\{
+\int\varphi^{*(0)}_{j}\varphi^{(1)}_{j}d\tau\frac{1}{r_{12}}
+    \varphi^{*(0)}_{i}\varphi^{(0)}_{i}d\tau +
+\int\varphi^{*(1)}_{j}\varphi^{(0)}_{j}d\tau\frac{1}{r_{12}}
+    \varphi^{*(0)}_{i}\varphi^{(0)}_{i}d\tau
+\\
+-
+\int\varphi^{*(1)}_{j}\varphi^{(0)}_{i}d\tau\frac{1}{r_{12}}
+    \varphi^{*(0)}_{i}\varphi^{(0)}_{j}d\tau
+-
+\int\varphi^{*(0)}_{j}\varphi^{(0)}_{i}d\tau\frac{1}{r_{12}}
+    \varphi^{*(0)}_{i}\varphi^{(1)}_{j}d\tau
+\Bigg\}
+\end{multline}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Relations between the perturbed molecular
+orbitals}\label{PTIMQM:1}
+%
+%   consideration about the relations between the wave functions
+%
+Next we will consider the relations between the $\varphi^{(0)}_{i}$,
+$\varphi^{(1)}_{i}$ etc. For the $\varphi^{(0)}_{i}$, it's known
+that it equals to the unperturbed HF orbitals:
+\begin{align}\label{}
+\varphi^{(0)}_{i} &= \varphi_{i}  \nonumber \\
+\epsilon^{(0)}_{i} &= \epsilon_{i}
+\end{align}
+Furthermore, these orbitals can be safely assumed to be orthogonal
+with each other:
+\begin{equation}\label{}
+\int \varphi^{*(0)}_{i}\varphi^{(0)}_{j} d\tau = \delta_{ij}
+\end{equation}
+
+For the $\varphi^{(0)}_{i}$, $\varphi^{(1)}_{i}$, we can prove that
+they are orthogonal with each other:
+\begin{equation}\label{PTIMQMeq:19}
+\int \varphi^{*(0)}_{i}\varphi^{(1)}_{i} d\tau = 0
+\end{equation}
+Such relation can be obtained via the normalization condition of the
+$\varphi_{i}$. Suggest that the $\varphi_{i}$ is approximated at the
+first order, then we have:
+\begin{align}\label{}
+\int \varphi^{*}_{i}\varphi_{i} d\tau &= 1  \Rightarrow \nonumber \\
+\int \varphi^{*(0)}_{i}\varphi^{(1)}_{i} d\tau  + \int
+\varphi^{*(1)}_{i}\varphi^{(0)}_{i} d\tau &= 0
+\end{align}
+Since that we have:
+\begin{equation}\label{}
+\int \varphi^{*(0)}_{i}\varphi^{(1)}_{i} d\tau  = \left\{\int
+\varphi^{*(1)}_{i}\varphi^{(0)}_{i} d\tau\right\}^{*}
+\end{equation}
+Then the integral should be some imaginary number so that it can be
+set to zero without hurting the generality. Therefore the
+orthogonality condition has been proved.
+
+For the $\varphi^{(0)}_{i}$, $\varphi^{(1)}_{k}$ where $k\neq i$, we
+can have the relation that:
+\begin{equation}\label{PTIMQMeq:9}
+\int \varphi^{*(0)}_{i}\varphi^{(1)}_{k} d\tau  + \int
+\varphi^{*(1)}_{i}\varphi^{(0)}_{k} d\tau = 0
+\end{equation}
+This can be achieved through the (\ref{PTIMQMeq:5}). If we take
+complex conjugation of the equation in (\ref{PTIMQMeq:5}) and
+multiply the $\varphi^{(0)}_{k}$ then to integrate, we can get some
+equation:
+\begin{multline}\label{PTIMQMeq:7}
+\langle\varphi^{(1)}_{i}|\hat{F}|\varphi^{(0)}_{k}\rangle -
+\epsilon^{(0)}_{i}\langle\varphi^{(1)}_{i}|\varphi^{(0)}_{k}\rangle
+=
+- \langle\varphi^{(0)}_{i}|\hat{V}|\varphi^{(0)}_{k}\rangle \\
+-\sum_{j}\Bigg\{
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{k}\right)
++
+\left(\varphi^{(0)}_{j}\varphi^{(1)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{k}\right)
+\\
+-
+\left(\varphi^{(0)}_{i}\varphi^{(1)}_{j}|\varphi^{(0)}_{j}\varphi^{(0)}_{k}\right)
+-
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{j}|\varphi^{(1)}_{j}\varphi^{(0)}_{k}\right)
+\Bigg\}
+\end{multline}
+Here we use the Dirac notion to express the single electron
+integral, on the other hand the double electron integral is shorten
+as:
+\begin{equation}\label{}
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{k}\right)
+= \int \int
+\varphi^{*(1)}_{j}(1)\varphi^{(0)}_{j}(1)\frac{1}{r_{12}}
+\varphi^{*(0)}_{i}(2)\varphi^{(0)}_{k}(2)d\tau_{1}d\tau_{2}
+\end{equation}
+Such abbreviation is to make the derivation as clear as possible.
+
+On the other hand, if the equation in (\ref{PTIMQMeq:5}) in on
+$\varphi^{(1)}_{k}$ and we multiply the $\varphi^{*(0)}_{i}$ then to
+make integration, we can get similar equation with
+(\ref{PTIMQMeq:7}):
+\begin{multline}\label{PTIMQMeq:8}
+\langle\varphi^{(0)}_{i}|\hat{F}|\varphi^{(1)}_{k}\rangle -
+\epsilon^{(0)}_{k}\langle\varphi^{(0)}_{i}|\varphi^{(1)}_{k}\rangle
+=
+- \langle\varphi^{(0)}_{i}|\hat{V}|\varphi^{(0)}_{k}\rangle \\
+-\sum_{j}\Bigg\{
+\left(\varphi^{(0)}_{j}\varphi^{(1)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{k}\right)
++
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{k}\right)
+\\
+-
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{k}|\varphi^{(0)}_{i}\varphi^{(0)}_{j}\right)
+-
+\left(\varphi^{(0)}_{j}\varphi^{(0)}_{k}|\varphi^{(0)}_{i}\varphi^{(1)}_{j}\right)
+\Bigg\}
+\end{multline}
+Hence it's easy to see that the right part of (\ref{PTIMQMeq:7}) is
+same with the right side of (\ref{PTIMQMeq:8}), therefore we have:
+\begin{align}\label{PTIMQMeq:27}
+\langle\varphi^{(0)}_{i}|\hat{F}|\varphi^{(1)}_{k}\rangle -
+\epsilon^{(0)}_{k}\langle\varphi^{(0)}_{i}|\varphi^{(1)}_{k}\rangle
+&=\langle\varphi^{(1)}_{i}|\hat{F}|\varphi^{(0)}_{k}\rangle -
+\epsilon^{(0)}_{i}\langle\varphi^{(1)}_{i}|\varphi^{(0)}_{k}\rangle
+\nonumber \\
+(\epsilon^{(0)}_{i}-\epsilon^{(0)}_{k})
+\langle\varphi^{(0)}_{i}|\varphi^{(1)}_{k}\rangle &=
+(\epsilon^{(0)}_{k}-\epsilon^{(0)}_{i})
+\langle\varphi^{(1)}_{i}|\varphi^{(0)}_{k}\rangle
+\end{align}
+Then we can get the conclusion in the (\ref{PTIMQMeq:9}).
+
+Nevertheless, in such derivation if the energy level is degenerated
+(which means that we have $\epsilon^{(0)}_{k}=\epsilon^{(0)}_{i}$
+for the $k\neq i$); we can not get the conclusion of
+(\ref{PTIMQMeq:9}) directly from the (\ref{PTIMQMeq:27}). However,
+there is another way to derive the relation shown in the
+(\ref{PTIMQMeq:9}), which is similar to the way we got the relation
+in (\ref{PTIMQMeq:19}).
+
+Once again we use the normalization condition for the $\varphi_{i}$.
+Suggest that the $\varphi_{i}$ is approximated at the first order,
+then we have:
+\begin{align}\label{}
+\int \varphi^{*}_{i}\varphi_{k} d\tau = 0 \quad  i\neq k &
+\Rightarrow \nonumber \\
+\int (\varphi^{*(0)}_{i} + \lambda\varphi^{*(1)}_{i})
+(\varphi^{(0)}_{k} + \lambda\varphi^{(1)}_{k}) d\tau &=0 \nonumber
+\\
+\int\varphi^{*(0)}_{i}\varphi^{(0)}_{k} d\tau  + \lambda(\int
+\varphi^{*(0)}_{i}\varphi^{(1)}_{k} d\tau + \int
+\varphi^{*(1)}_{i}\varphi^{(0)}_{k} d\tau) + O(\lambda^{2}) &= 0
+\end{align}
+
+Because the unperturbed orbitals are orthogonal with each other,
+thus $\int\varphi^{*(0)}_{i}\varphi^{(0)}_{k} d\tau = 0$.
+Furthermore, since $\lambda$ is some arbitrary number, therefore it
+requires that:
+\begin{equation}
+\int \varphi^{*(0)}_{i}\varphi^{(1)}_{k} d\tau + \int
+\varphi^{*(1)}_{i}\varphi^{(0)}_{k} d\tau = 0
+\end{equation}
+This is just the conclusion in the (\ref{PTIMQMeq:9}). We note that
+this proof does not refer to the energy degeneracy so that the
+conclusion in the (\ref{PTIMQMeq:9}) is holding in all cases.
+
+All in all, we can get the relations between the first order
+correlated orbital of $\varphi^{(1)}_{i}$ and the unperturbed
+orbital of $\varphi^{(0)}_{j}$:
+\begin{equation}\label{}
+\int \varphi^{*(0)}_{i}\varphi^{(1)}_{j} d\tau + \int
+\varphi^{*(1)}_{i}\varphi^{(0)}_{j} d\tau = 0
+\end{equation}
+Here the label of $i$ and $j$ can be any kind of orbitals.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The first order total energy expression}
+%
+% consider the total energy expression under the perturbation framework
+%
+Next we switch to the total energy derivation. According to the
+results we have gotten in the HF chapter, the total energy for an
+arbitrary $n$ electrons system is:
+\begin{multline}\label{PTIMQMeq:10}
+E =
+\sum_{i}^{n}\langle\varphi_{i}(1)|\hat{H}_{1}(1)|\varphi_{i}(1)\rangle
++
+\\
+\frac{1}{2}\sum_{i}\sum_{j} \left\{
+\int\int\varphi^{*}_{i}(1)\varphi_{i}(1)\frac{1}{r_{12}}
+\varphi^{*}_{j}(2)\varphi_{j}(2)d\tau_{1}d\tau_{2}- \right. \\
+\left.
+\int\int\varphi^{*}_{i}(1)\varphi_{j}(1)\frac{1}{r_{12}}
+\varphi^{*}_{j}(2)\varphi_{i}(2)d\tau_{1}d\tau_{2} \right\}
+\end{multline}
+
+Similarly, the total energy can be also expanded according to the
+order of $\lambda$:
+\begin{equation}\label{}
+E = E^{(0)} + \lambda E^{(1)} + \lambda^{2}E^{(2)} + \cdots
+\end{equation}
+Now by taking the expansion for $\varphi$ defined in
+(\ref{PTIMQMeq:2}) as well as the total energy expansion into the
+(\ref{PTIMQMeq:10}), we can get the perturbation equations for $E$.
+
+The zero order approximation for the total energy equation is:
+\begin{multline}\label{PTIMQMeq:11}
+E^{(0)} =
+\sum_{i}^{n}\langle\varphi^{(0)}_{i}|\hat{H}_{1}|\varphi^{(0)}_{i}\rangle
++
+\\
+\frac{1}{2}\sum_{i}\sum_{j} \left\{
+\int\int\varphi^{*(0)}_{i}\varphi^{(0)}_{i}\frac{1}{r_{12}}
+\varphi^{*(0)}_{j}\varphi^{(0)}_{j}d\tau_{1}d\tau_{2}- \right. \\
+\left. \int\int\varphi^{*(0)}_{i}\varphi^{(0)}_{j}\frac{1}{r_{12}}
+\varphi^{*(0)}_{j}\varphi^{(0)}_{i}d\tau_{1}d\tau_{2} \right\}
+\end{multline}
+On the other hand, by using the orbital energy we can express it as:
+\begin{multline}\label{PTIMQMeq:12}
+E^{(0)} = \sum_{i}^{n}\epsilon_{i}^{(0)} -
+\frac{1}{2}\sum_{i}\sum_{j} \left\{
+\int\int\varphi^{*(0)}_{i}\varphi^{(0)}_{i}\frac{1}{r_{12}}
+\varphi^{*(0)}_{j}\varphi^{(0)}_{j}d\tau_{1}d\tau_{2}- \right. \\
+\left. \int\int\varphi^{*(0)}_{i}\varphi^{(0)}_{j}\frac{1}{r_{12}}
+\varphi^{*(0)}_{j}\varphi^{(0)}_{i}d\tau_{1}d\tau_{2} \right\}
+\end{multline}
+
+For the first order approximation, it scales with $\lambda$ and we
+can express this term as:
+\begin{multline}\label{PTIMQMeq:14}
+E^{(1)} =\sum_{i}^{n}
+\Bigg\{\langle\varphi^{(1)}_{i}|\hat{H}_{1}|\varphi^{(0)}_{i}\rangle
+      +\langle\varphi^{(0)}_{i}|\hat{H}_{1}|\varphi^{(1)}_{i}\rangle +
+       \langle\varphi^{(0)}_{i}|\hat{V}|\varphi^{(0)}_{i}\rangle\Bigg\}
+\\
++\frac{1}{2}\sum_{i}\sum_{j}\Bigg\{
+\left(\varphi^{(1)}_{i}\varphi^{(0)}_{i}|\varphi^{(0)}_{j}\varphi^{(0)}_{j}\right)
++
+\left(\varphi^{(0)}_{i}\varphi^{(1)}_{i}|\varphi^{(0)}_{j}\varphi^{(0)}_{j}\right)
+\\
++
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{i}|\varphi^{(1)}_{j}\varphi^{(0)}_{j}\right)
++
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{i}|\varphi^{(0)}_{j}\varphi^{(1)}_{j}\right)
+\Bigg\} \\
+-\frac{1}{2}\sum_{i}\sum_{j}\Bigg\{
+\left(\varphi^{(1)}_{i}\varphi^{(0)}_{j}|\varphi^{(0)}_{j}\varphi^{(0)}_{i}\right)
++
+\left(\varphi^{(0)}_{i}\varphi^{(1)}_{j}|\varphi^{(0)}_{j}\varphi^{(0)}_{i}\right)
+\\
++
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{j}|\varphi^{(1)}_{j}\varphi^{(0)}_{i}\right)
++
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{j}|\varphi^{(0)}_{j}\varphi^{(1)}_{i}\right)
+\Bigg\} \\
+\end{multline}
+
+This expression is too much complicated. Therefore, by using the
+relation we have got before, we try to reduce it into some simpler
+form. Firstly, from the (\ref{PTIMQMeq:13}) we can see that the two
+electrons integral can be expressed as:
+\begin{multline}\label{PTIMQMeq:16}
+\sum_{i}\sum_{j}\Bigg\{
+\left(\varphi^{(0)}_{j}\varphi^{(1)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{i}\right)
++
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{i}\right)
+\\
+-
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{i}|\varphi^{(0)}_{i}\varphi^{(0)}_{j}\right)
+-
+\left(\varphi^{(0)}_{j}\varphi^{(0)}_{i}|\varphi^{(0)}_{i}\varphi^{(1)}_{j}\right)
+\Bigg\} \\
+= \sum_{i}\Bigg\{\epsilon^{(1)}_{i} -
+\langle\varphi^{(0)}_{i}|\hat{V}|\varphi^{(0)}_{i}\rangle\Bigg\}
+\end{multline}
+By exchanging the label of $i$ and $j$ on the right side of the
+above equation (such operation will change nothing), we can get:
+\begin{multline}\label{PTIMQMeq:15}
+\sum_{i}\sum_{j}\Bigg\{
+\left(\varphi^{(0)}_{i}\varphi^{(1)}_{i}|\varphi^{(0)}_{j}\varphi^{(0)}_{j}\right)
++
+\left(\varphi^{(1)}_{i}\varphi^{(0)}_{i}|\varphi^{(0)}_{j}\varphi^{(0)}_{j}\right)
+\\
+-
+\left(\varphi^{(1)}_{i}\varphi^{(0)}_{j}|\varphi^{(0)}_{j}\varphi^{(0)}_{i}\right)
+-
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{j}|\varphi^{(0)}_{j}\varphi^{(1)}_{i}\right)
+\Bigg\} \\
+= \sum_{i}\Bigg\{\epsilon^{(1)}_{i} -
+\langle\varphi^{(0)}_{i}|\hat{V}|\varphi^{(0)}_{i}\rangle\Bigg\}
+\end{multline}
+That's half part of the two electron integrals in the
+(\ref{PTIMQMeq:14}).
+
+On the other hand, in the (\ref{PTIMQMeq:16}) we can exchange the
+electron label in the two electron integrals, that is to make:
+\begin{equation}\label{}
+(ii|jj) \Rightarrow (jj|ii)
+\end{equation}
+Certainly such operation will not change the integrals. Thus we can
+transform the (\ref{PTIMQMeq:16}) into:
+\begin{multline}\label{PTIMQMeq:17}
+\sum_{i}\sum_{j}\Bigg\{
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{i}|\varphi^{(0)}_{j}\varphi^{(1)}_{j}\right)
++
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{i}|\varphi^{(1)}_{j}\varphi^{(0)}_{j}\right)
+\\
+-
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{j}|\varphi^{(1)}_{j}\varphi^{(0)}_{i}\right)
+-
+\left(\varphi^{(0)}_{i}\varphi^{(1)}_{j}|\varphi^{(0)}_{j}\varphi^{(0)}_{i}\right)
+\Bigg\} \\
+= \sum_{i}\Bigg\{\epsilon^{(1)}_{i} -
+\langle\varphi^{(0)}_{i}|\hat{V}|\varphi^{(0)}_{i}\rangle\Bigg\}
+\end{multline}
+Now it can see this is the other half part of the two electron
+integrals in the (\ref{PTIMQMeq:14}).
+
+All in all, by the expression in (\ref{PTIMQMeq:15}) and
+(\ref{PTIMQMeq:17}) the (\ref{PTIMQMeq:14}) can be transformed into:
+\begin{equation}\label{PTIMQMeq:22}
+E^{(1)} =\sum_{i}^{n} \left\{\epsilon^{(1)}_{i} +
+\langle\varphi^{(1)}_{i}|\hat{H}_{1}|\varphi^{(0)}_{i}\rangle
+      +\langle\varphi^{(0)}_{i}|\hat{H}_{1}|\varphi^{(1)}_{i}\rangle\right\}
+\end{equation}
+
+so far we have gotten some simpler expression for the $E^{(1)}$,
+however; the concrete expression for the $\epsilon^{(1)}_{i}$ is not
+known yet. Therefore we make to make additional transformation.
+First, let's evaluate the integrals below according to the
+(\ref{PTIMQMeq:18}):
+\begin{multline}\label{PTIMQMeq:20}
+\sum_{i}\Bigg\{\langle\varphi^{(0)}_{i}|\hat{F}|\varphi^{(1)}_{i}\rangle
++\langle\varphi^{(1)}_{i}|\hat{F}|\varphi^{(0)}_{i}\rangle\Bigg\}
+= \\
+\sum_{i}\Bigg\{
+\langle\varphi^{(0)}_{i}|\hat{H}_{1}|\varphi^{(1)}_{i}\rangle +
+\sum_{j}\Big[
+\left(\varphi^{(0)}_{j}\varphi^{(0)}_{j}|\varphi^{(0)}_{i}\varphi^{(1)}_{i}\right)
+-
+\left(\varphi^{(0)}_{j}\varphi^{(1)}_{i}|\varphi^{(0)}_{i}\varphi^{(0)}_{j}\right)
+\Big] \Bigg\} \\
++ \sum_{i}\Bigg\{
+\langle\varphi^{(1)}_{i}|\hat{H}_{1}|\varphi^{(0)}_{i}\rangle +
+\sum_{j}\Big[
+\left(\varphi^{(0)}_{j}\varphi^{(0)}_{j}|\varphi^{(1)}_{i}\varphi^{(0)}_{i}\right)
+-
+\left(\varphi^{(1)}_{i}\varphi^{(0)}_{j}|\varphi^{(0)}_{j}\varphi^{(0)}_{i}\right)
+\Big] \Bigg\}
+\end{multline}
+Because of the orthogonality between the $\varphi^{(0)}_{i}$ and
+$\varphi^{(1)}_{i}$ defined in (\ref{PTIMQMeq:19}), we have:
+\begin{equation}\label{}
+\langle\varphi^{(0)}_{i}|\hat{F}|\varphi^{(1)}_{i}\rangle =
+\epsilon^{(0)}_{i}\langle\varphi^{(0)}_{i}|\varphi^{(1)}_{i}\rangle
+= 0
+\end{equation}
+Therefore the equation of (\ref{PTIMQMeq:20}) can be rearranged
+into:
+\begin{multline}\label{PTIMQMeq:20}
+\sum_{i}\Bigg\{
+\langle\varphi^{(0)}_{i}|\hat{H}_{1}|\varphi^{(1)}_{i}\rangle +
+\langle\varphi^{(1)}_{i}|\hat{H}_{1}|\varphi^{(0)}_{i}\rangle
+\Bigg\}= \\
+-\sum_{i}\sum_{j}\Bigg\{
+\left(\varphi^{(0)}_{j}\varphi^{(0)}_{j}|\varphi^{(0)}_{i}\varphi^{(1)}_{i}\right)
+-
+\left(\varphi^{(0)}_{j}\varphi^{(1)}_{i}|\varphi^{(0)}_{i}\varphi^{(0)}_{j}\right)
++ \\
+\left(\varphi^{(0)}_{j}\varphi^{(0)}_{j}|\varphi^{(1)}_{i}\varphi^{(0)}_{i}\right)
+-
+\left(\varphi^{(1)}_{i}\varphi^{(0)}_{j}|\varphi^{(0)}_{j}\varphi^{(0)}_{i}\right)
+\Bigg\}
+\end{multline}
+Here we can exchange the label of $i$, $j$ and then exchange the
+electron label, such operation will keep the integrals invariant.
+Then we can have:
+\begin{multline}\label{PTIMQMeq:20}
+\sum_{i}\Bigg\{
+\langle\varphi^{(0)}_{i}|\hat{H}_{1}|\varphi^{(1)}_{i}\rangle +
+\langle\varphi^{(1)}_{i}|\hat{H}_{1}|\varphi^{(0)}_{i}\rangle
+\Bigg\}= \\
+-\sum_{i}\sum_{j}\Bigg\{
+\left(\varphi^{(0)}_{j}\varphi^{(1)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{i}\right)
+-
+\left(\varphi^{(0)}_{j}\varphi^{(0)}_{i}|\varphi^{(0)}_{i}\varphi^{(1)}_{j}\right)
++ \\
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{i}\right)
+-
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{j}|\varphi^{(1)}_{j}\varphi^{(0)}_{i}\right)
+\Bigg\}
+\end{multline}
+For the integral of
+$\left(\varphi^{(0)}_{i}\varphi^{(0)}_{j}|\varphi^{(1)}_{j}\varphi^{(0)}_{i}\right)$,
+if we exchange the electron label again, it will be:
+\begin{equation}\label{}
+\left(\varphi^{(0)}_{i}\varphi^{(0)}_{j}|\varphi^{(1)}_{j}\varphi^{(0)}_{i}\right)=
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{i}|\varphi^{(0)}_{i}\varphi^{(0)}_{j}\right)
+\end{equation}
+
+Then finally the (\ref{PTIMQMeq:20}) will be:
+\begin{multline}\label{PTIMQMeq:21}
+\sum_{i}\Bigg\{
+\langle\varphi^{(0)}_{i}|\hat{H}_{1}|\varphi^{(1)}_{i}\rangle +
+\langle\varphi^{(1)}_{i}|\hat{H}_{1}|\varphi^{(0)}_{i}\rangle
+\Bigg\}= \\
+-\sum_{i}\sum_{j}\Bigg\{
+\left(\varphi^{(0)}_{j}\varphi^{(1)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{i}\right)
+-
+\left(\varphi^{(0)}_{j}\varphi^{(0)}_{i}|\varphi^{(0)}_{i}\varphi^{(1)}_{j}\right)
++ \\
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{j}|\varphi^{(0)}_{i}\varphi^{(0)}_{i}\right)
+-
+\left(\varphi^{(1)}_{j}\varphi^{(0)}_{i}|\varphi^{(0)}_{i}\varphi^{(0)}_{j}\right)
+\Bigg\}
+\end{multline}
+
+Now we can transform the (\ref{PTIMQMeq:22}) by using the conclusion
+we get from the (\ref{PTIMQMeq:21}), as well as the expression for
+the $\epsilon^{(1)}_{i}$ in (\ref{PTIMQMeq:13}). Consequently, it
+turns out that $E^{(1)}$ finally is:
+\begin{equation}\label{}
+E^{(1)} = \sum_{i}
+\langle\varphi^{(0)}_{i}|\hat{V}|\varphi^{(0)}_{i}\rangle
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Matrix form of the perturbed Hatree-Fock equation}
+%
+%
+%
+%
+In the above content, we have derived the first order perturbed
+Hatree-Fock equation in a very detailed way. However, since in
+quantum chemistry we usually use the matrix form of the Hatree-Fock
+equation in terms of the basis sets functions; thus it's necessary
+to rebuild the perturbed equations into the matrix form based on the
+above achievement\cite{stevens:550}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{General procedures}
+%
+%  general preparation before the derivation,
+%  specify the ground states and HF equation as well as how to express the
+%  first order correlated molecular orbitals
+%
+Now we begin to investigate how to make a perturbation treatment on
+the base of the linear combination of basis sets functions. In this
+case, the unperturbed molecular orbitals is usually expressed as:
+\begin{equation}\label{PTIMQMeq:23}
+\varphi_{q} = \sum_{p}c_{pq}\chi_{p}
+\end{equation}
+Where the $\chi_{p}$ is referred as the basis sets functions. Here
+we follow the convention that to use $i, j$ etc. to designate the
+occupied orbitals, $a, b$ etc. to designate the virtual orbitals and
+to use the $p, q$ etc. to refer to the general orbitals. Here it's
+better to reform it into the matrix form, that is:
+\begin{equation}\label{PTIMQMeq:30}
+\varphi_{q} =\begin{bmatrix}
+               \chi_{1} & \chi_{2} & \cdots & \chi_{n} \\
+             \end{bmatrix}
+             \begin{bmatrix}
+               c_{1q} \\
+               c_{2q} \\
+               \cdots \\
+               c_{nq} \\
+             \end{bmatrix}
+\end{equation}
+According to the representation theory \ref{REPRESENTATION:1}, such
+expression is called coefficients $C$ representation based on the
+selected basis functions space of $\chi$.
+
+Now we assume that there's one to one correspondence between the
+coefficients representation and the total wave function (so far in
+my opinion this assumption does not hurt the generality, in other
+words such assumption always holds true). Then by taking the vector
+form of the molecular orbitals in (\ref{PTIMQMeq:30}) back into the
+original Hatree-Fock equation (\ref{PTIMQMeq:1}), and to multiply
+with $\psi_{i}^{*}(1)$ then make integration; we can get the
+corresponding matrix form:
+\begin{equation}\label{PTIMQMeq:24}
+FC_{q} = SC_{q}\epsilon_{q}
+\end{equation}
+Furthermore, since we can use some unitary matrix to drop the
+overlap matrix, then the Hatree-Fock equation can finally be:
+\begin{equation}\label{PTIMQMeq:34}
+FC_{q} = \epsilon C_{q}
+\end{equation}
+This equation has been fully discussed in the Hatree-Fock chapter
+\ref{HFT}. Here $C_{q}$ denotes the vector of $c_{pq}$ in the
+(\ref{PTIMQMeq:23}). The $\epsilon$ is some $n\times n$ diagonal
+matrix which characterizes the orbital energy. Later in the content,
+we will go on the discussion focusing on the (\ref{PTIMQMeq:34}).
+
+Moreover, the total energy is given as:
+\begin{equation}\label{PTIMQMeq:25}
+E = \frac{1}{2}\sum_{q}(C_{q}^{+}FC_{q} + \epsilon_{q})
+\end{equation}
+The (\ref{PTIMQMeq:25}) can be get directly from the addition
+between (\ref{PTIMQMeq:11}) and (\ref{PTIMQMeq:12}). For simplicity,
+The orbitals can still assumed to be orthogonal with each other,
+that means $\langle\varphi_{p}|\varphi_{q}\rangle = \delta_{pq}$.
+
+Now we assume that there's some perturbation in the whole system so
+that the it causes corresponding change in the molecular orbital,
+the orbital energy and the total energy:
+\begin{align}\label{}
+\hat{F}^{'} &= \hat{F} + \lambda \hat{V} \Rightarrow \nonumber \\
+\varphi_{q} &= \varphi^{(0)}_{q} + \lambda\varphi^{(1)}_{q} +
+\lambda^{2}\varphi^{(2)}_{q} + \cdots \nonumber \\
+\epsilon_{q} &= \epsilon^{(0)}_{q} + \lambda\epsilon^{(1)}_{q} +
+\lambda^{2}\epsilon^{(2)}_{q} + \cdots \nonumber \\
+E &= E^{(0)} + \lambda E^{(1)} + \lambda^{2}E^{(2)} + \cdots
+\end{align}
+We note that this is same with the derivation in the last section.
+Here in a like manner we still concentrate on the first order
+perturbation effects.
+
+Furthermore, how to express the first order molecular orbital? Since
+that all the molecular orbitals are expressed on the space
+constituted by the basis sets, thus it's natural to be represented
+by the perturbed coefficients:
+\begin{align}\label{PTIMQMeq:26}
+\varphi^{(0)}_{q} &= \sum_{p}c^{(0)}_{pq}\chi_{p} \nonumber \\
+\varphi^{(1)}_{q} &= \sum_{p}c^{(1)}_{pq}\chi_{p}
+\end{align}
+Here the label of $p$ goes over all the orbitals, including the
+occupied ones and the virtual ones. Next, we are going to consider
+the relations between the molecular orbitals.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Relation for the perturbed orbitals}
+%
+%  derive the relation between the perturbed orbitals, in terms of the
+%  basis sets functions
+%
+%
+In the section of (\ref{PTIMQM:1}), we have derived some general
+relation between the $\varphi^{(1)}_{p}$ and $\varphi^{(0)}_{q}$:
+\begin{equation}\label{PTIMQMeq:31}
+\int\varphi^{*(1)}_{p}\varphi^{(0)}_{q}d\tau
++\int\varphi^{*(0)}_{p}\varphi^{(1)}_{q}d\tau = 0
+\end{equation}
+Furthermore, for the case that $p=q$; we have proved that the
+integral can be set to $0$:
+\begin{equation}\label{}
+\int\varphi^{*(1)}_{p}\varphi^{(0)}_{q}d\tau = 0
+\end{equation}
+
+By taking the expression of (\ref{PTIMQMeq:26}) into the
+(\ref{PTIMQMeq:31}), we can get:
+\begin{align}\label{PTIMQMeq:33}
+\sum_{r}\sum_{s}(c^{*(1)}_{rp}c^{(0)}_{sq} +
+c^{*(0)}_{rp}c^{(1)}_{sq})\langle\chi_{r}|\chi_{s}\rangle &= 0
+\Rightarrow\nonumber \\
+C^{+(1)}_{p}SC^{(0)}_{q} + C^{+(0)}_{p}SC^{(1)}_{q} &= 0
+\end{align}
+However, since that in the (\ref{PTIMQMeq:34}) we have ``drop'' the
+overlap matrix by multiplying some unitary matrix; that means we
+have:
+\begin{equation}\label{}
+C^{'}_{q} = UC_{q} \quad U^{+}SU = I \Rightarrow
+C^{+(1)'}_{p}SC^{(0)'}_{q} = C^{+(1)}_{p}U^{+}SUC^{(0)}_{q} =
+C^{+(1)}_{p}C^{(0)}_{q}
+\end{equation}
+Therefore the (\ref{PTIMQMeq:33}) can be transformed as:
+\begin{equation}\label{PTIMQMeq:35}
+C^{+(1)}_{p}C^{(0)}_{q} + C^{+(0)}_{p}C^{(1)}_{q} = 0
+\end{equation}
+
+Now let's consider the expectation value for an single electron
+operator of $\hat{A}$. Based on the perturbed molecular orbital
+expression, the expectation value is:
+\begin{equation}\label{}
+\sum_{i=1}^{n}\langle\varphi_{i}|\hat{A}|\varphi_{i}\rangle =
+\sum_{i=1}^{n}\langle\varphi^{(0)}_{i}|\hat{A}|\varphi^{(0)}_{i}\rangle
++ \lambda\sum_{i=1}^{n}\Bigg\{
+\langle\varphi^{(1)}_{i}|\hat{A}|\varphi^{(0)}_{i}\rangle +
+\langle\varphi^{(0)}_{i}|\hat{A}|\varphi^{(1)}_{i}\rangle \Bigg\}
+\end{equation}
+Here we suggest there's $n$ occupied orbitals and totally $m$ basis
+sets. The expectation is going over all the occupied orbitals. The
+expectation value for the $\hat{A}$ is approximated at the first
+order.
+
+On the other hand, we can expand the expectation value also in the
+progressive order:
+\begin{equation}\label{}
+\langle A \rangle = \langle A \rangle^{(0)} + \lambda\langle A
+\rangle^{(1)} + \cdots
+\end{equation}
+Obviously the zero order approximation is:
+\begin{equation}\label{}
+\langle A \rangle^{(0)} =
+\sum_{i=1}^{n}\langle\varphi^{(0)}_{i}|\hat{A}|\varphi^{(0)}_{i}\rangle
+\end{equation}
+And the first order approximation is:
+\begin{equation}\label{}
+\langle A \rangle^{(1)} = \sum_{i=1}^{n}\Bigg\{
+\langle\varphi^{(1)}_{i}|\hat{A}|\varphi^{(0)}_{i}\rangle +
+\langle\varphi^{(0)}_{i}|\hat{A}|\varphi^{(1)}_{i}\rangle \Bigg\}
+\end{equation}
+
+Now let's further evaluate the first order approximation. By taking
+the basis sets into the equation above, it transforms into:
+\begin{align}\label{}
+\langle A \rangle^{}(1) &= \sum_{i=1}^{n}c^{*(1)}_{ki}c^{(0)}_{ji}
+\end{align}
+
+
+Now it comes up with a question that how to express the relations
+for the perturbed orbitals in terms of the basis sets functions?
+
+By taking the expansion of (\ref{PTIMQMeq:23}) into the above
+relation, we have:
+\begin{equation}\label{}
+\sum_{p}c^{*(1)}_{pi}\langle\varphi^{(0)}_{p}|\varphi^{(0)}_{j}\rangle
++
+\sum_{q}c^{(1)}_{qj}\langle\varphi^{(0)}_{i}|\varphi^{(0)}_{q}\rangle
+= 0
+\end{equation}
+Since that the unperturbed orbitals satisfy the orthogonal relation,
+thus $\langle\varphi^{(0)}_{p}|\varphi^{(0)}_{q}\rangle =
+\delta_{pq}$. Hence we have:
+\begin{equation}\label{PTIMQMeq:28}
+c^{*(1)}_{ji} + c^{(1)}_{ij} = 0
+\end{equation}
+Generally if $i=j$, then $c^{*(1)}_{ii} + c^{(1)}_{ii} = 0$; that
+means the $c^{(1)}_{ii}$ is some imaginary number so that it can be
+safely set to $0$.
+
+Now let's go to see how to use the conclusion in (\ref{PTIMQMeq:28})
+to get the further information about the density. In the
+perturbation treatment, the density can be expressed as:
+\begin{equation}\label{}
+\rho = \rho^{(0)} + \lambda\rho^{(1)} +\lambda^{2}\rho^{(2)} +
+\cdots
+\end{equation}
+For the orbitals approximated at the first order, according to the
+ (\ref{PTIMQMeq:26}) we can express it as:
+\begin{align}\label{}
+\varphi_{i} &= \varphi^{(0)}_{i} +
+\lambda\sum_{p}c^{(1)}_{pi}\varphi^{(0)}_{p} \nonumber \\
+\varphi^{*}_{i} &= \varphi^{*(0)}_{i} +
+\lambda\sum_{q}c^{*(1)}_{qi}\varphi^{*(0)}_{q}
+\end{align}
+Then the electron density can be expressed as (suggest that there
+are $m$ orbitals, each one is occupied with one electron; the others
+are virtual orbitals):
+\begin{align}\label{}
+\rho &= \rho^{(0)} + \lambda\rho^{(1)} \Rightarrow \nonumber \\
+\sum_{i=1}^{m}\varphi^{*}_{i}\varphi_{i}d\tau &=
+\sum_{i=1}^{m}\varphi^{*(0)}_{i}\varphi^{(0)}_{i}d\tau + \nonumber \\
+&\lambda\Bigg\{\sum_{i=1}^{m}\sum_{p}c^{(1)}_{pi}
+\varphi^{*(0)}_{i}\varphi^{(0)}_{p}d\tau  +
+\sum_{i=1}^{m}\sum_{q}c^{*(1)}_{qi}
+\varphi^{*(0)}_{q}\varphi^{(0)}_{i}d\tau \Bigg\}
+\end{align}
+
+Here it's known that the unperturbed density $\rho^{(0)}$ is:
+\begin{equation}\label{}
+\rho^{(0)} = \sum_{i=1}^{m}\varphi^{*(0)}_{i}\varphi^{(0)}_{i}d\tau
+\end{equation}
+Therefore the first perturbed density $\rho^{(1)}$ is:
+\begin{equation}\label{PTIMQMeq:29}
+\rho^{(1)} = \sum_{i=1}^{m}\sum_{p}c^{(1)}_{pi}
+\varphi^{*(0)}_{i}\varphi^{(0)}_{p}d\tau  +
+\sum_{i=1}^{m}\sum_{q}c^{*(1)}_{qi}
+\varphi^{*(0)}_{q}\varphi^{(0)}_{i}d\tau
+\end{equation}
+Here the label of $i$ goes over all the occupied orbitals, and the
+label of $p$, $q$ go over all the orbitals (occupied type as well as
+the virtual orbitals).
+
+Now by using the relation in the (\ref{PTIMQMeq:28}), we can further
+simplify the expression for the $\rho^{(1)}$. By dividing the sum in
+(\ref{PTIMQMeq:29}) into the occupied type and occupied-virtual
+type; we can have (suggesting that there are $n$ basis sets so that
+totally $n$ orbitals generated in the Hatree-Fock equation):
+\begin{multline}\label{}
+\rho^{(1)} = \sum_{i=1}^{m}\sum_{j=1}^{m}c^{(1)}_{ji}
+\varphi^{*(0)}_{i}\varphi^{(0)}_{j}d\tau +
+\sum_{i=1}^{m}\sum_{a=m+1}^{n}c^{(1)}_{ai}
+\varphi^{*(0)}_{i}\varphi^{(0)}_{a}d\tau  + \\
+\sum_{i=1}^{m}\sum_{j=1}^{m}c^{*(1)}_{ji}
+\varphi^{*(0)}_{j}\varphi^{(0)}_{i}d\tau +
+\sum_{i=1}^{m}\sum_{a=m+1}^{n}c^{*(1)}_{ai}
+\varphi^{*(0)}_{a}\varphi^{(0)}_{i}d\tau
+\end{multline}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

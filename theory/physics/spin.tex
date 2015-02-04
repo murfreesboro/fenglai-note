@@ -1,0 +1,467 @@
+%
+% revised at Jan 21th, 2009
+% however, the discussion about the spin operator is not
+% satisfied. may be it's too short, and the discussion
+% about the multi-system is not good. need to further revised.
+%
+
+
+\chapter{Spin}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% contents:
+%  1  introduction:
+%  2  operators in the spin, express them in the matrix
+%  3  two electrons spin states
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+% 1  spin is the inherent character, and vectorial variable
+% 2  in all directions, s_x, s_y, s_z; the eigen value is (+-)1/2 \hbar
+% 3  spin is a kind of angular momentum, so its operator and the relation
+%   between operators can be set up by analogy with the angular momentum
+%
+%
+So far what have been dealt with is the non-relativistic quantum
+theory. In this part, the spin is introduced as some ``assumption'',
+and the physical essence behind it can only be unveiled in the
+relativistic theory.
+
+At first, the existence of the spin is observed in the experiments,
+then according to the result of the experiments, the theoretical
+treatment related to the spin has been set up. Now in the following
+content we are going to give the base of the theoretical treatment
+which is derived from the experiments.
+
+First, the spin is some kind of inherent character of quantum
+particles, so besides the coordinates of x, y and z the wave
+functions has to add another variable $s$ to express the spin state.
+this can be expressed as:
+\begin{equation}\label{}
+\Psi \Leftrightarrow \Psi (x,y,z,s)
+\end{equation}
+Here we note that the spin variable of $s$ is also some
+``vectorial'' variables which is similar to the coordinate or the
+momentum. Thus the operator for the spin is also vector operators.
+
+Second, the experiments show that the spin on a specific direction
+(such as z or x direction) can only take two eigen values,
+$1\hbar/2$ or $-1\hbar/2$:
+\begin{equation} \label{SPINeq:1}
+\hat{s}_{z}\Psi = \left\{ \begin{aligned}
+           & \frac{1}{2}\hbar \\
+           & -\frac{1}{2}\hbar
+           \end{aligned} \right.
+\end{equation}
+This is different with the angular momentum; where the $l_{z}$ can
+adopt $0, \hbar, 2\hbar, \cdots$ at the given limit of $l$ (take
+$2l+1$ values, see the previous chapter).
+
+Usually we always use the z direction of the spin projection to
+express the spin, thus it's appropriate to use the wave functions
+below to express the spin states:
+\begin{equation}\label{}
+\Psi(\mathbf{r},s_{z}) = \begin{bmatrix}
+                        \Psi(\mathbf{r},\frac{1}{2}\hbar) \\
+                        \Psi(\mathbf{r},-\frac{1}{2}\hbar) \\
+                      \end{bmatrix}
+\end{equation}
+The $\Psi(\mathbf{r},\frac{1}{2}\hbar)$ express the probability of
+holding the ``u'' spin state in the position of $\mathbf{r}$, and
+$\Psi(\mathbf{r},-\frac{1}{2}\hbar)$ express the probability of
+holding the ``down'' spin state in the position of $\mathbf{r}$.
+
+The orthogonal condition for the wave function is:
+\begin{align}\label{}
+\int \Psi^{*}(\mathbf{r},s_{z})\Psi(\mathbf{r},s_{z})d\tau &= \int
+\begin{bmatrix}
+  \Psi^{*}(\mathbf{r},\frac{1}{2}\hbar) & \Psi^{*}(\mathbf{r},-\frac{1}{2}\hbar) \\
+\end{bmatrix}
+\begin{bmatrix}
+\Psi(\mathbf{r},\frac{1}{2}\hbar) \\
+\Psi(\mathbf{r},-\frac{1}{2}\hbar) \\
+\end{bmatrix} \nonumber \\
+&= \int
+\Psi^{*}(\mathbf{r},\frac{1}{2}\hbar)\Psi(\mathbf{r},\frac{1}{2}\hbar)d\tau
++ \int
+\Psi^{*}(\mathbf{r},-\frac{1}{2}\hbar)\Psi(\mathbf{r},-\frac{1}{2}\hbar)d\tau
+\nonumber \\
+&= 1
+\end{align}
+
+If the Hamiltonian does not contain the spin operator (for example,
+the molecules which do not include the heavy atoms), the wave
+functions can be expressed as the product between the spatial part
+and the spin part:
+\begin{equation}\label{}
+\Psi(\mathbf{r},s_{z}) = \psi(\mathbf{r})\chi(s_{z})
+\end{equation}
+$\chi(s_{z})$ is used to describe the spin state, it's common
+expression is:
+\begin{equation}\label{SPINeq:8}
+\chi(s_{z}) = \begin{bmatrix}
+                a \\
+                b \\
+              \end{bmatrix}
+\end{equation}
+Here $|a|^{2}$ indicates the probability for $s_{z} =
+\frac{1}{2}\hbar$, and $|b|^{2}$ indicates the probability for
+$s_{z} = -\frac{1}{2}\hbar$.
+
+For the $\hat{s}_{z}$, its eigen states can be expressed as:
+\begin{equation}\label{}
+\chi_{\frac{1}{2}\hbar}(s_{z}) = \begin{bmatrix}
+                1 \\
+                0 \\
+              \end{bmatrix}
+\end{equation}
+\begin{equation}\label{}
+\chi_{-\frac{1}{2}\hbar}(s_{z}) = \begin{bmatrix}
+                0 \\
+                1 \\
+              \end{bmatrix}
+\end{equation}
+We can abbreviate the $\chi_{\frac{1}{2}\hbar}(s_{z})$ as $\alpha$,
+and $\chi_{-\frac{1}{2}\hbar}(s_{z})$ as $\beta$. Thus the $\alpha$
+and $\beta$ make up a complete basis for the spin state, any spin
+state which described by (\ref{SPINeq:8}) can be expressed as linear
+combination between $\alpha$ and $\beta$:
+\begin{equation}\label{}
+\chi(s_{z}) = a\alpha + b\beta
+\end{equation}
+
+Third, the spin is a kind of special angular momentum so that its
+operator and their relationship can be introduced by analogy with
+the angular momentum operator. However, since that the spin has no
+corresponding phenomenon in classical mechanics, we can not give the
+concrete expression of spin operator just like $\hei{l},
+\hat{l}^{2}$ etc. in the angular momentum part.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spin operators}
+%
+% 1 hermite operator, supposed to be
+% 2 import the operator of s, s_x, s_y, s_z, s^{2} s+, s- etc.
+% 3 pauli matrix expression
+%  3.1  relations for the spin operator
+%  3.2  choose s_z as CSCCO, express them into the Pauli matrix
+%  3.3  some simple use of the Pauli matrix
+%
+Similar to the angular momentum operator, we can also construct the
+operators for the spin below:
+\begin{align}\label{SPINeq:2}
+\hei{s} &= \hat{s}_{x}\overrightarrow{i} +
+\hat{s}_{y}\overrightarrow{j} + \hat{s}_{z}\overrightarrow{k}
+\nonumber \\
+\hat{s}^{2} &= \hei{s}\cdot\hei{s} \nonumber \\
+\hat{s}_{+} &= \hat{s}_{x} + i\hat{s}_{y}  \nonumber \\
+\hat{s}_{-} &= \hat{s}_{x} - i\hat{s}_{y}
+\end{align}
+For the operator of $\hei{s}$, $\hat{s}^{2}$ etc., they are supposed
+to be hermite operators so that they can have eigen values. However,
+this assumption is in accordance with the experiments.
+
+The relations between $\hat{s}_{x}$, $\hat{s}_{y}$ and $\hat{s}_{z}$
+can also follow as:
+\begin{align}\label{SPINeq:3}
+\hat{s}_{x}\hat{s}_{y} - \hat{s}_{y}\hat{s}_{x} &= i\hbar\hat{s}_{z}
+\nonumber \\
+\hat{s}_{y}\hat{s}_{z} - \hat{s}_{z}\hat{s}_{y} &= i\hbar\hat{s}_{x}
+\nonumber \\
+\hat{s}_{z}\hat{s}_{x} - \hat{s}_{x}\hat{s}_{z} &= i\hbar\hat{s}_{y}
+\end{align}
+
+Because that we do not have the concrete expression for the spin
+operator, so it's impossible for us to discuss the relation between
+spin operator and other operators (such as $\hei{p}, \hei{r},
+\hat{l}^{2} etc.$); that's something we want to emphasize.
+
+Usually in the system which contains the spin freedom, we always
+choose the $\hat{s}_{z}$ and $\hat{s}^{2}$ into the CSCCO. Compared
+with the angular momentum operator, we can set up the similar
+relationship for eigen states and eigen values in terms of the spin
+operators.
+
+For the $\hat{s}^{2}$, we also have such eigen functions:
+\begin{equation}\label{}
+\hat{s}^{2}\chi = s(s+1)
+\end{equation}
+Where the $s = \max(s_{z})$, which is same with the result got in
+the angular momentum discussion. Since that for single particle
+there's only two permitted values for the $\hat{s}_{z}$, thus for
+single particle $s = 1/2$.
+
+For a multi-particle system in which the spin is involved, the total
+spin operator of $\hat{S}$ on each direction, namely the
+$\hat{S}_{x}$, $\hat{s}_{y}$ and $\hat{s}_{z}$; they are always
+simply the addition of each particle's operator:
+\begin{equation}
+  \hat{S}_{x} = \sum_{i=1}^{n}\hat{s}_{x}(i) \quad
+  \hat{S}_{y} = \sum_{i=1}^{n}\hat{s}_{y}(i) \quad
+  \hat{S}_{z} = \sum_{i=1}^{n}\hat{s}_{z}(i)
+\end{equation}
+This is same with the angular momentum operators. On the other hand,
+we can also define the $\hat{S}^{2}$ as:
+\begin{equation}\label{}
+\hat{S}^{2} = \hat{S}_{x}^{2} + \hat{S}_{y}^{2} + \hat{S}_{z}^{2}
+\end{equation}
+And it's eigen function is given as:
+\begin{equation}\label{}
+\hat{S}^{2}\chi = S(S+1)
+\end{equation}
+Here the $S=\max(S_{z})$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pauli matrix}
+%
+% how to express the spin operator in some matrix form
+%
+Based on the internal relations we have constructed in
+(\ref{SPINeq:3}); it's possible to introduce some matrix form to
+express the operator, this method was firstly suggested by Pauli.
+
+Firstly of all, let's drop the $\hbar$ in the expression of
+(\ref{SPINeq:3}) by making a new operator of $\hei{s} =
+\frac{\hbar}{2}\hei{\sigma}$. Then we have:
+\begin{align}\label{SPINeq:4}
+\hat{\sigma}_{x}\hat{\sigma}_{y} - \hat{\sigma}_{y}\hat{\sigma}_{x}
+&= 2i\hat{\sigma}_{z}
+\nonumber \\
+\hat{\sigma}_{y}\hat{\sigma}_{z} - \hat{\sigma}_{z}\hat{\sigma}_{y}
+&= 2i\hat{\sigma}_{x}
+\nonumber \\
+\hat{\sigma}_{z}\hat{\sigma}_{x} - \hat{\sigma}_{x}\hat{\sigma}_{z}
+&= 2i\hat{\sigma}_{y}
+\end{align}
+
+Since that for any specific direction ($x$, $y$ or $z$), the eigen
+values it adopts can only be $\pm\frac{\hbar}{2}$, thus $\sigma$ has
+eigen value limited to $\pm 1$; so we have:
+\begin{equation}\label{SPINeq:5}
+\hat{\sigma}_{x}^{2} = \hat{\sigma}_{y}^{2} = \hat{\sigma}_{z}^{2} =
+1
+\end{equation}
+That means they are the unit operators.
+
+By using the (\ref{SPINeq:5}) and (\ref{SPINeq:4}) together, we can
+arrive the expressions below:
+\begin{align}\label{SPINeq:6}
+\hat{\sigma}_{x}\hat{\sigma}_{y} + \hat{\sigma}_{y}\hat{\sigma}_{x}
+&= 0
+\nonumber \\
+\hat{\sigma}_{y}\hat{\sigma}_{z} + \hat{\sigma}_{z}\hat{\sigma}_{y}
+&= 0
+\nonumber \\
+\hat{\sigma}_{z}\hat{\sigma}_{x} + \hat{\sigma}_{x}\hat{\sigma}_{z}
+&= 0
+\end{align}
+That's some very interesting equations, indicating that there has
+some "anti-commutation" between the $\hat{\sigma}_{x}$,
+$\hat{\sigma}_{y}$ and $\hat{\sigma}_{z}$ operators.
+
+On the other hand, from the (\ref{SPINeq:6}) and (\ref{SPINeq:4}),
+we have:
+\begin{align}\label{SPINeq:7}
+\hat{\sigma}_{x}\hat{\sigma}_{y} &= i\hat{\sigma}_{z}
+\nonumber \\
+\hat{\sigma}_{y}\hat{\sigma}_{z} &= i\hat{\sigma}_{x}
+\nonumber \\
+\hat{\sigma}_{z}\hat{\sigma}_{x} &= i\hat{\sigma}_{y}
+\end{align}
+Thus the expressions above (\ref{SPINeq:4}, \ref{SPINeq:6},
+\ref{SPINeq:7}) describe the characters of the spin operators.
+
+Finally we can choose some representation to express them. Usually
+we choose the $\hat{\sigma}_{z}$ into the "CSCCO" so that the wave
+functions are all diagonal elements in this representation. Since
+for $\hat{\sigma}_{z}$ the eigen values only equal to $\pm 1$, so we
+can write it as:
+\begin{equation}\label{}
+\hat{\sigma}_{z} = \begin{pmatrix}
+                     1 & 0 \\
+                     0 & -1 \\
+                   \end{pmatrix}
+\end{equation}
+From this expression we can see that the $\alpha$ and $\beta$ are
+the eigen states for the $\hat{\sigma}_{z}$, they give the eigen
+values of $1, -1$; respectively.
+
+From the equations above, we can naturally get the matrix expression
+for the $\hat{\sigma}_{y}$ and $\hat{\sigma}_{z}$:
+\begin{align}\label{}
+\hat{\sigma}_{y} &= \begin{pmatrix}
+                     0 & -i \\
+                     i & 0 \\
+                   \end{pmatrix} \nonumber \\
+\hat{\sigma}_{x} &= \begin{pmatrix}
+                     0 & 1 \\
+                     1 & 0 \\
+                   \end{pmatrix}
+\end{align}
+That's the Pauli matrix for spin.
+
+Here below we are going to give some simple examples to show that
+how to use the Pauli matrix for the spin operator.
+\begin{equation}\label{SPINeq:10}
+\hat{\sigma}_{x}\alpha = \begin{pmatrix}
+                     0 & 1 \\
+                     1 & 0 \\
+                   \end{pmatrix}
+                   \begin{bmatrix}
+                     1 \\
+                     0 \\
+                   \end{bmatrix} \nonumber \\
+                      =
+                   \begin{bmatrix}
+                     0 \\
+                     1 \\
+                   \end{bmatrix}
+                   =\beta
+\end{equation}
+Also we have $\hat{\sigma}_{x}\beta=\alpha$.
+\begin{equation}\label{SPINeq:11}
+\hat{\sigma}_{y}\alpha = \begin{pmatrix}
+                     0 & -i \\
+                     i & 0 \\
+                   \end{pmatrix}
+                   \begin{bmatrix}
+                     1 \\
+                     0 \\
+                   \end{bmatrix} \nonumber \\
+                      =i
+                      \begin{bmatrix}
+                      0 \\
+                      1 \\
+                   \end{bmatrix}
+                   =i\beta
+\end{equation}
+Also we have $\hat{\sigma}_{y}\beta=-i\alpha$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spin states for two electrons}
+%
+% here we introduce the coupling of spin between two electrons,
+% which is similar to the angular momentum (see the coupling for the
+% angular momentum).
+% the most important thing, is to introduce the singlet state and
+% triplet state.
+% also in this part, we may use the Pauli matrix.
+%
+Now let's consider the two electrons system, here we assume that
+there's no interactions between the two electrons so that the spin
+operator for the whole system can be expressed as:
+\begin{equation}\label{}
+\hei{s} = \hei{s}_{1} + \hei{s}_{2}
+\end{equation}
+$\hei{s}_{1}$ is the spin operator for electron $1$, and
+$\hei{s}_{2}$ is the spin operator for electron $2$. According to
+the postulation, we have:
+\begin{equation}\label{}
+[\hei{s}_{1}, \hei{s}_{2}] = 0
+\end{equation}
+
+It's clear that for this system, it has a degree of $2$ (here only
+spin state is considered); thus we can choose $(\hat{s}_{1z},
+\hat{s}_{2z})$ as CSCCO, or choose $(\hat{s}^{2}, \hat{s}_{z})$ as
+CSCCO.
+
+For the electron $1$, the eigen states for the $\hat{s}_{z}$ are
+$\alpha(1)$ and $\beta(1)$, also the eigen states for the
+$\hat{s}_{z}$ of electron $2$ are $\alpha(2)$ and $\beta(2)$; thus
+the eigen states for the $(\hat{s}_{1z}, \hat{s}_{2z})$ are:
+\begin{equation}\label{SPINeq:9}
+\alpha(1)\alpha(2) \quad \alpha(1)\beta(2) \quad \alpha(2)\beta(1)
+\quad \beta(1)\beta(2)
+\end{equation}
+
+According to the discussion related to the representation theory in
+the quantum mechanics, different representations associated with
+each other by some unitary transformation; thus it's implied that
+the eigen states for the CSCCO of $(\hat{s}^{2}, \hat{s}_{z})$ can
+be expressed as some linear combination of the eigen states in the
+(\ref{SPINeq:9}).
+
+For the $\hat{s}_{z}$, it's clear to see that all the states in the
+(\ref{SPINeq:9}) are its eigen states, their eigen values are
+$\hbar, 0, 0, -\hbar$; respectively.
+
+For the operator of $\hat{s}^{2}$, since that $\alpha(1)\alpha(2)$
+and $\beta(1)\beta(2)$ are two non-degenerate states for the
+$\hat{s}_{z}$, thus both of the two states must correspond to one
+eigen state for the $\hei{s}$. Hence they are the eigen states for
+the operator of $\hat{s}^{2}$.
+
+On the other hand, we can use the operator expression of
+$\hat{s}^{2}$ to prove this point. for $\hat{s}^{2}$ we have:
+\begin{align}\label{}
+\hat{s}^{2} &= (\hei{s}_{1} + \hei{s}_{2})^{2} \nonumber \\
+            &= \hat{s}_{1}^{2} + \hat{s}_{2}^{2} +
+            2\hei{s}_{1}\hei{s}_{2} \nonumber \\
+            &= \hat{s}_{1}^{2} + \hat{s}_{2}^{2} +
+            \frac{\hbar^{2}}{2}(\sigma_{1x}\sigma_{2x}+
+            \sigma_{1y}\sigma_{2y}+
+            \sigma_{1z}\sigma_{2z})
+\end{align}
+Thus we can use this expression to testify that whether the
+$\alpha(1)\alpha(2)$ and $\beta(1)\beta(2)$ are the eigen states for
+the $\hat{s}^{2}$. Here we will use the eigen function in the
+(\ref{SPINeq:10}) and (\ref{SPINeq:11}).
+
+Besides the $\alpha(1)\alpha(2)$ and $\beta(1)\beta(2)$, there
+should have another two eigen states for the $\hat{s}^{2}$, these
+two eigen states should be the linear combination of
+$\alpha(1)\beta(2)$ and $\alpha(2)\beta(1)$. So we have:
+\begin{align}\label{}
+\chi &= c_{1}\alpha(1)\beta(2) + c_{2}\alpha(2)\beta(1) \Rightarrow
+\nonumber \\
+\hat{s}^{2}\chi &= \lambda\hbar^{2}\chi
+\end{align}
+Through the concrete expression of $\hat{s}^{2}$, we can get:
+\begin{equation}\label{}
+\hat{s}^{2}\chi = \hbar^{2}\Big ( (c_{1}+c_{2})\alpha(1)\beta(2) +
+(c_{1}+c_{2})\alpha(2)\beta(1)\Big)
+\end{equation}
+
+So far we can get:
+\begin{equation}\label{SPINeq:12}
+(c_{1}+c_{2})\alpha(1)\beta(2) + (c_{1}+c_{2})\alpha(2)\beta(1)
+=c_{1}\lambda\alpha(1)\beta(2) + c_{2}\lambda\alpha(2)\beta(1)
+\end{equation}
+
+By integration to the (\ref{SPINeq:12}), first we multiply by
+$\alpha^{*}(1)\beta^{*}(2)$, second by $\alpha^{*}(2)\beta^{*}(1)$;
+because of the orthogonality we can get two equations:
+
+\begin{equation} \label{SPINeq:13}
+\left\{
+\begin{aligned}
+(1-\lambda)c_{1} + c_{2} &= 0  \\
+(1-\lambda)c_{2} + c_{1} &= 0
+\end{aligned} \right.
+\end{equation}
+
+The solution will be $\lambda =0, 2$, by taking them back into the
+(\ref{SPINeq:13}), we will have $c_{1}/c_{2} = \pm 1$. Thus this
+leads to two eigen states:
+\begin{equation}\label{}
+\frac{1}{\sqrt{2}}[\alpha(1)\beta(2) - \alpha(2)\beta(1)] \quad
+\frac{1}{\sqrt{2}}[\alpha(1)\beta(2) + \alpha(2)\beta(1)]
+\end{equation}
+
+There are three eigen states which corresponding to ($S=1, S_{z} =0,
+\pm 1$) of the $(\hat{s}^{2}, \hat{s}_{z})$, this is called triplet;
+the eigen states which corresponding to ($S=0, S_{z} =0$) of the
+$(\hat{s}^{2}, \hat{s}_{z})$ is called singlet.
+
+Here these derivation are very useful in the quantum chemistry.
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

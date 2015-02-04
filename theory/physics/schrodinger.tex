@@ -1,0 +1,665 @@
+%
+% revised at March 31th, 2009
+% modify the first section, to specify the details of time dependent
+% system
+% revise the discussion of second section.
+%
+% revised at Aug 10th, 2009
+% here according to the above content we have delete the
+% expression for CSCCO.
+%
+\chapter{Schrodinger equation}
+%
+%  detailed describe the Schrodinger equation
+%  1  Schrodinger equation, formation,meaning
+%  2  variational principle
+%  3  operators commuted with Hamiltonian
+%  4  CSCCO
+%
+%
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Schrodinger equation}\label{SE:5}
+%
+% whole function and the time independent function form
+% discuss the hamiltonian that does not contain time
+%
+After talking so much, let's formally introduce the most important
+equation in quantum  mechanics:
+\begin{equation}\label{}
+\hat{H}\Psi(\bm{r},t) = i \hbar \frac{\partial
+\Psi(\bm{r},t)}{\partial t}
+\end{equation}
+the $\hat{H}$ is the Hamiltonian operator, which contains the
+kinetic operator and the potential energy operator, therefore it can
+be expressed as:
+\begin{equation}\label{SEeq:1}
+\left\{-\frac{\hbar^{2}}{2m}\nabla^{2} +
+V(\bm{r},t)\right\}\Psi(\bm{r},t) = i \hbar \frac{\partial
+\Psi(\bm{r},t)}{\partial t}
+\end{equation}
+
+For Schrodinger equation, we have some axiom to correspond it:
+\begin{axiom}\label{axiom6}
+\textbf{The quantum state of $\ket{\Psi(t)}$ is determined by
+Schrodinger equation:
+\begin{equation}\label{}
+\hat{H}\ket{\Psi(t)} = i \hbar \frac{\partial
+\ket{\Psi(t)}}{\partial t}
+\end{equation}
+Where the $\hat{H}$ is the Hamiltonian operator: $\hat{H} =
+\hat{H}(\hei{r}, \hei{p}, t)$. }
+\end{axiom}
+
+
+If the Hamiltonian operator does not contain the $t$ ($V(r,t)
+\rightarrow V(r)$, actually most of the circumstance we meet in
+quantum mechanics are belonging to this kind), the wave function can
+be separated into $\Psi(\bm{r},t) = \Psi(\bm{r})f(t)$. Here the
+$\Psi(\bm{r})$ express the quantum state in the initial state:
+$t=0$. Then by bringing this $\Psi(\bm{r},t)$ into the
+(\ref{SEeq:1}), we can get:
+\begin{align}\label{SEeq:17}
+i \hbar \Psi(\bm{r})\frac{\partial f(t)}{\partial t} &=
+\hat{H}\Psi(\bm{r})f(t) \nonumber \\
+i \hbar \frac{\partial f(t)}{\partial t}  &=
+\bra{\Psi(\bm{r})}\hat{H}\ket{\Psi(\bm{r})}f(t) \Rightarrow \nonumber \\
+f(t) &=
+e^{\frac{-i\bra{\Psi(\bm{r})}\hat{H}\ket{\Psi(\bm{r})}t}{\hbar}}
+\end{align}
+So finally the time dependent wave function of $\Psi(\bm{r},t)$ is:
+\begin{equation}\label{}
+\Psi(\bm{r},t) = \Psi(\bm{r})e^{-i\overline{H}t/\hbar}
+\end{equation}
+Here the $\overline{H}$ denotes the average value for the
+Hamiltonian operator.
+
+On the other hand, in the following content (see the discussion
+related to the commutation with Hamiltonian operator), we can see
+that if the Hamiltonian operator does not contain the $t$, then the
+energy is some conserved physical quantity; which means, the energy
+does not change as $t$ varies. Hence in the (\ref{SEeq:17}) we have:
+\begin{equation}\label{SEeq:19}
+\begin{split}
+  i \hbar \frac{1}{f(t)}\frac{\partial f(t)}{\partial t}
+  &= E  \Rightarrow\\
+   \hat{H}\Psi(\bm{r}) &= E\Psi(\bm{r})
+\end{split}
+\end{equation}
+Hence we can have the eigen function for the Hamiltonian:
+\begin{equation}\label{SEeq:2}
+\hat{H}\psi_{i}(\bm{r}) = E_{i}\psi_{i}(\bm{r}) \quad i=1,2,\cdots
+\end{equation}
+Here the $\psi_{i}(\bm{r})$ is some eigen states for the Hamiltonian
+operator, and the corresponding $E_{i}$ is the eigen values-energy
+of the system. $\psi_{i}$ is called stationary state of this system,
+and the lowest energy state is called ground state. Furthermore, we
+can get the time evolution of each eigen state of $\psi_{i}(\bm{r})$
+by repeating the procedure in (\ref{SEeq:17}):
+\begin{equation}\label{}
+\psi_{i}(r, t) = \psi_{i}(r)e^{-iE_{i}t/\hbar}
+\end{equation}
+Here we can see that if the initial state is in of the eigen states,
+then the system will keep the original energy as time evolves. On
+the other hand, based on this complete sets, we can also express an
+arbitrary state of $\Psi(\bm{r},t)$ into linear combination of
+$\psi_{i}(\bm{r},t)$:
+\begin{align}\label{}
+\Psi(\bm{r},t) &= \sum_{i}a_{i}\psi_{i}(\bm{r},t) \nonumber \\
+&=\sum_{i}a_{i}\psi_{i}(\bm{r})e^{-iE_{i}t/\hbar}
+\end{align}
+Here it's not some stationary state at any give time of $t$.
+However, the change if time does not alter the component of $a_{i}$;
+since that $|a_{i}e^{-iE_{i}t/\hbar}|^{2} = |a_{i}|^{2}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some basic concept in quantum chemistry}\label{SE:4}
+%
+%  how to understand quantum chemistry ? in general
+%
+%
+In the quantum chemistry, we always do not consider the time
+variation; thus in the following content we with to give some
+discussion about the function in (\ref{SEeq:2}).
+
+For the system described through the (\ref{SEeq:2}), it's actually
+some kind of isolated system since that there's neither materials
+nor energy floating inside or outside the corresponding system. For
+such system, since the time should be equivalent, it's impossible to
+distinguish the past from the future. Thus the Hamiltonian for a
+isolated system should not contain the time explicitly.
+
+Most of the chemical system we apply for quantum simulation belong
+to this type. For example, if we construct a chemical reaction
+system; it's indeed a isolated system; since there's no materials
+exchanged or external fields existed. On the Born-Oppenheimer
+approximation, the quantum states for the system is some function of
+the nuclear coordinates. Hence, for some configuration or
+conformation it may corresponds to higher or lower energy state
+(here we only consider the ground states), so we can get some n
+dimensional PES. For such PES, we can identify the energy as new
+bonds forming or old bonds breaking, so that to get more
+understanding about the chemical reaction in adiabatic condition.
+
+Sometimes the system is not in the ground state, by some external
+perturbation the system may excite onto some higher states; this is
+called quantum transition; which plays crucial role in quantum
+chemistry. If the external perturbation is in infrared wave band,
+the molecule's rotation and vibration states may be got excited so
+as to produce the IR spectrum; which is very important in chemistry
+to identity the characters of this molecule. If the external
+perturbation is some ultraviolet rays then the UV spectrum may be
+got excited or even the electrons may be excited onto the higher
+state to form the photochemistry reaction.
+
+In the following chapter (see the perturbation treatment for the
+time-dependent system), we can see that we always use the
+perturbation treatment to deal with such time dependent case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Commutation with Hamiltonian operator}\label{SE:3}
+%
+% contains two aspects:
+%   1   the equation deduction, dA/dt
+%   2   the correlation between conserved operator
+%       and energy degeneration
+%
+
+So far we have known that Hamiltonian operator possesses an very
+important position in quantum mechanics, thus what about the
+operators which commutate with the Hamiltonian operator? Does they
+have some special character?
+
+Now we suggest an hermite operator of $\hat{A}$:
+\begin{equation}
+\overline{A(t)} = \bra{\psi(t)}\hat{A}\ket{\psi(t)}
+\end{equation}
+
+So with respect to the time, the differentiation of
+$\overline{A(t)}$ is:
+\begin{eqnarray}\label{SEeq:3}
+% \nonumber to remove numbering (before each equation)
+  \frac{d \overline{A(t)}}{dt} &=& \bra{\frac{\partial \psi(t)}{\partial t}}\hat{A}\ket{\psi(t)}
+  + \bra{\psi(t)}\frac{\partial\hat{A}}{\partial t}\ket{\psi(t)} +
+  \bra{\psi(t)}\hat{A}\ket{\frac{\partial \psi(t)}{\partial t}} \nonumber \\
+    &=& \bra{\frac{\hat{H} \psi(t)}{-i\hbar}}\hat{A}\ket{\psi(t)}
+  + \bra{\psi(t)}\frac{\partial\hat{A}}{\partial t}\ket{\psi(t)} +
+  \bra{\psi(t)}\hat{A}\ket{\frac{\hat{H} \psi(t)}{i\hbar}}  \nonumber \\
+    &=& -\frac{1}{i\hbar}\bra{\psi(t)}\hat{H}\hat{A}\ket{\psi(t)}
+  + \bra{\psi(t)}\frac{\partial\hat{A}}{\partial t}\ket{\psi(t)}
+  + \frac{1}{i\hbar}\bra{\psi(t)}\hat{A}\hat{H}\ket{\psi(t)}  \nonumber \\
+    &=& \frac{1}{i\hbar}\bra{\psi(t)}[\hat{A},\hat{H}]\ket{\psi(t)}
+    + \bra{\psi(t)}\frac{\partial\hat{A}}{\partial t}\ket{\psi(t)}  \nonumber \\
+    &=& \bra{\psi(t)}\frac{1}{i\hbar}[\hat{A},\hat{H}]+\frac{\partial\hat{A}}{\partial t}\ket{\psi(t)}
+\end{eqnarray}
+
+Here, since we acquiesce that $\psi \Leftrightarrow \ket{\psi} $,
+and $\psi^{*} \Leftrightarrow \bra{\psi} $, so the Hamiltonian on
+the bra leads to $\hat{H}\psi^{*} = -i\hbar \frac{\partial
+\psi^{*}}{\partial t}$.
+
+In the expression of (\ref{SEeq:3}), if $\hat{A}$ does not contain
+the time of $t$, the term of $\frac{\partial \hat{A}}{\partial t} =
+0$. Furthermore, if $[\hat{A},\hat{H}] = 0$; it leads to the result
+of $\frac{d \overline{A(t)}}{dt} = 0$. This means that the
+expectation value of $\hat{A}$ does not change as the time varies,
+such kind of physical quantity is called ``conserved'' physical
+quantity.
+
+As what we note before, if an operator of $\hat{A}$ commutes with
+$\hat{H}$, then they may share the same eigen states. However, it
+does not mean that they ``must'' share the same eigen states. The
+examples shown in the \ref{transformation_in_representation} is an
+good illustration to this case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Complete set Of commutating conserved
+operators}\label{SE:1}
+%
+% why we have to introduce the CSCCO?
+% the existence of the CSCCO, proof; in a general form
+%
+%
+%
+In the section \ref{CSCO_in_operator}, we have introduced the
+concept of ``CSCO''. However, since that for most of the situation
+we have the energy as conserved quantity; then we always choose the
+CSCO which contains the $\hat{H}$; this group is called ``complete
+set Of commutating conserved operators''; in the future, they will
+be abbreviated as ``CSCCO''.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Variation principle}\label{SE:2}
+%
+% 1  equivalence between variation principle and the schrodinger equation,proof
+%    two points: first, the wave functions are the stationary points;
+%                second, the trial wave functions are the upper limit of the energy
+% 2  how to understand its physical meaning, how to construct a variation process?
+% 3  Ritz variation method
+% 4  linear variation method
+%
+ For the time independent quantum system, we have the
+schrodinger equation:
+\begin{equation}\label{SEeq:5}
+\hat{H}\Psi = E\Psi
+\end{equation}
+Where the $E$ is the energy of the system. In the following content,
+we will prove that this equation is equivalent to the variation
+principle.
+
+In the variation process, the energy of the quantum system and the
+corresponding wave functions can be achieved through the variation
+of the integral: $\bra{\Psi}\hat{H}\ket{\Psi}$, under the constraint
+condition of $\langle\Psi|\Psi\rangle = 1$. Here the $\Psi$ is the
+trial wave function for the system.
+
+The whole process can be expressed as:
+\begin{equation}\label{SEeq:6}
+\delta [\bra{\Psi}\hat{H}\ket{\Psi} - \lambda
+\langle\Psi|\Psi\rangle] = 0
+\end{equation}
+
+Now we begin to prove it. First, we can demonstrate that through
+(\ref{SEeq:6}) we can get (\ref{SEeq:5}).
+\begin{align}\label{}
+ \delta[\bra{\Psi}\hat{H}\ket{\Psi} - \lambda
+\langle\Psi|\Psi\rangle] &= 0 \nonumber \\
+\left\{\bra{\delta\Psi}\hat{H}\ket{\Psi} - \lambda
+\langle\delta\Psi|\Psi\rangle \right\} +
+\left\{\bra{\Psi}\hat{H}\delta\ket{\Psi} - \lambda
+\langle\Psi|\delta\Psi\rangle\right\} &= 0 \nonumber \\
+\delta\langle\Psi|\left\{\hat{H}\ket{\Psi} - \lambda
+\ket{\Psi}\right\} + \left\{\bra{\Psi}\hat{H} - \lambda
+\langle\Psi|\right\}\delta|\Psi\rangle &= 0
+\end{align}
+Because that $\delta\langle\Psi|$ and $\delta|\Psi\rangle$ vary
+independently, so we can have two functions:
+\begin{equation} \label{}
+\left\{
+\begin{aligned}
+\hat{H}\ket{\Psi} - \lambda\ket{\Psi}    &= 0   \\
+\bra{\Psi}\hat{H} - \lambda \langle\Psi| &= 0
+\end{aligned}
+\right.
+\end{equation}
+Since $\hat{H} = \hat{H}^{+}$, the two functions are equivalent to
+each other; and that's the Schrodinger equation of (\ref{SEeq:5}).
+
+Second, we can prove that through \ref{SEeq:5} we can get
+(\ref{SEeq:6}).
+
+For the $\Psi$ in (\ref{SEeq:5}), we can make an infinitesimal
+change:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \ket{\Psi}^{'} &=& \ket{\Psi} + \delta\ket{\Psi} \nonumber \\
+  \bra{\Psi}^{'} &=& \bra{\Psi} + \delta\bra{\Psi}
+\end{eqnarray}
+Since $\langle\Psi|\Psi\rangle = 1$, this condition should be
+retained during the change process(that means, the infinitesimal
+change to the wave function will not alter its orthogonality); thus
+we can have:
+\begin{align}\label{}
+\langle\Psi^{'}|\Psi^{'}\rangle &= 1  \Rightarrow \nonumber \\
+\langle\delta\Psi|\Psi\rangle + \langle\Psi|\delta\Psi\rangle +
+\langle\delta\Psi|\delta\Psi\rangle &= 0
+\end{align}
+Under this condition, the change to the system energy is:
+\begin{align}\label{}
+E + \delta E &= \bra{\Psi^{'}}\hat{H}\ket{\Psi^{'}} \Rightarrow \nonumber \\
+\delta E &= \bra{\delta\Psi}\hat{H}\ket{\Psi} +
+\bra{\Psi}\hat{H}\ket{\delta\Psi} +
+\bra{\delta\Psi}\hat{H}\ket{\delta\Psi} \nonumber \\
+&= E\left(\langle\delta\Psi|\Psi\rangle +
+\langle\Psi|\delta\Psi\rangle\right) +
+\bra{\delta\Psi}\hat{H}\ket{\delta\Psi} \nonumber \\
+&=\bra{\delta\Psi}\hat{H}\ket{\delta\Psi} -
+E\langle\delta\Psi|\delta\Psi\rangle
+\end{align}
+Because in the above result, it shows that the $\delta E$ is higher
+infinitesimal change of $\delta\Psi$; thus the $\delta E = 0$ as the
+$\Psi$ varies. In other words, it means that the real wave function
+of $\Psi$ makes the integral of $\bra{\Psi}\hat{H}\ket{\Psi}$ to
+take stationary point, under the constraint of
+$\langle\Psi|\Psi\rangle = 1$. That's really what the (\ref{SEeq:6})
+has shown out.
+
+We can understand this situation just like this: the wave functions
+is similar to the variable of $x$, and the integral of
+$\bra{\Psi}\hat{H}\ket{\Psi}$ is just like $f(x)$; surely the $x$
+has to satisfy some condition; which is similar with
+$\langle\Psi|\Psi\rangle = 1$. As $x$ varies, the $f(x)$ may take
+different values; but if $x$ is the real ``answer'', it will
+definitely make $f^{'}(x) = 0$ (this is corresponding to that
+$\delta f(x) = 0$). That's what this variation process expresses.
+
+So far we have proved that the wave functions are the stationary
+points of the integral of $\bra{\Psi}\hat{H}\ket{\Psi}$; now there
+comes a question: it's a maximum or minimum?
+
+Now we prove that the trial functions will yield the upper limit of
+the system energy.
+
+Suggest that we have a group of wave functions of $\Psi_{i}$
+($i=1,2,\cdots$), they are the eigen states for some CSCCO; now we
+use it to expand some trial wave function of $\Psi^{'}$:
+\begin{equation}\label{SEeq:18}
+\Psi^{'} = \sum_{i}a_{i}\Psi_{i}
+\end{equation}
+Thus the average energy for the trial wave functions is:
+\begin{align}\label{}
+\frac{\bra{\Psi^{'}}\hat{H}\ket{\Psi^{'}}}{\langle\Psi^{'}|\Psi^{'}\rangle}
+&=\frac{\sum_{i}\sum_{j}a^{*}_{i}a_{j}\bra{\Psi_{i}}\hat{H}\ket{\Psi_{j}}}
+{\sum_{i}\sum_{j}a^{*}_{i}a_{j}\langle\Psi_{i}|\Psi_{j}\rangle}
+\nonumber \\
+&=\frac{\sum_{i}E_{i}|a_{i}|^{2}\langle\Psi_{i}|\Psi_{i}\rangle}
+{\sum_{i}|a_{i}|^{2}\langle\Psi_{i}|\Psi_{i}\rangle} \nonumber \\
+&=\frac{\sum_{i}E_{i}|a_{i}|^{2}}{\sum_{i}|a_{i}|^{2}} \nonumber \\
+&\geq E_{0}\frac{\sum_{i}|a_{i}|^{2}}{\sum_{i}|a_{i}|^{2}} \nonumber \\
+&\geq E_{0}
+\end{align}
+
+Therefore, the energy through variation process provide an upper
+limit to the real energy of the system.
+
+Finally, how can we understand the variation principle? To some
+extent, this principle enlarges our understanding to the Schrodinger
+equation and the corresponding wave functions. The "real" wave
+functions(they constitute a function space) make the system energy
+to a minimum, while other trial wave functions(they also constitute
+a function space) also can give the approximation to the wave
+functions and the corresponding physical quantities (including the
+energy of the system), and if the approximation is better, the
+physical quantities (trial functions gives) will be more better.
+
+How to construct the trial wave functions? Actually, there are many
+ways; according to the objects we are study. In the book by levine
+etc.\cite{levine, aoqingTang}, they provides a lots of examples.
+Thus the detailed part is omitted here.
+
+On the other hand, in the variation process we always use the form
+suggested by Ritz, called Ritz variation process.
+
+In Ritz variation process, first we suggest to take the trial wave
+function as:
+\begin{equation}\label{}
+\Psi = \Psi(q, c_{1}, c_{2}, \cdots)
+\end{equation}
+Here the $q$ is the coordinates, and $c_{i}$ is the arguments which
+needed to be specified in the variation process. Here, we have to
+approximation of the energy as:
+\begin{equation}\label{}
+E = \frac{\bra{\Psi}\hat{H}\ket{\Psi}}{\langle\Psi|\Psi\rangle}
+=E(c_{1}, c_{2}, \cdots)
+\end{equation}
+The expression of the energy depends on the arguments of $c_{i}$.
+According to the variation principle, the real wave function should
+be the minimum of the energy; so this can be expressed as:
+\begin{equation}\label{SEeq:7}
+\frac{\partial E}{\partial c_{i}} = 0 \quad (i=1,2,\cdots)
+\end{equation}
+Through (\ref{SEeq:7}) we can get the approximated wave functions
+and the energy.
+
+In quantum chemistry, actually we always use the variation principle
+in the Ritz expression. In the following content, we may further
+introduce the linear variation process (it also belongs to Ritz
+variation process); that is the core of the configuration
+interaction method in quantum chemistry.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Local probability conservation}
+\label{lpc_in_schrodinger}
+%
+% 1  derivation for the continuity equation
+% 2  the physical meaning of the terms
+%
+So far the Schrodinger equation we have introduced is the
+non-relativistic kind, that means there's no particles generating or
+annihilating as the system evolves. This implies that the total
+probability density for the whole space is some constant and does
+not change as time varies. So we have express this relation by the
+equation below:
+\begin{equation}\label{SEeq:15}
+\frac{d}{dt}\int^{+\infty}_{-\infty}|\Psi(r,t)|^{2}dr = 0
+\end{equation}
+
+From the schrodinger equation of (\ref{SEeq:1}), we can also prove
+this point.
+
+Now let's prove the above equation. By taking complex conjugating
+form of the (\ref{SEeq:1}), we can have:
+\begin{equation}\label{SEeq:8}
+\left(-\frac{\hbar^{2}}{2m}\nabla^{2} + V \right)\Psi^{*}(r,t) = -i
+\hbar \frac{\partial \Psi^{*}(r,t)}{\partial t}
+\end{equation}
+Here we note that the $V$ is some real operator then $V = V^{*}$.
+
+By multiplying the $\Psi^{*}$ to the left side of Schrodinger
+equation, we can have:
+\begin{equation}\label{SEeq:9}
+\Psi^{*}(r,t)\left(-\frac{\hbar^{2}}{2m}\nabla^{2}\right)\Psi(r,t) +
+\Psi^{*}(r,t) V \Psi(r,t) = i \hbar
+\Psi^{*}(r,t)\frac{\partial}{\partial t}\Psi(r,t)
+\end{equation}
+
+Similarly for the (\ref{SEeq:8}), we can have:
+\begin{equation}\label{SEeq:10}
+\Psi(r,t)\left(-\frac{\hbar^{2}}{2m}\nabla^{2}\right)\Psi^{*}(r,t) +
+\Psi(r,t) V \Psi^{*}(r,t) = -i \hbar
+\Psi(r,t)\frac{\partial}{\partial t}\Psi^{*}(r,t)
+\end{equation}
+
+If we make (\ref{SEeq:9}) subtract (\ref{SEeq:10}), we can finally
+get:
+\begin{align}\label{SEeq:11}
+i \hbar\frac{\partial}{\partial t}\Psi^{*}(r,t)\Psi(r,t) &=
+-\frac{\hbar^{2}}{2m}\left(\Psi^{*}(r,t)\nabla^{2}\Psi(r,t)
+-\Psi(r,t)\nabla^{2}\Psi^{*}(r,t)\right) \nonumber \\
+&=-\frac{\hbar^{2}}{2m}\left(\Psi^{*}\nabla^{2}\Psi -
+\nabla\Psi^{*}\nabla\Psi + \nabla\Psi^{*}\nabla\Psi
+-\Psi\nabla^{2}\Psi^{*}\right) \nonumber \\
+&=-\frac{\hbar^{2}}{2m}\nabla\left(\Psi^{*}(r,t)\nabla\Psi(r,t)
+-\Psi(r,t)\nabla\Psi^{*}(r,t)\right)
+\end{align}
+Here it notes that in the above derivation since $V$ is some real
+operator then we can have $\Psi^{*}(r,t) V \Psi(r,t) = \Psi(r,t) V
+\Psi^{*}(r,t)$.
+
+Since that it has $-i\hbar\nabla = \hei{p}$, then we can rewrite the
+(\ref{SEeq:11}) into some form which has more clear physical
+meaning:
+\begin{equation}\label{SEeq:12}
+\frac{\partial}{\partial t}\Psi^{*}(r,t)\Psi(r,t) =
+-\frac{1}{2m}\nabla(\Psi^{*}(r,t)\hei{p}\Psi(r,t)
+-\Psi(r,t)\hei{p}\Psi^{*}(r,t))
+\end{equation}
+If we integrate the above equation in a close space V, then
+according to the Gauss theorem, we can have such transformation:
+\begin{multline}\label{}
+-\frac{1}{2m}\int_{V}\nabla(\Psi^{*}(r,t)\hei{p}\Psi(r,t)
+-\Psi(r,t)\hei{p}\Psi^{*}(r,t))dv = \\
+-\frac{1}{2m}\oint_{S}(\Psi^{*}(r,t)\hei{p}\Psi(r,t)
+-\Psi(r,t)\hei{p}\Psi^{*}(r,t))\cdot ds
+\end{multline}
+then by integration over the close space V the (\ref{SEeq:12})
+finally is:
+\begin{multline}\label{SEeq:13}
+\frac{\partial}{\partial t}\int_{V}\Psi^{*}(r,t)\Psi(r,t)dv = \\
+-\frac{1}{2m}\oint_{S}(\Psi^{*}(r,t)\hei{p}\Psi(r,t)
+-\Psi(r,t)\hei{p}\Psi^{*}(r,t))\cdot ds
+\end{multline}
+
+For getting a much clear expression, we can make that:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \Psi^{*}(r,t)\Psi(r,t) &=& \rho \nonumber  \\
+  \Psi^{*}(r,t)\hei{p}\Psi(r,t) -\Psi(r,t)\hei{p}\Psi^{*}(r,t) &=& 2m\mathbf{j}
+\end{eqnarray}
+Here we note that Since \heit{p} is some vectoring operator, then
+the $\mathbf{j}$ is also some vector. Then based on the above
+transformation the (\ref{SEeq:13}) is finally to be:
+\begin{equation}\label{SEeq:14}
+\frac{d}{dt}\int_{V}\rho dv =-\oint_{S}\mathbf{j}\cdot ds
+\end{equation}
+
+In the (\ref{SEeq:14}) since the left side express the total
+probability to find the particle inside the volume of $V$, then the
+$\mathbf{j}$ retains the meaning of "current density"; which means
+that in some unit time through the area of $ds$ how much probability
+flowing into the close volume of $V$. It can be proved that if let
+$V\rightarrow\infty$, then the right side of (\ref{SEeq:14}) will
+vanish, then we can get the (\ref{SEeq:15}).
+
+
+It's worthy to note here that the probability has localization
+character. If the probability in some space has been reduced, then
+in somewhere else there's must have probability increased.
+Therefore, the probability is locally conservative.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analog with Newton laws}
+%
+% 1  derive the relation about velocity
+% 2  derive the acceleration operator
+%
+%
+Now we begin to do some interesting job, that to make some
+comparison between the Schrodinger equation and the classical Newton
+laws.
+
+The first thing involved into the consideration is that how to
+express the velocity of \heit{v} (it's a vector operator!). We begin
+with the initial expression of $v = \frac{dr}{dt}$, then from the
+equation of (\ref{SEeq:3}), we can have:
+\begin{equation}\label{}
+\frac{d \overline{\hei{r}(t)}}{dt} =
+\bra{\psi(t)}\frac{1}{i\hbar}[\hei{r},\hat{H}]+\frac{\partial\hei{r}}{\partial
+t}\ket{\psi(t)}
+\end{equation}
+Therefore, we can arrive at:
+\begin{equation}\label{SEeq:16}
+\frac{d \hei{r}(t)}{dt} = \frac{1}{i\hbar}[\hei{r},\hat{H}]
+\end{equation}
+Here we note that the second term is vanished because that the
+\heit{r} does not explicitly contain the time factor.
+
+Since that in the $\hat{H}$, $V$ is some function of $\hei{r}$ so
+that it's able to commuted with \heit{r}. Then for the kinetic terms
+we have proved that:
+\begin{equation}\label{}
+[\hei{r}, \hei{p}\cdot\hei{p}] =-2i\hbar\hei{p}
+\end{equation}
+
+Thus for the (\ref{SEeq:16}) we can have:
+\begin{align}\label{}
+\frac{d \hei{r}(t)}{dt} &=
+\frac{1}{i\hbar}\times-\frac{1}{2m}[\hei{r}, \hei{p}\cdot\hei{p}]
+\nonumber \\
+&=\frac{\hei{p}}{m}
+\end{align}
+Finally it's astonishing that we get the same relation between
+$\hei{p}$ and $\hei{v}$.
+
+However, it understand the meaning of $\hei{v}$ in quantum mechanics
+is difficult, because the quantum particles do not retain the
+trajectory, therefore; it's safe to consider the velocity only as
+the differentiation of the average value for the $\hei{r}$ with
+respect to the time of $t$.
+
+Second, let's go to see how to express the acceleration operator,
+which is defined as $\hei{a} = \frac{d\hei{v}}{dt}$. Similarly, we
+can get:
+\begin{align}\label{}
+\hei{a} &= \frac{1}{i\hbar}[\hei{v},\hat{H}] \nonumber \\
+&= \frac{1}{im\hbar}[\hei{p},\hat{V}] \nonumber \\
+&=\frac{1}{im\hbar} i\hbar (\nabla\hat{V})
+\end{align}
+Here in this derivation we have used the relation defined in
+(\ref{OPERATORMOREeq:10}).
+
+Then finally we can get:
+\begin{equation}\label{}
+m \hei{a} = \nabla\hat{V}
+\end{equation}
+It has the same form with its counterpart in the classical
+mechanics.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hellmann-Feynman theorem}
+%
+% 1  what's the meaning of HF theorem
+% 2  proof
+%
+%
+%
+Once the set of eigen functions for the $\hat{H}$ has been gotten,
+then we can evaluate the expectation values for a variety of
+physical quantities. The HF theorem demonstrates that such gauging
+process can be simply done by avoiding to use the concrete form of
+wave functions.
+
+This theorem is very important in the quantum chemistry while
+calculating the gradient around some reference coordinates. More
+discussion can see the following chapters.
+
+Suggest that $\hat{H}$ contains some parameter of $\lambda$, and we
+have gotten the eigen functions of $\Psi_{n}$ and corresponding
+energy of $E_{n}$ for this system ($n = 1, 2, \cdots$). Then the HF
+theorem demonstrates that:
+\begin{equation}\label{}
+\frac{\partial E_{n}}{\partial \lambda} =
+\left\langle\Psi_{n}|\frac{\partial \hat{H}}{\partial
+\lambda}|\Psi_{n}\right\rangle
+\end{equation}
+
+Now let's prove it. According to the Schrodinger equation, we have:
+\begin{equation}\label{}
+\hat{H}\Psi_{n} = E_{n}\Psi_{n}
+\end{equation}
+Then to differentiate the above equation with respect to the
+$\lambda$, we can get:
+\begin{equation}\label{}
+\frac{\partial \hat{H}}{\partial \lambda}\Psi_{n} +
+\hat{H}\frac{\partial \Psi_{n}}{\partial \lambda} = \frac{\partial
+E_{n}}{\partial \lambda}\Psi_{n} +E_{n}\frac{\partial
+\Psi_{n}}{\partial \lambda}
+\end{equation}
+By multiplying the $\Psi^{*}_{n}$ and making integration, we can
+have:
+\begin{equation}\label{}
+\left\langle\Psi_{n}|\frac{\partial \hat{H}}{\partial
+\lambda}|\Psi_{n}\right\rangle +
+\left\langle\Psi_{n}|\hat{H}|\frac{\partial \Psi_{n}}{\partial
+\lambda}\right\rangle = \left\langle\Psi_{n}|\frac{\partial
+E_{n}}{\partial \lambda}|\Psi_{n}\right\rangle +
+E_{n}\left\langle\Psi_{n}|\frac{\partial \Psi_{n}}{\partial
+\lambda}\right\rangle
+\end{equation}
+
+Since that $\hat{H}$ is hermitian, then we can have:
+\begin{equation}\label{}
+\left\langle\Psi_{n}|\hat{H}|\frac{\partial \Psi_{n}}{\partial
+\lambda}\right\rangle = E_{n}\left\langle\Psi_{n}|\frac{\partial
+\Psi_{n}}{\partial \lambda}\right\rangle
+\end{equation}
+
+Therefore, it finally leads to the HF theorem:
+\begin{equation}\label{}
+\frac{\partial E_{n}}{\partial \lambda} =
+\left\langle\Psi_{n}|\frac{\partial \hat{H}}{\partial
+\lambda}|\Psi_{n}\right\rangle
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

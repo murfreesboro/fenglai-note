@@ -1,0 +1,201 @@
+%
+%  revised at Aug 10th, 2009
+%
+%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Identical particles}\label{identical_particles}
+%
+%  1  it's an independent hypothesis, but coherent with the other
+%     properties such as the uncertainty principle
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Identity of quantum particle}
+%
+% 1 the identity of the quantum particles should be some hypothesis
+%   of the quantum mechanics, but it's coherent with the other
+%   hypothesis in the quantum mechanics
+%
+The particles, which fall into the range of quantum type; can be
+classified into different types; such as electrons, different atoms,
+photons and so on. It's found that the same type of particles are
+identical with each other; that is to say, it's impossible to
+distinguish any particles which is in the same type. For example,
+two electrons are same with each other.
+
+The property of identity is correlated with the quantum effects.
+Since the uncertainty principle limits our understanding to the
+quantum states, it can say that there's no enough information to
+distinguish two identical particles. Although this is some kind of
+"subjective" interpretation, and should not be taken seriously.
+However, from such understanding we can see that the description of
+the quantum mechanics is coherent, the character of identity is not
+independent with the other properties such as uncertainty principle;
+they are strongly correlated with each other to form a whole system
+to portray the phenomenon in the quantum mechanics.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exchange operator}
+%
+% 1  introduce the exchange operator
+% 2  how to construct composite wave function (HF)
+%
+%
+Because of the identity in the quantum particles, for any $\Psi$
+describe quantum system, to exchange two arbitrary particles (they
+are the same type), and reverse the process; the system should keep
+to be same.
+
+Therefore we introduce the exchange operator of $\hat{P_{ij}}$,
+which exchange i particle and j particle in the $\Psi$, in respect
+that i and j are the identical particles, the $\hat{P_{ij}}\Psi$
+should be different with $\psi$ by no more than a constant. That is:
+\begin{equation}\label{IDENTICALeq:1}
+\hat{P_{ij}}\Psi(1, 2, \cdots i, \cdots j, \cdots ) = \Psi(1, 2,
+\cdots j, \cdots i, \cdots ) = \lambda\Psi(1, 2, \cdots i, \cdots j,
+\cdots )
+\end{equation}
+
+If $\hat{P_{ij}}$ acts on $\Psi$ twice, then the $\Psi$ must turn
+back to be the same:
+\begin{equation}\label{IDENTICALeq:2}
+\hat{P^{2}_{ij}}\Psi = \Psi
+\end{equation}
+Therefore we have:
+\begin{equation}\label{IDENTICALeq:3}
+\lambda^{2} = 1
+\end{equation}
+If the $\Psi$ gives the $\lambda=1$, such wave function is called to
+be "symmetric", its associated quantum particle is called "bosons",
+and if $\Psi$ gives the $\lambda=-1$, the wave function is called to
+be "antisymmetric", and the corresponding quantum particle is called
+"fermions".
+
+How can we know what kind of particles is fermions or bosons? So far
+we can not get any judgement based on the discussion made before. We
+have to usher into some axiom to understand such phenomenon, which
+is also the last one in quantum mechanics:
+\begin{axiom}\label{axiom7}
+\textbf{For the quantum state which describe identical particles, if
+the exchanging of a pair of identical particles lead to symmetric
+wave function, then such particles is called ``bosons'', else it's
+called ``fermions''. }
+\end{axiom}
+
+In nature, such exchange property is correlated with the spin
+property of the quantum particles. If its spin state is one, two,
+three $\cdots$ etc. fold of $\hbar$ ($s=0, \hbar, 2\hbar, 3\hbar,
+\cdots$); the corresponding wave function is symmetric; one the
+other hand, if its spin state is half-integral of $\hbar$ ($s=0,
+\frac{\hbar}{2}, \frac{3\hbar}{2}, \cdots$); the associated wave
+function is antisymmetric.
+
+Since in quantum chemistry only the electron in involved into
+consideration, so we consider a system composed of n identical
+fermions (such as electrons); to further show the essence of its
+exchange property. Here the mutual interactions between the
+identical fermions is neglected, so that they are moving in an
+irrelevant way. The question is: How can we construct the total wave
+function of $\Psi$ from the $\varphi_{1}, \varphi_{2}, \cdots,
+\varphi_{n}$; where individual particle resides on?
+
+The answer is direct and clear. We can use a determinant to
+represent the $\Psi$:
+\begin{equation}\label{IDENTICALeq:4}
+\Psi = \frac{1}{\sqrt[2]{n!}}\begin{vmatrix}
+  \varphi_{1}(1) & \varphi_{1}(2) & \cdots & \varphi_{1}(n) \\
+  \varphi_{2}(1) & \varphi_{2}(2) & \cdots & \varphi_{2}(n) \\
+  \cdots & \cdots & \cdots & \cdots \\
+  \varphi_{n}(1) & \varphi_{n}(2) & \cdots & \varphi_{n}(n) \\
+\end{vmatrix}
+\end{equation}
+It's clear to see that if two fermions are exchanged (two columns
+exchanged), the $\Psi$ will reverse its sign so that to meet the
+requirement. The coefficient of $\frac{1}{\sqrt[2]{n!}}$ is the
+normalized factor so as to make $\int \Psi^{2} d\tau =1$.
+
+Behind the determinant expression, what really underlies it? Here
+below we are going to give a in-depth discussion.
+
+Because of the identity property of fermions, they can not
+distinguish with each other; so it's impossible to assign which
+fermion particle to reside on some specific $\psi_{i}$. Thus, all
+the possible arrangements of "match" between fermions and different
+$\psi$ should appear in the total wave function of $\Psi$.
+
+We can use the permutation process to achieve this. For two fermions
+on $\psi_{1}$ and $\psi_{2}$; there's only two possible matches:
+$\psi_{1}(1)\psi_{2}(2)$ and $\psi_{1}(2)\psi_{2}(1)$. We can use an
+exchange operator to change the $\psi_{1}(1)\psi_{2}(2)$ into
+$\psi_{1}(2)\psi_{2}(1)$:
+\begin{equation}\label{IDENTICALeq:5}
+\hat{P}_{12}\psi_{1}(1)\psi_{2}(2) = \psi_{1}(2)\psi_{2}(1)
+\end{equation}
+Since the permutation will change its sign, we can write the total
+wave function as:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \Psi &=& \frac{1}{\sqrt{2}}(1-\hat{P_{12}})(\psi_{1}(1)\psi_{2}(2)) \nonumber\\
+       &=& \frac{1}{\sqrt{2}}(\psi_{1}(1)\psi_{2}(2)-\psi_{1}(2)\psi_{2}(1))
+\end{eqnarray}
+
+Generally this way can be expanded to n fermions system. For the
+original arrangement of $\psi_{1}(1)\psi_{2}(2)\cdots\psi_{n}(n)$
+(it corresponds to some possible composition of the total wave
+function), we can make $n!$ permutations to make fermion of i on any
+arbitrary $\psi_{j}$. Each of the permutation (for example,
+$\psi_{1}(2)\psi_{2}(1)\cdots\psi_{n}(n)$) is some possible
+composition of the total wave function of $\Psi$, and these
+permutations are only different with each other by an constant, and
+it's clear that they all orthogonal to each other. Therefore we can
+say that each of this permutation is some possible state for whole
+wave function. the By principle of superposition, their linear
+combination finally forms the total wave function.
+
+Since that each permutation of $\hat{P}$ can be expressed as some
+multiplication between $\hat{P}_{ij}$:
+\begin{equation}\label{}
+\hat{P} = \prod_{1\leq i<j\leq N}\hat{P}_{ij}
+\end{equation}
+For each $\hat{P}_{ij}$ the sign will change once; so if there's odd
+number of $\hat{P}_{ij}$ in $\hat{P}$, the sign of $\hat{P}$ is
+$-1$, otherwise it's $+1$.
+
+Thus the total wave function is:
+\begin{equation}\label{}
+\Psi =
+\frac{1}{\sqrt[2]{n!}}\sum_{P}(-1)^{P}P(\psi_{1}(1)\psi_{2}(2)\cdots\psi_{n}(n))
+\end{equation}
+It's same with the determinant expression.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pauli principle}
+
+
+Based on the discussion above, we can naturally arrive at the Pauli
+Principle:\textbf{There's no two fermions occupy the same single
+particle state.}
+
+From the expression of (\ref{IDENTICALeq:4}), we can see that if two
+fermions of i and j take the same quantum state of $\psi$, the
+determinant mast be $0$. So that leads to the Pauli Principle.
+
+In quantum mechanics, the difference lies in the $\psi$ is labeled
+by spin state. More discussion here can see the HF chapter.
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

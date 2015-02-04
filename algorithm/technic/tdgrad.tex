@@ -1,0 +1,308 @@
+%
+%
+% firstly initialized at Feb. 16th; 2009
+% That's my doctor main project to finish
+%
+%
+%
+%
+%
+\chapter{Geometric Derivatives for Time Dependent
+Density Functional Theory}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+% what does the gradients of TDDFT for?
+%
+%
+Now we are going to penetrate into the area of geometrical
+derivatives for the time-dependent density functional theory. So far
+there's only several papers publishing for the realization of this
+function, two of them is given by Amos\cite{VanCaillie2000159,
+VanCaillie1999249}, the others is given by Furche\cite{furche:7433,
+rappoport:064105} and implemented in the Turbomole
+program\cite{turbomole}. The papers given by Amos actually is a bit
+of hard to handle, so we prefer to follow the method devised by
+Furche, and it has been commented that this method has some
+advantages compared with the Amos method\cite{chiba:144106}.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Theory}
+%
+%
+\subsection{Excitation state in TDDFT}
+%
+% 1  the old linear response equation
+% 2  to change the linear response equation into the
+%    functional
+%
+%
+As what we have been derived before, the linear response equation
+used to calculate the excitation energy can be expressed as:
+\begin{equation}\label{TDDFTGRADeq:1}
+\begin{bmatrix}
+  A & B \\
+  B^{*} & A^{*} \\
+\end{bmatrix}
+\begin{bmatrix}
+  X \\
+  Y \\
+\end{bmatrix}
+=\omega
+\begin{bmatrix}
+  1 &  0 \\
+  0 & -1 \\
+\end{bmatrix}
+\begin{bmatrix}
+  X \\
+  Y \\
+\end{bmatrix}
+\end{equation}
+Where the matrix element are:
+\begin{align}\label{}
+(A+B)_{ia\sigma, jb\sigma^{'}} &= (\epsilon_{a} -
+\epsilon_{i})\delta_{ij}\delta_{ab}\delta_{\sigma\sigma^{'}} +
+2(ia\sigma|jb\sigma^{'}) + 2(ia\sigma|f_{xc}|jb\sigma^{'}) \nonumber
+\\
+& -c_{x}\delta_{\sigma\sigma^{'}}[(ja\sigma|ib\sigma^{'}) +
+(ab\sigma|ij\sigma^{'})] \nonumber \\
+(A-B)_{ia\sigma, jb\sigma^{'}} &= (\epsilon_{a} -
+\epsilon_{i})\delta_{ij}\delta_{ab}\delta_{\sigma\sigma^{'}} +
+c_{x}\delta_{\sigma\sigma^{'}}[(ja\sigma|ib\sigma^{'}) -
+(ab\sigma|ij\sigma^{'})]
+\end{align}
+
+The $(ia\sigma|jb\sigma^{'})$ is labeled as two electron integrals:
+\begin{multline}\label{}
+(ia\sigma|jb\sigma^{'}) = \delta_{\sigma\sigma^{'}}\int d^{3}r^{'}
+\int
+d^{3}r^{''}\chi^{*}_{i\sigma}(r^{'})\chi_{a\sigma}(r^{'}) \\
+\frac{1}{|r^{'}-r^{''}|}
+\chi^{*}_{j\sigma^{'}}(r^{''})\chi_{b\sigma^{'}}(r^{''})
+\end{multline}
+The $(ia\sigma|f_{xc}|jb\sigma^{'})$ denotes the
+exchange-correlation part in the adiabatic approximation:
+\begin{multline}\label{}
+(ia\sigma|f_{xc}|jb\sigma^{'}) = \delta_{\sigma\sigma^{'}}\int
+d^{3}r^{'} \int
+d^{3}r^{''}\chi^{*}_{i\sigma}(r^{'})\chi_{a\sigma}(r^{'}) \\
+f_{XC}(r^{'},r^{''})
+\chi^{*}_{j\sigma^{'}}(r^{''})\chi_{b\sigma^{'}}(r^{''})
+\end{multline}
+Where the $f_{XC}(r^{'},r^{''})$ is the exchange-correlation kernel
+in the adiabatic approximation:
+\begin{equation}\label{}
+f_{XC}(r^{'},r^{''}) = \frac{\delta^{2} E_{XC}}{
+\delta\rho_{\sigma}(r)\delta\rho_{\sigma^{'}}(r^{'})}
+\end{equation}
+Here the $\chi$ is the ground state Kohn-Sham orbitals before the
+perturbation, and again we follow the convention that the subscript
+of $i,j$ etc. indicate the occupied orbitals for Kohn-Sham time
+independent states, $a, b$ etc. represent the virtual orbitals; and
+$p, q$ etc. refer to the general orbitals. Usually the KS orbitals
+in the molecular calculation is always chosen to be real, and we can
+have:
+\begin{align}\label{}
+&(ia\sigma|jb\sigma^{'})  = (ia\sigma|bj\sigma^{'}) =
+(ai\sigma|jb\sigma^{'})  = (ai\sigma|bj\sigma^{'}) \nonumber \\
+&(ia\sigma|f_{xc}|jb\sigma^{'})  = (ia\sigma|f_{xc}|bj\sigma^{'}) =
+(ai\sigma|f_{xc}|jb\sigma^{'})  = (ai\sigma|f_{xc}|bj\sigma^{'})
+\end{align}
+
+On the other hand, the hybrid mixing parameter of $c_{x}$ is
+introduced by Becke which allows us to interpolate between the pure
+functionals ($c_{x} = 0$) and TDHF theory ($c_{x} = 1, E_{XC} = 0$).
+
+For the vector related to $X$, $Y$ in the equation of
+(\ref{TDDFTGRADeq:1}), it actually represents the perturbed density
+matrix (more details see the section \ref{TDDFT:1}):
+\begin{align}\label{}
+X_{ia} &= P_{ia} \nonumber \\
+Y_{ia} &= P_{ai}
+\end{align}
+
+In the (\ref{TDDFTGRADeq:1}), $\omega$ corresponds to the frequency
+of the excitation; in atom unit where $\hbar = 1$, we have $E =
+\hbar\omega = \omega$.
+
+For the linear response equation in the (\ref{TDDFTGRADeq:1}),
+however, it can be considered as some stationary point from some
+more general functional:
+\begin{equation}\label{TDDFTGRADeq:2}
+G[X,Y,\Omega] =\langle X,Y|\Lambda|X,Y\rangle - \Omega(\langle
+X,Y|\Delta|X,Y\rangle - 1)
+\end{equation}
+Here the vector of $|X,Y\rangle$ corresponds to:
+\begin{equation}\label{}
+|X,Y\rangle \Leftrightarrow
+\begin{bmatrix}
+  X \\
+  Y \\
+\end{bmatrix}
+\end{equation}
+and the ``super operator'' $\Delta$ and $\Lambda$ are:
+\begin{align}\label{}
+\Lambda &=
+\begin{bmatrix}
+  A & B \\
+  B^{*} & A^{*} \\
+\end{bmatrix} \nonumber \\
+\Delta &=
+\begin{bmatrix}
+  1 &  0 \\
+  0 & -1 \\
+\end{bmatrix}
+\end{align}
+$\Omega$ here is set to be some Lagrangian factor, obviously it
+corresponds to the frequency in the (\ref{TDDFTGRADeq:1}).
+
+By applying the variational principle with the constraint that:
+\begin{align}\label{TDDFTGRADeq:3}
+\frac{\delta G}{\delta \langle X,Y|} &= 0 \\
+\frac{\delta G}{\delta \Omega} &= \langle X,Y|\Delta|X,Y\rangle - 1
+ = 0
+\end{align}
+Through the first equation in (\ref{TDDFTGRADeq:3}), we can get the
+same time-dependent Kohn-Sham equation, and the constraint condition
+in the (\ref{TDDFTGRADeq:3}) yields the excitation energy of
+$\Omega$.
+
+Now we can calculate the geometrical derivatives through the
+functional of $G$. Suggested by Pulay(please see the chapter of
+\ref{PULAY:1}) we can know:
+\begin{equation}\label{TDDFTGRADeq:4}
+G^{\xi} = G^{\xi}[X,Y,\Omega] = \langle X,Y|\Lambda^{\xi}|X,Y\rangle
+\end{equation}
+Here $\xi$ refers to the nuclear coordinates, and $G^{\xi}$ denotes
+the geometrical derivative for the functional of $G$. In the
+(\ref{TDDFTGRADeq:4}) there's something important to note that the
+fist order property does not require derivatives of excitation
+vector of $|X,Y\rangle$, therefore the second term related to the
+functional $G$ is vanished as making derivatives.
+
+However, to calculate the geometrical derivatives for the $G$
+through the (\ref{TDDFTGRADeq:4}) is still something difficult to
+perform. The difficulties is arising from the fact that the super
+operator of $\Lambda$ still involves of MO coefficients so that it's
+difficult to handle (the MO coefficients are implicitly some
+function of geometrical parameters, see the chapter of \ref{PULAY:1}
+for more details). In the following content,
+Furche\cite{furche:7433} introduced some novel method to bypass such
+difficult evaluation; now let's go to see how to do this job.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Lagrangian of the excitation energy}
+%
+%
+%
+%
+Firstly, in the original functional of $G$, let's replace the energy
+expression with the form below:
+\begin{equation}\label{}
+(\epsilon_{a\sigma} -
+\epsilon_{i\sigma^{'}})\delta_{ab}\delta_{ij}\delta_{\sigma\sigma^{'}}
+=(F_{ab\sigma}\delta_{ij} -
+F_{ij\sigma^{'}}\delta_{ab})\delta_{\sigma\sigma^{'}}
+\end{equation}
+Here the $F_{pq}$ stands for the KS Hamiltonian matrix element:
+\begin{align}\label{TDDFTGRADeq:5}
+F_{pq} &= \langle\chi_{p}|\hat{h}|\chi_{q}\rangle +
+\sum_{i\sigma^{'}} \Bigg\{(pq\sigma|ii\sigma^{'}) -
+c_{x}\delta_{\sigma\sigma^{'}}(pi\sigma|qi\sigma^{'}) \Bigg\}
+\nonumber \\
+& + V^{XC}_{pq\sigma}
+\end{align}
+$V^{XC}_{pq\sigma}$ is the exchange-correlation potential for the
+ground state:
+\begin{equation}\label{}
+V^{XC}_{pq\sigma} = \frac{\delta E^{XC}}{\delta \rho_{\sigma}(r)}
+\end{equation}
+
+In the basis of canonical KS molecular orbitals, $F$ is diagonal:
+\begin{equation}\label{TDDFTGRADeq:6}
+F_{pq\sigma} = \delta_{\sigma\sigma^{'}}\delta_{pq}\epsilon_{p}
+\end{equation}
+However, the selection of canonical molecular orbitals is somewhat
+arbitrary because all the physical properties are invariant under
+transformations of occupied and virtual orbitals among themselves.
+Such transformation corresponds to the so call ``unitary
+transformation'', from the discussion in quantum mechanics
+\ref{OPERATOR:2} and the similar discussion in Hatree-Fock chapter
+\ref{HFT:3} we can directly get this point: the unitary
+transformation among the basis sets does not alter any physical
+properties for the quantum chemistry calculation.
+
+All in all, by inserting the (\ref{TDDFTGRADeq:5}) into the
+functional of $G$, then the constraint of the canonical sets between
+the molecular orbitals can be dropped out. For clearness here we
+note that in the (\ref{TDDFTGRADeq:3}), the constraint condition
+between the $|X,Y\rangle$ is some kind of restrict condition between
+the virtual orbitals and the occupied orbitals which is required by
+the linear response equation (see the section of \ref{TDDFT:3}),
+this is different with the canonical sets requirement shown in
+(\ref{TDDFTGRADeq:6}).
+
+Now we can define some auxiliary functional of $L$:
+\begin{equation}\label{}
+L [X, Y, \Omega, C, Z ,W]  = G[X, Y, \Omega] +
+\sum_{ia\sigma}Z_{ia\sigma}F_{ia\sigma} - \sum_{pq\sigma, p\leq
+q}W_{pq\sigma}(S_{pq\sigma} - \delta_{pq})
+\end{equation}
+
+The functional $L$ is required to be stationary with respect to all
+it's parameters: $X, Y, \Omega, C, Z$ and $W$; therefore $L$ is
+capable of representing the full variational functional for
+calculating excitation states. Here, the Lagrangian multiplier $Z$
+and $W$ is required to satisfy the condition:
+\begin{align}\label{TDDFTGRADeq:7}
+\frac{\partial L}{\partial Z_{ia\sigma}} &= F_{ia\sigma} = 0
+\nonumber \\
+\frac{\partial L}{\partial W_{pq\sigma}} &= S_{pq\sigma} -
+\delta_{pq} = 0
+\end{align}
+Through the conditions defined in the (\ref{TDDFTGRADeq:7}), the MO
+is constrained to satisfy the static KS equation up to some unitary
+transformation. The $Z$ and $W$ themselves are determined through
+the condition that:
+\begin{equation}\label{}
+\frac{\partial L}{\partial C} = 0
+\end{equation}
+
+How to understand the functional $L$? Physically, the $L$ can be
+considered as the functional that combines the KS equation as well
+as the TDDFT equation together. The variation with respect to the
+$C$, $Z$ and $W$ gives the KS equation and the variation with
+respect to the $|X,Y\rangle$ and $\Omega$ gives the TDDFT equation.
+Compared with the $G$ which is implicitly depending on the MO
+coefficients of $C$, the functional of $L$ is explicitly relaying on
+the $C$ thus in the $\frac{\partial L}{\partial \xi}$ the MO
+coefficients does not enter into the evaluation. That's the crucial
+advantages for using the $L$ rather than the $G$. Once the $X, Y,
+\Omega, C, Z$ and $W$ have been determined through the stationary
+condition, the derivative of the excitation energy is given as:
+\begin{align}\label{}
+\Omega^{\xi} &= L^{\xi}[X, Y, \Omega, C, Z ,W] \nonumber \\
+&=G^{(\xi)}[X, Y, \Omega] +
+\sum_{ia\sigma}Z_{ia\sigma}F^{(\xi)}_{ia\sigma} - \sum_{pq\sigma,
+p\leq q}W_{pq\sigma}S^{\xi}_{pq\sigma}
+\end{align}
+Here the superscript of $(\xi)$ indicates that in the geometrical
+derivatives evaluation the MO coefficients are irrelevant; that is
+to say, they are constant and not involved in the derivatives.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

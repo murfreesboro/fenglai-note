@@ -1,0 +1,1505 @@
+%
+% revised at Jan. 30th; 2009
+% we have added two parts: the unitary operator and the
+% project operator
+%
+% revised on Mar. 22th, 2009
+% to use the environment of theorem and law to improve it
+%
+% revised at July 27th, 2009
+% finish the part of project operator and the unitary operator
+%
+% revised at Aug. 10th, 2009
+% nearly rewrite all the part in the operator.tex
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  general discussion for the operator:
+%  definition and Algorithms
+%  linear operator
+%  hermite operator
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{General discussion to operator}
+%
+%
+%
+%
+In the above content, we have discussed the Hilbert space. However,
+how to define the Hilbert space which is correspond to a given
+physical system? How to extract physical information from the
+Hilbert space? In this chapter, we will give some general discussion
+over this topic.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definition of operators}
+%
+% 1   definition
+% 2   linear operators,required by the superposition principle
+%
+%
+%
+Generally to say, mathematically the operator can be seen as the
+correspondence between two different vectors in a Hilbert
+space\footnote{In the following content, the Greek letters are used
+to indicate the vectors in the Hilbert space.}:
+\begin{equation}\label{OPERATOReq:4}
+\hat{O}\ket{\Psi} = \ket{\Phi}
+\end{equation}
+If there's no specific instruction, the operator in the following
+content will all done on the vectors from ket space.
+
+Mathematically to say, operator can be seen as some kind of ``function
+transformation machine'', it transforms the function from one form to
+another. For example, the $\frac{d^{2}}{dx^{2}}$ is a kind of
+operator. For the function of $e^{ikx}$, we have:
+\begin{equation}\label{}
+\frac{d^{2}}{dx^{2}} (e^{ikx}) = -k^{2}e^{ikx}
+\end{equation}
+So it converts the $e^{ikx}$ to $-k^{2}e^{ikx}$.
+
+In quantum mechanics, all the physical quantity are corresponding to
+some form of operators. For example, the kinetic operator is expressed
+as $-\frac{\hbar^{2}}{2m}\nabla^{2}$, the momentum operator is
+expressed as $-i\hbar\nabla$.
+
+However, it's not all the operators that are physically meaningful
+in quantum mechanics. Most of the operators used in quantum
+mechanics, are the linear operators; which satisfy the conditions
+below:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \hat{A}(c_{1}\ket{\Psi} + c_{2}\ket{\Phi}) &=&
+  c_{1}\hat{A}\ket{\Psi} + c_{2}\hat{A}\ket{\Phi} \nonumber \\
+  \hat{A}(\ket{\Psi}a) &=& (\hat{A}\ket{\Psi})a
+\end{eqnarray}
+Here it can be seen that the linear operator actually is required by
+the superposition principle. Since that an arbitrary wave function
+can be composed by some linear combination, thus the action of an
+operator on some arbitrary wave function should also be decomposed
+into the actions on its linear components.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Axioms for quantum mechanics in terms of operator}
+\label{AFQMITOO_in_operator}
+%  1  physical quantity, and should be hermitian
+%  2  observable
+%  3  operator to an arbitrary wave function; how to express it
+%
+%
+Now let's state the axioms related to operator in quantum
+mechanics. The first one is the physical meaning of operator:
+\begin{axiom}\label{axiom2}
+\textbf{In quantum mechanics, all the physical quantities are
+  corresponding to hermitian operator working on the Hilbert space.}
+\end{axiom}
+As what we have demonstrated, here such operators corresponding to the
+physical quantity should be also the linear operator. In the following
+content, we will discuss what's the hermitian character of the
+operator.
+
+Furthermore, the second axiom is related to the ``observable''
+physical quantity in the quantum mechanics:
+\begin{axiom}\label{axiom3}
+  \textbf{ In quantum mechanics, the observable physical quantity
+has the eigen functions below to determine the observed value:
+\begin{equation}\label{OPERATOReq:8}
+  \hat{A}\ket{\Psi_{i}} = a_{i}\ket{\Psi_{i}} \quad i=1, 2, \cdots
+\end{equation}
+Here the $\ket{\Psi_{i}}$ is called the eigen states for the
+observable physical quantity of $\hat{A}$, and the real number of
+$a_{i}$ is just corresponding to the observed value (on the other
+words, the measured result of the physical quantity) for the physical
+quantity.}
+\end{axiom}
+
+Now there comes very important question, that is what's the
+``observable'' physical quantity in the quantum mechanics?
+
+Here the meaning of ``observable'' is that such physical quantity can
+be measured and given certain measured result. As we know, in classic
+mechanics, all the physical quantities are ``observable'', the
+position, the momentum, the energy etc. are all measurable and can be
+given some certain observed value.
+
+However, things in quantum mechanics is totally different. For
+example, as what has been demonstrated in the chapter
+\ref{basic_chapter}, the position of the quantum particles can not be
+measured to give some definite value, only the probability of the
+position can be obtained through the $|\Psi(\bm{r},
+t)|^{2}d^{3}\bm{r}$ of wave function of $\Psi(\bm{r}, t)$; so there's
+some great difference between the physical operators: some can be
+observable, the other are not.
+
+The observable physical quantity has very important meaning in quantum
+mechanics, that through the (\ref{OPERATOReq:8}) we can derive the eigen
+states for the physical quantity of $\hat{A}$. From the contents
+below, we can see that such group of eigen states are forming some
+complete sets, that means, we are able to get the Hilbert space from
+solving the eigen function. Hence, we have answered the question
+prompted at the beginning: \textbf{the observable physical quantities
+  are used to define the Hilbert space corresponding the system.}
+
+In quantum mechanics, the Schrodinger equation is holding true for all
+system; then if the Hamiltonian does not contain the time, we can
+split the time part from the Schrodinger equation (see the following
+chapter discussing the Schrodinger equation), hence we have the eigen
+function for the Hamiltonian operator; that is to say, the energy is
+some observable value:
+\begin{equation}
+\label{OPERATOReq:20}
+  \hat{H}\ket{\Psi_{i}} = E_{i} \ket{\Psi_{i}}
+\end{equation}
+$E_{i}$ is the energy of the system. In quantum mechanics, nearly all
+the circumstances are belonging to this type of situation. To some
+extent, we can say that the equation in (\ref{OPERATOReq:20}) is used
+to define the Hilbert space for the given quantum system.
+
+In such circumstance, we can prove that if the physical quantity is
+commuted with the Hamiltonian operator, then such physical quantity
+may have eigen function so that to give observable value. The further
+information will be detailed analyzed in the following content.
+
+On the other hand, for the physical quantity which is not
+observable, we can define the expectation value over the complete
+sets of $\Psi_{i}$ (in other words, the average measurable value)
+for the physical quantity:
+\begin{equation}\label{OPERATOReq:7}
+\bra{\Psi_{i}}\hat{A}\ket{\Psi_{i}} = \langle\hat{A}\rangle
+\end{equation}
+
+For example, the mean coordinate for the position operator of
+$\hat{x}$:
+\begin{equation}\label{}
+\langle\hat{x}\rangle = \bra{\Psi_{i}}\hat{x}\ket{\Psi_{i}}
+\end{equation}
+This value depicts the average position for the $\ket{\Psi_{i}}$ over
+the x axis.
+
+Now there's still a question left that for some arbitrary quantum
+state of $\ket{\Phi}$, how to evaluate the physical information for
+this state? This is the second question prompted in the beginning, and
+we have the third axiom below to answer the question:
+\begin{axiom}\label{axiom4}
+  \textbf{When some physical quantity of $\hat{A}$ is measured on an
+    arbitrary quantum state of $\ket{\Psi}$, if the $\ket{\Psi}$ is
+    not the eigen state for $\hat{A}$ then the measurable result can
+    not achieve definite value. Instead, there are a range of
+    measurable results can be potentially achieved, the probability
+    for each of measurable result is determined as:
+    \begin{equation}
+\label{OPERATOReq:21}
+      \text{probability of measurable result} = \langle \Psi|\Psi_{i} \rangle^{2}
+    \end{equation}
+    The $\ket{\Psi_{i}}$ is some complete sets on which the
+    $\ket{\Psi}$ is expanding over:
+    \begin{equation}
+      \ket{\Psi} = \sum_{i}c_{i}\ket{\Psi_{i}}
+    \end{equation}
+    Hence, the measurable result for the $\hat{A}$ is just the
+    collection of measurements on each $\ket{\Psi_{i}}$, each of them
+    has some probability to appear in the final result; and the
+    probability is given by (\ref{OPERATOReq:21}). Since $c_{i} =
+    \langle \Psi|\Psi_{i} \rangle$, then we can also express the above
+    result as:
+    \begin{equation}
+      \text{probability of measurable result} = |c_{i}|^{2}
+    \end{equation} }
+\end{axiom}
+
+Usually in quantum mechanics, the physical quantity of $\hat{A}$ is
+chosen to be observable kind (obviously it meaningless to pursue the
+measurable result for some unobservable physical quantity over an
+arbitrary quantum state! ), therefore, we can have that:
+\begin{eqnarray}\label{OPERATOReq:2}
+% \nonumber to remove numbering (before each equation)
+  \hat{A}\ket{\Psi}
+  &=& \sum_{i}c_{i}\hat{A}\Psi_{i} \nonumber \\
+  &=& \sum_{i}c_{i}a_{i}\Psi_{i}  \Rightarrow \nonumber \\
+  \bra{\Psi}\hat{A}\ket{\Psi}
+  &=&
+  \sum_{i}\sum_{j}c^{*}_{j}c_{i}a_{i}\langle\Psi_{j}|\Psi_{i}\rangle
+  \nonumber \\
+  &=& \sum_{i}|c_{i}|^{2}a_{i}
+\end{eqnarray}
+This is the average measurable result for the $\hat{A}$ over the
+arbitrary state of $\ket{\Psi}$.
+
+Now we have established all the axioms related to the operators, and
+answered the questions that how to define the Hilbert space for a
+system, and how to extract physical information from given arbitrary
+quantum state. In the following content, we are going to present a
+detailed analysis in term of the items above.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algorithm of operators}
+% 1  some special operators, unit operator etc.
+% 2  addition, substraction, multiplication, division
+% 3  commutation relationship
+% 4  transposing and conjugating operators
+% 5  hermite operation, related to the transposing and
+%    conjugating operations
+%
+Now we concentrate on the algorithms of the linear operators. It can
+see that the algorithms are similar to the rules in matrix.
+
+Unit operator:
+\begin{equation}\label{}
+\hat{I}\ket{\Psi} = \ket{\Psi}
+\end{equation}
+
+Zero operator:
+\begin{equation}\label{}
+\hat{O}\ket{\Psi} = 0
+\end{equation}
+
+Two identical operators which leads to $\hat{A}=\hat{B}$:
+\begin{equation}\label{}
+  \hat{A}\ket{\Psi} = \hat{B} \ket{\Psi} \qquad \text{for any $\ket{\Psi}$}
+\end{equation}
+
+Addition and substraction of operators:
+\begin{equation}\label{}
+(\hat{A} \pm \hat{B})\ket{\Psi} = \hat{A}\ket{\Psi} \pm \hat{B} \ket{\Psi}
+\end{equation}
+
+Such algorithms introduced above are simple and straightforward, yet
+the multiplication for the operators is some kind of complex: if
+$\hat{A}$ and $\hat{B}$ are two operators, their multiplication is
+determined by their sequence:
+\begin{equation}\label{}
+\hat{A}\hat{B}\ket{\Psi} \quad \text{is not same to} \quad
+\hat{B}\hat{A}\ket{\Psi} \nonumber
+\end{equation}
+This is similar to the matrix multiplication. Two operators are
+commuted if $\hat{A}\hat{B} = \hat{B}\hat{A}$, but most of time they
+are not commuted with each other. Commutation is some significant
+relation, therefore in the following content, we use $[\hat{A},
+\hat{B}]$ to represent $\hat{A}\hat{B} - \hat{B}\hat{A}$; so if
+$[\hat{A}, \hat{B}] = 0$, the two operators are commuting with each
+other.
+
+The commutation relationship of the operators is vital in quantum
+mechanics, so this is going to leave for a detailed discussion in
+the following content.
+
+Like the matrix, where we have inverse matrix; in quantum mechanics,
+we also have the inverse operation. For any $\ket{\Psi}$ and
+$\ket{\Phi}$ , if we have:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \hat{A}\ket{\Psi} &=& \ket{\Phi}  \nonumber \\
+  \hat{B}\ket{\Phi} &=& \ket{\Psi}
+\end{eqnarray}
+We say that $\hat{B}$ is the inverse operator for the $\hat{A}$,
+which is labeled as $\hat{A}^{-1}$. It's easy to see that
+$\hat{A}\hat{A}^{-1} = I$. However, not every operator has its own
+inverse operator.
+
+Besides the algorithms above, the operator also has conjugating
+operations and transposing operations. The conjugating operation is
+defined as: to change the operator of $\hat{O}$ into its conjugated
+form. For example, the conjugating operator for the operator of
+$-i\hbar \frac{d}{dx}$ is $i\hbar \frac{d}{dx}$.
+
+Transposing operation is a bit more complex, for $\langle\psi|
+\hat{O}|\phi\rangle$ it's transposing defined as:
+\begin{equation}\label{OPERATOReq:5}
+\langle\psi|\widetilde{\hat{O}}|\phi\rangle = \langle\phi|
+\hat{O}|\psi\rangle
+\end{equation}
+In transposing operation, it's clear to see in the integrals the bra
+and ket exchanged their position.
+
+It's convenient to take $-i\hbar\frac{d}{dx}$ operator as an example
+to show how the transposing operation works. Since we have:
+\begin{align}\label{OPERATOReq:3}
+\int^{+\infty}_{-\infty}\phi^{*}\frac{d}{dx}\psi dx &=
+\phi^{*}\psi|^{+\infty}_{-\infty} -
+\int^{+\infty}_{-\infty}\psi^{*}\frac{d}{dx}\phi dx \nonumber \\
+&= - \int^{+\infty}_{-\infty}\psi^{*}\frac{d}{dx}\phi dx
+\end{align}
+We have $\widetilde{\hat{p_{x}}} = -\hat{p_{x}}$.
+
+Here the transposing operation seems to be a bit of obscure. Actually
+we can see that the transposing operation and the conjugating
+operation are closely related to the adjacent operation, which is
+going to be demonstrated right now.  first let's introduce the
+operator on the \brat{\Psi}.
+
+Since bra space is conjugated to the ket space, we can define the
+operator working on the bra space. Following the same condition
+defined in (\ref{OPERATOReq:4}), we have:
+\begin{equation}\label{}
+\bra{\Psi}\hat{P} = \bra{\Phi}
+\end{equation}
+The operator $\hat{P}$ working on the \brat{\Psi} is called
+$\hat{A}$'s adjacent operator, labeled as $\hat{A}^{+}$.
+
+It's easy to see that we have:
+\begin{equation}\label{}
+\hat{A} \ket{\Psi} = a\ket{\Psi}, \quad  \bra{\Psi}\hat{A}^{+} =
+a^{*}\bra{\Psi}
+\end{equation}
+
+To see the association between the operator of $\hat{A}$ and
+$\hat{A}^{+}$, we can strick up an example here. Suppose that
+$\ket{\Psi_{1}}$ and $\ket{\Psi_{2}}$ constitute some complete sets
+for $\hat{A}$, they are orthogonal with each other; where any other
+vectors in this space can be expressed as $\ket{\Psi} =
+\lambda_{1}\ket{\Psi_{1}} + \lambda_{2}\ket{\Psi_{2}}$, the
+$\lambda$ is some complex number. Therefore we have:
+\begin{align}\label{}
+(\bra{\Psi_{1}} + \bra{\Psi_{2}})\hat{A}(\lambda_{1}\ket{\Psi_{1}} +
+\lambda_{2}\ket{\Psi_{2}}) &=
+\lambda_{1}\bra{\Psi_{1}}\hat{A}\ket{\Psi_{1}} +
+\lambda_{2}\bra{\Psi_{2}}\hat{A}\ket{\Psi_{2}}  \nonumber \\
+&= \lambda_{1}a_{1} + \lambda_{2}a_{2}
+\end{align}
+
+For the $\ket{\Psi} = \lambda_{1}\ket{\Psi_{1}} +
+\lambda_{2}\ket{\Psi_{2}}$, it's conjugated vector is: $\bra{\Psi} =
+\lambda_{1}^{*}\bra{\Psi_{1}} + \lambda_{2}^{*}\bra{\Psi_{2}}$, thus
+for the $\hat{A}^{+}$; we have:
+\begin{align}\label{}
+(\lambda_{1}^{*}\bra{\Psi_{1}} +
+\lambda_{2}^{*}\bra{\Psi_{2}})\hat{A}^{+}(\ket{\Psi_{1}} +
+\ket{\Psi_{2}}) &=
+\lambda_{1}^{*}\bra{\Psi_{1}}\hat{A}^{+}\ket{\Psi_{1}} +
+\lambda_{2}^{*}\bra{\Psi_{2}}\hat{A}^{+}\ket{\Psi_{2}}  \nonumber \\
+&= \lambda_{1}^{*}a_{1}^{*} + \lambda_{2}^{*}a_{2}^{*}
+\end{align}
+
+From this example, we can see that the operation of $\hat{A}
+\rightarrow \hat{A}^{+}$ is equivalent to the transposing operation
+plus the conjugating operation. This specific operation is called
+adjacent operation.
+
+The adjacent operation can be finally defined as:
+\begin{equation}\label{}
+\bra{\Psi}\hat{A}^{+}\ket{\Phi} = \bra{\Phi}\hat{A}\ket{\Psi}^{*}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hermite operators}
+%
+% why the hermite operator is important?
+% to prove the hermite operator
+%
+%
+In the section related to the axioms of operators, we have shown that
+the operators which correspond to physical quantity should be
+hermitian, so in this part let's see why it should be.
+
+The hermite operator is defined as: $\hat{O} = \hat{O}^{+}$; that
+is, such operator equals to its adjacent operator. What's the
+important meaning behind hermite operators? That is, only the
+hermite operators can produce the real eigen value, which is
+demanded by all the physical dynamic values. Since the result of
+measurement should be physically meaningful, so it must be a real
+number.
+
+Thus we prove the judgement below:
+\begin{theorem}
+if and only if the operator of $\hat{O}$ is hermite, the
+$\langle\Psi|\hat{O}|\Psi\rangle$ equals to a real number.
+\end{theorem}
+
+\begin{proof}
+If $\hat{O} = \hat{O}^{+}$, then for an arbitrary \kett{\Psi}, we
+have:
+\begin{equation}\label{}
+\bra{\Psi}\hat{O}\ket{\Psi} = \langle\Psi|\hat{O}^{+}\ket{\Psi}^{*}
+= \langle\Psi|\hat{O}\ket{\Psi}^{*}
+\end{equation}
+Thus the $\bra{\Psi}\hat{O}\ket{\Psi}$ is a real number.
+
+On the other hand, if for any \kett{\Psi}, the
+$\bra{\Psi}\hat{O}\ket{\Psi}$ is a real number (here the operator
+can be both type, on bra or ket); we have:
+\begin{equation}\label{}
+\bra{\Psi}\hat{O}\ket{\Psi} =\bra{\Psi}\hat{O}\ket{\Psi}^{*} =
+\langle\Psi|\hat{O}^{+}\ket{\Psi}
+\end{equation}
+Thus for any \kett{\Psi}, $\bra{\Psi}(\hat{O}-\hat{O}^{+})\ket{\Psi}
+= 0$. Then $\hat{O} = \hat{O}^{+}$. \qedhere
+\end{proof}
+
+Finally the hermite operator can be written as:
+\begin{equation}\label{OPERATOReq:6}
+\bra{\psi}\hat{O}\ket{\phi} = \bra{\psi}\hat{O}^{+}\ket{\phi} =
+\bra{\phi}\hat{O}\ket{\psi}^{*}
+\end{equation}
+
+Formally this theorem implies one thing: that the hermite operator
+can both working the bra space and the ket space (they give the same
+result); thus for the hermite operator we need not to distinguish
+the hermite operator and its adjacent operator:
+\begin{equation}\label{}
+\langle\Psi|\hat{O}\Phi\rangle = \langle\Psi\hat{O}|\Phi\rangle =
+\langle\hat{O}\Psi|\Phi\rangle
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{What kind of operator is hermitian?}
+\label{hermitian_in_operator}
+%
+% What kind of operator is hermitian?
+%
+%
+Now we come to some question that what kind of operator is
+hermitian? The hermitian operator is that $\hat{A} = \hat{A}^{+}$,
+potentially; to judge that whether a given operator is hermitian
+needs its concrete expression. However, just as what we are going to
+demonstrate, there are some general rules to determine whether a
+operator is hermitian or not.
+
+Firstly, let's prove some character related to the adjacent
+operation:
+\begin{theorem}
+For any two arbitrary operators, it satisfy that:
+\begin{equation}\label{OPERATOReq:28}
+(\hat{A}\hat{B})^{+} = \hat{B}^{+}\hat{A}^{+}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Suggest that $\hat{B}\ket{\Psi} = \ket{\Phi}$, $\hat{A}\ket{\Phi} =
+\ket{\Omega}$. So we have:
+\begin{equation}\label{}
+\hat{A}\hat{B}\ket{\Psi} =\ket{\Omega}
+\end{equation}
+On the other hand, we have:
+\begin{equation}\label{}
+\bra{\Psi}\hat{B}^{+}\hat{A}^{+} = \bra{\Phi}\hat{A}^{+} =
+\bra{\Omega} =\bra{\Psi}(\hat{A}\hat{B})^{+}
+\end{equation}
+Furthermore, it's obvious that for $\hat{A}^{+}\hat{B}^{+}$ on
+$\bra{\Psi}$ we can not get the $\bra{\Omega}$. Hence according to
+the one to one correspondence between the bra and ket, the
+(\ref{OPERATOReq:28}) is true.
+ \qedhere
+\end{proof}
+
+For the adjacent operation, we have some other theorems which are
+easily proved (so the proof is omitted here):
+\begin{theorem}
+For any arbitrary operators, it satisfy that:
+\begin{equation}\label{OPERATOReq:29}
+\begin{split}
+  (\hat{A}^{+})^{+} &=  \hat{A} \\
+   (\lambda\hat{A})^{+} &=  \lambda^{*}\hat{A}^{+} \\
+(\hat{A} + \hat{B})^{+} &= \hat{A}^{+} + \hat{B}^{+}
+\end{split}
+\end{equation}
+\end{theorem}
+
+then let's go to prove some general characters related to the
+hermitian operator. Suggest that $\hat{A}$ and $\hat{B}$ are two
+hermitian operators, now we can prove that the operators below are
+also hermitian.
+\begin{theorem}
+\begin{align}\label{OPERATOReq:30}
+\hat{C} &= \hat{A} \pm \hat{B} \nonumber \\
+\hat{C} &= c\hat{A} \quad \text{c is a real number} \nonumber \\
+\hat{C} &= \hat{A}\hat{B} \quad \text{as long as $[\hat{A}, \hat{B}] = 0$} \nonumber \\
+\hat{C} &= c(\hat{A}\hat{B} + \hat{B}\hat{A}) \nonumber \\
+\hat{C} &= \frac{c}{i}(\hat{A}\hat{B} - \hat{B}\hat{A})
+\end{align}
+\end{theorem}
+
+\begin{proof}
+The first two expressions for $\hat{C}$ are straightforward. For
+$\hat{C} = \hat{A}\hat{B}$, we have that:
+\begin{equation}\label{}
+\begin{split}
+  \hat{C}^{+} &= (\hat{A}\hat{B})^{+}  \\
+    &= \hat{B}\hat{A} \\
+    &= \hat{A}\hat{B} \quad
+    \text{$\hat{A}$ and $\hat{B}$ are commutative} \\
+    &= \hat{C}
+\end{split}
+\end{equation}
+The fourth expression for $\hat{C}$ can be also proved in the
+similar way. For the fifth expression, we have:
+\begin{equation}\label{OPERATOReq:24}
+\begin{split}
+  \hat{C}^{+} &= \left(\frac{1}{i}\right)^{*}
+  [\hat{A}\hat{B} - \hat{B}\hat{A}]^{+}
+  \\
+    &= i[\hat{B}\hat{A} - \hat{A}\hat{B}] \\
+    &=-i[\hat{A},\hat{B}] \\
+    &=\frac{1}{i}[\hat{A},\hat{B}] \\
+    &=\hat{C}
+\end{split}
+\end{equation}
+ \qedhere
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Observable operator}
+%
+% 1  what's the physical meaning of observable operator?
+% 2  the theorems related to the observable
+%
+%
+%
+In axiom \ref{axiom3}, we have introduced the observable operator;
+which has some eigen function to correspond it:
+\begin{equation}\label{OPERATOReq:1}
+\hat{A}\ket{\Psi_{i}} = a_{i}\ket{\Psi_{i}} \quad i=1, 2, \cdots
+\end{equation}
+$\ket{\Psi_{i}}$ are $\hat{A}$'s eigen states, and the $a_{i}$ are
+the corresponding measurable value for $\hat{A}$.
+
+Firstly, how to physically understand the observable operator? Now
+let's start from axiom \ref{axiom4}.
+
+Suggest that $\hat{A}$ is some observable operator, from
+(\ref{OPERATOReq:2}) we know that for some arbitrary state of
+$\ket{\Psi}$:
+\begin{equation}\label{OPERATOReq:9}
+\bra{\Psi}\hat{A}\ket{\Psi} = \sum_{i}c_{i}^{2}a_{i} \quad
+\sum_{i}c_{i}^{2} = 1
+\end{equation}
+Here each $a_{i}$ has some possibility to appear in the final
+measurable result, hence the measurement for $\hat{A}$ on
+$\ket{\Psi}$ is not certain; maybe the result is $a_{1}$ in this
+time measurement, but change to be $a_{2}$ in the next.
+
+Hence, the mean value of $\sum_{i}c_{i}^{2}a_{i}$ depicts some
+``average'' situation for the measurable result, The real
+measurement is fluctuating around this average value. However, if
+the $\ket{\Psi}$ is the eigen state for $\hat{A}$, then we have
+$\bra{\Psi}\hat{A}\ket{\Psi} = a\langle\Psi|\Psi\rangle =a$; there's
+no fluctuation anymore, all the measurements will give only one
+certain value, which is the $a$. That's the physical meaning behind
+the (\ref{OPERATOReq:9}).
+
+For the observable operator, since the measurable result is
+meaningful so that it's demanded to be the hermitian operator first.
+secondly, we can have such theorem below for the observable:
+
+\begin{theorem}\label{OPERATOR:3}
+For a given observable operator, its eigen states which give
+different eigen value are orthogonal with each other.
+\end{theorem}
+
+\begin{proof}
+  Suggest that the operator is $\hat{A}$, then it has two different
+  eigen states; namely $\ket{\Psi_{1}}$ and $\ket{\Psi_{2}}$, they
+  give different eigen value of $a_{1}$ and $a_{2}$ ($a_{1} \neq
+  a_{2}$).  Therefore we have:
+\begin{align}\label{}
+\bra{\Psi_{1}}\hat{A}\ket{\Psi_{2}} &=
+a_{2}\langle\Psi_{1}|\Psi_{2}\rangle \nonumber \\
+\bra{\Psi_{1}}\hat{A}\ket{\Psi_{2}} &=
+a_{1}\langle\Psi_{1}|\Psi_{2}\rangle \Rightarrow \nonumber \\
+(a_{1}-a_{2})\langle\Psi_{1}|\Psi_{2}\rangle &= 0 \Rightarrow \nonumber \\
+\langle\Psi_{1}|\Psi_{2}\rangle &= 0
+\end{align}
+\qedhere
+\end{proof}
+As a result, according to the analysis in section
+\ref{LIV_in_Hilbert}, the eigen states for the $\hat{A}$ is able to
+constitute into some complete sets to represent the Hilbert space.
+However, there's some unproved proposition; that whether the eigen
+states for a given observable operator $\hat{A}$ is complete to
+describe the corresponding Hilbert space?
+
+This question is very difficult to answer, however, in physics such
+proposition is considered to hold true for any observable operator
+$\hat{A}$, that the whole eigen states for the $\hat{A}$ are really
+constitute some complete sets where the corresponding Hilbert space
+can be expressed over this group of basis functions\footnote{Here
+such detailed analysis can read the book by Xinlin
+Ke\cite{XingLinKe}, PP 33-36}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Subspace for eigen states}
+\label{subspace_in_operator}
+%
+% 1  what's the subspace for eigen states
+% 2  physical meaning of subspace
+% 3  consider the completeness for the Hilbert space plus the
+%    subspace
+%
+%
+So far for the observable $hat{A}$ and its eigen states of
+$\ket{\Psi_{i}}$ in (\ref{OPERATOReq:1}), we have only considered
+it's non-degenerate cases; where it's eigen values of $a_{i}$ are
+different from each other. However, there has some circumstance that
+the eigen values are degenerate:
+\begin{equation}\label{OPERATOReq:32}
+\hat{A}\ket{\Psi_{ij}} = a_{i}\ket{\Psi_{ij}} \quad j=1, 2, \cdots,
+m
+\end{equation}
+It's easy to see that for such $m$ $\ket{\Psi_{ij}}$, their
+arbitrary linear combination $\ket{\Psi}$ is also the eigen state
+for $\hat{A}$ and gives the eigen value of $a_{i}$:
+\begin{equation}\label{OPERATOReq:33}
+\begin{split}
+  \hat{A}\ket{\Psi} &= \hat{A}(\sum_{j=1}^{m}c_{j}\ket{\Psi_{ij}}) \\
+    &= \sum_{j=1}^{m}c_{j}(\hat{A}\ket{\Psi_{ij}}) \\
+    &= \sum_{j=1}^{m}c_{j}a_{i}\ket{\Psi_{ij}} \\
+    &= a_{i}\sum_{j=1}^{m}c_{j}\ket{\Psi_{ij}} \\
+    &= a_{i}\ket{\Psi}
+\end{split}
+\end{equation}
+Hence it turns out that such $m$ eigen states has been configured
+into some small Hilbert space where all the other vector who gives
+the eigen value of $a_{i}$ should be constructed from its linear
+combination:
+\begin{equation}\label{}
+\ket{\Psi} = \sum_{j=1}^{m}c_{j}\ket{\Psi_{ij}} \quad \text{$c_{j}$
+is some real number}
+\end{equation}
+
+In quantum mechanics, the concept of subspace is very important.
+Here we wish to present an example to demonstrate its importance
+that in symmetry theory of quantum mechanics, the subspace for
+Hamiltonian operator is considered to carry an irreducible
+representation for the symmetry group. Later, we will discuss the
+origin for the subspace.
+
+It's only after considering the degeneracy of the eigen states then
+the completeness for these eigen states to form the complete sets is
+strictly established. According to the theorem (\ref{OPERATOR:3}),
+it's easy to see that for any vector in the subspace it's orthogonal
+with the eigen states outside this subspace. Furthermore, for such
+$m$ eigen states in the subspace, we can always form some orthogonal
+basis functions according to section \ref{LIV_in_Hilbert}. Hence, by
+counting all the normalized basis functions in subspace, plus the
+eigen states that are non-degenerate; we can form the complete sets
+to represent the corresponding Hilbert space.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Origin of the degeneracy in eigen states}
+\label{origin_degeneracy_in_operator}
+%
+% the origin for the degeneracy for the eigen states
+%
+%
+Generally to say, the degeneracy of the eigen states is usually due
+to the fact that only one physical quantity can not fix the whole
+system; in other words, we need other independent physical freedom
+to identify the corresponding system.
+
+Now let's give an example. The plane wave function of $\Psi_{p}(x) =
+\frac{1}{2\pi\hbar}e^{\frac{ipx}{\hbar}}$ is the eigen state for the
+momentum operator $\hat{p}$(it's expressed as $\hat{p} = -i\hbar
+\frac{\partial }{\partial x}$, in the following content; we will
+prove this fact):
+\begin{equation}\label{}
+-i\hbar \frac{\partial }{\partial
+x}\left(\frac{1}{2\pi\hbar}e^{\frac{ipx}{\hbar}}\right)
+=p\Psi_{p}(x)
+\end{equation}
+Now let's consider the Hamiltonian for the system, it's $\hat{H} =
+\frac{p^{2}}{2m}$; it's easily seen that both of the $p$ and $-p$
+will give the same energy level so it's double degenerate. Hence for
+the free particle state which in energy level $\frac{p^{2}}{2m}$, it
+can be $\Psi_{p}(x)$ or $\Psi_{-p}(x)$ or any linear combination
+between the two components. However, these wave functions are
+physically distinguished with each other. Hence, for such state with
+certain energy level, what kind of wave function I can choose to
+portray it?
+
+Now let's prove that the origin in degeneracy in the eigen states,
+which is the most potential reason for the degeneracy.
+
+\begin{theorem}
+Suggest we have some observable $hat{A}$ and its eigen states
+$\ket{\Psi_{i}}$. On the other hand, we have two operators $\hat{F}$
+and $\hat{G}$ that they both commute with $\hat{A}$, but they do not
+commute with each other ($[\hat{F}, \hat{G}] \neq 0$). then there
+must have degeneracy in the eigen states of $\ket{\Psi_{i}}$.
+\end{theorem}
+
+\begin{proof}
+Now we prove it. For the $\hat{F}$:
+\begin{equation}\label{}
+\hat{A}\hat{F}\ket{\Psi_{i}} = \hat{F}\hat{A}\ket{\Psi_{i}} =
+\hat{F}a_{i}\ket{\Psi_{i}} = a_{i}\hat{F}\ket{\Psi_{i}}
+\end{equation}
+
+For $\hat{G}$:
+\begin{equation}\label{}
+\hat{A}\hat{G}\ket{\Psi_{i}} = \hat{G}\hat{A}\ket{\Psi_{i}} =
+\hat{G}a_{i}\ket{\Psi_{i}} = a_{i}\hat{G}\ket{\Psi_{i}}
+\end{equation}
+However, the two vectors of $\hat{F}\ket{\Psi_{i}}$ and
+$\hat{G}\ket{\Psi_{i}}$ should differentiate by more than the
+constant, that is : $\hat{F}\ket{\Psi_{i}} \neq C\times
+\hat{G}\ket{\Psi_{i}}$. Since $\hat{F}$ and $\hat{G}$ do not commute
+with each other, so they can not share the same eigen states
+simultaneously (this point will be proved in the next section). On
+the other hand, it's clear that they are all the eigen states for
+the operator $\hat{A}$, so both of the two eigen states take up the
+same eigen value. Thus the eigen states has degeneracy. \qedhere
+\end{proof}
+
+Finally, let's give some example to illustrate the degenerate case
+above. For hydrogen atom, we have its angular momentum operator of
+$\hei{l}$ ($\hei{l}$ is some vector operator) commutes with the
+Hamiltonian, however; the three components for the $\hei{l}$ can not
+commute with each other:
+\begin{equation}\label{}
+[\hat{l}_{i}, \hat{l}_{j}] \neq 0 \quad i, j \in x, y, z
+\end{equation}
+Therefore, it can be well expected that the energy level
+corresponding to different angular momentum $l=1, l=2, \cdots$ ($l$
+is the eigen states for the angular momentum operator) are all
+degenerate; and the calculation result for the hydrogen atom just
+confirms such guess.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The essence of commutation}
+\label{essence_in_operator}
+%
+% derive the Heisenberg relationships
+%
+%
+%
+%
+In the above section, we have just demonstrated that the commutation
+relationship is the origin for the eigen states degeneracy. Thus
+what's the essence of the commutation ($\hat{A}\hat{B}=
+\hat{A}\hat{B}$)? Here below it can proved that two operators are
+commutative as long as they share the same eigen states.
+
+Suppose we have two operators which correspond to dynamic quality,
+so they are hermitian. Consider the $|\Phi\rangle$ below:
+\begin{equation}\label{OPERATOReq:19}
+|\Phi\rangle = \xi\hat{A}|\Psi\rangle+i\hat{B}|\Psi\rangle
+\end{equation}
+Here $|\Psi\rangle$ is an arbitrary vector in Hilbert space, and
+$\xi$ is an arbitrary real number. What's more, we note that the
+corresponding vector in bra is:
+\begin{equation}\label{}
+\langle\Phi| = \langle\Psi|\hat{A}\xi-i\langle\Psi|\hat{B}
+\end{equation}
+We have made use of the hermitian character of $\hat{A}$ and
+$\hat{B}$.
+
+Now consider the expression below:
+\begin{align}\label{OPERATOReq:22}
+I(\xi) &= \langle\Phi|\Phi\rangle  \nonumber \\
+&= \Big\langle \langle\Psi|\hat{A}\xi-i\langle\Psi|\hat{B}\Big|
+\xi\hat{A}|\Psi\rangle+i\hat{B}|\Psi\rangle\Big\rangle \geq 0
+\end{align}
+To expand this expression, then we have:
+\begin{multline}\label{OPERATOReq:23}
+\Big\langle \bra{\Psi}\hat{A}\xi-i\bra{\Psi}\hat{B} \Big|
+\xi\hat{A}\ket{\Psi}+i\hat{B}\ket{\Psi} \Big\rangle =
+\\
+\xi^{2}\bra{\Psi}\hat{A}^{2}\ket{\Psi} +
+i\xi\bra{\Psi}\hat{A}\hat{B}\ket{\Psi} -
+i\xi\bra{\Psi}\hat{B}\hat{A}\ket{\Psi}+
+\bra{\Psi}\hat{B}^{2}\ket{\Psi} \\
+=\xi^{2}\bra{\Psi}\hat{A}^{2}\ket{\Psi} +
+\bra{\Psi}\hat{B}^{2}\ket{\Psi}  +
+i\xi\bra{\Psi}\hat{A}\hat{B}-\hat{B}\hat{A}\ket{\Psi} \\
+=\xi^{2}\bra{\Psi}\hat{A}^{2}\ket{\Psi} +
+\bra{\Psi}\hat{B}^{2}\ket{\Psi}  + i\xi\bra{\Psi}[\hat{A},
+\hat{B}]\ket{\Psi}
+\end{multline}
+
+Now suggest that $[\hat{A},\hat{B}] = i\hat{C}$. From
+(\ref{OPERATOReq:24}) We have known that $\hat{C}$ is also some
+hermitian operator.
+
+By using the $\hat{C}$, we can drop the complex term in
+(\ref{OPERATOReq:23}):
+\begin{equation}\label{OPERATOReq:25}
+i\xi\langle\Psi|[\hat{A},\hat{B}]|\Psi\rangle =
+i\xi\langle\Psi|i\hat{C}|\Psi\rangle =
+i^{2}\xi\langle\Psi|\hat{C}|\Psi\rangle =
+-\xi\langle\Psi|\hat{C}|\Psi\rangle
+\end{equation}
+
+Let's express the expectation value of
+$\langle\Psi|\hat{A}|\Psi\rangle = \overline{A}$, then the
+(\ref{OPERATOReq:23}) can be expressed as:
+\begin{eqnarray}\label{EIGENCTONSeq:4}
+% \nonumber to remove numbering (before each equation)
+  I(\xi) &=& \xi^{2}\overline{A^{2}} - \xi\overline{C} +
+  \overline{B^{2}} \nonumber \\
+  &=& \overline{A^{2}}
+  \left ( \xi - \frac{\overline{C}}{2\overline{A^{2}}}\right)^{2} +
+  \left ( \overline{B^{2}} - \frac{\overline{C}^{2}}{4\overline{A^{2}}}
+  \right) \nonumber \\
+  &\geq& 0
+\end{eqnarray}
+Additionally, we mention that since $\hat{A}$ and $\hat{B}$ are
+hermitian operators, then $\hat{A}^{2}$ and $\hat{B}^{2}$ is also
+hermitian. So their expectation value is real.
+
+Since that $\xi$ is an arbitrary number, we can make $\xi =
+\frac{\overline{C}}{2\overline{A^{2}}}$. Thus we have
+$\overline{B^{2}} - \frac{\overline{C}^{2}}{4\overline{A^{2}}} \geq
+0$. This equation finally leads to:
+\begin{eqnarray}\label{OPERATOReq:26}
+% \nonumber to remove numbering (before each equation)
+  \overline{A^{2}}\cdot
+\overline{B^{2}} &\geq&  \frac{1}{4}\overline{C}^{2} \rightarrow \nonumber \\
+ \sqrt{ \overline{A^{2}}\cdot
+\overline{B^{2}}} &\geq&  \frac{1}{2} |\overline{C}|
+\end{eqnarray}
+Here $|\overline{C}|$ indicates the absolute value for the
+$\overline{C}$.
+
+Now let's make some transformation:
+\begin{equation}\label{}
+\begin{split}
+  \hat{C} &= \frac{1}{i}
+  [\hat{A}\hat{B} - \hat{B}\hat{A}] \Rightarrow \\
+   |\overline{C}| &= |\frac{1}{i}\overline{[\hat{A},\hat{B}]}|
+   \\
+   &= |\frac{1}{i}| |\overline{[\hat{A},\hat{B}]}| \\
+   &= |\overline{[\hat{A},\hat{B}]}|
+\end{split}
+\end{equation}
+
+So the result in the (\ref{OPERATOReq:26}) finally can be:
+\begin{equation}\label{OPERATOReq:27}
+\sqrt{\overline{A^{2}}\cdot \overline{B^{2}}}   \geq \frac{1}{2}
+\left|\overline{[\hat{A}, \hat{B}]} \right|
+\end{equation}
+
+Next let's make some modification to the result to get some
+conclusion. Since $\overline{A}$ is the average value of the
+operator A; now in the (\ref{OPERATOReq:27}) we make that the
+$\hat{A}$ and $\hat{B}$ are replaced by $\Delta\hat{A}$ and $\Delta
+\hat{B}$, respectively:
+\begin{equation}\label{}
+\Delta \hat{A} = \hat{A} - \langle\Phi|\hat{A}|\Phi\rangle
+\end{equation}
+Since $\langle\Phi|\hat{A}|\Phi\rangle$ is some real number, we can
+prove that $\Delta\hat{A}$ is also some hermitian operator.
+Furthermore, we can show that:
+\begin{equation}\label{}
+\begin{split}
+  [\Delta \hat{A}, \Delta \hat{B}] &=
+  [\hat{A} - \overline{A}, \hat{B} - \overline{B}] \\
+    &= [\hat{A}, \hat{B}]
+\end{split}
+\end{equation}
+
+After such replacement, the (\ref{OPERATOReq:27}) becomes:
+\begin{equation}\label{OPERATOReq:28}
+\sqrt{\overline{\Delta \hat{A}^{2}}\cdot \overline{\Delta
+\hat{B}^{2}}} \geq \frac{1}{2} \left|\overline{[\Delta\hat{A},
+\Delta\hat{B}]} \right| \Rightarrow \sqrt{\overline{\Delta
+\hat{A}^{2}}\cdot \overline{\Delta \hat{B}^{2}}} \geq \frac{1}{2}
+\left|\overline{[\hat{A}, \hat{B}]} \right|
+\end{equation}
+
+For the $\overline{\Delta \hat{A}^{2}}$, actually we can prove that
+$\overline{\Delta \hat{A}^{2}}= \overline{\Delta \hat{A}}^{2}$.
+However, since this result is trivial and not be used in other
+place, we do not intend to give the proof; instead just to accept
+this result. so the result can be finally transformed as:
+\begin{equation}\label{OPERATOReq:31}
+\overline{\Delta A}\cdot \overline{\Delta B}   \geq \frac{1}{2}
+\left|\overline{[\hat{A}, \hat{B}]} \right|
+\end{equation}
+
+This result holds true for any two hermite operators. What's more,
+in this universal inequation of (\ref{OPERATOReq:31}) the
+implication within it is some very important and physical
+meaningful.
+
+For two arbitrary hermite operators of $\hat{A}$ and $\hat{B}$; if
+they are not commutative; $\overline{[\hat{A}, \hat{B}]} > 0$. Thus
+$\Delta A$ and $\Delta B$ can not equal to $0$ simultaneously. As a
+result, the measurement of $\hat{A}$ and the measurement of
+$\hat{B}$ can not have definite measurement result at the same time;
+in other words, $\hat{A}$ and $\hat{B}$ can not share the same eigen
+states. By the way, what we have deducted in the above process is
+the universal uncertainty principle. If we have $\hat{A} = \hat{x}$
+and $\hat{B} = \hat{p}$, according to the (\ref{OPERATOReq:31}), it
+leads to: $\Delta x\Delta p \geq \frac{\hbar}{2}$, here we have used
+the relation that $[\hat{x}, \hat{p}] = i\hbar$ (this relation will
+be revealed in the following chapter). That's the final conclusion
+behind the commutation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Complete sets of commuting observables}
+\label{CSCO_in_operator}
+%
+% What's the complete sets of commuting observables?
+% How to do that?
+%
+In section \ref{origin_degeneracy_in_operator}, we have put forward
+plane wave function example to show that there's some uncertainty in
+fixing the wave functions if there's degenerate situation. Thus, how
+to eliminate such uncertainty in the description for Hilbert space?
+
+Generally to say, while there's some degeneracy in the the space of
+eigen states, we can use a group of observable operators rather than
+one observable operator to determine the corresponding Hilbert
+space. In this group of operators any two of them commute with each
+other (physically to say, each physical quantity provides a freedom
+to specify the investigated system) so that to ensure they can share
+the same eigen states. It can be proved that this group of
+observable operators determine some ``definite'' Hilbert space to
+describe the quantum system. Therefore, this group is called
+``complete set of commutating observables''; in the future, they
+will be abbreviated as ``CSCO''.
+
+Now let's going to demonstrate the validity of the above words. The
+validity can be confirmed by the theorem below:
+
+\begin{theorem}
+For two commutative observable operators of $\hat{A}$ and $\hat{B}$,
+there must have some space of eigen states for both of them.
+\end{theorem}
+
+Here for simplicity we only consider the discrete case. However, for
+the continuous Hilbert space such as plane wave functions, we can
+get the same result; but the mathematical demonstration is much more
+complicated.
+
+\begin{proof}
+Suggest that \kett{\Psi_{i}} ($i=1, 2, \cdots$) are the complete set
+of normalized eigen states for the $\hat{A}$. We can know that
+$\hat{B}\ket{\Psi_{i}}$ is also $\hat{A}$'s eigen states:
+\begin{equation}\label{}
+\hat{A}(\hat{B}\ket{\Psi_{i}}) = \hat{B}\hat{A}\ket{\Psi_{i}}
+=a_{i}(\hat{B}\ket{\Psi_{i}})
+\end{equation}
+
+The process will be classified into two parts in terms of the
+presence of degeneracy in the space of $\ket{\Psi_{i}}$.
+
+First, there's no degeneracy in the eigen states of $\hat{A}$.
+
+Thereby, if $\hat{A}\ket{\Psi_{i}} = a_{i}\ket{\Psi_{i}}$, and
+$\hat{A}(\hat{B}\ket{\Psi_{i}}) = a_{i}(\hat{B}\ket{\Psi_{i}})$; the
+$\ket{\Psi_{i}}$ and $\hat{B}\ket{\Psi_{i}}$ should distinguish by
+only an constant: $\hat{B}\ket{\Psi_{i}} = b_{i}\ket{\Psi_{i}}$.
+Hence each of $\ket{\Psi_{i}}$ is also the eigen function for
+$\hat{B}$, and the eigen value is $b_{i}$.
+
+Second, there's degeneracy in the eigen states of $\hat{A}$.
+
+suggest that there's a $s$ dimensional orthogonal subspace ($s$ can
+be some infinite number, but the proof below is same) of
+$\ket{\Psi_{mi}}$ ($i=1, 2, \cdots, s$); they all give the same
+eigen value of $l$ by $\hat{A}\ket{\Psi_{mi}} = l\ket{\Psi_{mi}}$ .
+Now base on this subspace we are going to construct a new set of
+$\ket{\Psi^{'}_{m1}}, \cdots, \ket{\Psi^{'}_{ms}}$; each of them are
+the linear combination of the original vectors:
+\begin{equation}\label{}
+\ket{\Psi^{'}_{mi}} = \sum^{s}_{j=1}c_{ij}\ket{\Psi_{mj}}
+\end{equation}
+each of the $\ket{\Psi^{'}_{mi}}$ is the eigen function for both
+$\hat{A}$ and $\hat{B}$.
+
+So we have (we use $\ket{\Psi^{'}_{m}}$ to represent an arbitrary
+$\ket{\psi^{'}_{mi}}$):
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \hat{B} \ket{\Psi^{'}_{m}} &=& b^{'}\ket{\Psi^{'}_{m}} \nonumber \\
+                             &=&b^{'} \sum^{s}_{j=1}c_{j}\ket{\Psi_{mj}}
+\end{eqnarray}
+By multiplying $\bra{\Psi_{m1}}, \bra{\Psi_{m2}}, \cdots,
+\bra{\Psi_{ms}}$ to the above equation, we can get $s$ equations:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \sum^{s}_{j=1}c_{j} \bra{\Psi_{m1}}\hat{B}\ket{\Psi_{mj}} &=& b^{'}c_{1} \nonumber \\
+  \sum^{s}_{j=1}c_{j} \bra{\Psi_{m2}}\hat{B}\ket{\Psi_{mj}} &=& b^{'}c_{2} \nonumber \\
+  \cdots &\cdots& \cdots  \nonumber \\
+  \sum^{s}_{j=1}c_{j} \bra{\Psi_{ms}}\hat{B}\ket{\Psi_{mj}} &=& b^{'}c_{s} \nonumber \\
+\end{eqnarray}
+Here we implicitly use the orthogonality of the subspace:
+$\langle\Psi_{mi}\ket{\Psi_{mj}} = \delta _{ij}$.
+
+If the $\bra{\Psi_{mi}}\hat{B}\ket{\Psi_{mj}}$ is abbreviated as
+$B_{ij}$, it can see that the above equations can be transformed in
+to a matrix:
+\begin{equation}\label{SEeq:4}
+\begin{bmatrix}
+  B_{11}-b^{'} & B_{12} & \cdots & B_{1s} \\
+  B_{21} & B_{22}-b^{'} & \cdots & B_{2s} \\
+  \cdots & \cdots & \cdots & \cdots \\
+  B_{s1} & B_{s2} & \cdots & B_{ss}-b^{'} \\
+\end{bmatrix}
+\begin{bmatrix}
+  c_{1} \\
+  c_{2} \\
+  \cdots \\
+  c_{s} \\
+\end{bmatrix}
+ = 0
+\end{equation}
+Here in this matrix, $B_{ij}$ is some number we can calculate out,
+the coefficient of $c_{i}$ is the solution we are pursuing, the
+$b^{'}$ is the corresponding eigen values, which is also need to
+know.
+
+The presence of the solution of $c_{i}$ requires that:
+\begin{equation}\label{}
+\begin{vmatrix}
+  B_{11}-b^{'} & B_{12} & \cdots & B_{1s} \\
+  B_{21} & B_{22}-b^{'} & \cdots & B_{2s} \\
+  \cdots & \cdots & \cdots & \cdots \\
+  B_{s1} & B_{s2} & \cdots & B_{ss}-b^{'} \\
+\end{vmatrix} = 0
+\end{equation}
+
+For this determinant, it has roots of $b^{'}_{i}$ ($i=1, 2, \cdots,
+s$), some of them may get to be same. For each of $b^{'}_{i}$, the
+linear equation of (\ref{SEeq:4}) can yield a group of coefficients
+of $c_{ij}$ ($j=1, 2, \cdots, s$); thus the $\ket{\Psi^{'}_{mi}}$
+has been fixed out.
+
+If different $b^{'}_{i}$ takes different values, the set of Hilbert
+space therefore has been determined. If there's still degeneracy in
+the new space, we will take another operator of $\hat{C}$ which
+commuted with the $\hat{A}$ and $\hat{B}$ to work out some new space
+until the complete and definite Hilbert space has been found out.
+\qedhere
+\end{proof}
+
+For the complete set of observable operators, we can use their eigen
+values to label each vector in the Hilbert space. For example, for
+the $\ket{\Psi_{i}}$, the $\hat{A}$, $\hat{B}$ and $\hat{C}$
+correspond to the eigen values as $a_{i}$, $b_{i}$ and $c_{i}$
+respectively; so this vector can be abbreviated as
+$\ket{a_{i}b_{i}c_{i}}$. In the H atom schrodinger equation, we will
+see how can we do this.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Further discussion to the operator}
+\label{further_in_operator}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{How to bridge the physical quantities in quantum mechanics
+with the ones in classic mechanics}
+\label{vector_schalar_in_operator}
+%
+%  1  how to understand the correspondence between the physical
+%     quantities in quantum mechanics and the ones in classic
+%     1.1  how to build the operators? from r and p
+%     1.2  they are correspond to each other
+%  2  axiom for the r and p
+%  3  representations for the r and p
+%  4  vector operator and scalar operator
+%
+So far we have made many discussions to the general properties of
+the operator, which is concentrating on the mathematical properties
+of the operators. However, how can be understand the physical
+essence of the operator? How can we bridge the physical quantities
+in quantum mechanics with the ones in classic mechanics?
+
+The understanding for the physical quantity in quantum mechanics
+should be based on the physical quantities in classical mechanics.
+In most cases, we have physical quantities one to one mapping
+between the microworld to the macrocosm, that is to say; both of
+them share the same expressions. The only difference is, in classic
+mechanics such physical quantities are expressed by variables who
+are defining on the real number field; and in quantum mechanics the
+corresponding physical quantities are expressed by operators, which
+is restrict to be hermitian type. However, the expression for them
+are same. For example, the kinetic energy are both expressed as
+$\frac{\bm{p}^{2}}{2m}$, the angular momentum are both expressed as
+$\bm{r}\times\bm{p}$ etc. In essence, perhaps such one to one
+correspondence depicts some kind of ``continuity'' and
+``consistency'' for our real world.
+
+However, there's not all the physical quantities that can be found
+one to one correspondence between the the microworld and the
+macrocosm. For example, the spin is contained in quantum particles
+but diminished in classical objects. The spin phenomenon is some
+relativistic effects, so we can only ``phenomenologically''
+introduce the spin operator by analogous with the angular momentum
+operator; the detailed will be discussed in the following contents.
+
+Nevertheless, for most of the physical quantities in quantum
+mechanics, such one to one mapping relation exists. Hence we can
+construct the operators in quantum mechanics by analogous with the
+corresponding physical quantities in classic mechanics.
+
+Additionally, there are two important illustrations for the one to
+one corresponding relationship:
+\begin{itemize}
+  \item  the vector quantities in classical mechanics is still
+  corresponding to vector quantities, so as the scalar physical
+  quantities.
+  \item  in classical mechanics, all the physical quantities can be
+  expressed based on some function of
+  position $\bm{r}$ and momentum $\bm{p}$, hence in quantum
+  mechanics all the physical operators can be constructed
+  by position operator and momentum operator.
+\end{itemize}
+In the following content, the vector operators will be labeled as
+$\hei{A}$, and the scalar operator is labeled as $\hat{A}$.
+
+So far it can see that similar to the classical mechanics, the
+position and the momentum also constitutes the foundation for
+quantum mechanics. However, since that the methodology in classical
+mechanics and the quantum mechanics are distinguished greatly, so we
+can expect that there must have some ``distinctness'' between the
+description for the position and the momentum, and actually we
+indeed have an axiom:
+\begin{axiom}\label{axiom5}
+\textbf{In quantum mechanics, each particle's position operator
+under Cartesian coordinate, namely the $\hat{x}_{i}$ ($\hat{x}_{1} =
+\hat{x}$, $\hat{x}_{2} = \hat{y}$ and $\hat{x}_{3} = \hat{z}$); and
+it's corresponding momentum operator $\hat{p}_{i}$ satisfy the
+commutation rules below:
+\begin{equation}\label{PRAMReq:37}
+[\hat{x}_{i}, \hat{x}_{j}] = 0 \quad [\hat{p}_{i}, \hat{p}_{j}] = 0
+\quad [\hat{x}_{i}, \hat{p}_{j}] = i\hbar\delta_{ij}
+\end{equation}
+Furthermore, the operators for different particle are all commuting
+with each other.}
+\end{axiom}
+
+Now let's give some physical analysis to the axiom above. According
+to the previous discussion in (\ref{CSCO_in_operator}), if two
+physical operators are commuting with each other; physically such
+two operators stand for two independent freedoms to describe the
+corresponding system. therefore, the relation $[\hat{x}_{i},
+\hat{p}_{j}] = i\hbar\delta_{ij}$ indicates that the position
+information and momentum information for the system are not
+independent with each other. On the other hand, if we can obtain the
+expression for $\hei{r}$, then the (\ref{PRAMReq:37}) indicates that
+we can get the expression for $\hei{p}$ via $\hei{r}$. Hence from
+this aspect, they are also not independent.
+
+Here such knowledge has been already obtained through the
+commutation relationship discussion in (\ref{essence_in_operator}),
+there the analysis on the commutation shows a coherent interaction
+between the position information and the momentum information.
+What's more, in the discussion related to the basis functions (see
+the \ref{sec:PWF_in_Hilbert}), we can see something interesting that
+for any square-integrable wave function, from Fourier transformation
+it can be decompressed into the $\Phi(x)$ (the eigen state for
+$\hat{x}$) or the $\Psi(p)$ (the eigen state for $\hat{p}$). Such
+relation indicates that we can express the quantum state either by
+position or by momentum; they are identical with each other. This is
+another character to understand the dependence between the position
+information and momentum information.
+
+Furthermore, in the following chapter we will prove such relation
+that if we express the momentum operator via position operator, then
+the correspondent quantum state can be expressed as some function of
+position; on the other hand, if the position operator is expressed
+via the momentum operator, then the quantum state can be expressed
+as some function of momentum; such relation can be depicted as:
+\begin{equation}\label{OPERATOReq:34}
+\begin{split}
+  \hei{r} = \hei{r}(\bm{r}), \hei{p} = \hei{p}(\bm{r})
+  &\Rightarrow
+\ket{\Psi} \Leftrightarrow \Psi(\bm{r}) \\
+  \hei{r} = \hei{r}(\bm{p}), \hei{p} =
+\hei{p}(\bm{p})  &\Rightarrow \ket{\Psi} \Leftrightarrow
+\Psi(\bm{p})
+\end{split}
+\end{equation}
+The corresponding $\Psi(\bm{r})$ is the position representation for
+vector of $\ket{\Psi}$ in given Hilbert space, and similarly
+$\Psi(\bm{p})$ is called momentum representation.
+
+In the derivation for such relation, we firstly introduce the eigen
+states for the position and the momentum operator (From the
+discussion in (\ref{ASCWFFFP_in_basic}) it can see that their eigen
+states are only for free particles. The wave function in
+(\ref{BASICeq:14}) is the eigen states for momentum operator, and by
+Fourier transformation in (\ref{BASICeq:19}) and (\ref{BASICeq:20})
+we can get the corresponding eigen state for position operator).
+Here the details for the eigen functions will be omitted and they
+are only expressed as:
+\begin{align}
+\label{PRAMReq:1}
+\hat{x}\ket{x} &= x\ket{x} \nonumber \\
+\hat{p}\ket{p} &= p\ket{p}
+\end{align}
+By investigating the changing of eigen states and eigen values, and
+through the transformation between the $\ket{x}$ and $\ket{p}$; we
+can finally get the expression that how to express $\hat{p}$ via
+$\hat{x}$, or express $\hat{x}$ via $\hat{p}$. The details will be
+given in chapter \ref{position_momentum representation}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Operator functions}
+\label{operator_functions_in_operator}
+%
+%
+%
+the operators can be further organized as some function form. In the
+following contents, we can see that such form is vital in some
+discussions (see \ref{eigen_states_in_position_momentum}). For
+example, we can have such expression for $\hat{A}$:
+\begin{equation}\label{}
+\hat{B}_{\xi} = e^{\frac{i}{\hbar}\xi\hat{A}}
+\end{equation}
+According to the results in mathematical analysis, such expression
+can be expanded into series that:
+\begin{equation}
+  \hat{B}_{\xi} = 1 + \left(\frac{i}{\hbar}\xi\hat{A}\right) +
+ \frac{\left(\frac{i}{\hbar}\xi\hat{A}\right)^{2}}{2!} +
+\frac{\left(\frac{i}{\hbar}\xi\hat{A}\right)^{3}}{3!} + \cdots
+\end{equation}
+
+Similarly, we can also have the differential etc. operations to the
+operator. The details for this part discussion can be referred to
+the book by XingLin Ke\cite{XingLinKe}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Unitary operator}\label{OPERATOR:2}
+%
+% the definition of the unitary operator
+%
+%
+Now we introduce another important operator in the quantum
+mechanics, which is called unitary operator. It can be
+mathematically defined as:
+\begin{align}\label{OPERATOReq:10}
+\hat{U}^{+}\hat{U} &= \hat{U}\hat{U}^{+}= I \nonumber \\
+U^{+}  &= U^{-1}
+\end{align}
+Such unitary operator has some important feature that it's able to
+commute with all the other operators which represents some physical
+quantity:
+\begin{align}\label{OPERATOReq:14}
+\hat{A}\hat{U} &= \hat{U}\hat{A} \nonumber \\
+\hat{A}\hat{U}^{+} &= \hat{U}^{+}\hat{A}
+\end{align}
+
+Physically to say, the unitary operator is usually corresponding to
+some transformation between two sets of basis functions in the same
+Hilbert space. Such transformation is also called unitary
+transformation. For example, in quantum chemistry we can get a group
+of orbitals after Hatree-Fock calculation, then we can convert such
+orbitals which dispersed among the whole molecule into some
+localized ones, such transformation is just done by the unitary
+operator (see the \ref{HFT:3} for more contents).
+
+According to the analysis in the (\ref{LIV_in_Hilbert}), the basis
+functions which depicts the same Hilbert space are actually
+identical with each other. Hence here we usher in some important
+question: How to describe the identity between two sets of basis
+functions in the same Hilbert space?
+
+Here we have two general rules:
+\begin{itemize}\label{OPERATOReq:13}
+  \item Two sets of basis functions should retain the same
+  space structure, that is to say:
+  \begin{equation}\label{}
+|\Psi\rangle = \hat{U}|\Phi\rangle \quad
+\langle\Phi_{i}|\Phi_{j}\rangle = \delta_{ij} \Rightarrow
+\langle\Psi_{i}|\Psi_{j}\rangle = \delta_{ij}
+  \end{equation}
+  \item For any arbitrary operator of $\hat{A}$ the
+  expectation value should be same:
+\begin{equation}
+\langle\Phi_{i}|\hat{A}|\Phi_{j}\rangle =
+\langle\Psi_{i}|\hat{A}|\Psi_{j}\rangle
+\end{equation}
+\end{itemize}
+
+Now let's prove that the (\ref{OPERATOReq:10}) will stratify the
+identity requirements. Suggest that we have some discrete basis
+functions of $\Phi_{i}$ ($i = 1, 2, \cdots, n, \cdots$) to depict
+the Hilbert space, then some unitary transformation is used to
+convert it into some new sets:
+\begin{equation}\label{}
+|\Psi_{i}\rangle = \hat{U}|\Phi_{i}\rangle
+\end{equation}
+then we can have:
+\begin{align}\label{OPERATOReq:11}
+\langle \Psi_{i}|\Psi_{j}\rangle & = \langle
+\hat{U}\Phi_{i}|\hat{U}\Phi_{j}\rangle \nonumber \\
+&=\langle
+\Phi_{i}|\hat{U}^{+}\hat{U}|\Phi_{j}\rangle \nonumber \\
+&=\langle \Phi_{i}|\Phi_{j}\rangle
+\end{align}
+Besides, since the unitary operator make one to one correspondence
+tween $\Phi_{i}$ and $\Psi_{i}$, so the old sets of $\Phi_{i}$ and
+the new sets of $\Psi_{i}$ share the same space structure. The
+(\ref{OPERATOReq:13}) has been proved.
+
+Now let's prove the (\ref{OPERATOReq:13}):
+\begin{align}\label{}
+\langle\Psi_{i}|\hat{A}|\Psi_{j}\rangle &=
+\langle\Phi_{i}|\hat{U}^{+}\hat{A}\hat{U}|\Phi_{j}\rangle \nonumber \\
+&=\langle\Phi_{i}|\hat{A}\hat{U}^{+}\hat{U}|\Phi_{j}\rangle
+\underrightarrow{
+\text{ from the definition in \ref{OPERATOReq:14}}}\nonumber \\
+&=\langle\Phi_{i}|\hat{A}|\Phi_{j}\rangle
+\end{align}
+
+Hence we can see that the unitary transformation does not alter the
+characters of Hilbert space.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Density operator}\label{OPERATOR:1}
+%
+%
+%
+%
+In the above content, we have define the inner product between two
+vectors in Hilbert space as $\langle\Phi|\Psi\rangle$. Now if we
+rewrite its sequence as $|\Psi\rangle\langle\Phi|$, so what is it?
+
+Actually such type of ``product'' between $|\Psi\rangle$ and
+$\langle\Phi|$ is a kind of operator. For example, suggest
+$|\Omega\rangle$ is some arbitrary state, we have:
+\begin{equation}\label{}
+|\Psi\rangle\langle\Phi|\Omega\rangle =
+(\langle\Phi|\Omega\rangle)|\Psi\rangle
+\end{equation}
+So it just converts the $|\Omega\rangle$ into some new state of
+$(\langle\Phi|\Omega\rangle)|\Psi\rangle$.
+
+Usually in quantum mechanics we use the operator in the form of
+$\ket{\Psi}\bra{\Psi}$, here $\ket{\Psi}$ is some arbitrary vector
+in the Hilbert space. For this type of operator, we call it as
+``density operator''. Now let's discuss the characters related to
+this operator. Now we define this operator as $\hat{\gamma}$.
+
+\begin{theorem}\label{}
+$\hat{\gamma}^{+} = \hat{\gamma}$. So $\hat{\gamma}$ is hermitian.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\hat{\gamma}^{+} = (\ket{\Psi}\bra{\Psi})^{+} = \ket{\Psi}\bra{\Psi}
+= \hat{\gamma}
+\end{equation}
+Hence the operator of $\hat{\gamma}$ is hermitian. \qedhere
+\end{proof}
+
+\begin{theorem}\label{}
+For any $\Phi$, $\langle\Phi|\hat{\gamma}|\Phi\rangle \geq 0$.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\langle\Phi|\hat{\gamma}|\Phi\rangle = \langle\Phi|\Psi\rangle^{2}
+\geq 0
+\end{equation}
+\qedhere
+\end{proof}
+
+\begin{theorem}\label{}
+$\hat{\gamma}^{2} = \hat{\gamma}$.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\hat{\gamma}^{2} = \ket{\Psi}\bra{\Psi}\Psi\rangle\bra{\Psi} =
+\ket{\Psi}\bra{\Psi} = \hat{\gamma}
+\end{equation}
+So $\hat{\gamma}$ is idempotent. \qedhere
+\end{proof}
+
+\begin{theorem}\label{}
+$\hat{\gamma}\hat{B} = \hat{B}\hat{\gamma}$. If $\hat{B}$ is
+hermitian.
+\end{theorem}
+
+\begin{proof}
+Suggest that we have some arbitrary wave function of $\Phi$:
+\begin{equation}\label{}
+\langle\Phi|\hat{\gamma}\hat{B}|\Phi\rangle =
+\langle\Phi\ket{\Psi}\bra{\Psi}\hat{B}|\Phi\rangle =
+\bra{\Psi}\hat{B}|\Phi\rangle\langle\Phi\ket{\Psi} =
+\bra{\Phi}\hat{B}|\Psi\rangle\langle\Psi\ket{\Phi} =
+\langle\Phi|\hat{B}\hat{\gamma}|\Phi\rangle
+\end{equation}
+So $\hat{\gamma}$ is able to exchange with any hermitian operators.
+\qedhere
+\end{proof}
+
+Finally, let's prove some very important equation in quantum
+mechanics:
+\begin{theorem}\label{}
+For any arbitrary  $\hat{\gamma}$, we have:
+\begin{equation}\label{}
+i \hbar\frac{\partial \hat{\gamma}}{\partial t} = [\hat{H},
+\hat{\gamma}]
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Suggest that $\hat{\gamma} = \ket{\Psi}\bra{\Psi}$, now let's start
+from the Schrodinger equation:
+\begin{align}\label{}
+\hat{H}\ket{\Psi} &= i \hbar \frac{\partial \ket{\Psi}}{\partial t}
+\nonumber \\
+\bra{\Psi}\hat{H} &= -i \hbar \frac{\partial \bra{\Psi}}{\partial t}
+\end{align}
+Hence we have:
+\begin{equation}\label{}
+\begin{split}
+  i \hbar\frac{\partial \hat{\gamma}}{\partial t} &=
+   i \hbar \frac{\partial \ket{\Psi}\bra{\Psi}}{\partial t}\\
+    &=
+    i \hbar \frac{\partial \ket{\Psi}}{\partial t}\bra{\Psi} +
+    \ket{\Psi}i \hbar \frac{\partial \bra{\Psi}}{\partial t} \\
+    &= (\hat{H}\ket{\Psi})\bra{\Psi} - \ket{\Psi}(\bra{\Psi}\hat{H})
+    \\
+    &= [\hat{H}, \hat{\gamma}]
+\end{split}
+\end{equation}
+ \qedhere
+\end{proof}
+
+Now let's go to see some specific kind of $\hat{\gamma}$:
+\begin{equation}\label{OPERATOReq:15}
+\hat{\gamma}_{i} =|\Psi_{i}\rangle\langle\Psi_{i}|
+\end{equation}
+Here $|\Psi_{i}\rangle$ designates the $i$th component in the basis
+functions of $\Psi_{i}$ ($i = 1, 2, \cdots$). It can see that for
+some arbitrary state of $|\Psi\rangle$, we have:
+\begin{equation}\label{}
+\hat{\gamma}_{i}|\Psi\rangle =
+|\Psi_{i}\rangle\langle\Psi_{i}|\Psi\rangle = c_{i}|\Psi_{i}\rangle
+\end{equation}
+$c_{i}$ characterizes the weight for the component of $i$ in the
+$|\Psi\rangle$, so the effects of the operator is just to projecting
+out the $i$th component in the $|\Psi\rangle$. Hence, this kind of
+operator is also called ``project operator''.
+
+Finally, we note that if we add all the $\hat{\gamma}_{i}$ across
+the whole Hilbert space:
+\begin{equation}\label{}
+\hat{\Gamma} = \sum_{i} \hat{\gamma}_{i}
+\end{equation}
+We can see that for some arbitrary state of $|\Psi\rangle$:
+\begin{align}\label{OPERATOReq:18}
+\hat{\Gamma}|\Psi\rangle &=
+\sum_{i}|\Psi_{i}\rangle\langle\Psi_{i}|\Psi\rangle \nonumber \\
+&=\sum_{i}|(\langle\Psi_{i}|\Psi\rangle)\Psi_{i}\rangle
+\underrightarrow{
+\text{ according to \ref{Hilbert:1}}}\nonumber \\
+&=|\Psi\rangle
+\end{align}
+Hence we have $\hat{\Gamma} \equiv I$. If we compare the
+(\ref{OPERATOReq:18}) with the (\ref{Hilberteq:15}), we can see that
+they are the two faces on the same coin. So the
+(\ref{OPERATOReq:18}) is another expression for the closure relation
+(more details see \ref{sec:CR_in_Hilbert}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

@@ -1,0 +1,86 @@
+%
+% setting up at Nov. 2011
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction to Hermite Polynomials}
+\label{sec:hermite_polynomials}
+
+In the mathematics, Hermite polynomials is a series of orthogonal functions
+that form an orthogonal basis of the Hilbert space, it's also a complete 
+orthogonal function system so that we can use it to expand a lot of functions.
+In quantum chemistry, the Hermite polynomials are used in the integral
+calculation. Hence here a brief summary for its properties will be given.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definition}
+The Hermite polynomials are defined as:
+\begin{equation}
+ \label{hermite_definition_eq:1}
+H_{n}(x) = (-1)^{n}e^{x^{2}}\frac{d^{n}}{dx^{n}}e^{-x^{2}}
+\end{equation}
+This relation could be derived from a generation function:
+\begin{equation}
+\label{hermite_definition_eq:2}
+ e^{2xt-t^{2}} = \sum_{t=0}^{\infty}H_{n}(x)\frac{t^{n}}{n!}
+\end{equation}
+when we make $n$th derivatives for the $e^{2xt-t^{2}}$, $H_{n}(x)$
+could be generated:
+\begin{equation}
+ \label{hermite_definition_eq:3}
+H_{n}(x) =  \left. \frac{\partial^{n} (e^{2xt-t^{2}}) }{\partial
+t^{n}}\right|_{t=0}
+\end{equation}
+By setting the $e^{2xt-t^{2}} = e^{-(t-x)^{2} + x^{2}}$, then through
+the $n$th derivatives we can get the \ref{hermite_definition_eq:1}.
+
+For this polynomial we have some recursive relation from its definition:
+\begin{equation}
+ \label{hermite_definition_eq:4}
+H_{n}^{'}(x) = 2xH_{n}(x) - H_{n+1}(x)
+\end{equation}
+By using the relation that $\frac{\partial 
+e^{2xt-t^{2}} }{\partial x} = 2te^{2xt-t^{2}}$, then we can bring this form
+into \ref{hermite_definition_eq:3} and expand the higher derivatives for
+$2te^{2xt-t^{2}}$; we get:
+\begin{equation}
+ \label{hermite_definition_eq:5}
+H_{n}^{'}(x) = 2nH_{n-1}(x)
+\end{equation}
+Therefore we arrive at some final recursive expression:
+\begin{equation}
+ \label{hermite_definition_eq:6}
+2nH_{n-1}(x) = 2xH_{n}(x) - H_{n+1}(x)
+\end{equation}
+we note that such derivative relation could also be expressed in terms of 
+its derivatives. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Orthogonality} 
+%
+%
+%
+Hermite polynomials has one important property, is that they are orthogonal with 
+each other by a weight function:
+\begin{equation}
+\label{hermite_orthogonality_eq:1}
+ \int^{+\infty}_{-\infty} H_{m}(x)H_{n}(x)e^{-x^{2}} = 
+ 2^{n}n!\delta_{mn}  
+\end{equation}
+
+The orthogonality could be derived through partial integral(suppose that $n\neq m$):
+\begin{align}
+ \label{hermite_orthogonality_eq:2}
+ \int^{+\infty}_{-\infty} H_{m}(x)H_{n}(x)e^{-x^{2}} dx &= 
+(-1)^{n} \int^{+\infty}_{-\infty} H_{m}(x) \frac{d^{n}}{dx^{n}}e^{-x^{2}}dx \nonumber \\
+&=  (-1)^{n-1} 2m\int^{+\infty}_{-\infty} H_{m-1}(x)\frac{d^{n-1}}{dx^{n-1}}e^{-x^{2}}dx 
+\nonumber \\
+&= (-1)^{n-m} 2^{m}m!\int^{+\infty}_{-\infty} H_{0}(x)\frac{d^{n-m}}{dx^{n-m}}e^{-x^{2}}dx 
+\nonumber \\
+&= 0
+\end{align}
+Such derivation uses the relation in the \ref{hermite_definition_eq:5}.
+ 
+

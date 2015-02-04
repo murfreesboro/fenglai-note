@@ -1,0 +1,817 @@
+%
+% begin at Jan. 2009, finished at Jan 29th; 2009 problems left behind:
+% 1 for the integral force: the definition of the pt for the integral
+% force is clear, but how can we do it in the real calculation? That
+% means, how to convert the two principles below into the codes?  1.1
+% the exponents of the basis sets are fixed to constant.  1.2 the
+% position vectors in the basis sets are linear combination of the
+% nuclear coordinates.
+%
+%
+%
+%
+
+\chapter{Force Methods in Quantum Chemistry}\label{PULAY:1}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+% how to understand it
+%
+%
+Most of the quantum chemistry study is based on the Born-Oppenheimer
+approximation. In this approximation, the nucleus are considered to
+move on the classic trajectory, so its motion is continuous and
+smooth; where the motion of electrons is treated quantized, and able
+to adapt simultaneously to the position change of nucleus.  Therefore,
+the total energy of the whole molecular system is some function of the
+nuclear coordinates; such dependence is called potential energy
+hyper-surface (later shorted as PES).
+
+Consequently, to determine the PES is vital in the quantum
+chemistry. Such determination requires to get the energy derivatives
+for an arbitrary nuclear configuration of \vect{R_{0}}, that is to
+say, the PES around \vect{R_{0}} can be adequately characterized by
+its Taylor series expansion:
+\begin{equation}\label{PULAYeq:1}
+  \begin{split}
+    E(\mathbf{R}) &= E(\mathbf{R_{0}}) +
+    \sum_{a}E^{a}\Delta\mathbf{R_{a}}
+    +  \frac{1}{2!}\sum_{a,b}E^{ab}\Delta\mathbf{R_{a}}\Delta\mathbf{R_{b}} \\
+    & +
+    \frac{1}{3!}\sum_{a,b,c}E^{abc}\Delta\mathbf{R_{a}}\Delta\mathbf{R_{b}}
+    \Delta\mathbf{R_{c}} + \cdots
+  \end{split}
+\end{equation}
+Here the $E^{a}, E^{ab}$ etc. denote the first derivatives, second
+derivatives etc. with respect to the total energy in the \vect{R_{0}};
+and the $\Delta\mathbf{R_{a}}, \Delta\mathbf{R_{b}}$ etc. express the
+small changes around the reference point of \vect{R_{0}} in the given
+direction: $\Delta\mathbf{R_{a}} =
+(\mathbf{R_{a}}-\mathbf{R_{0}})_{a}$.
+
+The solution to this problem was firstly suggested by professor Peter
+Pulay around $1969$. In this chapter, we will provide a thorough and
+detailed analysis for this topic. The materials we are referring to,
+are mainly from professor Pulay\cite{Pulay1, Pulay2, Pulay3, Pulay4,
+  Pulay5}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{General derivatives expressions}
+%
+% derive the first and second order of derivatives in the general form
+% the benefit to do this, is to make the relations in the derivatives
+% more simpler.  1 non-constraint type 1.1 general functional
+% expression of E 1.2 C can be seen as the function of R 1.3 the first
+% and second derivatives 2 constraint type 2.1 the general Lagrangian
+% functional of W under the constraint conditions 2.2 to express the
+% variational conditions on W 2.3 derive the gradients, and the second
+% derivatives
+%
+In this section, we firstly introduce some general formulas for the
+derivatives of variational energy expressions.
+
+First let's consider the energy functional:
+\begin{equation}\label{PULAYeq:13}
+  E = E(C,R)
+\end{equation}
+Here the $R$ represents the nuclear coordinates, and $C$ is the set of
+variational parameter in the wave function; e.g.; in the case of SCF
+wave function, $C$ is the SCF coefficients. Here we note that in the
+(\ref{PULAYeq:13}) the parameters should be gotten through variation
+condition:
+\begin{equation}\label{PULAYeq:14}
+  \frac{\partial E}{\partial C_{i}} = 0
+\end{equation}
+Thus for each reference coordinate of $R$ we can get a set of
+variational parameters of $C$, so we can see that the $C$ is some
+function of nuclear coordinates of $R$; $C = C(R)$:
+\begin{equation}\label{}
+  R \Rightarrow E \Rightarrow C \Rightarrow C= C(R)
+\end{equation}
+Therefore we can express the energy functional as:
+\begin{equation}\label{PULAYeq:2}
+  E = E(C(R), R)
+\end{equation}
+This is some simpler model for discussing the derivatives of the total
+energy, for we have not imposed any further constraint conditions on
+the $C$. Usually in the quantum chemistry, in the variation process of
+(\ref{PULAYeq:14}) the SCF coefficients should keep orthogonal with
+each other. Latter we will study this case.
+
+Our aim is to derive the formulas for the expression of
+(\ref{PULAYeq:2}) with respect to the nuclear coordinates of $R$.  For
+the change of $R$ in the $a$ direction, according to the chain rule of
+differentiation we have:
+\begin{align}\label{PULAYeq:3}
+  E_{a} &= \frac{\partial E}{\partial R_{a}} +\sum_{i}\frac{\partial
+    E}{\partial C_{i}}\frac{\partial
+    C_{i}}{\partial R_{a}} \nonumber \\
+  &= \frac{\partial E}{\partial R_{a}}
+\end{align}
+
+In this derivation we have used the relation in the
+(\ref{PULAYeq:14}). The results shows that the derivative of the
+variational parameters (here is the $C$) do not enter into the
+gradient formula. In the later content, as in the derivation of the
+constraint variational process, we can see that the same fact holds,
+too.
+
+For the second derivatives, by differentiation of (\ref{PULAYeq:3}),
+we can get:
+\begin{align}\label{}
+  E_{ab} &=\frac{\partial}{\partial R_{b}}\left(\frac{\partial
+      E}{\partial
+      R_{a}}\right) \nonumber \\
+  &=\frac{\partial^{2} E}{\partial R_{a}\partial R_{b}}
+  +\sum_{i}\frac{\partial^{2} E}{\partial R_{a}\partial
+    C_{i}}\frac{\partial C_{i}}{\partial R_{b}}
+\end{align}
+
+So far, the discussion is all about the variational process without
+constraints. However, it's usually required that in the variational
+process, the orbitals or the approximated wave functions should keep
+to be orthogonal with each other. Therefore, it's appropriate to
+introduce the general functional with constraint conditions:
+\begin{equation}\label{PULAYeq:8}
+  W(C, R, \lambda) = E(C,R) - \sum_{m}f_{m}(C,R)\lambda_{m}
+\end{equation}
+Here the $W$ stands for the general Lagrangian functional. The
+$f_{m}(C,R)$ generally denote the $m$ constraint conditions, normally
+the constraints are the orthogonality conditions for the molecular
+orbitals or the configurations. The $\lambda_{m}$ is simply the
+Lagrangian factor. Here we note that the variation process defined in
+the (\ref{PULAYeq:14}) does not hold true anymore, instead we have:
+\begin{equation}\label{PULAYeq:5}
+  \frac{\partial W}{\partial C_{i}} = 0 \quad (i=1,2, \cdots)
+\end{equation}
+On condition that:
+\begin{equation}\label{PULAYeq:15}
+  f_{m}(C,R) =  0 \quad (m=1,2, \cdots)
+\end{equation}
+
+Such conditions are sufficient to determine the unknown $C_{i}$ and
+$\lambda_{m}$, hence we can consider the $C_{i}$ and $\lambda_{m}$ are
+some functions of $R$:
+\begin{equation}\label{}
+  \left\{
+    \begin{array}{ll}
+      C_{i} = C(R),             & i=1,2,\cdots  \\
+      \lambda_{m} = \lambda(R), & m=1,2,\cdots
+    \end{array}
+  \right.
+\end{equation}
+
+If the conditions in (\ref{PULAYeq:5}) have been satisfied, then from
+the general functional in (\ref{PULAYeq:8}) we can get the total
+energy:
+\begin{equation}\label{PULAYeq:4}
+  W(C, \lambda, R) \Rightarrow E(C, R)
+\end{equation}
+
+Now we begin to seek the expressions for the first derivative and
+second derivatives related to the $E(C,R)$.
+
+By the differentiation of $E(C,R)$, we have:
+\begin{equation}\label{PULAYeq:6}
+  E_{a} =\frac{\partial E}{\partial R_{a}} + \sum_{i}\frac{\partial
+    E}{\partial C_{i}}\frac{\partial C_{i}}{\partial R_{a}}
+\end{equation}
+This is same with the (\ref{PULAYeq:3}). However, here we do not
+simply have the $\frac{\partial E}{\partial C_{i}} = 0$, thus we have
+to do some transformations.
+
+For the constraint variation condition, we can further express the
+(\ref{PULAYeq:5}) as:
+\begin{align}\label{}
+  \frac{\partial W}{\partial C_{i}} &= \frac{\partial E}{\partial
+    C_{i}} - \sum_{m}\frac{\partial f_{m}(C,R)}{\partial
+    C_{i}}\lambda_{m} \nonumber \\
+  &= 0
+\end{align}
+By multiply the $\frac{\partial C_{i}}{\partial R_{a}}$ to the above
+expression and sum over all the label of $i$, we can get:
+\begin{equation}\label{PULAYeq:17}
+  \sum_{i}\frac{\partial E}{\partial C_{i}}\frac{\partial
+    C_{i}}{\partial R_{a}} - \sum_{m}\lambda_{m}\sum_{i}\frac{\partial
+    f_{m}(C,R)}{\partial C_{i}}\frac{\partial C_{i}}{\partial R_{a}} = 0
+\end{equation}
+
+On the other hand, if we differentiate the constraint conditions of
+(\ref{PULAYeq:15}) with respect to the $R_{a}$, we can have:
+\begin{align}\label{PULAYeq:16}
+  \frac{\partial f_{m}(C,R)}{\partial R_{a}} + \sum_{i}\frac{\partial
+    f_{m}(C,R)}{\partial C_{i}}\frac{\partial C_{i}}{\partial R_{a}} =
+  0
+\end{align}
+If we multiply the (\ref{PULAYeq:16}) with $\lambda_{m}$ and sum all
+of label of $m$ together, we can get:
+\begin{equation}\label{PULAYeq:18}
+  \sum_{m}\lambda_{m}\frac{\partial f_{m}(C,R)}{\partial R_{a}} +
+  \sum_{m}\lambda_{m}\sum_{i}\frac{\partial f_{m}(C,R)}{\partial
+    C_{i}}\frac{\partial C_{i}}{\partial R_{a}} = 0
+\end{equation}
+
+By virtual of the results indicated in the (\ref{PULAYeq:17}) and
+(\ref{PULAYeq:18}), we can have:
+\begin{equation}\label{}
+  \sum_{m}\lambda_{m}\frac{\partial f_{m}(C,R)}{\partial R_{a}} = -
+  \sum_{i}\frac{\partial E}{\partial C_{i}}\frac{\partial
+    C_{i}}{\partial R_{a}}
+\end{equation}
+
+Finally for the (\ref{PULAYeq:6}) we can have:
+\begin{align}\label{PULAYeq:7}
+  E_{a} &= \frac{\partial E}{\partial R_{a}} - \sum_{m}\frac{\partial
+    f_{m}(C,R)}{\partial
+    R_{a}}\lambda_{m} \nonumber \\
+  &= \frac{\partial W}{\partial R_{a}}
+\end{align}
+Here the result shows the same important meaning with the
+(\ref{PULAYeq:3}) that the derivatives of the variational parameters
+do not enter the gradient formula. For example, in the HF calculation
+(or the DFT calculation, which use the single determinant); the
+evaluation of the MO coefficients can be avoided.  In the CI
+calculation, the evaluation with respect to the coefficients for the
+determinants can be neglected. In such scheme, only the derivatives of
+the basis function integrals appearing in the energy formula need to
+be calculated.
+
+By differentiating the expression of (\ref{PULAYeq:7}) with respect to
+the $R_{b}$, we can get:
+\begin{align}\label{}
+  E_{ab} &=\frac{\partial}{\partial R_{b}}\left(\frac{\partial
+      W}{\partial
+      R_{a}}\right) \nonumber \\
+  &=\frac{\partial^{2} E}{\partial R_{a}\partial R_{b}} +
+  \sum_{i}\frac{\partial^{2} E}{\partial R_{a}\partial
+    C_{i}}\frac{\partial C_{i}}{\partial R_{b}} -
+  \sum_{m}\frac{\partial^{2} f_{m}(C,R)}
+  {\partial R_{a}\partial R_{b}}\lambda_{m} - \nonumber \\
+  &\sum_{m}\sum_{i}\frac{\partial^{2} f_{m}(C,R)}{\partial
+    R_{a}\partial C_{i}}\frac{\partial C_{i}}{\partial
+    R_{b}}\lambda_{m} - \sum_{m}\frac{\partial f_{m}(C,R)}{\partial
+    R_{a}}\frac{\partial \lambda_{m}}{\partial R_{b}}
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Force calculation from SCF wave functions}
+%
+%
+\subsection{Structure of the wave functions}
+%
+% 1 how to express the MCSCF wave functions 2 some gradient relations
+%
+%
+In this section let's begin to derive the energy derivatives for the
+MCSCF wave functions. Firstly, let's note that why we choose MCSCF
+wave functions for calculation. In MCSCF calculation, both of the
+coefficients of the determinants and the molecular orbitals are
+assumed to vary, so if we fix the coefficients of the molecular
+orbitals, then the whole method will recede to be the pure CI method;
+if we eliminate the determinants, then it will be back to be the
+Hatree-Fock method. Thus the discussion of MCSCF method will provide
+us some flexibility for further discussion.
+
+Let $\Phi$ be some normalized linear combination of orthogonal
+configurations of $\Psi_{K}$:
+\begin{equation}\label{}
+  \Phi = \sum_{K}A_{K}\Psi_{K}
+\end{equation}
+With the constraint condition that:
+\begin{equation}\label{}
+  \langle\Psi_{K}|\Psi_{L}\rangle = \delta_{KL} \quad
+  \sum_{K}A_{K}^{2} = 1
+\end{equation}
+
+Here the $\Psi_{K}$ are some fixed linear combinations of slater
+determinants constructed from a set of orthogonal orbitals of
+$\psi_{i}$; which is in turn $m$ linear combinations of the basis
+functions of $\chi_{r}$:
+\begin{equation}\label{PULAYeq:25}
+  \psi_{i} = \sum_{r=1}^{m}c_{ri}\chi_{r}
+\end{equation}
+
+Since that the orbitals of $\psi$ should maintain the orthogonality
+between each other, therefore the coefficients of the basis sets
+should satisfy that:
+\begin{align}\label{}
+  \int\psi_{i}\psi_{j}d\tau &= \delta_{ij} \Rightarrow \nonumber \\
+  \sum_{r}\sum_{s}c^{*}_{ri}c_{sj}\int\chi^{*}_{r}\chi_{s}d\tau &=
+  \delta_{ij}
+\end{align}
+Sometimes it's more convenient to write it into the matrix form:
+\begin{align}\label{PULAYeq:19}
+  \sum_{i}\sum_{j}\sum_{r}\sum_{s}c^{*}_{ri}c_{sj}\int\chi^{*}_{r}\chi_{s}d\tau
+  &= \sum_{i}\sum_{j}\delta_{ij} = n \Rightarrow \nonumber \\
+  \sum_{i}\sum_{r}\sum_{s}c^{*}_{ri}c_{si}\int\chi^{*}_{r}\chi_{s}d\tau
+  &= n \Rightarrow \nonumber \\
+  Tr(C^{+}SC) &= Tr(I_{n})
+\end{align}
+Where $I_{n}$ is the unit matrix, $S_{pq} =
+\langle\chi_{p}|\chi_{q}\rangle$. The $C$ represents the vectors of
+the molecular orbitals:
+\begin{equation}\label{}
+  C = \begin{bmatrix}
+    c_{11} & c_{12} & \cdots & c_{1n} \\
+    c_{21} & c_{22} & \cdots & c_{2n} \\
+    \cdots &\cdots  & \cdots & \cdots \\
+    c_{n1} & c_{n2} & \cdots & c_{nn} \\
+  \end{bmatrix}
+\end{equation}
+Here each column denotes one composition of molecular orbital, and the
+row characterizes the weight of the specific $\chi_{i}$ in all the
+molecular orbitals. $C^{+}$ is the unitary transformation of the $C$:
+$C^{+}_{ij} = C_{ji}^{*}$. However, usually in the quantum chemistry
+we use the real orbitals and the coefficients, thus we have that
+$C^{+}_{ij} = C_{ji}$. Here below we follow such convention.
+
+Now let's consider the expectation value for the $\Phi$:
+\begin{equation}\label{PULAYeq:24}
+  E = \bra{\Phi}\hat{H}\ket{\Phi}
+\end{equation}
+Here the $E$ has the same meaning with it's general form of $E(C,R)$
+defined in (\ref{PULAYeq:8}). Furthermore, based on the constraint
+conditions the variation process can be expressed as:
+\begin{equation}\label{PULAYeq:10}
+  \begin{split}
+    \frac{\partial}{\partial A_{K}} \Big\{
+    E -  \lambda(\sum_{K}A_{K}^{2} - 1)\Big\}&=  0  \\
+    \frac{\partial}{\partial c_{ri}} \Big\{ E - Tr[\epsilon(C^{+}SC-
+    I_{n})]\Big\}&=  0  \\
+  \end{split}
+\end{equation}
+Hence we can express the Lagrangian functional defined in
+(\ref{PULAYeq:8}) as:
+\begin{equation}\label{PULAYeq:9}
+  W = E - \lambda(\sum_{K}A_{K}^{2} - 1) - Tr[\epsilon(C^{+}SC -
+  I_{n})]
+\end{equation}
+
+From the (\ref{PULAYeq:10}), we can obtains some relations concerned
+with the gradients expression. They are useful in the following
+contents. For the differentiation with respect to the $A_{X}$, we
+have:
+\begin{equation}\label{PULAYeq:11}
+  \begin{split}
+    \frac{\partial E}{\partial A_{X}} &=
+    \lambda\frac{\partial (\sum_{K}A_{K}^{2} - 1)}{\partial A_{X}} \\
+    &=2\lambda A_{X}
+  \end{split}
+\end{equation}
+
+The derivation for the differentiation with respect to the $c_{xy}$ is
+something more complicated, so below I try to give the redundant
+details in the calculation. Hope that we can make it as self-clear as
+it can.
+\begin{align}\label{PULAYeq:12}
+  \frac{\partial E}{\partial c_{xy}} &= \frac{\partial
+    Tr[\epsilon(C^{+}SC - I_{n})]}{\partial c_{xy}} \nonumber \\
+  &=\frac{\partial}{\partial c_{xy}}\left\{ \sum_{i}\sum_{r}\sum_{s}
+    \epsilon_{ii}c_{ri}c_{si}S_{rs} -
+    \sum_{i}\epsilon_{ii} \right\}\nonumber \\
+  &=\frac{\partial}{\partial c_{xy}} \left\{\cdots + \sum_{s}
+    \epsilon_{yy}c_{xy}c_{sy}S_{xs} + \cdots + \right.\nonumber \\
+  &\left.\sum_{r} \epsilon_{yy}c_{ry}c_{xy}S_{rx} + \cdots -
+    \sum_{i}\epsilon_{ii}\right\} \nonumber \\
+  &=\sum_{s} \epsilon_{yy}c_{sy}S_{xs} + \sum_{r}
+  \epsilon_{yy}c_{ry}S_{rx} \nonumber \\
+  &=2\sum_{r} \epsilon_{yy}c_{ry}S_{xr} \nonumber \\
+  &=2(SC\epsilon)_{xy}
+\end{align}
+In the derivation above the $S_{rs} =
+\langle\chi_{r}|\chi_{s}\rangle$, and it's hermitian matrix so that
+$S_{rs} = S_{sr}$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dependent variables related to nuclear coordinates}
+%
+% how to understand the dependence between the other variables and the
+% nuclear coordinates, the most important is the basis functions
+% discussion
+%
+After setting up the structure of the wave functions, the next
+question is: as the nuclear coordinate changes, in the energy
+functional what kind of arguments have to make the corresponding
+change?
+
+Obviously, as the nuclear coordinate changes; the coefficients for the
+determinants and the orbitals will all have to change coordinately:
+\begin{equation}\label{}
+  \delta R \Rightarrow \left\{
+    \begin{array}{ll}
+      \delta A_{K}   &   \\
+      \delta c_{ri}  &
+    \end{array}
+  \right.
+\end{equation}
+
+On the other hand, we note that there's implicit dependence between
+the basis functions and the nuclear coordinates. Because that the
+Gaussian type basis functions or the Slater type of basis functions
+used almost exclusively in quantum chemistry are all atomic type
+functions, that is to say; they are all centered around the nucleus,
+and decays in exponent way away from the nucleus; So it's reasonable
+to rationalize that there's dependence between basis functions and the
+nuclear coordinates. However, how can we construct the mathematical
+dependent relationship between them?
+
+Historically there had been a lot of arguments over this
+issue\cite{meyer:2109, bishop:3515}. As Pulay had
+suggested\cite{Pulay5}, that the basis functions are defined by their
+general functional form which regraded as fixed, and by a set of
+nonlinear parameters $p_{t}$, the most important orbital centers of
+$\chi_{r}$ and the orbital exponents of $\varepsilon_{r}$. It's
+assumed that basis functions depend explicitly on the nuclear
+coordinates of $R_{a}$ through the parameter of $p_{t}$. The further
+relationship will be further discussed in the following content.
+
+Therefore, we can write that:
+\begin{equation}\label{PULAYeq:12}
+  E = E(R_{a}, A_{K}, c_{ri}, p_{t})
+\end{equation}
+
+In the next passage, we will further investigate the dependence by the
+(\ref{PULAYeq:9}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{First derivative of the SCF energy: general expression}
+%
+% 1 consider the general derivatives with respect to the 4 variables
+% 1.1 the R_{a}: only in Hamiltonian, and nuclear-electron term 1.2
+% deal with A_{k} 1.3 density force 1.4 integral force
+%
+%
+As for the first derivative of the MCSCF wave functions, let's further
+investigate the (\ref{PULAYeq:12}). We will discuss the
+differentiation with respect to the $Ra$, $A_{K}$, $c_{ri}$ and
+$p_{t}$; separately:
+\begin{equation}\label{}
+  E(R_{a}, A_{K}, c_{ri}, p_{t}) = \bra{\Phi}\hat{H}\ket{\Phi}
+\end{equation}
+
+For the $R_{a}$, it's only explicitly contained in the Hamiltonian,
+thus the differentiation in terms of the $R_{a}$ only appear in the
+operator of $\hat{H}$. Since that in the Hamiltonian only the
+nuclear-electron term is related to the nuclear coordinates, therefore
+the differentiation can be simply expressed as:
+\begin{align}\label{}
+  \frac{\partial \hat{H}}{\partial R_{a}} = \frac{\partial}{\partial
+    R_{a}}\left[-\sum_{\alpha}\sum_{i}\frac{Z_{\alpha}}{r_{i\alpha}}\right]
+  &=-\sum_{i}\frac{\partial}{\partial
+    R_{a}}\left[\frac{Z_{a}}{r_{ia}}\right] \nonumber \\
+  &=\sum_{i}\frac{Z_{a}}{(r_{ia})^{2}} \nonumber \\
+  &=-Z_{a}\sum_{i}\frac{R_{i} - R_{a}}{(r_{ia})^{3}}
+\end{align}
+Here $r_{i\alpha}$ is defined as the distance between the electron $i$
+and the nuclear $\alpha$: $r_{i\alpha} = R_{\alpha} - R_{i}$.
+Moreover, we can define the Hellmann-Feynman force as:
+\begin{equation}\label{}
+  -f^{HF}_{a} = \left\langle\Phi|\frac{\partial \hat{H}}{\partial
+      R_{a}}|\Phi\right\rangle
+\end{equation}
+We do so is because this expression is similar to the Hellmann-Feynman
+theorem discussed in the quantum mechanics part.
+
+For the differentiation related to the CI coefficients of $A_{K}$,
+according to the (\ref{PULAYeq:11}); we have:
+\begin{align}\label{}
+  \sum_{K}\frac{\partial E}{\partial A_{K}}\frac{\partial
+    A_{K}}{\partial R_{a}} &=2\lambda\sum_{K}A_{K}\frac{\partial
+    A_{K}}{\partial R_{a}} \nonumber \\
+  &=\lambda\frac{\partial}{\partial R_{a}}\sum_{K}
+  \left(A_{K}^{2}\right)\nonumber \\
+  &= 0
+\end{align}
+The result turns out that the variational parameters of $A_{K}$ does
+not enter into the gradients expression, just coincide with the
+conclusion we got from the (\ref{PULAYeq:7}).
+
+For the term of differentiation with respect to the coefficients of
+$c_{xy}$, according to the (\ref{PULAYeq:12}) we can have:
+\begin{equation}\label{PULAYeq:21}
+  \sum_{x}\sum_{y}\frac{\partial E}{\partial c_{xy}}\frac{\partial
+    c_{xy}}{\partial R_{a}} =
+  2\sum_{x}\sum_{y}\sum_{r}S_{xr}c_{ry}\epsilon_{yy}\frac{\partial
+    c_{xy}}{\partial R_{a}}
+\end{equation}
+
+However, such expression is not easy to evaluate. Thus we wish to
+transform it into the matrix expression. Before it, we are going to
+investigate some similar process.
+
+In the expression of (\ref{PULAYeq:19}), we have derived some relation
+between the matrix expression and the sum of matrix elements:
+\begin{align}\label{}
+  Tr(C^{+}SC) &=
+  Tr(I_{n}) \Rightarrow \nonumber \\
+  \sum_{i}\sum_{r}\sum_{s}c_{ri}c_{si}S_{rs} &= n
+\end{align}
+Again, we note that $C^{+}_{ir} = C_{ri}$, and $S_{rs} = \int
+\chi_{r}\chi_{s}d\tau$(all the coefficients and the basis functions
+are assumed to be real).
+
+We can see that if we multiply the $\epsilon_{ii}$ to the left side of
+the above equation (here we have to remember that $\epsilon$ is some
+diagonal matrix, with its diagonal element denotes the orbital
+energy), we can get that:
+\begin{align}\label{PULAYeq:20}
+  \sum_{i}\sum_{r}\sum_{s}\epsilon_{ii}c_{ri}c_{si}S_{rs}
+  &= \sum_{i}\epsilon_{ii} \nonumber \\
+  \sum_{i}\sum_{r}\sum_{s}\epsilon_{ii}c_{ri}S_{rs}c_{si}
+  &= \sum_{i}\epsilon_{ii} \Rightarrow \nonumber \\
+  Tr(\epsilon C^{+}SC) &= Tr(\epsilon I_{n})
+\end{align}
+
+Analog to the above case, we can set up such one-to-one correspondence
+between the elements in the (\ref{PULAYeq:20}) and elements in the
+(\ref{PULAYeq:21}):
+\begin{equation}\label{}
+  \begin{split}
+    \epsilon_{ii} &\Leftrightarrow S_{xr}  \\
+    c_{ri}        &\Leftrightarrow c_{ry}  \\
+    S_{rs}        &\Leftrightarrow \epsilon_{yy}  \\
+    c_{si} &\Leftrightarrow \frac{\partial c_{xy}}{\partial R_{a}}
+  \end{split}
+\end{equation}
+Therefore, we can write the (\ref{PULAYeq:21}) as:
+\begin{equation}\label{}
+  \sum_{x}\sum_{y}\frac{\partial E}{\partial c_{xy}}\frac{\partial
+    c_{xy}}{\partial R_{a}} = 2Tr[SC\epsilon C^{a+}]
+\end{equation}
+Where the $C^{a+} = \frac{\partial C^{+}}{\partial R_{a}}$.
+
+Now by the matrix expression, we can prove that the differentiation
+related to the coefficients of $C$ can be transformed to the
+differentiation related to the matrix density of $S$. For the
+constraint condition related to the $C$, which is defined as:
+\begin{equation}\label{}
+  C^{+}SC = I_{n}
+\end{equation}
+By differentiating the above equation with respect to the $R_{a}$, we
+have:
+\begin{equation}\label{PULAYeq:23}
+  C^{a+}SC + C^{+}SC^{a} = -C^{+}S^{a}C
+\end{equation}
+Multiply the matrix of $\epsilon$ and take the trace of the above
+equation we obtain:
+\begin{multline}\label{}
+  2Tr[\epsilon C^{a+}SC] = 2Tr[C^{a+}SC\epsilon] = 2Tr[SC\epsilon
+  C^{a+}] =\\
+  -Tr[\epsilon C^{+}S^{a}C] = -Tr[C\epsilon C^{+}S^{a}]
+\end{multline}
+Here we have used the identities that $Tr[AB] = Tr[BA]$, and $Tr[C] =
+Tr[C^{+}]$ in the above transformations. Therefore finally we have:
+\begin{equation}\label{PULAYeq:22}
+  \sum_{x}\sum_{y}\frac{\partial E}{\partial c_{xy}}\frac{\partial
+    c_{xy}}{\partial R_{a}} = -Tr[C\epsilon C^{+}S^{a}]
+\end{equation}
+
+(\ref{PULAYeq:22}) shows that we do not need to calculate the
+gradients of the coefficients of $C$ in terms of $R$, instead the
+$S^{a}$ and $C\epsilon C^{+}$ are sufficient. According to
+Pulay\cite{Pulay5}, this step is called the ``key step in deriving the
+analytical form of the gradient''. Because of its connection with the
+change in the density matrix as the nuclear coordinates change, so
+this part is also called ``density force''.
+
+Finally, it's very interesting to compare the (\ref{PULAYeq:22}) with
+the (\ref{PULAYeq:7}). The (\ref{PULAYeq:7}) indicates that the
+variational parameters do not enter into the gradient expression,
+however; the results shows in (\ref{PULAYeq:22}) does not coincide
+with such conclusion. In my opinion, this can be attributed from the
+implicit dependence between the basis functions and the nuclear
+coordinates. As indicated in the (\ref{PULAYeq:23}), the derivatives
+on the $C$ with respect to the $R_{a}$ can be converted in to the
+derivatives on the density; thus if the basis functions are irrelevant
+to the change of nuclear coordinates; then the term on the right side
+of (\ref{PULAYeq:23}) will be zero, and the the derivatives on the $C$
+with respect to the $R_{a}$ will accordingly be zero, too.
+
+Therefore, we can write the $S^{a}$ in the density force as:
+\begin{equation}\label{}
+  S^{a} = \sum_{t}\frac{\partial S}{\partial p_{t}}\frac{\partial
+    p_{t}}{\partial R_{a}}
+\end{equation}
+
+Similarly, since that in the expression of $E$ there's integrals on
+the basis functions, hence we can define the integral force in terms
+of the differentiation on basis sets integral with respect to the
+$R_{a}$:
+\begin{equation}\label{}
+  \sum_{t}\frac{\partial \bra{\Phi}\hat{H}\ket{\Phi}}{\partial p_{t}}
+  \frac{\partial p_{t}}{\partial R_{a}}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{First derivative of the SCF energy: final expression}
+%
+% 1 general expression 2 the concrete expansion for the E 3 apply the
+% general gradient expression to the E 4 Hatree-Fock case, close shell
+%
+So far we can derive the gradient of MCSCF energy, it's simply the
+addition of the four terms discussed in the above section:
+\begin{align}\label{PULAYeq:26}
+  E_{a} &= \frac{\partial E}{\partial R_{a}} + \sum_{K}\frac{\partial
+    E}{\partial A_{K}}\frac{\partial A_{K}}{\partial R_{a}} +
+  \sum_{x}\sum_{y}\frac{\partial E}{\partial c_{xy}}\frac{\partial
+    c_{xy}}{\partial R_{a}} +\sum_{t}\frac{\partial E}{\partial p_{t}}
+  \frac{\partial p_{t}}{\partial R_{a}} \nonumber
+  \\
+  &=\left\langle\Phi|\hat{H}^{a}|\Phi\right\rangle -Tr[C\epsilon
+  C^{+}S^{a}] + \sum_{t}\frac{\partial
+    \bra{\Phi}\hat{H}\ket{\Phi}}{\partial p_{t}} \frac{\partial
+    p_{t}}{\partial R_{a}}
+\end{align}
+
+Now let's expand the total energy of $E$ into practical expression.
+Firstly by spreading the coefficients $A_{K}$ of the determinants, the
+total energy in the (\ref{PULAYeq:24}) can be:
+\begin{equation}\label{}
+  E = \sum_{K}\sum_{L}A_{K}A_{L}H_{KL}
+\end{equation}
+And the $H_{KL}$ is:
+\begin{equation}\label{}
+  H_{KL} =\bra{\Psi_{K}}\hat{H}\ket{\Psi_{L}}
+\end{equation}
+
+On the other hand, if we further expand the $H_{KL}$ with the
+molecular orbitals, it can be expressed as:
+\begin{equation}\label{}
+  H_{KL} = \sum_{ij}q^{ij}_{KL}h_{ij} +
+  \frac{1}{2}\sum_{ijkl}Q^{ijkl}_{KL}(ij|kl)
+\end{equation}
+With
+\begin{align}\label{}
+  h_{ij} &= \int \psi_{i}\hat{h}\psi_{j}d\tau \nonumber \\
+  (ij|kl) &=\int \psi_{i}(1)\psi_{j}(1)\frac{1}{r_{12}}
+  \psi_{k}(2)\psi_{l}(2)d\tau_{1}d\tau_{2}
+\end{align}
+This is some general form between two arbitrary slater determinants.
+According to the Slater rules, for a close shell case if the
+determinants of $K$ and $L$ are identical; then we have $q^{ij}_{KL} =
+\delta_{ij}$, $Q^{ijkl}_{KL} = 4\delta_{ij}\delta_{kl} -
+2\delta_{ik}\delta_{jl}$. Other cases can be derived in the similar
+way.
+
+It's helpful to introduce the ``density matrix'' based on the CI
+coefficients:
+\begin{align}\label{}
+  \gamma_{ij} &= \sum_{KL}q^{ij}_{KL}A_{K}A_{L} \nonumber \\
+  \Gamma_{ijkl} &=\sum_{KL}Q^{ijkl}_{KL}A_{K}A_{L}
+\end{align}
+With such notion, the total energy can be expressed as:
+\begin{equation}\label{}
+  E = \sum_{ij}\gamma_{ij}h_{ij} +
+  \frac{1}{2}\sum_{ijkl}\Gamma_{ijkl}(ij|kl)
+\end{equation}
+
+Finally, the molecular orbitals should be expanded over the basis sets
+functions. By inserting the (\ref{PULAYeq:25}) into the above
+equation, we have:
+\begin{equation}\label{PULAYeq:27}
+  E = \sum_{pq}d_{pq}h_{pq} + \frac{1}{2}\sum_{pqrs}D_{pqrs}(pq|rs)
+\end{equation}
+In which the density matrices are given as:
+\begin{align}\label{}
+  d_{pq} &=\sum_{ij}c_{pi}c_{qj}\gamma_{ij} \nonumber \\
+  D_{pqrs} &=\sum_{ijkl}c_{pi}c_{qj}c_{rk}c_{sl}\Gamma_{ijkl}
+\end{align}
+
+Now we can apply the result in the (\ref{PULAYeq:26}) to the final
+energy expression of (\ref{PULAYeq:27}):
+\begin{equation}\label{PULAYeq:28}
+  E_{a} = \sum_{pq}d_{pq}h^{a}_{pq} +
+  \frac{1}{2}\sum_{pqrs}D_{pqrs}(pq|rs)^{a} -Tr[C\epsilon C^{+}S^{a}]
+\end{equation}
+With
+\begin{align}\label{}
+  h^{a}_{pq} &= \bra{\chi_{p}}\hat{h}^{a}\ket{\chi_{q}} + \sum_{t}
+  \bra{\frac{\partial \chi_{p}}{\partial
+      p_{t}}}\hat{h}\ket{\chi_{q}}\frac{\partial p_{t}}{\partial
+    R_{a}} + \cdots
+  \nonumber \\
+  (pq|rs)^{a} &=\sum_{t} \left\langle\frac{\partial
+      \chi_{p}(1)}{\partial
+      p_{t}}\chi_{q}(1)\left|\frac{1}{r_{12}}\right|
+    \chi_{r}(2)\chi_{s}(2)\right\rangle\frac{\partial p_{t}}{\partial
+    R_{a}} + \cdots
+\end{align}
+Here we note that we have omitted some terms, in which the
+differentiation is on the $\chi_{q}$, $\chi_{r}$ etc.
+
+
+For the close shell Hatree-Fock calculation, its total energy can be
+expressed as:
+\begin{equation}\label{}
+  E = \sum_{pq}2D_{pq}h_{pq} + \sum_{pqrs}D_{pq}D_{rs}\left\{2(pq|rs)
+    -(pr|qs)\right\}
+\end{equation}
+Where the $D_{pq}$ is the density matrix:
+\begin{equation}\label{}
+  D_{pq} = \sum_{i}c_{pi}c_{qi}
+\end{equation}
+
+Therefore, the gradients of the close Hatree-Fock energy can be:
+\begin{multline}\label{}
+  E_{a} =\sum_{pq}2D_{pq}
+  \left\{\bra{\chi_{q}}\hat{h}^{a}\ket{\chi_{q}} +
+    \left\langle\frac{\partial \chi_{p}}{\partial
+        p_{t}}\left|\hat{h}\right|\chi_{q}\right\rangle\frac{\partial
+      p_{t}}{\partial R_{a}} +
+    \left\langle\chi_{p}\left|\hat{h}\right|\frac{\partial
+        \chi_{q}}{\partial p_{t}}\right\rangle\frac{\partial
+      p_{t}}{\partial
+      R_{a}}\right\} \\
+  +\sum_{pqrs}D_{pq}D_{rs}\left\{2(p^{a}q|rs) -(p^{a}r|qs) +
+    2(pq^{a}|rs) -(pr^{a}|qs) \right. \\
+  \left.+ 2(pq|r^{a}s) -(pr|q^{a}s) +
+    2(pq|rs^{a})-(pr|qs^{a})\right\} \\
+  -Tr[C\epsilon C^{+}S^{a}]
+\end{multline}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dependence between the basis sets and the integral force}
+%
+% this section is to illustrate that how to calculate the integral
+% force 1 two ways to tackle this problem 2 the deficiency for the
+% second method 3 how to use the first method
+%
+There are some different ways to define the dependence of the
+non-linear parameter of $p_{t}$ over the nuclear
+coordinates\cite{Pulay5, meyer:2109}:
+\begin{itemize}
+\item Define an arbitrary but physically reasonable and simple
+  functional dependence of $p_{t}$ on the nuclear coordinates and
+  evaluate the integral force with this definition of $\frac{\partial
+    p_{t}}{\partial R_{a}}$.
+\item Optimize the parameter of $p_{t}$ so that to make the energy as
+  a minimum. Since we have to keep the orthogonality between the
+  orbitals, the functional of $W = E - Tr[\epsilon(C^{+}SC- I_{n})]$
+  is selected to make $\frac{\partial W}{\partial p_{t}} = 0$; then we
+  can have:
+  \begin{align}\label{}
+    \frac{\partial E}{\partial p_{t}} &=
+    Tr\left[\epsilon\left(C^{+}\frac{\partial S}{\partial
+          p_{t}}C\right)\right] =Tr\left[C\epsilon C^{+}\frac{\partial
+        S}{\partial p_{t}}\right] \Rightarrow \nonumber \\
+    \sum_{t}\frac{\partial E}{\partial p_{t}}\frac{\partial
+      p_{t}}{\partial R_{a}} &=\sum_{t}Tr\left[C\epsilon
+      C^{+}\frac{\partial S}{\partial p_{t}}\right]\frac{\partial
+      p_{t}}{\partial R_{a}}
+  \end{align}
+  Therefore, the integral force has been transformed into the density
+  force. From the general force expression in (\ref{PULAYeq:26}), we
+  can see that the density force and the integral force have
+  compensated with each other (they have different sign), thus in
+  (\ref{PULAYeq:26}) only the Hellmann-Feynman force left behind.
+\end{itemize}
+
+The second method is mathematically clear, and able to derive a very
+simple expression for evaluating the first derivative for the given
+system. However, the second method requires that the basis sets should
+be highly flexible so that it's parameters can be varied in the SCF
+optimization process. Such basis sets are called ``floating
+functions''\cite{Pulay5}. Unfortunately, it turns out that such method
+will cause too much computational efforts, which is not proportional
+to the benefits it has brought in. Therefore, even this method was
+frequently used at the early stage, now it's seldom used anymore.
+
+On the other hand, the first method to evaluate the integral force has
+been proved to be some good method which is as efficient as the second
+one, but only cause the comparable computation efforts.
+
+This method contains two points:
+\begin{itemize}
+\item the exponents of the basis sets are fixed to constant.
+\item the position vectors in the basis sets are linear combination of
+  the nuclear coordinates:
+  \begin{equation}\label{PULAYeq:29}
+    \chi_{r} = \sum_{a}\mu_{ra}R_{a}
+  \end{equation}
+\end{itemize}
+Since that the basis sets are usually placed on the atom center or the
+bonding line between the nucleus, thus as the $R_{a}$ varies there
+will be at most two non-vanishing terms in the (\ref{PULAYeq:29}). For
+example, if the basis sets are placed on the atom center (all the GTO
+and STO belong to this type); then the integral force can be evaluated
+as:
+\begin{equation}\label{}
+  \sum_{t}\frac{\partial E}{\partial p_{t}}\frac{\partial
+    p_{t}}{\partial R_{a}} =\sum_{t}\frac{\partial E}{\partial
+    p_{t}}\mu_{ra}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

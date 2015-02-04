@@ -1,0 +1,324 @@
+%%
+%% symmetry.tex
+%%
+%% Made by liufenglai
+%% Login   <liufenglai@phoenix>
+%%
+%% Started on  Wed Aug 19 20:37:30 2009 liufenglai
+%% Last update Wed Aug 19 20:40:53 2009 liufenglai
+%%
+%% modified at Aug, 21th; 2009
+%% add the content of Spatial transformation as operator
+%% on quantum state
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{The application of symmetry theory in quantum mechanics}
+%
+% scheme:
+% 1  general discussion to the symmetry theory in quantum mechanics
+% 2  what kinds of symmetry operation have in quantum mechanics?
+%    mainly concentrating on the spatial transformation
+% 3  consider the characters for the operator corresponding the
+%    symmetry operation.
+% 4  concentrating on the conserved property, several examples;
+%    the translation, and the rotation
+% 5  symmetry group for Hamiltonian
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+% why we have this subject here?
+% concept of symmetry operation
+%
+Here in this chapter we are going to give some general discussions
+for the application of symmetry theory in quantum mechanics.
+
+This part of knowledge is very important. In quantum chemistry, as
+we investigate the symmetrical molecules (for example, the water
+molecule, and the carbon dioxide molecule etc.); it's symmetry
+character is able to give us great help in calculation as well as
+understanding its properties. For instance, it's symmetry character
+determines the excitation energy profile, the transition states for
+dipole moment etc.
+
+On the other hand, the symmetry theory in quantum mechanics is also
+very important. Interestingly to see, the application of symmetry
+theory in quantum mechanics is much more important than it's in
+classic mechanics. Why? In quantum mechanics, the particles belongs
+to same type are unable to distinguish with each other so that we
+can them as ``identical particles'' (see chapter
+\ref{identical_particles}), hence; the symmetry operation such as
+rotation etc. will make the quantum particle exactly same with the
+one before rotation. Intuitively to say, such physical phenomenon
+will correspond to some very important physical rules. In the
+following content, we will give some detailed analysis on this
+issue.
+
+Here we can define a concept of ``symmetry operation''. The symmetry
+operation is considered to be some action on some physical objects,
+if the physical objects after the action retain to be same with its
+state before the action, or in other words; the physical objects are
+distinguishable with its initial states. In this circumstance, we
+call the operation is ``symmetry operation''.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Types for symmetry operation}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{General types of symmetry operation}
+%
+%   general types of symmetry operations
+%
+%
+Fundamentally there are several symmetry operations in quantum
+mechanics, they are depending on the basic variables in the quantum
+states. Hence, the symmetry operation can be divided into three
+types; namely the transformation on spatial variables and time
+variables in the quantum state, and the transformation on the spin
+variables in the quantum state.
+
+However, the symmetry transformation for the time variables and spin
+variables are rarely referred in quantum chemistry so that we do not
+intend to give discussion to them (the reader can refer to the
+material in \cite{XingLinKe}). Hence, the discussion will only
+concentrate on the spatial transformation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Spatial transformation}
+%
+% 1  general character for spatial transformation
+% 2  it composes into the group
+%
+The symmetry spatial transformation on one position of $\bm{r}$ can
+be expressed as:
+\begin{equation}\label{SYMMETRY_IN_QMeq:1}
+\bm{r^{'}} = Q\bm{r}
+\end{equation}
+Here the particle in position of $\bm{r}$ is transformed to the
+location of $\bm{r^{'}}$. The ``symmetry'' character requires that
+such transformation should not change the relative position for
+particles, else the physical objects can not be same with the one
+before the transformation.
+
+Such inherent requirement leads to some important result, that the
+spatial symmetry operations are enclosed into some ``group'' for the
+given system.
+
+Mathematically, the forming of group demands several conditions;
+they are:
+\begin{itemize}
+  \item The elements in the group should have enclosed property.
+  That is to say, the operation between the elements within the
+  group should be equal to some element within the same group. Such
+  relation can be express that if $A$, $B$ $\in$ group $\Omega$,
+  then $AB$ must equal to some element of $C$ $\in$ $\Omega$.
+  \item The operation satisfies the associative law. That is to say,
+  $A(BC) = (AB)C$.
+  \item In the group, the unit element of $I$ should always exist.
+  \item Each element has an inverse element: $\forall$ $A$
+  $\in$ $\Omega$, we have $A^{-1}A = AA^{-1} = I$.
+\end{itemize}
+
+Now let's go to analyze each item. Firstly, for any system, there
+always has the ``identical transformation'' which makes the system
+unchanged; it amounts to the unit element of $I$ in the group.
+
+Second, since the symmetry operation does not change the relative
+position that there always has inverse element of the symmetry
+operation to restore the system. Hence the fourth item is satisfied.
+
+third, the consecutive symmetry operations is still some symmetry
+operation. So the second item is satisfied. Furthermore, such
+operations is naturally satisfy the associative law; hence for any
+system the spatial symmetry operations are composed into some group.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Spatial transformation as operator on quantum state}
+%
+% 1  the spatial transformation as operator on quantum state
+%    it's unitary operator, and commute with any physical quantity
+% 2  they compose into the group, homomorphism with the group
+%    of symmetry operation
+%
+Mow let's consider some single particle wave function of
+$\Psi(\bm{r})$, according to the (\ref{SYMMETRY_IN_QMeq:1}) and the
+definition of symmetry operation we have:
+\begin{equation}\label{}
+\Psi^{'}(\bm{r^{'}}) = \Psi^{'}(Q\bm{r}) = \Psi(\bm{r})
+\end{equation}
+Here the transformation of $Q\bm{r}$ lead the wave function of
+$\Psi$ to some new value so that we label it as $\Psi^{'}$.
+
+Such transformation can be also expressed via the operator:
+\begin{equation}\label{SYMMETRY_IN_QMeq:2}
+\Psi^{'}(\bm{r^{'}}) = \hat{D}(Q)\Psi(\bm{r}) =
+\Psi(Q^{-1}\bm{r^{'}})
+\end{equation}
+Now let's give some general discussion to the property of the
+operator of $\hat{D}(Q)$.
+
+First, because of the superposition principle requirement the
+operator of $\hat{D}(Q)$ should be some linear operator:
+\begin{equation}\label{}
+\begin{split}
+  \Psi &= \sum_{i}\Psi_{i}\Rightarrow \\
+  \hat{D}(Q)\Psi &= \sum_{i}\hat{D}(Q)\Psi_{i} \\
+\end{split}
+\end{equation}
+
+Second, Since the symmetry operation $Q$ makes the system exactly
+the same with the one before the symmetry operation, thus for an
+arbitrary quantum state of $\ket{\Psi}$. and $\ket{\Psi^{'}} =
+\hat{D}(Q)\ket{\Psi}$; then we have:
+\begin{equation}\label{SYMMETRY_IN_QMeq:3}
+\begin{split}
+\langle\Psi^{'}|\Psi^{'}\rangle &= \langle\Psi|\Psi\rangle \Rightarrow \\
+\bra{\Psi}\hat{D}^{+}(Q)\hat{D}(Q)\ket{\Psi} &=
+\langle\Psi|\Psi\rangle \\
+\hat{D}^{+}(Q)\hat{D}(Q) &= I
+\end{split}
+\end{equation}
+Here the $\hat{D}^{+}(Q)$ is the adjacent operator of $\hat{D}(Q)$
+which is working on the bra of $\bra{\Psi}$. The relation in the
+(\ref{SYMMETRY_IN_QMeq:3}) indicates that the operator $\hat{D}(Q)$
+is unitary operator.
+
+Furthermore, since the quantum state is unchanged after the symmetry
+operation, hence for any physical quantity of $\hat{A}$, we have:
+\begin{equation}\label{SYMMETRY_IN_QMeq:4}
+\begin{split}
+\langle\Psi^{'}|\hat{A}|\Psi^{'}\rangle &=
+\langle\Psi|\hat{A}|\Psi\rangle \Rightarrow \\
+\bra{\Psi}\hat{D}^{+}(Q)\hat{A}\hat{D}(Q)\ket{\Psi} &=
+\langle\Psi|\hat{A}|\Psi\rangle \\
+\hat{D}^{+}(Q)\hat{A}\hat{D}(Q) &= \hat{A} \\
+\hat{A}\hat{D}(Q) &= \hat{D}(Q)\hat{A} \\
+[\hat{A}, \hat{D}(Q)] &= 0
+\end{split}
+\end{equation}
+Therefore, the $\hat{D}(Q)$ is able to commute with any physical
+quantity; such character is very similar to the unitary
+transformation between the representations ( see
+\ref{transformation_in_representation} for more details).
+
+Importantly, if the $\hat{A}$ is the Hamiltonian operator, then we
+can see that the $\hat{D}(Q)$ can be included into the ``CSCCO'' so
+that it's used to be identified as some ``freedom'' to determine the
+quantum state for the system. In a sense, the symmetry character for
+the quantum system is just one part of it's physical properties.
+
+Finally, we can see that the operator of $\hat{D}(Q)$ also compose
+some group, such group can be express as $\hat{D}(Q), \hat{D}(R),
+\hat{D}(S), \hat{D}(T) \cdots$; where it changes as the symmetry
+operation changes.
+
+Mathematically, we can prove that such group composed by
+$\hat{D}(Q)$ is homomorphism with the group of symmetry operation.
+Such relation can be expressed as:
+\begin{equation}\label{}
+\begin{split}
+  \hat{D}(Q)\hat{D}(R) &= \hat{D}(QR)  \\
+  \hat{D}^{+}(Q) &= \hat{D}^{-1}(Q) = \hat{D}(Q^{-1})
+\end{split}
+\end{equation}
+Hence, we can safely discuss the symmetry character via the group of
+$\hat{D}(Q)$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conserved property for symmetry operation}
+%
+%
+%
+In quantum mechanics, if an operator is commuting with Hamiltonian
+operator, then the physical quantity represented by this operator
+does not vary as time alters. Such character is called ``conserved''
+property.
+
+In the above section, we have demonstrated that the operators
+represented the symmetry operation is able to commute with
+$\hat{H}$, so what's the conserved physical property behind them?
+Next we are going to show several cases around this issue.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Translation invariance with the momentum conservation}
+%
+%
+%
+Suggest that we have some one dimensional system. It makes an
+infinitesimal displacement:
+\begin{equation}\label{}
+x^{'} = x + \delta x
+\end{equation}
+
+Assume that the wave function has the translation invariance. Hence
+according to the (\ref{SYMMETRY_IN_QMeq:2}) we can express such
+invariance relation as:
+\begin{equation}\label{}
+\begin{split}
+   \hat{D}\psi(x + \delta x) &= \psi(x) \Rightarrow \\
+   \hat{D}\psi(x) &= \psi(x - \delta x)
+\end{split}
+\end{equation}
+
+Now let's go to see under such translation invariance what kind of
+physical property is conserved?
+
+By using Taylor expansion, we can expand the $\psi(x - \delta x)$
+as:
+\begin{equation}\label{}
+\begin{split}
+  \psi(x - \delta x) &= \psi(x) -
+\delta x\frac{\partial \psi}{\partial x} + \cdots \\
+    &= e^{-\delta x \frac{\partial}{\partial x}} \psi(x) \\
+    &= exp(\frac{-i \delta x \hat{p}_{x}}{\hbar}) \psi(x)
+\end{split}
+\end{equation}
+Where in position representation, the momentum operator of
+$\hat{p}_{x}$ is expressed as:
+\begin{equation}\label{}
+\hat{p}_{x} = -i\hbar\frac{\partial}{\partial x}
+\end{equation}
+Finally, we can express the operator of $\hat{D}$ as:
+\begin{equation}\label{}
+\hat{D} = exp(\frac{-i \delta x \hat{p}_{x}}{\hbar})
+\end{equation}
+
+It's very interesting to see that the expression for the $\hat{D}$
+is same with the operator $\hat{q}(\xi)$ in the \ref{PRAMReq:2}.
+Therefore, it's easy to know it's unitary character. Now since
+$[\hat{D}, \hat{H}] = 0$, it finally turns out that we have:
+\begin{equation}\label{}
+[\hat{p}_{x}, \hat{H}] = 0
+\end{equation}
+It means the momentum is the conserved physical quantity for such
+translation invariant system.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

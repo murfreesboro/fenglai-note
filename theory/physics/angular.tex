@@ -1,0 +1,721 @@
+%
+% revised at Jan 21th, 2009
+% does not change too much on the content, only get
+% mild modification on the multi-system discussion. However,
+% this part is still not very satisfied. I do not think it
+% has been clearly discussed.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% outline for this chapter:
+%
+%  1  the angular operator; expression, some concrete characters and relation with H
+%  2  the eigen value and eigen function of angular operator
+%  3  angular operator in multi-particle system
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Angular Momentum}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definition of angular momentum operator}
+%
+%  1  the expression of  l, l^{2} and l_{x},l_{y},l_{z},l_{+},l_{z}
+%  2  hermite character
+%  3  commute relationship
+%  4  expression under sphere coordinates
+
+
+In classical mechanics, the angular momentum is defined as
+$\overrightarrow{l} = \overrightarrow{r}\times\overrightarrow{p}$,
+in quantum mechanics; the angular momentum operator is defined as
+$\hei{l} = \hei{r}\times\hei{p}$. So we have:
+\begin{equation}\label{}
+\begin{aligned}
+         \hat{l}_{x} &= y\hat{p}_{z} -  z\hat{p}_{y} \nonumber \\
+         \hat{l}_{y} &= z\hat{p}_{x} -  x\hat{p}_{z} \nonumber \\
+         \hat{l}_{z} &= x\hat{p}_{y} -  y\hat{p}_{x}
+ \end{aligned}
+\end{equation}
+
+First we can prove that \heit{l} is hermite. Actually if the
+$\hat{l}_{x}, \hat{l}_{y}$ and $\hat{l}_{z}$ are hermite, the
+\heit{l} is hermite.
+
+For $\hat{l}_{\alpha} = x_{\beta}\hat{p}_{\gamma} -
+x_{\gamma}\hat{p}_{\beta}$; we have:
+\begin{align}\label{}
+\hat{l}_{\alpha}^{+} &= \{x_{\beta}\hat{p}_{\gamma}\}^{+} -
+\{x_{\gamma}\hat{p}_{\beta}\}^{+} \nonumber \\
+&=\hat{p}_{\gamma}x_{\beta} - \hat{p}_{\beta}x_{\gamma} \nonumber \\
+&=x_{\beta}\hat{p}_{\gamma} - x_{\gamma}\hat{p}_{\beta} \nonumber \\
+&=\hat{l}_{\alpha}
+\end{align}
+Here we note that $[x_{\alpha}, p_{\beta}] =
+-i\hbar\delta_{\alpha\beta}$. Therefore, the \heit{l} is hermite.
+
+Then we concentrate on the commutative relationship between
+$\hat{l}_{\alpha}$ and $x_{\beta}$:
+\begin{align}\label{}
+[\hat{l}_{x}, x] &= 0  &  [\hat{l}_{x}, y] &= i\hbar z  &
+[\hat{l}_{x}, z] &= -i\hbar y  \nonumber \\
+[\hat{l}_{y}, x] &= -i\hbar z  &  [\hat{l}_{y}, y] &= 0  &
+[\hat{l}_{y}, z] &=  i\hbar x  \nonumber \\
+[\hat{l}_{z}, x] &= i\hbar y  &  [\hat{l}_{z}, y] &= -i\hbar x  &
+[\hat{l}_{z}, z] &= 0  \nonumber \\
+\end{align}
+In short, we use the formula below to totally express the above
+equations:
+\begin{equation}\label{}
+[\hat{l}_{\alpha}, x_{\beta}] =
+i\hbar\varepsilon_{\alpha\beta\gamma} x_{\gamma}
+\end{equation}
+$\varepsilon_{\alpha\beta\gamma}$ is a three rank antisymmetric unit
+tensor, within it if two index number are changed from the order of
+$\alpha, \beta, \gamma$ it equals to -1; if changed twice it equals
+to $+1$. Thus this is similar to the sign changing in the
+determinant.
+
+For example, for the tensor we have:
+\begin{equation}\label{}
+\varepsilon_{\alpha\beta\gamma} = 1, \quad
+\varepsilon_{\alpha\gamma\beta} =\varepsilon_{\beta\alpha\gamma}
+=\varepsilon_{\gamma\beta\alpha}= -1, \quad
+\varepsilon_{\gamma\alpha\beta}= 1
+\end{equation}
+
+For the commutation between $\hat{l}_{\alpha}$ and
+$\hat{p}_{\beta}$; we also have similar expressions:
+\begin{align}\label{}
+[\hat{l}_{\alpha}, \hat{p}_{\beta}] &=
+i\hbar\varepsilon_{\alpha\beta\gamma} \hat{p}_{\gamma} \nonumber \\
+[\hat{l}_{\alpha}, \hat{l}_{\beta}] &=
+i\hbar\varepsilon_{\alpha\beta\gamma} \hat{l}_{\gamma}
+\end{align}
+
+For the expression above, we can see that $\hat{l}_{x}, \hat{l}_{y},
+\hat{l}_{z}$ can not commuted with each other, thus they can not
+share the same eigen states. This is an important extinguishment
+between angular momentum and momentum, where the $\hat{p}_{x},
+\hat{p}_{y}, \hat{p}_{z}$ could commute with each other.
+
+On the other hand, we can see that for some specific systems (which
+includes all the quantum system in quantum chemistry, so that's
+enough) the \heit{l} commutes with the $\hat{H}$. Since that we can
+write the $\hat{H}$ as the sum of $\hat{T}$ and $\hat{V}(r)$; they
+can be taken into account respectively.
+\begin{align}\label{}
+[\hat{V}(r), \hei{l}] &= [\hat{V}(r), \hei{r}\times\hei{p}] \nonumber \\
+&=[\hat{V}(r), \hei{r}]\times\hei{p} + \hei{r}\times[\hat{V}(r), \hei{p}] \nonumber \\
+&=\hei{r}\times[\hat{V}(r), \hei{p}]
+\end{align}
+If $\hat{V}(r)$ is some polynomial function of $\hat{R}$ (such as in
+molecule Hamiltonian, the $\hat{V}(r) = \hat{R}^{-1}$), the
+$[\hat{V}(r), \hei{p}]$ is some function of $\hat{R}$ and $\hei{r}$
+according to the (\ref{OPERATORMOREeq:8}); thus this term is $0$.
+
+On the other hand, for the kinetic operator of $\hat{T}$:
+\begin{align}\label{}
+[\hat{T}, \hei{l}] &= [\hat{T}, \hei{r}\times\hei{p}] \nonumber \\
+&=[\hat{T}, \hei{r}]\times\hei{p} + \hei{r}\times[\hat{T}, \hei{p}] \nonumber \\
+&=[\hat{T}, \hei{r}]\times\hei{p}
+\end{align}
+From the (\ref{OPERATORMOREeq:9}) we have known that $[\hei{r},
+\hei{p}\cdot\hei{p}] =-2i\hbar\hei{p}$, thus this term is $0$.
+
+Consequently, the angular momentum is able to commute with the
+$\hat{H}$.
+
+On the other hand, it's easy to get this only from physical guess.
+Since the angular momentum describes the rotation states of the
+quantum particle, while if the rotation does not affect the overall
+energy state, it can be expected that the Hamiltonian operator
+commutes with the angular momentum operator.
+
+ Similar to the kinetic operator, we can define the operator
+of the square of the modulus of the angular momentum vector, that
+is:
+\begin{equation}\label{}
+\hat{l}^{2} = \hei{l}\cdot\hei{l} = \hat{l}^{2}_{x} +
+\hat{l}^{2}_{y} + \hat{l}^{2}_{z}
+\end{equation}
+
+It's easy to see that $\hat{l}^{2}$ is a hermite operator. For the
+$\hat{l}^{2}$, it can prove that:
+\begin{equation}\label{}
+[\hat{l}^{2}, \hat{l}_{\alpha}] = 0 \quad \text{$\alpha = x, y, z$}
+\end{equation}
+Since for any arbitrary $\alpha$ and $\beta$, we have:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  [\hat{l}_{\alpha}, \hat{l}^{2}_{\beta}] &=&  \hat{l}_{\beta}[\hat{l}_{\alpha}, \hat{l}_{\beta}] + [\hat{l}_{\alpha},
+  \hat{l}_{\beta}]\hat{l}_{\beta} \nonumber \\
+   &=& i\hbar\varepsilon_{\alpha\beta\gamma}\hat{l}_{\beta} \hat{l}_{\gamma}  + i\hbar
+   \varepsilon_{\alpha\beta\gamma}\hat{l}_{\gamma}\hat{l}_{\beta} \nonumber \\
+\end{eqnarray}
+If we have $\alpha = x$, as the $\beta = y, z$, it has:
+\begin{align}\label{}
+  [\hat{l}_{x}, \hat{l}^{2}_{y}] &= i\hbar\hat{l}_{y} \hat{l}_{z}  + i\hbar
+   \hat{l}_{z}\hat{l}_{y} \nonumber \\
+  [\hat{l}_{x}, \hat{l}^{2}_{z}] &= -i\hbar\hat{l}_{z} \hat{l}_{y}  - i\hbar
+   \hat{l}_{y}\hat{l}_{z}
+\end{align}
+
+Therefore, we can know that:
+\begin{equation}\label{}
+[\hat{l}_{x}, \hat{l}^{2}] = [\hat{l}_{x}, \hat{l}^{2}_{y}] +
+[\hat{l}_{x}, \hat{l}^{2}_{z}] + [\hat{l}_{x}, \hat{l}^{2}_{x}] = 0
+\end{equation}
+
+Similarly, we know that $[\hat{l}^{2}, \hat{l}_{\alpha}] = 0$.
+
+on the other hand, it can see that if $[\hei{l}, \hat{H}] = 0$, the
+$[\hat{l}^{2}, \hat{H}] = 0$.
+\begin{align}\label{}
+[\hat{H}, \hat{l}^{2}] &= [\hat{H}, \hei{l}^{2}] \nonumber \\
+&=[\hat{H}, \hei{l}]\cdot\hei{l} + \hei{l}\cdot[\hat{H}, \hei{l}]
+\end{align}
+
+Thus, within the quantum chemistry; we can arrive two important
+conclusions:
+\begin{align}\label{}
+[\hat{H}, \hei{l}] &= 0 \nonumber \\
+[\hat{H}, \hat{l}^{2}] &= 0
+\end{align}
+
+Next, let's introduce another two operators based on the $\hei{l}$:
+\begin{align}\label{}
+\hat{l}_{+} &= \hat{l}_{x} + i\hat{l}_{y}  \nonumber \\
+\hat{l}_{-} &= \hat{l}_{x} - i\hat{l}_{y}
+\end{align}
+For both of the new operators, it's easy to prove the commutative
+relationship for them:
+\begin{equation}\label{}
+[\hat{l}_{+}, \hat{l}_{-}] = 2\hbar\hat{l}_{z}, \quad [\hat{l}_{z},
+\hat{l}_{+}] = \hbar\hat{l}_{+}, \quad [\hat{l}_{z}, \hat{l}_{-}] =
+-\hbar\hat{l}_{-}
+\end{equation}
+
+Furthermore, we can show that:
+\begin{equation}\label{ANGULAReq:3}
+\hat{l}^{2} = \hat{l}_{+}\hat{l}_{-} + \hat{l}^{2}_{z} - \hat{l}_{z}
+=\hat{l}_{-}\hat{l}_{+} + \hat{l}^{2}_{z} + \hat{l}_{z}
+\end{equation}
+
+In the following content, we can see that why we introduce both of
+the two new operators.
+
+Lastly, since that we always use the spheral coordinates to
+represent the angular momentum operator, its form is listed below:
+\begin{align}\label{ANGULAReq:1}
+\hat{l}_{x} &=i\hbar\left\{\sin\varphi \frac{\partial}{\partial
+\theta} + \cot\theta\cos\varphi \frac{\partial}{\partial\varphi} \right\}       \nonumber \\
+\hat{l}_{y} &=i\hbar\left\{-\cos\varphi \frac{\partial}{\partial
+\theta} + \cot\theta\sin\varphi \frac{\partial}{\partial\varphi}
+\right\} \nonumber \\
+\hat{l}_{z} &= -i\hbar
+\frac{\partial}{\partial\varphi}
+\end{align}
+
+\begin{equation}\label{ANGULAReq:2}
+\hat{l}^{2}
+=-\hbar^{2}\left\{\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
+\left(\sin\theta\frac{\partial}{\partial\theta}\right)
++\frac{1}{\sin^{2}\theta}\frac{\partial^{2}}{\partial\varphi^{2}}
+\right\}
+\end{equation}
+
+To get the result has to change from the Cartesian coordinate to the
+spheral coordinates. Thus we have to use some basic differential
+relationships. For the $\frac{\partial}{\partial x}$, we have:
+\begin{equation}\label{}
+\frac{\partial}{\partial x} = \frac{\partial}{\partial
+r}\frac{\partial r}{\partial x} +
+\frac{\partial}{\partial\theta}\frac{\partial\theta}{\partial x} +
+\frac{\partial}{\partial\varphi}\frac{\partial\varphi}{\partial x}
+\end{equation}
+The $\frac{\partial}{\partial y}$ and $\frac{\partial}{\partial z}$
+are similar to the expression above. By inserting the above
+transformation into the $\hat{l}_{\alpha}$, we can immediately get
+the (\ref{ANGULAReq:1}).
+
+However, if we adopt the same procedure to deduce the
+$\frac{\partial^{2}}{\partial x^{2}}$, it will be very complicated.
+However, we can use the $\hat{l}_{+}$ and $\hat{l}_{+}$ to avoid
+such trouble.
+
+Directly from the (\ref{ANGULAReq:1}), we can get the expression for
+the $\hat{l}_{+}$ and $\hat{l}_{+}$:
+\begin{equation}\label{}
+\hat{l}_{\pm} = e^{\pm i\varphi}\left\{\pm \frac{\partial}{\partial
+\theta} + i\cot\theta \frac{\partial}{\partial\varphi} \right\}
+\end{equation}
+Thus from the (\ref{ANGULAReq:3}) we can easily get the expression
+for the $\hat{l}^{2}$ as shown in (\ref{ANGULAReq:2}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Eigen value of angular momentum operator}
+%
+% eigen value for l^{2} and l_{z}
+% since the CSCCO has pickup the l^{2} and l_{z}, thus it's
+%  impossible to discuss the the eigen value for l_{x} and l_{y}.
+%  but we can talk about their matrix elements
+%
+Here in this section we begin to concentrate on the eigen value of
+the angular momentum operator. There has some classical methods
+tackle down this problem, so we will follow these methods.
+
+First, let's concentrate on the eigen value of $\hat{l}_{z}$. Since
+that $\hat{l}_{z}$ has a simple expression which is shown in
+(\ref{ANGULAReq:1}), also the $\hat{l}_{z}$ can commute with
+$\hat{H}$; it's picked up into the CSCCO for $\hat{H}$. Thus its
+eigen function is:
+\begin{align}\label{}
+-i\hbar\frac{\partial \Psi}{\partial\varphi} &= l_{z}\Psi
+\Rightarrow
+\nonumber \\
+\frac{\partial \ln\Psi}{\partial\varphi} &= \frac{il_{z}}{\hbar}
+\Rightarrow
+\nonumber \\
+\Psi &= C exp(il_{z}\varphi/\hbar)
+\end{align}
+
+Now we have to determine the $l_{z}$ and $C$. $C$ can be fixed by
+normalization condition; yet for the $l_{z}$, to ensure that
+$\hat{l}_{z}$ is a hermite operator (see the book by JinYan
+Zeng(Volume I)\cite{ZengJinYan} to get more details), the eigen
+state of $\Psi$ has to satisfy: $\Psi(\varphi + 2\pi) =
+\Psi(\varphi)$. Therefore the $l_{z}$ has to be:
+\begin{equation}\label{}
+\frac{l_{z}}{\hbar} = m \quad (m=0, \pm 1, \pm 2, \cdots)
+\end{equation}
+Thus the eigen state for the $\hat{l}_{z}$ is:
+\begin{align}\label{ANGULAReq:6}
+\Psi &= C exp(im\varphi) \nonumber \\
+&= \frac{1}{\sqrt{2 \pi}} exp(im\varphi)
+\end{align}
+
+Here there's something so interesting that need to elucidate.
+Although judging from the normal experience that there should has no
+difference between $\hat{l}_{x}$, $\hat{l}_{y}$ and $\hat{l}_{z}$;
+therefore the $\hat{l}_{y}$ and $\hat{l}_{x}$ should be able to get
+their corresponding eigen states. However, there's an important
+point we have previously made; that the $\hat{l}_{x}$, $\hat{l}_{y}$
+and $\hat{l}_{z}$ can not commute with each other. Thus, if the
+$\hat{l}_{z}$ is picked out into the complete set of dynamic
+operators for $\hat{H}$, we can not use this Hilbert space to
+compose the eigen states for $\hat{l}_{y}$ and $\hat{l}_{z}$.
+
+Secondly, we are going to turn to the $\hat{l}^{2}$. Since that
+$\hat{l}^{2}$ also commutes with $\hat{H}$, so it's selected into
+the complete set of dynamic operators for $\hat{H}$, just like
+$\hat{l}_{z}$.
+
+However, because the expression of the $\hat{l}^{2}$ (see the
+\ref{ANGULAReq:2}) is very complicated, it's hard to get the eigen
+values directly from solving the eigen function like the procedure
+done to the $\hat{l}_{z}$. Nevertheless, from the expression of
+(\ref{ANGULAReq:3}), we can see that $\hat{l}^{2}$ can de directly
+related to the $\hat{l}_{z}$ and $\hat{l}_{z}^{2}$, while their
+eigen values are easily gained. Therefore, can we find out a way to
+achieve the eigen value but avoid to solve the eigen function of
+$\hat{l}^{2}$?
+
+Here, to get through the answer we must use the operator of
+$\hat{l}_{+}$ and $\hat{l}_{-}$, and that's the reason why we
+introduce both of the two operators.
+
+Now let's go to see more details for $\hat{l}_{+}$ and
+$\hat{l}_{-}$. First we suggest some wave functions of $\psi_{m}$
+whose eigen values for $\hat{l}_{z}$ are labeled as $m$:
+\begin{align}\label{}
+\hat{l}_{z}\hat{l}_{+} &= \hat{l}_{+}\hat{l}_{z} + \hbar\hat{l}_{+}
+\Rightarrow \nonumber \\
+\hat{l}_{z}\hat{l}_{+}\psi_{m} &= (\hat{l}_{+}\hat{l}_{z} +
+\hbar\hat{l}_{+})\psi_{m} \Rightarrow \nonumber \\
+&=m\hbar\hat{l}_{+}\psi_{m} + \hbar\hat{l}_{+}\psi_{m} \nonumber \\
+&=(m+1)\hbar\hat{l}_{+}\psi_{m}
+\end{align}
+Thus we can see that $\hat{l}_{+}\psi_{m}$ is also some eigen
+function for the $\hat{l}_{z}$, while whose eigen value is
+$(m+1)\hbar$. That means, after the operation on the $\hat{l}_{+}$,
+the $\hat{l}_{+}\psi_{m}$ increase its $m$ value by $1$.
+
+the $\hat{l}_{-}$ has likewise the same procedure to reach the
+result:
+\begin{equation}\label{}
+\hat{l}_{z}\hat{l}_{-}\psi_{m} = (m-1)\hbar\hat{l}_{-}\psi_{m}
+\end{equation}
+Thus the $\hat{l}_{+}\psi_{m}$ decrease its $m$ value by $1$.
+
+For this reason, the $\hat{l}_{+}$ is called ``up operator'', and
+the $\hat{l}_{-}$ is called ``down operator''.
+
+Now let's go to see the eigen values for the $\hat{l}^{2}$. Since
+that $\hat{l}_{z}$ possesses no speciality among $\hat{l}_{x}$,
+$\hat{l}_{y}$ and $\hat{l}_{z}$; thus for a common system, different
+$l_{z}$ value for $\hat{l}_{z}$ may correspond to the same eigen
+value for $\hat{l}^{2}$. This is similar to the case of the three
+dimensional wave function in the cubic box (see the previous
+chapter), where whose wave function is:
+\begin{align}\label{}
+\Psi (x,y,z) &=
+\frac{\sqrt{8}}{l^{3}}\sin\left(\frac{n_{1}\pi}{l}x\right)
+\sin\left(\frac{n_{2}\pi}{l}y\right)
+\sin\left(\frac{n_{3}\pi}{l}z\right) \nonumber \\
+E (n_{1},n_{2},n_{3}) &=
+\frac{\pi^{2}\hbar^{2}}{2ml^{2}}(n_{1}^{2}+n_{2}^{2}+n_{3}^{2})
+\end{align}
+In this case there's also no speciality between x, y and z, so for
+the $n^{2} = n_{1}^{2}+n_{2}^{2}+n_{3}^{2}$; different $n_{i}$ may
+correspond to the same $n^{2}$.
+
+Now let's consider a system, whose wave function are the eigen
+functions both for the $\hat{l}_{z}$ and $\hat{l}^{2}$.  Now we can
+see that if the eigen value for the $\hat{l}^{2}$ is fixed up, there
+must have maximum number of $\overline{m}$: $l_{z} =
+\overline{m}\hbar$. Because that $\hat{l}^{2}-\hat{l}^{2}_{z} =
+\hat{l}^{2}_{y} + \hat{l}^{2}_{x}$, the eigen values for the
+$\hat{l}^{2}$ should always larger than (or at least equal to)
+$\overline{m}^{2}$. Similarly there must have a minimum number of
+$\underline{m}$, $l_{z} = \underline{m}\hbar$. Here, we do not know
+whether they equal to each other, but actually their absolute value
+should equal to each other; since that both of the two directions
+for the $\hat{l}_{z}$ are identical.
+
+Suggest that as the eigen value of $\hat{l}^{2}$ is fixed up to
+$l^{2}$, and the eigen state of $\psi$ gives $\overline{m}$
+($\hat{l}_{z}\psi = \overline{m}\hbar\psi$); here we have:
+\begin{align}\label{}
+\hat{l}_{+}\psi &= 0 \rightarrow \nonumber \\
+\hat{l}_{-}\hat{l}_{+}\psi
+&=(\hat{l}^{2}-\hat{l}_{z}^{2}-\hat{l}_{z})\psi= 0 \rightarrow \nonumber \\
+l^{2} &= \overline{m}(\overline{m}+1)
+\end{align}
+
+Similarly for the $\psi^{'}$ which gives $\underline{m}$
+($\hat{l}_{z}\psi^{'} = \underline{m}\hbar\psi^{'}$); we have:
+\begin{align}\label{}
+\hat{l}_{-}\psi^{'} &= 0 \rightarrow \nonumber \\
+\hat{l}_{+}\hat{l}_{-}\psi^{'}
+&=(\hat{l}^{2}-\hat{l}_{z}^{2}+\hat{l}_{z})\psi^{'}= 0 \rightarrow \nonumber \\
+l^{2} &= \underline{m}(\underline{m}-1)
+\end{align}
+
+Thus we have $\overline{m}(\overline{m}+1) =
+\underline{m}(\underline{m}-1)$. This yields that $\overline{m} =-
+\underline{m}$, another solution is abandoned.
+
+Anyway, for a specific eigen value of $l$, $l^{2} =
+\overline{m}(\overline{m}+1)$; the eigen function corresponding to
+the $\hat{l}_{z}$ are $2\overline{m}+1$ folds of degenerate; their
+$m$ can adopt $m=-\overline{m}, -\overline{m}+1, \cdots, 0, 1,
+\cdots, \overline{m}$.
+
+Next let's consider the matrix elements for the $\hat{l}_{x}$ and
+$\hat{l}_{y}$ for the same system, where we choose the
+$(\hat{H},\hat{l}_{z})$ as the CSCCO. Therefore, the wave functions
+$\psi_{1}, \psi_{2}, \cdots, \psi_{n}$ are the eigen vectors for
+them $(\hat{H},\hat{l}_{z})$.
+
+First for the different $\psi$ and $\psi^{'}$, which hold different
+energy level, since $\hat{l}_{x}$ commuted with the Hamiltonian
+operator, it's easy to see that $\bra{\psi^{'}}\hat{l}_{x}\ket{\psi}
+= 0$ ($\hat{l}_{y}$ is same).
+\begin{align}\label{}
+\bra{\psi^{'}}\hat{H}\hat{l}_{x}\ket{\psi} &=
+\bra{\psi^{'}}\hat{l}_{x}\hat{H}\ket{\psi} \nonumber \\
+&=E\bra{\psi^{'}}\hat{l}_{x}\ket{\psi}
+\end{align}
+While on the other hand, we have:
+\begin{align}\label{}
+\bra{\psi^{'}}\hat{H}\hat{l}_{x}\ket{\psi} &=
+\bra{\psi}\hat{H}\hat{l}_{x}\ket{\psi^{'}} \nonumber \\
+&=\bra{\psi}\hat{l}_{x}\hat{H}\ket{\psi^{'}} \nonumber \\
+&=E^{'}\bra{\psi}\hat{l}_{x}\ket{\psi^{'}} \nonumber \\
+&=E^{'}\bra{\psi^{'}}\hat{l}_{x}\ket{\psi}
+\end{align}
+Thus we can have that :
+\begin{equation}\label{}
+(E-E^{'})\bra{\psi^{'}}\hat{l}_{x}\ket{\psi} = 0 \Rightarrow
+\bra{\psi^{'}}\hat{l}_{x}\ket{\psi} = 0
+\end{equation}
+
+Hence, we will consider the wave functions which occupy the same
+energy level and have different z directional angular momentum
+($l_{z}(m)$ is different).
+
+Now we will achieve this through $\hat{l}_{+}$ and $\hat{l}_{-}$.
+Since $\hat{l}_{+}\ket{\psi_{m}} = c\ket{\psi_{m+1}}$, and
+$\hat{l}_{-}\ket{\psi_{m}} = c\ket{\psi_{m-1}}$; only these
+$\bra{\psi_{m}}\hat{l}_{+}\ket{\psi_{m-1}}$ and
+$\bra{\psi_{m}}\hat{l}_{-}\ket{\psi_{m+1}}$ do not equal to $0$.
+
+So far we have:
+\begin{equation}\label{}
+\hat{l}^{2} = \hat{l}_{+}\hat{l}_{-} + \hat{l}^{2}_{z} - \hat{l}_{z}
+\end{equation}
+we can multiply the operator with $\ket{\psi_{m}}$, whose eigen
+value for $\hat{l}^{2}$ is $l(l+1)$, and $l_{z}$ is $m$; we
+integrate it:
+\begin{align}\label{}
+\bra{\psi_{m}}\hat{l}^{2}\ket{\psi_{m}} &= \sum_{i}^{n}
+\bra{\psi_{m}}\hat{l}_{+}\ket{\psi_{i}}
+\bra{\psi_{i}}\hat{l}_{-}\ket{\psi_{m}} +
+\bra{\psi_{m}}\hat{l}^{2}_{z}\ket{\psi_{m}} -
+\bra{\psi_{m}}\hat{l}_{z}\ket{\psi_{m}} \nonumber \\
+l(l+1) &= \bra{\psi_{m}}\hat{l}_{+}\ket{\psi_{m-1}}
+\bra{\psi_{m-1}}\hat{l}_{-}\ket{\psi_{m}} + m^{2} -m
+\end{align}
+Since we have $\hat{l}_{+} = \hat{l}_{-}^{+}$, we have:
+\begin{equation}\label{}
+\bra{\psi_{m}}\hat{l}_{+}\ket{\psi_{m-1}} =
+\bra{\psi_{m-1}}\hat{l}_{-}\ket{\psi_{m}}^{*}
+\end{equation}
+Hence we have:
+\begin{equation}\label{}
+|\bra{\psi_{m}}\hat{l}_{+}\ket{\psi_{m-1}}|^{2} = l(l+1)-m^{2}+m
+\end{equation}
+$\bra{\psi_{m}}\hat{l}_{+}\ket{\psi_{m-1}}= \sqrt{(l+m)(l-m+1)}$.
+
+Since that $\hat{l}_{+} = \hat{l}_{x} + i\hat{l}_{y}$, and
+$\hat{l}_{-} = \hat{l}_{x} - i\hat{l}_{y}$; now we can get:
+\begin{align}\label{}
+\bra{\psi_{m}}\hat{l}_{x}\ket{\psi_{m-1}} &=
+\frac{1}{2}\sqrt{(l+m)(l-m+1)} \nonumber \\
+\bra{\psi_{m}}\hat{l}_{y}\ket{\psi_{m-1}} &=
+-\frac{1}{2}i\sqrt{(l+m)(l-m+1)}
+\end{align}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Eigen functions for the $\hat{l}_{z}$ and $\hat{l}^{2}$}
+%
+% Eigen functions for the $\hat{l}_{z}$ and $\hat{l}^{2}$
+%
+%
+%
+
+In the last section, the eigen functions for the $\hat{l}_{z}$ has
+been easily got:
+\begin{align}\label{}
+-i\hbar\frac{\partial \Psi}{\partial\varphi} &= l_{z}\Psi
+\Rightarrow \nonumber
+\\
+\Psi &= C exp(il_{z}\varphi/\hbar)
+\end{align}
+Now we begin to derive the eigen function for the $\hat{l}^{2}$.
+
+For the $\hat{l}^{2}$(whose expression under sphere coordinate can
+see \ref{ANGULAReq:2}), we can safely presume that it's eigen
+function is $Y(\theta, \varphi)$($\hat{l}^{2}$ is only function of
+$\theta$ and  $\varphi$); furthermore, the $Y(\theta, \varphi)$ can
+be split into:
+\begin{equation}\label{ANGULAReq:5}
+Y(\theta, \varphi) = \Theta (\theta)\Phi_{m}(\varphi)
+\end{equation}
+We can have this because judging from (\ref{ANGULAReq:2}) the
+variables of $\theta$ and  $\varphi$ can be separated from each
+other. Here the $\Phi_{m}(\varphi)$ adopts the form in
+(\ref{ANGULAReq:6}).
+
+Moreover, suggest we have such the eigen functions for the
+$\hat{l}^{2}$:
+\begin{equation}\label{ANGULAReq:4}
+\hat{l}^{2}Y(\theta, \varphi) = \lambda \hbar^{2}Y(\theta, \varphi)
+\end{equation}
+Now by bring the sphere coordinate expression of the $\hat{l}^{2}$
+and (\ref{ANGULAReq:5}) into (\ref{ANGULAReq:4}), we can have:
+\begin{align}\label{}
+-\Phi_{m}\times\frac{\hbar^{2}}{\sin\theta}\frac{d}{d
+\theta}\left(\sin\theta\frac{d\Theta}{d \theta}\right) +
+\frac{\Theta}{\sin^{2}\theta}(\hat{l}^{2}_{z}\Phi_{m}) &=
+\lambda \hbar^{2}\Theta \Phi_{m} \nonumber \\
+-\Phi_{m}\times\frac{\hbar^{2}}{\sin\theta}\frac{d}{d
+\theta}\left(\sin\theta\frac{d\Theta}{d \theta}\right) +
+\frac{\Theta}{\sin^{2}\theta}m^{2}\hbar^{2}\Phi_{m} &=
+\lambda \hbar^{2}\Theta \Phi_{m} \nonumber \\
+\frac{1}{\sin\theta}\frac{d}{d
+\theta}\left(\sin\theta\frac{d\Theta}{d \theta}\right) +
+\left(\lambda - \frac{m^{2}}{\sin^{2}\theta}\right)\Theta &= 0
+\end{align}
+
+However, this function is not easy to gain its solution. So we make
+$\xi = \cos \theta$ (here we have $0\leq\theta\leq\pi$). Thus:
+\begin{align}\label{}
+\frac{d\Theta}{d \xi} = -\frac{1}{\sin \theta}\frac{d\Theta}{d
+\theta}
+\end{align}
+Then we have:
+\begin{align}\label{}
+\frac{1}{\sin\theta}\frac{d}{d
+\theta}\left(-\sin^{2}\theta\frac{d\Theta}{d \xi}\right) +
+\left(\lambda - \frac{m^{2}}{(1-\xi^{2})}\right)\Theta &= 0
+\nonumber \\
+\frac{d}{d \xi}\left((1-\xi^{2})\frac{d\Theta}{d \xi}\right) +
+\left(\lambda -
+\frac{m^{2}}{(1-\xi^{2})}\right)\Theta &= 0 \nonumber \\
+(1-\xi^{2})\frac{d^{2}\Theta}{d \xi^{2}} - 2\xi\frac{d\Theta}{d \xi}
++ \left(\lambda - \frac{m^{2}}{(1-\xi^{2})}\right)\Theta &= 0
+\end{align}
+
+This is the associated Legendre function. Under the condition of
+$0\leq\theta\leq\pi$, the function has only one meaningful physical
+solution, and this solution requires that $\lambda = l(l+1)$ and
+$|m| \leq l$; here the $\lambda$ is the eigen value for the
+$\hat{l}^{2}$, which is in agreement with the answer we found out in
+the last section.
+
+In this case, the solution is a polynomial:
+\begin{equation}\label{}
+P^{m}_{l}(\cos\theta) \quad |m| \leq l
+\end{equation}
+By normalized condition, we can finally get the expression for the
+$\Theta$:
+\begin{equation}\label{}
+\Theta(\theta) =
+(-1)^{m}\sqrt{\frac{2l+1}{2}\frac{(l-m)!}{(l+m)!}}P^{m}_{l}(\cos\theta)
+\end{equation}
+
+Therefore, the eigen function for the $\hat{l}^{2}$ is:
+\begin{equation}\label{}
+Y^{m}_{l}(\theta, \varphi) =
+(-1)^{m}\sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}P^{m}_{l}(\cos\theta)e^{im\pi}
+\end{equation}
+
+Here we note that different $Y^{m}_{l}$ are orthogonal with each
+other:
+\begin{equation}\label{}
+\int_{0}^{2\pi}\int_{0}^{\pi}Y^{m^{'}}_{l^{'}}Y^{m}_{l}\sin\theta
+d\theta d\varphi = \delta_{l^{'}l}\delta_{m^{'}m}
+\end{equation}
+This is important in understanding the orthogonal characters of
+concrete wave functions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{ Coupling between two angular momentums}
+%
+% 1  to choose the L^{2} and L_z into the CSCCO
+%    because they can commute with the \hat{H}
+%
+%
+Now let's consider a system, which is composed by two subsystems. If
+there's no interactions between the two subsystems, the total
+angular momentum $\hat{L}$ for the whole system will simply be the
+addition between the two subsystems; each subsystem is a fully
+conserved system:
+\begin{equation}\label{ANGULAReq:7}
+\hat{\mathbf{L}} = \hat{\mathbf{L}}_{1} + \hat{\mathbf{L}}_{2}
+\end{equation}
+
+On the other hand, if there exists some interactions between the two
+subsystems, the (\ref{ANGULAReq:7}) can not be applied anymore;
+that's because the angular momentum for each subsystem is not
+conserved anymore.
+
+However, the weight of $\hat{\mathbf{L}}$ on each specific
+direction, namely the $\hat{\mathbf{L}}_{x}$, $\hat{\mathbf{L}}_{y}$
+and $\hat{\mathbf{L}}_{z}$ can be still made certain:
+\begin{align}\label{}
+\hat{\mathbf{L}}_{x} &= \hat{\mathbf{L}}_{1x} +
+\hat{\mathbf{L}}_{2x} \nonumber \\
+\hat{\mathbf{L}}_{y} &= \hat{\mathbf{L}}_{1y} +
+\hat{\mathbf{L}}_{2y} \nonumber \\
+\hat{\mathbf{L}}_{z} &= \hat{\mathbf{L}}_{1z} +
+\hat{\mathbf{L}}_{2z}
+\end{align}
+This relation is obvious because the angular momentum operator is
+the vector operator, so it obeys the rules for the vectors. For this
+reason, we can select the $\hat{\mathbf{L}}_{z}$ into the CSCCO.
+
+On the other hand, even though the total angular momentum is not the
+conserved physical quantity anymore, the $\hat{L}^{2}$ can still
+commute with the Hamiltonian, thus we can select the $\hat{L}^{2}$
+into the CSCCO, too:
+\begin{equation}\label{}
+\hat{L}^{2} = \hat{\mathbf{L}}_{x}^{2} + \hat{\mathbf{L}}_{y}^{2} +
+\hat{\mathbf{L}}_{z}^{2}
+\end{equation}
+
+For the $\hat{\mathbf{L}}_{z}$, it's eigen value and eigen states
+are straightforward. Here we remember that different subsystem has
+its own $l_{z}$, and they do not affect the others:
+\begin{equation}\label{}
+[\hat{\mathbf{L}}_{1z}, \hat{\mathbf{L}}_{2z}] = 0 \Rightarrow L_{z}
+= L_{z1} + L_{z2}
+\end{equation}
+Nevertheless, for the $\hat{L}^{2}$ there does not have such clear
+relations. Therefore, we should solve this question in another way.
+
+If we select the $\hat{L}_{1}^{2}$, $\hat{L}_{2}^{2}$,
+$\hat{\mathbf{L}}_{1z}$ and $\hat{\mathbf{L}}_{2z}$ into the CSCCO,
+(this can be done for that all of the four operators are commuting
+with the Hamiltonian, and also they are commuting with each other),
+any quantum state related to the angular momentum will be determined
+by $L^{2}_{1},L^{2}_{2},L_{1z},L_{2z}$. Therefore for the fixed
+value of $L_{1}, L_{2}$, they will be $(2L_{1}+1)(2L_{2}+1)$
+different states.
+
+On the other hand, we can express the quantum states by choosing
+another representation, which is derived from the operators of
+$\hat{L}^{2}_{1}$, $\hat{L}^{2}_{2}$, $\hat{L}^{2}$ and
+$\hat{\mathbf{L}}_{z}$. Here the quantum states can be labeled by
+$L^{2}_{1},L^{2}_{2},L^{2},L_{z}$. Similarly, for the fixed value of
+$L_{1}, L_{2}$, they will be $(2L_{1}+1)(2L_{2}+1)$ different
+states.
+
+We can determine these states by the way below. By addition between
+different $L_{1z}$ and $L_{2z}$, we can get the $L_{z}$:
+\begin{center}\label{ANGULARTABLE:1}
+\begin{tabular}{c c c}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $L_{1z}$ & $L_{2z}$ & $L_{z}$ \\
+  \hline
+  $L_{1}$     & $L_{2 }$     & $L_{1}+L_{2}$ \\
+  $L_{1}-1$   & $L_{2 }$     & $L_{1}+L_{2}-1$ \\
+  $L_{1}$     & $L_{2 }-1$   & $L_{1}+L_{2}-1$ \\
+  $L_{1}-2$   & $L_{2 }$     & $L_{1}+L_{2}-2$ \\
+  $L_{1}-1$   & $L_{2 }-1$   & $L_{1}+L_{2}-2$ \\
+  $L_{1}$     & $L_{2 }-2$   & $L_{1}+L_{2}-2$ \\
+  $\cdots$    & $\cdots$     & $\cdots$ \\
+  \hline
+\end{tabular}
+\end{center}
+
+Here we can see that for same $L_{z}$, it's always corresponding to
+many states. These states must have different $L$ value (since that
+for a fixed $L$, its angular momentum on z axis must be different.
+Hence there's no two states can share the same $L_{z}$ if they have
+shared the same $L$), thus we can count the number of states as the
+change of $L_{z}$. For example, as $L_{z} = L_{1}+L_{2}-2$, there
+must have three states which possess different $L$, and because the
+$L \geq L_{z}$; thus the three states must be $L = L_{1}+L_{2}$, $L
+= L_{1}+L_{2}-1$ and $L = L_{1}+L_{2}-2$. Therefore, if the number
+of states for the $L_{z}$ continues to grow, there implies it has
+new states of different $L$.
+
+Such continuing will be stopped at $L_{z} = |L_{1} - L_{2}|$. As the
+$L_{z}$ decreases, the number of states do not grow. This implies
+that the eigen value of $\hat{L}$ for the whole system will be:
+\begin{equation}\label{}
+L = L_{1}+L_{2}, L_{1}+L_{2}-1, L_{1}+L_{2}-2, \cdots, |L_{1} -
+L_{2}|
+\end{equation}
+Here the $L_{1}$ and $L_{2}$ has to give to be certain.
+
+This phenomenon can be well understood by the "vector model" of
+angular momentum. Since that the angular momentum is some vector, as
+the angular momentum in the subsystems take same direction, they
+will give the maximum angular momentum addition for the whole; and
+if they take opposite direction, they will give the minimum angular
+momentum for the whole. This coincides with the conclusion above.
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

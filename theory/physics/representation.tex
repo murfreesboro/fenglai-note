@@ -1,0 +1,908 @@
+%
+%  revised at Feb. 26th. the first part and the second part
+%  is greatly changed
+%  revised at July 27th, 2009:
+%  just move the representation discussion after the operator
+%  and Hilbert space
+
+\chapter{Representation}\label{REPRESENTATION:1}
+%
+% here in this chapter, we introduce the representation, which is
+% the eigen states for the selected "CSCCO". from this group of
+% eigen states, we can actually get everything we wish to get.
+%
+% 1  definition of the representation for operator and wave function
+% 2  the transformation between different representations
+%
+% later, we hope to add the discussion related to the coordinate
+% and momentum.
+%
+So far we have gotten general discussion related to the Hilbert
+space and operators. the Hilbert space is used to character some
+quantum state for a system, and the operator is corresponding to
+physical quantity in quantum mechanics.
+
+In the section \ref{LIV_in_Hilbert}, we have brought up the relation
+that there are many different ways to represent the same Hilbert
+space, and they are identical with each other. Now in this section,
+we will further investigate the details around this issue.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Representation by matrix}\label{REPRESENTATION:2}
+%
+% 1  definition of the representation, what's the meaning; and how
+%    to get it
+% 2  express an arbitrary wave function by representation
+% 3  express the operator
+% 4  the operation between operator, how to express them
+%    in we express the operator into the matrix form
+% 5  how to get eigen values
+% 6  how to express the expectation value
+%
+In an arbitrary Hilbert space, suggest that we have a complete set of
+$\ket{i}$ ($i=0, 1, 2\cdots n$, here we only use its label to
+distinguish them; and suppose that the complete basis sets are in
+number of $n$). Thus for any $\Psi$, it can be expressed as:
+\begin{equation}\label{REPRESENTATIONeq:1}
+\ket{\Psi} = \sum_{i}a_{i}\ket{i}
+\end{equation}
+
+Here this set of $\ket{i}$ ($i=0, 1, 2\cdots n$) is called a kind of
+``representation'', since we can use it to express any arbitrary wave
+functions related to this system. This complete sets is the eigen
+states for some physical quantity, usually we use the eigen states for
+the Hamiltonian operator so that they are the energy
+representation. in the following content, we can see that if such
+representation has been selected, then all the information related to
+the system (including the operator as well as the wave function to
+express the states of the system) is fixed. Thus, this set of basis
+functions in the Hilbert space determines everything we wish to get.
+Such conclusion has very prominent meaning that only one sets of
+representation is enough to express the quantum system, the others are
+identical to the selected one.
+
+By the way, the representation can also use continuous basis
+functions, such as the plane wave functions for free particle. From
+Fourier transformation, we can know that any square-integrable wave
+function can be viewed as ``wave packets'' of plane wave functions
+(see \ref{sec:HTEAAWFFFP_in_basic} and \ref{sec:PWF_in_Hilbert}).
+Compared the continuous complete sets, what we need to change in the
+discrete basis functions is only convert the summation into the
+integral. Hence throughout the whole chapter, we will use the
+discrete basis functions for simplicity.
+
+Now let's go to prove this general idea. Before that, let's go to
+see how to express an arbitrary wave function in matrix form. If we
+have gotten the complete sets to describe the quantum system; the
+only thing to express an arbitrary state is to determine the
+coefficients (weight) of $a_{i}$ in (\ref{REPRESENTATIONeq:1}). Here
+for a complected sets, we have:
+\begin{equation}\label{}
+a_{i} = \langle i|\Psi\rangle
+\end{equation}
+The vector forming by the $a_{i}$ here is called ``expression'' in a
+certain representation, by using matrix form we can express them in
+another way:
+\begin{equation}\label{REPRESENTATIONeq:2}
+\ket{\Psi} \Leftrightarrow
+\begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\end{equation}
+Here we called the $\ket{\Psi}$ is ``$a_{i}$'' expression.
+Furthermore, the vector of $a_{i}$ is always set to the column.
+Later we use $A$ to denote this column vector.
+
+and naturally the \brat{\Psi} as:
+\begin{equation}\label{REPRESENTATIONeq:3}
+\bra{\Psi} \Leftrightarrow
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} &  \cdots   & a_{n}^{*} \\
+\end{bmatrix}
+\end{equation}
+Here it's clear that for the arbitrary $\Psi$ each of $a_{i}$
+represents the ``weight'' of total wave function on the
+representation of $\ket{i}$ or $\bra{i}$. Furthermore, the bra can
+be seen as the conjugated vector of ket:
+\begin{equation}\label{}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} &  \cdots   & a_{n}^{*} \\
+\end{bmatrix}
+= A^{+}
+\end{equation}
+
+So here the inner product can be written as:
+\begin{align}\label{REPRESENTATIONeq:4}
+\langle\Psi|\Psi\rangle &= \begin{bmatrix}
+                            a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+                          \end{bmatrix}
+                          \begin{bmatrix}
+                          a_{1} \\
+                          a_{2} \\
+                          \cdots   \\
+                          a_{n} \\
+                          \end{bmatrix} \nonumber \\
+                       &= \sum_{i}a_{i}a_{i}^{*}
+\end{align}
+
+We can see that this expression is same with the internal product of
+$\langle\Psi|\Psi\rangle$,  but in a much simpler format. Actually
+the expression in the (\ref{REPRESENTATIONeq:2}) and
+(\ref{REPRESENTATIONeq:3}) manifests the ``dimensional'' character
+of wave function in a more clearly way.
+
+Moreover, the operator can be expressed in the same way:
+\begin{align}\label{REPRESENTATIONeq:5}
+\ket{\Phi} &= \hat{A}\ket{\Psi} \rightarrow \nonumber \\
+\sum_{i}a_{i}\ket{i} &= \hat{A}\sum_{j}b_{j}\ket{j}
+\: \underrightarrow{multiply \, with \, \bra{i} }\nonumber \\
+a_{i} &= \sum_{j}b_{j}\langle i|\hat{A}|j\rangle \rightarrow \nonumber \\
+\begin{bmatrix}
+  a_{1} \\
+  a_{2} \\
+  \cdots \\
+  a_{n} \\
+\end{bmatrix}
+&= \begin{bmatrix}
+     \bra{1}\hat{A}\ket{1} & \bra{1}\hat{A}\ket{2} & \cdots & \bra{1}\hat{A}\ket{n} \\
+     \bra{2}\hat{A}\ket{1} & \bra{2}\hat{A}\ket{2} & \cdots & \bra{2}\hat{A}\ket{n} \\
+     \cdots                &                \cdots & \cdots & \cdots                \\
+     \bra{n}\hat{A}\ket{1} & \bra{n}\hat{A}\ket{2} & \cdots & \bra{n}\hat{A}\ket{n} \\
+   \end{bmatrix}
+\begin{bmatrix}
+  b_{1} \\
+  b_{2} \\
+  \cdots \\
+  b_{n} \\
+\end{bmatrix} \nonumber \\
+&= \begin{bmatrix}
+     A_{11} & A_{12} & \cdots & A_{1n} \\
+     A_{21} & A_{22} & \cdots & A_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     A_{n1} & A_{n2} & \cdots & A_{nn} \\
+   \end{bmatrix}
+\begin{bmatrix}
+  b_{1} \\
+  b_{2} \\
+  \cdots \\
+  b_{n} \\
+\end{bmatrix}
+\end{align}
+
+Here we can see that if the $\hat{A}$ is a hermite operator, we
+have:
+\begin{equation}\label{REPRESENTATIONeq:6}
+A_{ij} = \bra{i}\hat{A}\ket{j} = \bra{i}\hat{A}^{+}\ket{j} =
+\bra{j}\hat{A}\ket{i}^{*} = A_{ji}^{*}
+\end{equation}
+that means the matrix formed is also a hermitian matrix. For the
+diagonal element of $A_{ii}$, obviously they are real and they are
+the mean value for the operator of $\hat{A}$ in the state of $i$. If
+the representation is the eigen states for the operator of
+$\hat{A}$, then this matrix is in diagonal form.
+
+The non-diagonal element of $A_{ij}$ for $i\neq j$, usually related
+to some transition state between two states of $i$ and $j$. For
+example, if the $\ket{i}$ is a set of approximated wave functions
+for an given molecule by CI procedure (therefore the $\ket{i}$ is
+some linear combination of configurations), suppose the $\hat{A}$ is
+the Dipole moment operator:
+\begin{equation}\label{}
+\hat{A} = \sum_{i}e_{i}\overrightarrow{x}_{i} +
+\sum_{i}e_{i}\overrightarrow{y}_{i} +
+\sum_{i}e_{i}\overrightarrow{z}_{i}
+\end{equation}
+Here the $e_{i}$ is the electron charge on ith particle (however if
+that's the electron wave function the $e_{i} = 1$), and $x_{i}$ etc.
+represents the ith particle's cartesian coordinate. therefore, the
+non-diagonal element of $A_{ij}$ describes the ``transition'' state
+from state $\ket{i}$ to state $\ket{j}$. They are important in
+describing the vibration, dipole moment and the external field etc.
+phenomenon.
+
+Now we can see that if the $\ket{i} (i=1,2, \cdots n)$ is given to
+be certain, by the matrix formed by the $A_{ij}$ we can directly get
+$\hat{A}\ket{\Psi}$. Here, if the complete set of $\ket{i}$ has been
+chosen to be certain, and the operator of $\hat{A}$ is made sure;
+the matrix determined in the above expression is totally fixed. In
+the matrix expression, the matrix formed by $A_{ij}$ is equivalent
+to the operator itself. Next, we will see this through several
+examples.
+
+For the addition between operator $\hat{A}$ and $\hat{B}$, for the
+$\Psi=\sum_{i}a_{i}\ket{i}$ similarly we can see that:
+\begin{align}\label{REPRESENTATIONeq:7}
+(\hat{A}+\hat{B})\ket{\Psi} &= \begin{bmatrix}
+     A_{11} & A_{12} & \cdots & A_{1n} \\
+     A_{21} & A_{22} & \cdots & A_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     A_{n1} & A_{n2} & \cdots & A_{nn} \\
+   \end{bmatrix}
+\begin{bmatrix}
+  b_{1} \\
+  b_{2} \\
+  \cdots \\
+  b_{n} \\
+\end{bmatrix} +
+\begin{bmatrix}
+     B_{11} & B_{12} & \cdots & B_{1n} \\
+     B_{21} & B_{22} & \cdots & B_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     B_{n1} & B_{n2} & \cdots & B_{nn} \\
+   \end{bmatrix}
+\begin{bmatrix}
+  b_{1} \\
+  b_{2} \\
+  \cdots \\
+  b_{n} \\
+\end{bmatrix} \nonumber \\
+& = \begin{bmatrix}
+     A_{11} + B_{11} & A_{12}+B_{12} & \cdots & A_{1n}+B_{1n} \\
+     A_{21} + B_{21} & A_{22}+B_{22} & \cdots & A_{2n}+B_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     A_{n1} + B_{n1} & A_{n2}+B_{n2} & \cdots & A_{nn}+B_{nn} \\
+   \end{bmatrix}
+\begin{bmatrix}
+  b_{1} \\
+  b_{2} \\
+  \cdots \\
+  b_{n} \\
+\end{bmatrix}
+\end{align}
+
+It's natural to see that the addition between two operators is
+equivalent to the addition between two matrix. Similarly, the
+substraction, multiplication operation between $\hat{A}$ and
+$\hat{B}$ are also equivalent to the same operations between the
+corresponding matrix. If two operators are commuted with each other,
+their corresponding matrix can also commuted with each other.
+
+Next we can show that if two operators of $\hat{A}$ and $\hat{B}$
+are commuted with each other, then they share the same eigen states
+of $\ket{i}$. The commutation relation between $\hat{A}$ and
+$\hat{B}$ can be expressed as:
+\begin{equation}\label{}
+\sum_{j}A_{ij}B_{jk} = \sum_{j}B_{ij}A_{jk}
+\end{equation}
+If we choose the $\ket{i}$ as the eigen states for $A$ (that's not
+hurting the generality since any other sets can be also expressed as
+linear combination based on A's eigen states), then $A_{ij} = 0$ for
+$i\neq j$. therefore the above equation can be:
+\begin{equation}\label{}
+A_{ii}B_{ik} = B_{ik}A_{kk} \Rightarrow B_{ik}(A_{kk} - A_{ii}) = 0
+\end{equation}
+then if $A_{kk} \neq A_{ii}$ as $i \neq k$; then $B_{ik} = 0$ so
+that B is diagonal matrix, too.
+
+the above proof requires that the eigen states should be
+non-degenerate, however; if the eigen states are degenerate; then
+they forms some subspace. In this subspace, any linear combination
+of the eigen states are still the eigen states for the $\hat{A}$,
+from the discussion in (\ref{SE:1}) we can know that there's always
+some method to find a group of linear combination vectors based on
+the original $\ket{i}$ to make $B_{ik} = 0$. Therefore, the
+conclusion is correct for any eigen state sets.
+
+Furthermore, for the transposing operation and the conjugating
+operation with operators, it can easily show that they are
+corresponded to the matrix transposition and conjugation. Thus, the
+hermitian operation is equal to the hermitian operation to the
+corresponding matrix.
+
+Next let's show how to solve the eigen functions under the matrix
+representation.
+
+Suggest that we expanded the $\Psi$ to a set of wave functions
+$\ket{i}$, which are the eigen states for the Hamiltonian operator:
+\begin{equation}\label{}
+\Psi = \sum_{i}a_{i}\ket{i}
+\end{equation}
+For an arbitrary eigen function of $\hat{f}\Psi = f\Psi$, we have:
+\begin{align}\label{REPRESENTATIONeq:8}
+\hat{f}\Psi &= f\sum_{i}a_{i}\ket{i} \nonumber \\
+\begin{bmatrix}
+     f_{11} & f_{12} & \cdots & f_{1n} \\
+     f_{21} & f_{22} & \cdots & f_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     f_{n1} & f_{n2} & \cdots & f_{nn} \\
+   \end{bmatrix}
+\begin{bmatrix}
+  a_{1} \\
+  a_{2} \\
+  \cdots \\
+  a_{n} \\
+\end{bmatrix}
+&= \begin{bmatrix}
+     f & 0 & \cdots & 0 \\
+     0 & f & \cdots & 0 \\
+     \cdots & \cdots & \cdots & \cdots \\
+     0 & 0 & \cdots & f \\
+   \end{bmatrix}
+\begin{bmatrix}
+  a_{1} \\
+  a_{2} \\
+  \cdots \\
+  a_{n} \\
+\end{bmatrix} \Rightarrow \nonumber \\
+\begin{vmatrix}
+     f_{11} -f & f_{12} & \cdots & f_{1n} \\
+     f_{21} & f_{22} -f & \cdots & f_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     f_{n1} & f_{n2} & \cdots & f_{nn} -f \\
+   \end{vmatrix}
+&= 0
+\end{align}
+Obviously this is the matrix eigen function. We can see that the
+eigen function for the operator is equivalent to the eigen function
+of matrix. The eigen values are the diagonal element in the matrix.
+Once this matrix equation is solved, then we can get $n$ eigen
+values of $f$ which corresponding to $n$ eigen states; which can be
+in turn solved as the linear combination of the coefficients of
+$a_{i}$.
+
+By the way, we can also express the Schrodinger equation in the
+matrix form. Suggest the Schrodinger equation is:
+\begin{equation}\label{}
+i\hbar\frac{\partial}{\partial t}\ket{\Psi(\bm{r},t)} =
+\hat{H}\ket{\Psi(\bm{r},t)}
+\end{equation}
+Then we can express the $\ket{\Psi(\bm{r},t)}$ into some
+representation of $\ket{i}$:
+\begin{equation}\label{}
+\ket{\Psi(\bm{r},t)} = \sum_{i}a_{i}(t)\ket{i}
+\end{equation}
+Here the $\ket{i}$ is a series of stationary states, which does not
+contain time $t$. Then bring into back to the Schrodinger equation,
+we can have:
+\begin{equation}\label{}
+i\hbar\sum_{i}\frac{\partial a_{i}(t)}{\partial t}\ket{i}
+=\sum_{i}a_{i}(t)\hat{H}\ket{i}
+\end{equation}
+Then by multiplying with $\bra{j}$ to the left equation and
+integration; we can get:
+\begin{equation}\label{}
+i\hbar\frac{\partial a_{j}(t)}{\partial t}
+=\sum_{i}a_{i}(t)\bra{j}\hat{H}\ket{i}
+\end{equation}
+That is equivalent to the matrix form equation:
+\begin{equation}\label{REPRESENTATIONeq:14}
+\begin{bmatrix}
+  i\hbar\frac{\partial a_{1}(t)}{\partial t} \\
+  i\hbar\frac{\partial a_{2}(t)}{\partial t} \\
+  \cdots \\
+  i\hbar\frac{\partial a_{n}(t)}{\partial t} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+     \bra{1}\hat{H}\ket{1} & \bra{2}\hat{H}\ket{1} & \cdots & \bra{n}\hat{H}\ket{1} \\
+     \bra{1}\hat{H}\ket{2} & \bra{2}\hat{H}\ket{2} & \cdots & \bra{n}\hat{H}\ket{2} \\
+     \cdots                & \cdots                & \cdots &                \cdots \\
+     \bra{1}\hat{H}\ket{n} & \bra{2}\hat{H}\ket{n} & \cdots & \bra{n}\hat{H}\ket{n} \\
+   \end{bmatrix}
+   \begin{bmatrix}
+  a_{1} \\
+  a_{2} \\
+  \cdots \\
+  a_{n} \\
+\end{bmatrix}
+\end{equation}
+That's the Schrodinger equation for an arbitrary representation.
+Here if it's the energy representation, then $\ket{i}$ are the eigen
+states for the Hamiltonian; so the H matrix above should be
+diagonal; if in the other representation, for example; the eigen
+states for the momentum, then this matrix is non-diagonal.
+
+Moreover, if the Schrodinger equation is time independent, then the
+Schrodinger equation is:
+\begin{equation}\label{}
+\hat{H}\Psi = E\Psi
+\end{equation}
+By the similar procedure, we can get its matrix form as:
+\begin{equation}\label{REPRESENTATIONeq:15}
+\begin{bmatrix}
+     \bra{1}\hat{H}\ket{1} & \bra{2}\hat{H}\ket{1} & \cdots & \bra{n}\hat{H}\ket{1} \\
+     \bra{1}\hat{H}\ket{2} & \bra{2}\hat{H}\ket{2} & \cdots & \bra{n}\hat{H}\ket{2} \\
+     \cdots                & \cdots                & \cdots &                \cdots \\
+     \bra{1}\hat{H}\ket{n} & \bra{2}\hat{H}\ket{n} & \cdots & \bra{n}\hat{H}\ket{n} \\
+   \end{bmatrix}
+   \begin{bmatrix}
+  a_{1} \\
+  a_{2} \\
+  \cdots \\
+  a_{n} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+     E & 0 & \cdots & 0 \\
+     0 & E & \cdots & 0 \\
+     \cdots & \cdots & \cdots & \cdots \\
+     0 & 0 & \cdots & E \\
+   \end{bmatrix}
+   \begin{bmatrix}
+  a_{1} \\
+  a_{2} \\
+  \cdots \\
+  a_{n} \\
+\end{bmatrix}
+\end{equation}
+That's the matrix form of time independent Schrodinger equation.
+
+Here it's worthy to compare the (\ref{REPRESENTATIONeq:15}) with the
+linear variation process, which is equivalent to the Schrodinger
+equation (we have proved this point later in the \ref{SE:2}). In the
+linear variation process, the wave function is approximated as the
+combination between the trial functions of $\Theta(\bm{r})$:
+\begin{equation}\label{}
+\Psi(\bm{r}) = \sum_{i}a_{i}\Theta(\bm{r})
+\end{equation}
+Usually in the quantum chemistry, the $\Theta(\bm{r})$ is composed
+as Slater determinants from the molecular orbitals. In the following
+chapter (in the discussion of CI algorithm), it can shown that we
+can get the same form of equation with (\ref{REPRESENTATIONeq:15});
+where the representation of $a_{i}$ is replaced by the space of
+trial functions of $\Theta(\bm{r})$.
+
+To some extent, the trial functions of $\Theta(\bm{r})$; is also
+some space from which we can create the eigen states for the
+Hamiltonian. This process is mathematically same with that to create
+the eigen states for the Hamiltonian from the other representations
+(such as the representation for the momentum) in the
+(\ref{REPRESENTATIONeq:14}). Hence, the linear variation process can
+be also ascribed to matrix representation.
+
+Finally, for the expectation value for the operator $\hat{A}$, we
+can express it in the matrix form as:
+\begin{align}\label{REPRESENTATIONeq:9}
+\bra{\Psi}\hat{A}\ket{\Psi} &=
+\sum_{i}\sum_{j}a^{*}_{i}a_{j}\bra{i}\hat{A}\ket{j} \nonumber
+\\
+&=
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix}
+\begin{bmatrix}
+     A_{11} & A_{12} & \cdots & A_{1n} \\
+     A_{21} & A_{22} & \cdots & A_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     A_{n1} & A_{n2} & \cdots & A_{nn} \\
+   \end{bmatrix}
+\begin{bmatrix}
+  a_{1} \\
+  a_{2} \\
+  \cdots \\
+  a_{n} \\
+\end{bmatrix}
+\end{align}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Density operator in matrix form}
+%
+% discussion of the density operator in matrix form, definition and
+% its properties
+%
+In the above content, for an arbitrary quantum state expressed by
+some specific representation, it can be generally as:
+\begin{equation}
+\ket{\Psi} \Leftrightarrow
+                           \begin{bmatrix}
+                             a_{1} \\
+                             a_{2} \\
+                             \cdots   \\
+                             a_{n} \\
+                           \end{bmatrix}
+\end{equation}
+
+\begin{equation}\label{}
+\bra{\Psi} \Leftrightarrow \begin{bmatrix}
+                             a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+                           \end{bmatrix}
+\end{equation}
+Here $\langle\Psi|\Psi\rangle$ gives its internal product. However,
+we can reverse the internal product as $\ket{\Psi}\bra{\Psi}$, from
+its matrix form we can see that it's correspond to some kind of
+operator; that is:
+\begin{align}\label{REPRESENTATIONeq:10}
+\hat{D} = |\Psi\rangle\langle\Psi| &=
+\begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix} \nonumber \\
+&=
+\begin{bmatrix}
+a_{1}a_{1}^{*} & a_{1}a_{2}^{*} & \cdots & a_{1}a_{n}^{*} \\
+a_{2}a_{1}^{*} & a_{2}a_{2}^{*} & \cdots & a_{2}a_{n}^{*} \\
+\cdots         & \cdots         & \cdots & \cdots         \\
+a_{n}a_{1}^{*} & a_{n}a_{2}^{*} & \cdots & a_{n}a_{n}^{*} \\
+\end{bmatrix}
+\end{align}
+This kind of matrix is just the density operator we have defined in
+the previous chapter (\ref{OPERATOR:1}), now here let's go to see
+how to use matrix to re-express its characters.
+
+\begin{theorem}\label{}
+$\hat{D}$ is hermitian.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\begin{split}
+  \hat{D}^{+} &=
+\left(  \begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix} \right)^{+}\\
+    &= \begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix} \\
+&= \hat{D}^{+}
+\end{split}
+\end{equation}
+\qedhere
+\end{proof}
+
+\begin{theorem}\label{}
+For any $\Phi$, $\langle\Phi|\hat{D}|\Phi\rangle \geq 0$.
+\end{theorem}
+
+\begin{proof}
+Suggest that the $\ket{\Phi}$ can be expressed as:
+\begin{equation}\label{}
+\ket{\Phi} \Leftrightarrow
+\begin{bmatrix}
+b_{1} \\
+b_{2} \\
+\cdots   \\
+b_{n} \\
+\end{bmatrix}
+\end{equation}
+Then we have:
+\begin{equation}\label{}
+\begin{split}
+  \langle\Phi|\hat{D}|\Phi\rangle &=
+  \begin{bmatrix}
+b_{1}^{*} & b_{2}^{*} & \cdots & b_{n}^{*} \\
+\end{bmatrix}
+  \begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix}
+  \begin{bmatrix}
+b_{1} \\
+b_{2} \\
+\cdots   \\
+b_{n} \\
+\end{bmatrix} \\
+    &=(\sum_{i=1}^{n}b_{i}^{*}a_{i})(\sum_{i=1}^{n}a_{i}^{*}b_{i})
+    \\
+    &=|\sum_{i=1}^{n}b_{i}^{*}a_{i}|^{2} \geq 0
+\end{split}
+\end{equation}
+\qedhere
+\end{proof}
+
+\begin{theorem}\label{}
+$\hat{D}^{2} = \hat{D}$.
+\end{theorem}
+
+\begin{proof}
+\begin{equation}\label{}
+\begin{split}
+  \hat{D}^{2} &= \begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix}  \\
+    &= \begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix}  \quad (\langle\Psi|\Psi\rangle = 1)\\
+&= \hat{D}
+\end{split}
+\end{equation}
+So $\hat{D}$ is idempotent. \qedhere
+\end{proof}
+
+\begin{theorem}\label{}
+$\hat{D}\hat{B} = \hat{B}\hat{D}$. If $\hat{B}$ is hermitian.
+\end{theorem}
+
+\begin{proof}
+Suggest that $\hat{B}$ is represented by some $n\times n$ matrix
+with element of $B_{ij}$, then we have:
+\begin{equation}\label{}
+\begin{split}
+  \hat{D}\hat{B} &=
+\begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix}
+\begin{bmatrix}
+     B_{11} & B_{12} & \cdots & B_{1n} \\
+     B_{21} & B_{22} & \cdots & B_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     B_{n1} & B_{n2} & \cdots & B_{nn} \\
+   \end{bmatrix} \\
+    &=
+    \begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+\sum_{k=1}^{n}a_{k}^{*}B_{k1} & \sum_{k=1}^{n}a_{k}^{*}B_{k2}
+ & \sum_{k=1}^{n}a_{k}^{*}B_{kn} \\
+\end{bmatrix}
+\end{split}
+\end{equation}
+Hence we can get that $(\hat{D}\hat{B})_{ij} =
+a_{i}\sum_{k=1}^{n}a_{k}^{*}B_{kj}$.
+
+On the other hand, since that $\hat{B}$ and $\hat{D}$ are both
+hermitian, then we have:
+\begin{equation}\label{}
+\begin{split}
+  (\hat{D}\hat{B})_{ij} &= (\hat{B}\hat{D})^{*}_{ji} \\
+    &= a^{*}_{j}\sum_{k=1}^{n}a_{k}B^{*}_{jk} \Rightarrow \\
+   \hat{D}\hat{B} &=
+\begin{bmatrix}
+     B_{11} & B_{12} & \cdots & B_{1n} \\
+     B_{21} & B_{22} & \cdots & B_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     B_{n1} & B_{n2} & \cdots & B_{nn} \\
+   \end{bmatrix}
+\begin{bmatrix}
+a_{1} \\
+a_{2} \\
+\cdots   \\
+a_{n} \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix}
+\end{split}
+\end{equation}
+ \qedhere
+\end{proof}
+
+Now let's consider the project operator:
+\begin{equation}\label{REPRESENTATIONeq:18}
+\hat{P}_{i} = \ket{i}\bra{i}
+\end{equation}
+For each vector of $\ket{i}$, we can express it into the matrix as:
+\begin{equation}\label{REPRESENTATIONeq:16}
+\ket{i} = \begin{bmatrix}
+            0 \\
+            0 \\
+            \cdots \\
+            1 \\
+            \cdots \\
+            0 \\
+          \end{bmatrix}
+\end{equation}
+Here in the column vector the $1$ is in the ith row position.
+Actually that's the ith unit vector. Based on the
+(\ref{REPRESENTATIONeq:16}), we can express the
+(\ref{REPRESENTATIONeq:18}) as:
+\begin{align}\label{REPRESENTATIONeq:19}
+\hat{P}_{i} &=
+\begin{bmatrix}
+0 \\
+0 \\
+\cdots \\
+1 \\
+\cdots \\
+0 \\
+\end{bmatrix}
+\begin{bmatrix}
+  0 & 0 & \cdots & 1 & \cdots & 0 \\
+\end{bmatrix} \nonumber \\
+&=
+\begin{bmatrix}
+  0      & 0      & \cdots & 0      & \cdots & 0    \\
+  0      & 0      & \cdots & 0      & \cdots & 0     \\
+  \cdots & \cdots & \cdots & \cdots & \cdots & \cdots \\
+  0      & 0      & \cdots & 1      & \cdots & 0      \\
+  \cdots & \cdots & \cdots & \cdots & \cdots & \cdots \\
+  0      & 0      & \cdots & 0      & \cdots & 0      \\
+\end{bmatrix}
+\end{align}
+Here in the (\ref{REPRESENTATIONeq:19}) the matrix simply has only
+one element of $1$ in the ith diagonal position. It's easy to see
+that for an arbitrary state of $\ket{\Psi}$, where it can be
+expressed as:
+\begin{equation}\label{}
+\ket{\Psi} = \sum_{i}a_{i}\ket{i}
+\end{equation}
+The projector operator on the $\ket{\Psi}$ is:
+\begin{equation}\label{}
+\hat{P}_{i}\ket{\Psi} = a_{i}
+\end{equation}
+Where the ith weight in the $\ket{\Psi}$ has been projected out.
+
+Based on the $\hat{\hat{P}_{i}}$ we can also express the closure
+relation as:
+\begin{equation}\label{}
+\hat{P} = \sum_{i=1}^{n}\hat{P}_{i} = \hat{I}
+\end{equation}
+Now through the matrix form let's demonstrate this point.
+
+For each $\hat{P}_{i}$, it's expressed by some $n\times n$ matrix
+with only one element of $1$ in row $i$ column $i$. Hence the adding
+of all the $\hat{P}_{i}$ leads to some matrix that the diagonal line
+is filled with $1$, and other elements are all equal to $0$. That's
+the unit matrix of $\hat{I}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Representation and its transformation}
+\label{transformation_in_representation}
+%
+% 1  why we have different choice of representations?
+% 2  prove that any representations are identical with
+%    each other
+%
+%
+In the above content, we can see that if a set of basis functions
+has been chosen, any other vectors and the operators can be
+thoroughly expressed from it.
+
+This set of basis functions are certainly determined by it's CSCO.
+Just take hydrogen atom as an example, $(\hat{H}, \hat{l}^{2},
+\hat{l}_{z})$ and $(\hat{H}, \hat{l}^{2}, \hat{l}_{x})$ will
+definitely yield different set of wave functions (this is easy to
+understand. Since that $[\hat{l}_{x}, \hat{l}_{z}] \neq 0$, their
+eigen states must be different with each other).
+
+Because that for a given system, we may have different choice of
+CSCO which lead to different set of basis functions; so some
+question arise: Are different representations are physically
+identical with each other? For a specific operator whether they can
+yield the same measurement result? That's we are going to discuss in
+this section.
+
+Suggest that we have two representations for the system: the first
+set is ${\ket{\phi_{1}}, \ket{\phi_{2}}, \cdots, \ket{\phi_{n}}}$,
+the other is ${\ket{\varphi_{1}}, \ket{\varphi_{2}}, \cdots,
+\ket{\varphi_{n}}}$.
+
+Thus for any arbitrary wave function of $\Psi$, we have:
+\begin{align}\label{}
+\ket{\Psi} &= \sum_{i}a_{i}\ket{\phi_{i}} \nonumber \\
+\ket{\Psi} &= \sum_{j}b_{j}\ket{\varphi_{j}}
+\end{align}
+
+So $\sum_{i}a_{i}\ket{\phi_{i}} = \sum_{j}b_{j}\ket{\varphi_{j}}$,
+by multiplying with $\bra{\phi_{i}}$ and make integration; we have:
+\begin{align}\label{REPRESENTATIONeq:12}
+a_{i} &= \sum_{j}\langle\phi_{i}|\varphi_{j}\rangle b_{j}
+\Rightarrow \nonumber \\
+   \begin{bmatrix}
+     a_{1} \\
+     a_{2} \\
+     \cdots \\
+     a_{n} \\
+   \end{bmatrix} &=
+\begin{bmatrix}
+     s_{11} & s_{12} & \cdots & s_{1n} \\
+     s_{21} & s_{22} & \cdots & s_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     s_{n1} & s_{n2} & \cdots & s_{nn} \\
+   \end{bmatrix}
+      \begin{bmatrix}
+     b_{1} \\
+     b_{2} \\
+     \cdots \\
+     b_{n} \\
+   \end{bmatrix}
+\end{align}
+Here the $s_{ij} = \langle\phi_{i}|\varphi_{j}\rangle$, and
+obviously the $S$ matrix is some unitary matrix, it's easy to prove
+that $S^{+}S = SS^{+} = I$.
+
+The matrix of $S$ is carried out to transform the representation of
+$\ket{\varphi}$ to $\ket{\phi}$. Because such transformation is
+unitary, Therefore, it can be expected that the transformation
+between different representations will not change the observable
+measurement values for the dynamic operator.
+
+For an arbitrary operator $\hat{A}$, it's expectation value under
+representation under $\ket{\phi}$ representation is:
+\begin{equation}\label{REPRESENTATIONeq:13}
+\bra{\Phi}\hat{A}\ket{\Phi} =
+\begin{bmatrix}
+  a_{1}^{*} & a_{2}^{*} & \cdots & a_{n}^{*} \\
+\end{bmatrix}
+   \begin{bmatrix}
+     A_{11} & A_{12} & \cdots & A_{1n} \\
+     A_{21} & A_{22} & \cdots & A_{2n} \\
+     \cdots & \cdots & \cdots & \cdots \\
+     A_{n1} & A_{n2} & \cdots & A_{nn} \\
+   \end{bmatrix}
+   \begin{bmatrix}
+     a_{1} \\
+     a_{2} \\
+     \cdots \\
+     a_{n} \\
+   \end{bmatrix}
+\end{equation}
+
+If we insert the (\ref{REPRESENTATIONeq:12}) into the above
+expression, it can be transformed into:
+\begin{align}\label{REPRESENTATIONeq:17}
+\bra{\Phi}\hat{A}\ket{\Phi}_{(\phi)} &=
+\begin{bmatrix}
+  b_{1}^{*} & b_{2}^{*} & \cdots & b_{n}^{*} \\
+\end{bmatrix}
+S^{+}AS
+   \begin{bmatrix}
+     b_{1} \\
+     b_{2} \\
+     \cdots \\
+     b_{n} \\
+   \end{bmatrix} \nonumber \\
+   &=\bra{\Phi}\hat{A}\ket{\Phi}_{(\varphi)}
+\end{align}
+Here the $S$ is the unitary transformation matrix between
+$\ket{\varphi}$ and $\ket{\phi}$. Thus different representation will
+not alter the expectation value of an operator.
+
+All in all, representations are physically identical with each
+other. So we can choose a proper one which is suitable for
+investigation and extract all the quantum information needed from
+it.
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:

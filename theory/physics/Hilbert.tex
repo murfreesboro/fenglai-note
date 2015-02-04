@@ -1,0 +1,789 @@
+%
+% OK
+%
+% revised at Jan. 29th; 2009
+% revised at Feb. 29th; 2009
+% made the discussion of the complete sets more clear
+%
+% revised on Mar. 22th, 2009
+% to use the environment of theorem and law to improve it
+%
+% revised at July 26th, 2009
+% add the discussion of basis functions as examples
+% to understand the Hilbert space
+%
+% revised at Aug. 1st, 2009
+% revise the discussion between the relation of wave functions
+% and the Hilbert space.
+% now it's seems satisfied.
+%
+%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% important general outline for this chapter:
+% 1   Hilbert space is the vector space added
+%     the additional inner product rules
+% 2   like the vector space, it also has the linear independent
+%     relations
+% 3   relations between Hilbert space and wave functions
+% 4   Bra and Ket
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Hilbert space}
+%
+%
+%
+\section{Definition of the Hilbert space}
+%
+% 1  relations between vector space and the Hilbert space
+%     Hilbert space is more general, functions can be contained
+% 2  rules of the inner product, and its meaning
+% 3  the definition of the Hilbert space
+% 4  difference between Hilbert space and the common vector space
+%
+
+
+The Hilbert space is a kind of extension to the common vector space.
+In the Hilbert space, the element can be the common vectors, or the
+functions, or anything which satisfy the definition of Hilbert
+space. In the last chapter, the wave functions for the infinite well,
+the wave functions for the free particle motion etc. are all the
+examples for the Hilbert space. Here we do not intend to give more
+examples, they can be found in the common mathematical book or book
+related to quantum mechanics. Below we will all use the ``vector'' to
+signal the common vectors in the vector space or the elements in the
+Hilbert space, its meaning will be judged to be clear by the context.
+
+The Hilbert space has all the operations in the common vector space.
+Besides the normal operations, the Hilbert space has some operation
+called inner product; that is to pick up two vectors from the space,
+we always has a number(real or complex) corresponds to it:
+\begin{equation}\label{}
+(\Phi,\Psi) = c
+\end{equation}
+Here the $\Phi$ and $\Psi$ denotes two vectors in the Hilbert space.
+In quantum mechanics, the inner product between wave functions is
+always expressed as:
+\begin{equation}\label{}
+\int\Phi^{*}\Psi d\tau
+\end{equation}
+Where the $\Phi^{*}$ is conjugated with the $\Phi$. In vector space,
+that is corresponding to the common dot product between two vectors.
+
+The inner product is highly important in the quantum mechanics. In
+the following content, it can see that this is the base for the
+``bra'' and ``ket'', on the other hand; the probability character of
+the wave functions(also the average eigen values), the orthogonality
+etc. are expressed by such inner product between the wave functions
+and its conjugated form.
+
+Then we introduce the definition of Hilbert space. If any of the
+vectors satisfy the rules below; they are configuring the Hilbert
+space (here $a, b$ is used to indicate some arbitrary number and the
+capital Greek letter is the vector from the given space):
+\begin{eqnarray}
+\label{Hilberteq:2}
+% \nonumber to remove numbering (before each equation)
+  \Phi + \Psi &=& \Psi + \Phi \nonumber \\
+  \Phi + (\Psi + \Omega) &=& (\Phi + \Psi) + \Omega \nonumber \\
+  \Phi + 0 &=& \Phi  \quad
+  \text{we have zero vector in the space} \nonumber \\
+  \Phi + \Psi &=& 0  \quad
+  \text{for any $\Phi$, such $\Psi$ exists} \nonumber \\
+  \Phi 1 &=& \Phi  \quad
+  \text{any vector multiply number 1 is still itself} \nonumber \\
+  (\Phi a)b &=& \Phi(ab) \nonumber \\
+    \Phi (a+b) &=& \Phi a+ \Phi b \nonumber \\
+      (\Phi + \Psi)a &=& \Phi a + \Psi a \nonumber \\
+  (\Phi,\Psi) &=& (\Psi, \Phi)^{*} \nonumber \\
+  (\Phi,\Psi + \Omega) &=&  (\Phi,\Omega) + (\Phi,\Omega)\nonumber \\
+  (\Phi,\Psi a) &=& (\Phi,\Psi)a \nonumber \\
+  (\Psi,\Psi) & \geq& 0 \qquad
+  \text{for any $\Psi$, if it equals to 0, the $\Psi = 0$ }
+\end{eqnarray}
+Here we note that for the operation between number and the vector,
+it should remember that:
+\begin{equation}\label{}
+\Phi a = a\Phi
+\end{equation}
+The relations defined in the (\ref{Hilberteq:2}) are some common
+extension from the vector space. Besides, it can be easily seen that
+the wave functions for a specific system satisfy all the conditions
+above. So the function space is a kind of special Hilbert space.
+
+Here in the Hilbert space two vectors are orthogonal if their inner
+product is 0. The inner product of $(\Psi,\Psi)$, which can be
+abbreviated as $|\Psi|^{2}$; represents the ``length'' of this
+vector; in quantum mechanics, it's directly connected to the
+probability distribution of the wave functions; therefore it
+requires that for any wave function we should have $|\Psi|^{2} = 1$.
+
+In common vector space, we always refer to some finite number of
+vectors, however, the Hilbert space can be infinite; and the vectors
+can be continuously changed (such as the case in the free particles,
+if $\hei{p}$ changes in the continuous way; the wave functions also
+changes coordinately); or discontinuously changed (see the case of the
+deep infinite well; where the wave functions depends on a natural
+number of $n$ inside its expression). However, since that in most of
+the cases the discrete case and the continuous case are sharing the
+same results, so for simplicity in the following content we only
+concentrate on the discussion on the finite number of the vectors in
+the Hilbert space.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Linear independent vectors}
+\label{LIV_in_Hilbert}
+%
+% introduce the linear independent vectors in the vector space, two points:
+%   1  the definition of the linear independent vectors
+%      how to understand it. bridge the orthogonality with
+%      the linear independent condition
+%   2  Schmidt method
+%   3  complete sets introduction, identical sets and dimension
+%   4  why we introduce the Hilbert space
+%   3  degeneracy phenomenon, related to the eigen values
+% same in the Hilbert space, but the element form are more complicated
+%
+
+In the Hilbert space, if we have $n$ vectors:
+\begin{equation}\label{Hilberteq:1}
+\sum^{n}_{i=1}a_{i}\Psi_{i} = 0
+\end{equation}
+This equation is only satisfied as long as all the $a_{i} = 0
+(i=1,2,\cdots, n)$; then it can say that such $n$ vectors are linear
+independent.
+
+From this definition, we can get some important character for the
+linear independent vectors in the Hilbert space:
+\begin{theorem}
+if the given $n$ arbitrary vectors are not linear independent, then
+these $n$ vectors can not be orthogonal with each other.
+\end{theorem}
+
+\begin{proof}
+  Suggest that we have some linear combination of these $n$ linear
+  dependent arbitrary vectors equals to zero, and suggest that the
+  coefficient for the $\Phi$ is not zero:
+\begin{align}\label{}
+  a_{1}\Phi + \sum_{i=2}^{n}a_{i}\Psi_{i} &= 0 \Rightarrow \nonumber
+  \\
+  \sum_{i=2}^{n}a_{i}\Psi_{i} &=-a_{1}\Phi
+\end{align}
+Now to multiply the above equation with $\Phi^{*}$ and make
+integration; then we have (here we suggest that $(\Phi, \Phi) = 1$,
+but in fact it can be any number but without hurting the proof here):
+\begin{equation}\label{Hilberteq:4}
+\sum_{i=2}^{n}a_{i}(\Phi,\Psi_{i}) = -a_{1}
+\end{equation}
+Here if all the vectors are orthogonal with each other, that implies
+we have:
+\begin{equation}\label{}
+\left\{
+  \begin{array}{ll}
+    (\Phi,\Psi_{i}) = 0, & i=2,3,\cdots, n \\
+    (\Psi_{i},\Psi_{j}) = 0, & i \neq j
+  \end{array}
+\right.
+\end{equation}
+Therefore it can see that the left side (\ref{Hilberteq:4}) must be
+zero due to the orthogonality condition, yet the right side is some
+non-zero number of $-a_{1}$; that brings contradiction. Hence there
+must be at least two vectors in the Hilbert space that they are not
+orthogonal with each other. \qedhere
+\end{proof}
+
+This simple derivation reveals some important fact that if the vectors
+in the Hilbert space are all orthogonal with each other then they must
+be linear independent. However, we note that the reverse proposition
+is not correct. For $n$ linear independent vectors in the Hilbert
+space they are not needed to be orthogonal with each other. Let's take
+the vectors as an example, the vector of $\alpha_{1} = (1, 0, 0)$,
+$\alpha_{2} = (0, 1, 0)$ and $\alpha_{3} = (0, 1, 1)$ are three linear
+independent vectors; but we do not have $(\alpha_{2}, \alpha_{3}) =
+0$.
+
+However, for any linear independent vectors, there's always has an way
+to make them into the ``basis vectors'' (in the function space we
+usually call them as ``basis functions''), in which the vectors are
+normalized and orthogonal to each other. Here we introduce the Schmidt
+method which transform the linear independent vectors of $\alpha_{1},
+\alpha_{2}, \cdots, \alpha_{n}$ into the basis vectors of $\beta_{1},
+\beta_{2}, \cdots, \beta_{n}$:
+\begin{itemize}
+  \item First to normalize the $\alpha_{1}$, so that we have:
+\begin{equation}\label{}
+\beta_{1} = \frac{\alpha_{1}}{\sqrt{|\alpha_{1}|^{2}}}
+\end{equation}
+  \item Second to make $\beta_{2}^{'}$ as:
+\begin{equation}\label{}
+\beta_{2}^{'} = \alpha_{2} - a_{12}\beta_{1}
+\end{equation}
+$a_{12}$ is some undetermined coefficients. Suggest that we have
+orthogonal condition between the $\beta_{1}$ and $\beta_{2}^{'}$,
+thus we can determine the $a_{12}$ from this condition:
+\begin{align}\label{}
+(\beta_{1}, \beta_{2}^{'}) &= 0 \Rightarrow \nonumber \\
+a_{12} &= \frac{(\alpha_{1},\alpha_{2})}{\sqrt{|\alpha_{1}|^{2}}}
+\nonumber \\
+a_{12} &= (\beta_{1},\alpha_{2})
+\end{align}
+Finally we can achieve the $\beta_{2}$ as:
+\begin{equation}\label{}
+\beta_{2} = \frac{\beta_{2}^{'}}{\sqrt{|\beta_{2}^{'}|^{2}}}
+\end{equation}
+  \item Similarly we can have $\beta_{3}^{'}$ as:
+\begin{equation}\label{}
+\beta_{3}^{'} = \alpha_{3} - a_{13}\beta_{1} - a_{23}\beta_{2}
+\end{equation}
+By the similar process we can get the coefficients of $a_{13}$ and
+$a_{23}$; then finally we can have:
+\begin{equation}\label{}
+\beta_{3} = \frac{\beta_{3}^{'}}{\sqrt{|\beta_{3}^{'}|^{2}}}
+\end{equation}
+\item For the arbitrary $\beta_{m}$ ($m \leq n$); likely we can
+have:
+\begin{equation}\label{}
+\beta_{m}^{'} = \alpha_{m} - \sum_{i=1}^{m-1}a_{im}\beta_{i}
+\end{equation}
+Since that each pair of $\beta_{i}$ and $\beta_{j}$ are orthogonal
+for different $i$ and $j$; thus we can get $m-1$ functions to
+determine the unknown parameter of $a_{im}$. Finally, we can have:
+\begin{equation}\label{}
+\beta_{m} = \frac{\beta_{m}^{'}}{\sqrt{|\beta_{m}^{'}|^{2}}}
+\end{equation}
+\end{itemize}
+
+From the above simple derivation, we can introduce the concept of
+``complete sets'', which it is identical to the whole space configured
+by the given basis vectors. We note that in the given Hilbert space an
+arbitrary vector of $\Psi$ can be always expressed by this complete
+sets:
+\begin{equation}\label{Hilberteq:5}
+\Psi = \sum^{n}_{i=1}a_{i}\Psi_{i}
+\end{equation}
+Hence, all the other vectors in the given Hilbert space can be
+expressed via such chosen complete sets.
+
+It's easy to prove that such complete sets is not unique, there are
+variety of complete sets can be used to express the same Hilbert
+space; however, it can prove that they are identical with each other
+(see the chapter of representation for more details). On the other
+hand, the dimension of the space is some fixed number among the
+identical complete sets (for detailed proof see the
+book\cite{XingLinKe}, PP $7$).
+
+The most important character for the Hilbert space is perhaps
+reflected by the (\ref{Hilberteq:5}), where it's actually some kind
+of abstraction of the superposition principle in the quantum
+mechanics. Based on this property, the only thing need to do in the
+quantum mechanics is to search a complete set for the Hilbert space
+which corresponds to the investigating system, then we can get any
+information form this sets.
+
+Finally, let's conclude our derivation into some theorem which is
+called ``perfectibility theorem''. That is:
+\begin{theorem}
+\label{Hilbert:1}
+if $\Psi_{i}$ ($i=1,2,\cdots, n$) is a group of
+normalized vectors in Hilbert space where they are orthogonal with
+each other; then the four propositions below are identical with each
+other:
+\begin{itemize}
+  \item $\Psi_{i}$ is the complete sets where any other vectors can
+  be expressed from this sets;
+  \item $\Psi = \sum^{n}_{i=1}(\Psi_{i}, \Psi)\Psi_{i}$ is true for
+  any arbitrary vectors in the given Hilbert space;
+  \item $(\Psi, \Phi) = \sum^{n}_{i=1}(\Psi, \Psi_{i})(\Psi_{i},
+  \Phi)$ holds true for any vectors of $\Phi$ and $\Psi$ in the
+  given Hilbert space;
+  \item $|\Psi|^{2} = \sum^{n}_{i=1}|(\Psi_{i}, \Psi)|^{2}$ holds
+  true for any arbitrary vector of $\Psi$.
+\end{itemize}
+\end{theorem}
+
+The proof for this theorem is direct and simple so here we omitted
+it (if necessary, it can be found at book by XinLin
+Ke\cite{XingLinKe}, PP. 9).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Axiom for quantum mechanics in terms of Hilbert space}
+\label{sec:AFQMITOHS_in_Hilbert}
+
+As what we have been demonstrated, the quantum mechanics can be
+considered as some axiomatic system which is logically based on
+several axioms; from these axioms we can build the whole methodology
+in quantum mechanics so that to tackle down any problems in this
+realm.
+
+The first axiom is related to the Hilbert space, that is:
+\begin{axiom}\label{axiom1}
+\textbf{The system state in quantum mechanics is described by a
+vector in
+  Hilbert space. Any two vectors which is different only by some
+  complex factor is same with each other.}
+\end{axiom}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The relationship between wave functions and Hilbert space}
+\label{TRBWFAHS_in_Hilbert}
+%
+% 1 Hilbert space is some abstraction of the wave functions, wave functions
+%   are only some functions which composed into a space
+% 2 the variables, x, y, z, t, and the group character
+% 3 the probability character
+% 4 superposition character
+% 5  what the Hilbert space composed of?
+%
+%
+%
+In the chapter \ref{basic_chapter}, where we have demonstrated that
+the wave function is expressed by the form of $\Psi(\bm{r}, t)$ which
+is the function of coordinates and time. Hence, here how can we
+understand the relation between such wave functions and the Hilbert
+space?
+
+The wave functions indicated in the \ref{basic_chapter}, is actually
+the solutions to the Schrodinger equation. For one specific
+Schrodinger equation, it always gives a group of functions as the
+``solution in cluster'', such cluster is labeled by some arguments.
+For example, the clustered solution in free particle system is
+controlled by the argument of $\hei{p}$ in (\ref{BASICeq:13}), in
+infinite well system the clustered solution is controlled by the $n$
+in (\ref{ASPIIDW_in_basic}). As the $\hei{p}$ or the $n$ varies, then
+the functions is transforming from one to another in the group. That's
+the feature of ``solution in cluster''.
+
+Furthermore, for some given one function in the group, it's the
+function of the coordinates and time; namely $x, y, z$ in each time of
+$t$ (here the spin variables are temporarily omitted for
+simplicity). For each group of certain variables of $x, y, z, t$; the
+wave function has some value corresponding to it and different
+function in the group usually gives different value for the fixing $x,
+y, z, t$. Physically, different wave functions is used to
+characterize different state of the corresponding system; for example,
+in quantum chemistry calculation, different wave functions always
+occupy different energy state, so they are used to describe different
+energy state of the chemical system.
+
+One of important feature of the wave functions, is that its modulus
+characterizes the probability distribution of the system. This
+character brings on an important trait in the Hilbert space, that the
+``length'' of the vectors in the Hilbert space has no physical
+meaning, only the normalized vectors are meaningful, and the
+integration of the modulus over whole space equals to $1$:
+$(\Psi,\Psi) = 1$. Thus any vectors in the Hilbert space which
+different by no more than a constant will be same in portraying the
+system state. However, there also exists some functions which can not
+normalized, for example; the wave functions for the free
+particle. However, such functions also retain important physical
+meaning, in the content below we will present more discussion to this
+type of wave functions.
+
+Another important feature of the wave functions, is that they
+satisfy the superposition principle; which can be directly observed
+from the Schrodinger equation. On the other hand, it can see that
+the superposition principle is the foundation of the Hilbert space;
+since from the (\ref{Hilberteq:5}) any vector in the space can be
+expressed as the linear combination of the vectors in the complete
+sets. In a sense, the property in (\ref{Hilberteq:5}) in Hilbert
+space really depicts the essence behind the superposition of the
+wave functions.
+
+Physically, the Hilbert space can be viewed as the abstraction of
+the wave functions in the quantum mechanics. The wave functions is
+some concrete function (for example, it can be plane waves, gaussian
+functions etc.), while in the Hilbert space we abstracted them as
+some ``vector'' and discuss their general properties. Therefore, the
+Hilbert space can be seen as some extension for the function
+space\cite{Coden}. Such abstraction does not only bring us
+convenience, but also actually be indispensable. In the
+non-relativistic quantum mechanics, as we can see in the following
+chapter; the spin phenomenon is introduced as some additional
+``hypothesis'' where we do not have correspondence in the
+macroscopical world. Hence, for the discussion of the spin we can
+not write down the specific form of operators then to get the
+concrete form of wave functions, thus the operator is only
+abstractly introduced and as well the wave function (see the chapter
+of spin). However, such wave functions can be also expressed by the
+``vectors'' in the Hilbert space so that we can still discuss its
+properties.
+
+Now let's concentrate on another aspect that what kind of space the
+Hilbert space including?
+
+Generally to say, nearly all the wave functions are actually composed
+into the normal function space. The function space is some group of
+functions (such functions can be discretely varied or continuously
+varied, for example; in the \ref{ASPIIDW_in_basic} the functions are
+discretely varied from each to another by the variable of $n$), and any
+two functions satisfy the definition in (\ref{Hilberteq:2}), more
+specifically; the functions should be square-integrable:
+\begin{equation}
+  \int |\Psi|^{2} d\tau = 1
+\end{equation}
+So the last item in the (\ref{Hilberteq:2}) is more restricted to be
+$(\Psi, \Psi) = 1$. In physics, since the functions characterizes
+the distribution of the particle in given state, so it requires that
+the functions should be continuously differential, uniform etc. Here
+the wave functions in the (\ref{ASPIIDW_in_basic}) is one example of
+the function space.
+
+However, the function space is only one part of the Hilbert space, the
+Hilbert space also contains some ``irregular space'' in which the wave
+functions are not square-integrable. For example, the plane wave
+functions we have derived in the (\ref{ASCWFFFP_in_basic}). The
+integration of such wave function will lead to infinity. However, it
+also satisfy the definition in the (\ref{Hilberteq:2}), so it's also a
+kind of space belong to Hilbert type.
+
+In the following content, we will give some examples of the Hilbert
+space to see how to bridge their the general properties with the
+concrete functions.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some examples}
+\label{sec:SE_in_Hilbert_space}
+
+Now let's give some examples to demonstrate the above discussion for
+the Hilbert space. The examples is all related to the function space,
+and can be divided into two classes: one is discrete orthogonal basis
+functions in common function space, the other is continuous orthogonal
+basis functions which is not square integrable. From the discussion
+below, finally we will draw some similarity between them\footnote{This
+  part of discussion is taken from \cite{Coden}}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Discrete orthogonal basis functions}
+\label{sec:DOBF_in_Hilbert_space}
+
+Now consider a group of wave functions, they are corresponding to some
+given $\hat{H}$ (for example, the wave functions for infinite well in
+the \ref{ASPIIDW_in_basic}). These functions can be generally
+expressed as:
+\begin{equation}
+\label{Hilberteq:11}
+  \mu_{1}(\mathbf{r}) \quad  \mu_{2}(\mathbf{r}) \quad  \mu_{3}(\mathbf{r}) \cdots
+\mu_{n}(\mathbf{r})
+\end{equation}
+
+We assume that such $n$ functions are orthogonal with each other:
+\begin{equation}
+  \int \mu_{i}(\mathbf{r}) \mu_{j}(\mathbf{r}) d^{3}\mathbf{r} = \delta_{ij}
+\end{equation}
+
+Therefore, according to the (\ref{Hilberteq:5}), for any quantum
+states of $\Phi(\mathbf{r})$ corresponding to the system, it can be
+expressed as:
+\begin{equation}
+\label{Hilberteq:3}
+  \Phi(\mathbf{r}) = \sum_{i=1}^{n}c_{i}\mu_{i}(\mathbf{r})
+\end{equation}
+
+$c_{i}$ is given by:
+\begin{align}
+  (\mu_{i}(\mathbf{r}), \Phi(\mathbf{r})) &=
+  \sum_{j=1}^{n}c_{j}(\mu_{i}(\mathbf{r}), \mu_{j}(\mathbf{r})) \nonumber
+  \\
+  &=\sum_{j=1}^{n}c_{j}\delta_{ij} \nonumber \\
+  &=c_{i}
+\end{align}
+
+Therefore, we have:
+\begin{equation}
+  \Phi(\mathbf{r}) = \sum_{i=1}^{n}(\mu_{i}(\mathbf{r}),
+  \Phi(\mathbf{r}))\mu_{i}(\mathbf{r})
+\end{equation}
+
+For two different quantum states of $\Phi(\mathbf{r})$ and
+$\Psi(\mathbf{r})$, where they are expressed as:
+\begin{align}
+  \Phi(\mathbf{r}) &= \sum_{i=1}^{n}a_{i}\mu_{i}(\mathbf{r}) \nonumber \\
+  \Psi(\mathbf{r}) &= \sum_{i=1}^{n}b_{i}\mu_{i}(\mathbf{r})
+\end{align}
+
+Their inner product can be given as:
+\begin{align}
+\label{Hilberteq:13}
+  (\Phi(\mathbf{r}), \Psi(\mathbf{r})) &=
+  \sum_{i=1}^{n}\sum_{j=1}^{n}a^{*}_{i}b_{j} (\mu_{i}(\mathbf{r}),
+  \mu_{j}(\mathbf{r})) \nonumber \\
+  &=  \sum_{i=1}^{n}\sum_{j=1}^{n}a^{*}_{i}b_{j}\delta_{ij} \nonumber \\
+  &=  \sum_{i=1}^{n}a^{*}_{i}b_{i}
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Closure relation}
+\label{sec:CR_in_Hilbert}
+
+Now let's set up another relation which is identical to the definition
+of complete sets defined in the section of \ref{LIV_in_Hilbert}. This
+is called closure relation.
+
+From the (\ref{Hilberteq:3}), we can write:
+\begin{align}
+\label{Hilberteq:15}
+  \Phi(\mathbf{r}) &= \sum_{i=1}^{n}c_{i}\mu_{i}(\mathbf{r}) \nonumber
+  \\
+&= \sum_{i=1}^{n}(\mu_{i}(\mathbf{r}),
+  \Phi(\mathbf{r}))\mu_{i}(\mathbf{r}) \nonumber \\
+&= \sum_{i=1}^{n}\left[ \int
+\mu_{i}(\mathbf{r}^{'})\Phi(\mathbf{r}^{'})d^{3}\mathbf{r}^{'}
+\right]\mu_{i}(\mathbf{r}) \quad
+\underrightarrow{\text{interchange $\sum$ and $\int$}} \nonumber \\
+&= \int
+\left[ \sum_{i=1}^{n}
+\mu_{i}(\mathbf{r}^{'})\mu_{i}(\mathbf{r})\right]
+\Phi(\mathbf{r}^{'})d^{3}\mathbf{r}^{'} \nonumber \\
+&= \int F(\mathbf{r}, \mathbf{r}^{'})\Phi(\mathbf{r}^{'})d^{3}\mathbf{r}^{'}
+\end{align}
+
+Hence we have:
+\begin{equation}
+  \label{Hilberteq:6}
+  F(\mathbf{r}, \mathbf{r}^{'}) = \sum_{i=1}^{n}
+\mu_{i}(\mathbf{r}^{'})\mu_{i}(\mathbf{r}) = \delta (\mathbf{r}
+-\mathbf{r}^{'})
+\end{equation}
+
+The relation in the (\ref{Hilberteq:6}) is the closure relation. On
+the other hand, we can prove that from the (\ref{Hilberteq:6}) we can
+also derive the (\ref{Hilberteq:3})\cite{Coden}, so that to prove it's
+identical to the definition of complete sets.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Plane wave functions as continuous basis functions}
+\label{sec:PWF_in_Hilbert}
+
+In section of (\ref{sec:HTEAAWFFFP_in_basic}), we have introduced the
+free particle wave function as well as the wave packets. From the
+(\ref{BASICeq:19}) and (\ref{BASICeq:20}), they can be generally
+expressed as:
+\begin{align}
+  \label{Hilberteq:7}
+\Phi(x) &=
+\frac{1}{\sqrt[2]{2\pi}}\int_{-\infty}^{+\infty}\Psi(p)e^{ipx}dp
+\nonumber \\
+\Psi(p) &=
+\frac{1}{\sqrt[2]{2\pi}}\int_{-\infty}^{+\infty}\Phi(x)e^{-ipx}dx
+\end{align}
+Here we have omit the irrelevant time part and restrict to the X
+direction for simplicity.
+
+If we write the plane wave function of $\nu_{p}(x)$ as:
+\begin{equation}
+  \label{Hilberteq:8}
+  \nu_{p}(x) = \frac{1}{\sqrt[2]{2\pi}}e^{ipx}
+\end{equation}
+
+Then the (\ref{Hilberteq:7}) can be converted to:
+\begin{align}
+  \label{Hilberteq:9}
+\Phi(x) &= \int_{-\infty}^{+\infty}\Psi(p)\nu_{p}(x)dp
+\nonumber \\
+\Psi(p) &= \int_{-\infty}^{+\infty}\Phi(x)\nu_{p}^{*}(x)dx = (v_{p}(x), \Phi(x))
+\end{align}
+
+As $p$ continuously varied, since $|\nu_{p}(x)|^{2} = \frac{1}{2\pi}$,
+thus $\nu_{p}(x)$ is not square integrable. However, we can use the
+delta function to express their integration that:
+\begin{equation}
+  \label{Hilberteq:16}
+  \int \nu_{p}^{*}(x)\nu_{p}(x) dx = \delta(x)
+\end{equation}
+The delta function is detailed discussed in the appendix.
+
+Now let's make some comparison between the (\ref{Hilberteq:11}) and
+(\ref{Hilberteq:8}), we can see many similarities between the
+$\nu_{p}(x)$ and the discrete basis functions.:
+\begin{align}
+  \label{Hilberteq:10}
+p &\Leftrightarrow i \nonumber \\
+x &\Leftrightarrow \bm{r} \nonumber \\
+\nu_{p}(x) &\Leftrightarrow \mu_{i}(\bm{r}) \nonumber \\
+\Phi(x) &\Leftrightarrow \Phi(\bm{r})
+\end{align}
+
+Then we can see the relation in the (\ref{Hilberteq:3}) just
+equivalent to the (\ref{Hilberteq:9}). So the $c_{i}$ in the
+(\ref{Hilberteq:3}) equivalent to the $\Psi(p)$ in the
+(\ref{Hilberteq:9}).
+
+Then if we have two wave packets, $\Phi_{1}(x)$ and $\Phi_{2}(x)$,
+then we can evaluate their inner product as:
+\begin{align}
+  \label{Hilberteq:12}
+  (\Phi_{1}(x), \Phi_{2}(x)) &= \int_{-\infty}^{+\infty}
+  \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}
+  \Psi^{*}_{1}(p)\nu^{*}_{p}(x)\Psi_{2}(p^{'})\nu_{p^{'}}(x)dpdp^{'}dx
+  \nonumber \\
+  &= \int_{-\infty}^{+\infty}
+  \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}
+  \Psi^{*}_{1}(p), \Psi_{2}(p^{'})\delta(p-p^{'})dpdp^{'}
+  \nonumber \\
+  &= \int_{-\infty}^{+\infty}\Psi^{*}_{1}(p), \Psi_{2}(p)dp
+\end{align}
+So finally the result reveals that it's equivalent to the
+(\ref{Hilberteq:13}). Here we have imposed the orthogonality of the
+continuous basis functions.
+
+Finally, let's reveal how to express the closure relation in the
+(\ref{sec:CR_in_Hilbert}), which is due to the orthogonality for the
+plane wave functions:
+\begin{align}
+  \label{Hilberteq:14}
+\int \nu_{p}^{*}(x)\nu_{p^{'}}(x)dx = \delta(p - p^{'}) \nonumber \\
+\int \nu_{p}^{*}(x)\nu_{p}(x^{'})dp = \delta(x - x^{'})
+\end{align}
+This is equivalent to the closure relation in the
+(\ref{sec:CR_in_Hilbert}).
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Subspace}
+%
+% some general discussion for the subspace
+%
+%
+Sometimes we have encounter such circumstance that in the given
+complete sets, there's a small group of vectors which is also
+composed into some Hilbert space. This is called ``subspace''
+compared with the original Hilbert space.
+
+In quantum mechanics, such subspace is very common. For example, in
+the following content we will introduce the eigen function (see the
+chapter of ``General Discussion to Operator''):
+\begin{equation}\label{}
+\hat{A}\Psi_{i} = a_{i}\Psi_{i}
+\end{equation}
+$\hat{A}$ is some operator. Here we may meet such case that for a
+group of $\Psi_{ij}$ ($j=1,2, \cdots, m$) they all give the eigen
+value of $a_{i}$. Such $m$ wave functions just compose into some
+subspace inside the complete set $\Psi_{ij}$ ($i=1,2,\cdots, n$).
+
+It's easy to prove that if the subspace is in $m$ dimension, then we
+can find another $n-m$ vectors to form the whole complete sets for
+$\Psi_{ij}$ ($i=1,2,\cdots, n$) together with the $\Psi_{ij}$
+($j=1,2, \cdots, m$). The demonstration is direct and
+straightforward (see \cite{XingLinKe}, PP. 12). therefore, no matter
+whether the subspace exists, the dimension of the complete sets are
+fixed.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bra and Ket}
+%
+%  1  why we introduce the bra and ket
+%  2  definition
+%  3  one to one correspondent relation
+%  4  different with complex number
+%
+In the above definition, it can see that the inner product is related
+to the multiplication order between two vectors in Hilbert space. That
+is: $(\Phi,\Psi) = (\Psi, \Phi)^{*}$.  Furthermore, it's easy to prove
+that $(a\Phi,\Psi) = a^{*}(\Phi,\Psi)$, which is conjugated with
+$(\Phi,a\Psi) = (\Phi,\Psi)a$. Thus even for the same vector it's
+different between the left position and the right position in the
+inner product.
+
+Moreover, in the study of quantum mechanics it's found that to
+distinguish the left position and the right position is necessary,
+so we introduce the ``bra'' and ``ket'' to represent the left
+position and right position, respectively. Mathematically the bra is
+written as $\langle\Psi|$, and the ket is written as $|\Psi\rangle$.
+They are independent vector space, but coordinate with each other.
+It was introduced by Dirac, so this symbolic representation is
+called Dirac symbol.
+
+Simply to say, the bra and ket are some dual space, but they are
+independent with each other. However, how to understand the relation
+between the Hilbert space and the space of ``bra'' and ``ket''? In
+short, the bra and ket can be viewed as some extention to the Hilbert
+space, just to decompose the original single space into some dual
+space for the sake of quantum mechanics. Therefore, in bra and ket the
+elements should satisfy the same rules in the Hilbert space:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  |\Psi\rangle + |\Phi\rangle&=& |\Phi\rangle + |\Psi\rangle \nonumber \\
+  |\chi\rangle + (|\Psi\rangle + |\Phi\rangle) &=&
+  (|\chi\rangle + |\Psi\rangle) + |\Phi\rangle \nonumber \\
+  |\Psi\rangle + |O\rangle &=& |\Psi\rangle \nonumber \\
+  |\Psi\rangle1 &=& |\Psi\rangle \nonumber\\
+  |\Psi\rangle + |\Phi\rangle &=& |O\rangle \nonumber\\
+  |\Psi\rangle (a+b) &=& |\Psi\rangle a + |\Psi\rangle b \nonumber\\
+  (|\Psi\rangle a)b &=& |\Psi\rangle (ab) \nonumber\\
+  (|\Psi\rangle + |\Phi\rangle)a &=& |\Psi\rangle a + |\Phi\rangle a
+\end{eqnarray}
+It's note that the space of bra satisfy the same rules.
+
+For the bra and ket, it's the inner product that connect them
+together, that the inner product is defined as the multiplication
+between bra and ket: $\langle\Phi|\Psi\rangle$. hence, the bra and ket
+has to comply with the rules related to the inner product:
+\begin{eqnarray}
+% \nonumber to remove numbering (before each equation)
+  \langle\Phi|\Psi\rangle &=& \langle\Psi|\Phi\rangle^{*}      \nonumber\\
+  \langle\Omega|(|\Phi\rangle+|\Psi\rangle) &=&
+  \langle\Omega|\Phi\rangle + \langle\Omega|\Psi\rangle \nonumber \\
+  (\langle\Phi|+\langle\Psi|)|\Omega\rangle &=&
+  \langle\Phi|\Omega\rangle + \langle\Psi|\Omega\rangle \nonumber \\
+  \langle\Phi|(|\Psi\rangle a) &=& \langle\Phi|\Psi\rangle a \nonumber \\
+  (a\langle\Phi|)|\Psi\rangle  &=& a\langle\Phi|\Psi\rangle  \nonumber \\
+  \langle\Psi|\Psi\rangle&\geq& 0 \qquad \text{for any vector in space }
+\end{eqnarray}
+
+From the definition above, it's easy to see that the bra space is
+one to one mapping with the ket space. For an arbitrary \kett{\Psi},
+there hast have an \brat{\Psi}; makes $\langle\Psi|\Psi\rangle = 1$,
+and only one \brat{\Psi} satisfies this correspondence. Furthermore,
+the operations on the \kett{\Psi} is same to \brat{\Psi}. The only
+correspondence between \kett{\Psi} and \brat{\Psi} is, the
+$c\ket{\Psi}$ is corresponding to $c^{*}\bra{\Psi}$ but not
+$c\bra{\Psi}$.
+
+Such correspondence between bra and ket, makes us to call them as
+``conjugated vectors''. They are similar to the conjugated complex
+number such as $a+ib$ and $a-ib$, however; there's essential
+distinction between them( to read the book by Dirac \cite{Dirac} for
+more further details, PP 17).
+
+For the conjugated vectors, it's impossible to differentiate the
+real part and the imaginary part in the \kett{\Psi} and \brat{\Psi}.
+For example, if we have $x=a+ib$, $y=a-ib$; thus $a= \frac{x+y}{2}$
+and $b = \frac{x-y}{2i}$. Whereas for the \kett{\Psi} and
+\brat{\Psi}, they are in different space, and independent with each
+other; \kett{\Psi} $+$ \brat{\Psi} has no meaning, only their
+multiplication is meaningful. Thus we called them ``conjugated
+vectors''.
+
+Because of the close relation between \kett{\Psi} and \brat{\Psi},
+we introduce transposing operation to transform them to each other:
+$\ket{\Psi}^{*} = \bra{\Psi}$. Since the bra and ket symbol is
+obviously different with the complex number, we still use the
+conjugated symbol.
+
+Finally we note that usually we always use the \kett{\Psi} to
+represent the wave function.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End:
+
+% LocalWords:  contious

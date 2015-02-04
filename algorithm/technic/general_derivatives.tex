@@ -1,0 +1,1553 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{General Discussion for Gradient theory in Quantum chemistry}
+%
+%
+%
+In quantum chemistry, the evaluating for the energy derivatives with
+respect to the perturbation of system is overwhelming important. Many
+important application; such as energy surface study, the vibration etc. are all
+have to employ such technique.
+
+There's a book that gives detailed discussion for this area, it's written by 
+Yukio Yamaguchi, John D. Goddard, Yoshihiro Osamura and Henry
+Schaefer\cite{New_Dimension_for_Derivatives_Calculation}\footnote{Actually,
+we are just following the same procedure used in that book}.  The author
+recommends the interesting reader to further refer to this book. On the other
+hand, the initiator of this theory; Peter Pulay also has many
+reference\cite{Pulay1, Pulay2, Pulay3, Pulay4, Pulay5, Pulay6, pulay:5043} that
+can be further studied. Now let's concentrate on one aspect of energy
+derivatives, which is to locate the potential energy surface.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+%
+%
+Most of the quantum chemistry study is based on the Born-Oppenheimer
+approximation. In this approximation, the nucleus are considered to
+move on the classic trajectory, so its motion is continuous and
+smooth; where the motion of electrons is treated quantized, and able
+to adapt simultaneously to the position change of nucleus.  Therefore,
+the total energy of the whole molecular system is some function of the
+nuclear coordinates; such dependence is called potential energy
+hyper-surface (later shorted as PES).
+
+Consequently, to determine the PES is vital in the quantum
+chemistry. Such determination requires to get the energy derivatives
+for an arbitrary nuclear configuration of \vect{R_{0}}, that is to
+say, the PES around \vect{R_{0}} can be adequately characterized by
+its Taylor series expansion:
+\begin{equation}\label{PULAYeq:1}
+  \begin{split}
+    E(\mathbf{R}) &= E(\mathbf{R_{0}}) +
+    \sum_{a}E^{a}\Delta\mathbf{R_{a}}
+    +  \frac{1}{2!}\sum_{a,b}E^{ab}\Delta\mathbf{R_{a}}\Delta\mathbf{R_{b}} \\
+    & +
+    \frac{1}{3!}\sum_{a,b,c}E^{abc}\Delta\mathbf{R_{a}}\Delta\mathbf{R_{b}}
+    \Delta\mathbf{R_{c}} + \cdots
+  \end{split}
+\end{equation}
+Here the $E^{a}, E^{ab}$ etc. denote the first derivatives, second
+derivatives etc. with respect to the total energy in the \vect{R_{0}};
+and the $\Delta\mathbf{R_{a}}, \Delta\mathbf{R_{b}}$ etc. express the
+small changes around the reference point of \vect{R_{0}} in the given
+direction: $\Delta\mathbf{R_{a}} =
+(\mathbf{R_{a}}-\mathbf{R_{0}})_{a}$.
+
+The solution to this problem was firstly suggested by professor Peter
+Pulay around $1969$. In this chapter, we will provide a thorough and
+detailed analysis for this topic.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{General Derivatives
+  Expressions}\label{General_Derivatives_Expressions_hf_derivatives} 
+%
+%
+In this section, we firstly introduce some general formulas for the
+derivatives of variational energy expressions\footnote{This expression is
+generally taken from Peter Pulay's review. Personally I like it,
+since it's very compact expression and also very heuristic for understanding
+the. variational process. However, as a symbolic expression, it's not the best
+one to express the gradient.}.
+
+First let's consider the energy functional:
+\begin{equation}\label{PULAYeq:13}
+  E = E(\bm{c},\bm{R})
+\end{equation}
+Here the $\bm{R}$ represents the nuclear coordinates, and $\bm{c}$ is the set of
+variational parameter in the wave function; e.g.; in the case of SCF
+wave function, $\bm{c}$ is the MO coefficients. In the later content, we use
+$\bm{c}_{i}$ to indicate each of $\bm{c}$'s vector, e.g; in HFR equation
+$\bm{c}_{i}$ corresponds to the $i$th MO coefficients. On the other hand,
+In CI calculation, $\bm{c}$ is the Slater determinant coefficients. Here we note
+that in the (\ref{PULAYeq:13}) the parameters should be gotten through variation
+condition:
+\begin{equation}\label{PULAYeq:14}
+  \frac{\partial E}{\partial \bm{c}_{i}} = 0 \quad i=1,2,\cdots
+\end{equation}
+Thus for each reference coordinate of $\bm{R}$ we can get a set of
+variational parameters of $\bm{c}$, so we can see that the $\bm{c}$ is some
+function of nuclear coordinates of $\bm{R}$; $\bm{c} = c(\bm{R})$:
+\begin{equation}\label{}
+  \bm{R} \Rightarrow E \Rightarrow \bm{c} \Rightarrow \bm{c}= c(\bm{R})
+\end{equation}
+Therefore we can express the energy functional as:
+\begin{equation}\label{PULAYeq:2}
+  E = E(c(\bm{R}), \bm{R})
+\end{equation}
+This is some simpler model for discussing the derivatives of the total
+energy, for we have not imposed any further constraint conditions on
+the $\bm{c}$. Usually in the quantum chemistry, in the variation process of
+(\ref{PULAYeq:14}) the MO coefficients should keep orthogonal with
+each other. Latter we will study this case.
+
+Our aim is to derive the formulas for the expression of
+(\ref{PULAYeq:2}) with respect to the nuclear coordinates of $\bm{R}$.  For
+the change of $R$ in the $a$ direction, according to the chain rule of
+differentiation we have:
+\begin{align}\label{PULAYeq:3}
+  E_{a} &= \frac{\partial E}{\partial R_{a}} +\sum_{i}\frac{\partial
+    E}{\partial \bm{c}_{i}}\frac{\partial
+    \bm{c}_{i}}{\partial R_{a}} \nonumber \\
+  &= \frac{\partial E}{\partial R_{a}}
+\end{align}
+
+In this derivation we have used the relation in the
+(\ref{PULAYeq:14}). The results shows that the derivative of the
+variational parameters (here is the $\bm{c}$) do not enter into the
+gradient formula. In the later content, as in the derivation of the
+constraint variational process, we can see that the same fact holds,
+too.
+
+For the second derivatives, by differentiation of (\ref{PULAYeq:3}),
+we can get:
+\begin{align}\label{}
+  E_{ab} &=\frac{\partial}{\partial R_{b}}\left(\frac{\partial
+      E}{\partial
+      R_{a}}\right) \nonumber \\
+  &=\frac{\partial^{2} E}{\partial R_{a}\partial R_{b}}
+  +\sum_{i}\frac{\partial^{2} E}{\partial R_{b}\partial
+    \bm{c}_{i}}\frac{\partial \bm{c}_{i}}{\partial R_{a}}
+\end{align}
+
+So far, the discussion is all about the variational process without
+constraints. However, it's usually required that in the variational
+process, the orbitals or the approximated wave functions should keep
+to be orthogonal with each other. Therefore, it's appropriate to
+introduce the general functional with constraint conditions:
+\begin{equation}\label{PULAYeq:8}
+  W(\bm{c}, \bm{R}, \lambda) = E(\bm{c}, \bm{R}) - \sum_{m}f_{m}(\bm{c},
+\bm{R})\lambda_{m}
+\end{equation}
+Here the $W$ stands for the general Lagrangian functional. The
+$f_{m}(\bm{c}, \bm{R})$ generally denote the $m$ constraint conditions, normally
+the constraints are the orthogonality conditions for the molecular
+orbitals or the configurations. The $\lambda_{m}$ is simply the
+Lagrangian factor. We note that this term is usually related to the energy, such
+as the orbital energy in Hatree-Fock theory. The term $f_{m}$ is also very
+meaningful, in Hatree-Fock theory, it corresponds to the overlap matrix. In the
+later content, we will see more direct applications.
+
+The variation process now becomes:
+\begin{equation}\label{PULAYeq:5}
+  \frac{\partial W}{\partial \bm{c}_{i}} = 0 \quad (i=1,2, \cdots)
+\end{equation}
+On condition that:
+\begin{equation}\label{PULAYeq:15}
+  f_{m}(\bm{c}, \bm{R}) =  0 \quad (m=1,2, \cdots)
+\end{equation}
+
+Such conditions are sufficient to determine the unknown $\bm{c}_{i}$ and
+$\lambda_{m}$, hence we can consider the $\bm{c}_{i}$ and $\lambda_{m}$ are
+some functions of $\bm{R}$:
+\begin{equation}\label{}
+  \left\{
+    \begin{array}{ll}
+      \bm{c}_{i} = c(\bm{R}),             & i=1,2,\cdots  \\
+      \lambda_{m} = \lambda(\bm{R}), & m=1,2,\cdots
+    \end{array}
+  \right.
+\end{equation}
+
+If the conditions in (\ref{PULAYeq:5}) have been satisfied, then from
+the general functional in (\ref{PULAYeq:8}) we can get the total
+energy:
+\begin{equation}\label{PULAYeq:4}
+  W(\bm{c}, \lambda, \bm{R}) \Rightarrow E(\bm{c}, \bm{R})
+\end{equation}
+
+Now we begin to seek the expressions for the first derivative and
+second derivatives related to the $E(\bm{c}, \bm{R})$.
+
+By the differentiation of $E(\bm{c}, \bm{R})$, we have:
+\begin{equation}\label{PULAYeq:6}
+  E_{a} =\frac{\partial E}{\partial R_{a}} + \sum_{i}\frac{\partial
+    E}{\partial \bm{c}_{i}}\frac{\partial \bm{c}_{i}}{\partial R_{a}}
+\end{equation}
+This is same with the (\ref{PULAYeq:3}). However, here we do not
+simply have the $\frac{\partial E}{\partial \bm{c}_{i}} = 0$, thus we have
+to do some transformations.
+
+For the constraint variation condition, we can further express the
+(\ref{PULAYeq:5}) as:
+\begin{align}\label{}
+  \frac{\partial W}{\partial \bm{c}_{i}} &= \frac{\partial E}{\partial
+   \bm{c}_{i}} - \sum_{m}\frac{\partial f_{m}(\bm{c}, \bm{R})}{\partial
+    \bm{c}_{i}}\lambda_{m} \nonumber \\
+  &= 0
+\end{align}
+By multiply the $\frac{\partial \bm{c}_{i}}{\partial R_{a}}$ to the above
+expression and sum over all the label of $i$, we can get:
+\begin{equation}\label{PULAYeq:17}
+  \sum_{i}\frac{\partial E}{\partial \bm{c}_{i}}\frac{\partial
+    \bm{c}_{i}}{\partial R_{a}} - \sum_{m}\lambda_{m}\sum_{i}\frac{\partial
+    f_{m}(\bm{c}, \bm{R})}{\partial \bm{c}_{i}}\frac{\partial
+\bm{c}_{i}}{\partial R_{a}} = 0
+\end{equation}
+
+On the other hand, if we differentiate the constraint conditions of
+(\ref{PULAYeq:15}) with respect to the $R_{a}$, we can have:
+\begin{align}\label{PULAYeq:16}
+  \frac{\partial f_{m}(\bm{c}, \bm{R})}{\partial R_{a}} + \sum_{i}\frac{\partial
+    f_{m}(\bm{c}, \bm{R})}{\partial \bm{c}_{i}}\frac{\partial
+\bm{c}_{i}}{\partial R_{a}} =
+  0
+\end{align}
+If we multiply the (\ref{PULAYeq:16}) with $\lambda_{m}$ and sum all
+of label of $m$ together, we can get:
+\begin{equation}\label{PULAYeq:18}
+  \sum_{m}\lambda_{m}\frac{\partial f_{m}(\bm{c}, \bm{R})}{\partial R_{a}} +
+  \sum_{m}\lambda_{m}\sum_{i}\frac{\partial f_{m}(\bm{c}, \bm{R})}{\partial
+    \bm{c}_{i}}\frac{\partial \bm{c}_{i}}{\partial R_{a}} = 0
+\end{equation}
+
+By virtual of the results indicated in the (\ref{PULAYeq:17}) and
+(\ref{PULAYeq:18}), we can have:
+\begin{equation}\label{}
+  \sum_{m}\lambda_{m}\frac{\partial f_{m}(\bm{c}, \bm{R})}{\partial R_{a}} = -
+  \sum_{i}\frac{\partial E}{\partial \bm{c}_{i}}\frac{\partial
+    \bm{c}_{i}}{\partial R_{a}}
+\end{equation}
+
+Finally for the (\ref{PULAYeq:6}) we can have:
+\begin{align}\label{PULAYeq:7}
+  E_{a} &= \frac{\partial E}{\partial R_{a}} - \sum_{m}\frac{\partial
+    f_{m}(\bm{c}, \bm{R})}{\partial
+    R_{a}}\lambda_{m} \nonumber \\
+  &= \frac{\partial W}{\partial R_{a}}
+\end{align}
+Here the result shows the same important meaning with the
+(\ref{PULAYeq:3}) that the derivatives of the variational parameters
+do not enter the gradient formula. For example, in the HF calculation
+(or the DFT calculation, which use the single determinant); the
+evaluation of the MO coefficients can be avoided.  In the CI
+calculation, the evaluation with respect to the coefficients for the
+determinants can be neglected. In such scheme, only the derivatives of
+the basis function integrals appearing in the energy formula need to
+be calculated.
+
+By differentiating the expression of (\ref{PULAYeq:7}) with respect to
+the $R_{b}$, we can get:
+\begin{align}\label{}
+  E_{ab} &=\frac{\partial}{\partial R_{b}}\left(\frac{\partial
+      W}{\partial
+      R_{a}}\right) \nonumber \\
+  &=\frac{\partial^{2} E}{\partial R_{a}\partial R_{b}} +
+  \sum_{i}\frac{\partial^{2} E}{\partial R_{a}\partial
+    \bm{c}_{i}}\frac{\partial \bm{c}_{i}}{\partial R_{b}} -
+  \sum_{m}\frac{\partial^{2} f_{m}(\bm{c}, \bm{R})}
+  {\partial R_{a}\partial R_{b}}\lambda_{m} - \nonumber \\
+  &\sum_{m}\sum_{i}\frac{\partial^{2} f_{m}(\bm{c}, \bm{R})}{\partial
+    R_{a}\partial \bm{c}_{i}}\frac{\partial \bm{c}_{i}}{\partial
+    R_{b}}\lambda_{m} - \sum_{m}\frac{\partial f_{m}(\bm{c}, \bm{R})}{\partial
+    R_{a}}\frac{\partial \lambda_{m}}{\partial R_{b}}
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hamiltonian Expansion}
+%
+%
+%
+Firstly, let's give some general discussion for the dependence between the
+Hamiltonian operator, the total energy and other parameters.
+
+For the $\hat{H}$, which is actually the function of $\bm{R}$:
+$\hat{H}(\bm{R})$; in terms of some arbitrary geometry variation:
+\begin{equation}
+ \bm{R} = \bm{R}_{0} + \bigtriangleup\bm{R}
+\end{equation}
+the Hamiltonian can be expressed as:
+\begin{equation}
+\label{GD_gradient_eq:1} 
+\begin{split}
+ \hat{H}(\bm{R}_{0} + \Delta\bm{R}) &= \hat{H}(\bm{R}_{0}) + 
+\sum_{a}\Delta\bm{R}_{a}\frac{\partial \hat{H}}{\partial \bm{R}_{a}} + 
+\frac{1}{2!}\sum_{a,b}\Delta\mathbf{R_{a}}\Delta\mathbf{R_{b}}\frac{\partial^{2}
+\hat{H}}{\partial \bm{R}_{a}\partial \bm{R}_{b}} \\
+    & +
+    \frac{1}{3!}\sum_{a,b,c}\Delta\mathbf{R_{a}}\Delta\mathbf{R_{b}}
+    \Delta\mathbf{R_{c}}\frac{\partial^{3}
+\hat{H}}{\partial \bm{R}_{a}\partial \bm{R}_{b}\partial \bm{R}_{c}} + \cdots
+\end{split}
+\end{equation}
+Here $\Delta\mathbf{R_{a}}$ etc. denote the geometrical displacement on the
+nuclear $a$. 
+
+If we turn to the perturbation viewpoint, it's found that:
+\begin{align}
+ \label{GD_gradient_eq:2}
+\hat{H}^{'}_{a} = \frac{\partial \hat{H}}{\partial \bm{R}_{a}} &\quad
+\lambda_{a} = \Delta\bm{R}_{a} \nonumber \\
+\hat{H}^{''}_{ab} = \frac{\partial^{2} \hat{H}}{\partial \bm{R}_{a}\partial
+\bm{R}_{b}} &\quad \lambda_{b} =
+\Delta\bm{R}_{b} \nonumber \\
+\cdots
+\end{align}
+transform the above Taylor expansion in (\ref{GD_gradient_eq:1}) into:
+\begin{equation}
+ \label{GD_gradient_eq:3}
+ \hat{H} = \hat{H}_{0} + \sum_{a}\lambda_{a}\hat{H}^{'}_{a} +
+\frac{1}{2!}\sum_{a,b}\lambda_{a}\lambda_{b}\hat{H}^{''}_{ab} + \cdots
+\end{equation}
+This is identical to the form of 3.1 in Schaefer's
+book\cite{New_Dimension_for_Derivatives_Calculation}. If we only consider the
+nuclear $a$'s displacement, then the whole expression will come down to:
+\begin{equation}
+\label{GD_gradient_eq:7}
+ \hat{H} = \hat{H}_{0} + \lambda\hat{H}^{'}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{General Dependence between Energy and Other
+Parameters}\label{General_dependence_gradient}
+%
+%
+%
+%
+As the $\hat{H}$ changes, the corresponding molecular orbital as well as the
+wave functions will alter accordingly. In quantum chemistry, we usually employ
+the LCAO method to express the MO; hence the MO is fully characterized by its
+coefficients. That is to say, the mo coefficients of $\bm{c}$ is some function
+of $\bm{R}$:
+\begin{equation}
+ \label{GD_gradient_eq:4}
+\bm{c} = c(\bm{R})
+\end{equation}
+Obviously such dependence is indirect. On the other hand, the wave function is
+also fully characterized by its amplitude; for example; the wave function for
+CIS equation is determined by the coefficients $a_{i}^{b}$ of the Slater
+determinants $\ket{\Psi_{i}^{b}}$, so it's also some indirect function of
+$\bm{R}$:
+\begin{equation}
+\label{GD_gradient_eq:5}
+ \bm{a} = a(\bm{R})
+\end{equation}
+Finally, there's explicit dependence between the basis set functions and the
+nuclear coordinates. Because the Gaussian type basis functions or the
+Slater type of basis functions used almost exclusively in quantum chemistry are
+all atomic type functions, they are clearly the function of nuclear coordinates
+of $\bm{R}$; thus in total the energy dependence can be generally expressed as:
+\begin{equation}
+ \label{GD_gradient_eq:6}
+E = E(\bm{R}, \bm{c}, \bm{a}, \phi)
+\end{equation}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Winger's $2n+1$ Theorem}
+\label{Winger_theorem}
+%
+%
+%
+Winger's theorem is some fundamental theorem in perturbation theory. It says
+that if the wave function is determined up to $n$th order, the expectation
+value, such as energy and energy derivatives; can be determined to $2n+1$th
+order. This simplest theorem is called $2n+1$ theorem.
+
+Giving by this theorem, if the wave function is determined in zero order, then
+the gradient of energy, which is first order property; can be resolved. This is
+reflected by the result we got in (\ref{PULAYeq:7}). For the second derivatives
+of the energy, as well as the third order; giving by the theorem it can see
+that we only need first order perturbation of the wave function. For the
+Hatree-Fock case, it means that we only need first order perturbation to the MO
+to determined the second and third derivatives of energy.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Molecular Orbital Response}\label{MO_response_gradient}
+%
+%
+%
+%
+Let's consider some geometrical perturbation to the $\hat{H}$:
+\begin{equation}
+ \hat{H} = \hat{H}_{0} + \lambda\hat{H}^{'}
+\end{equation}
+This is the expression in (\ref{GD_gradient_eq:7}), it means that now we only
+consider the nuclear displacement in nuclear $a$.
+
+Then according to the perturbation treatment in (\ref{PTIQMeq:5}), the MO
+expanded into first order is:
+\begin{equation}
+ \label{orbital_response_gradient_eq:1}
+\varphi_{p}^{per} = \varphi_{p}^{(0)} + \lambda\varphi_{p}^{(1)}
+\end{equation}
+the perturbed part can always expressed over the unperturbed sets:
+\begin{align}
+ \label{orbital_response_gradient_eq:2}
+\varphi_{p}^{(1)} &= \sum_{q}^{ALL MO}U_{qp}\varphi_{q}^{(0)}
+\end{align}
+Here we follow the convention that $a,b,c$ etc. are used to designate the
+virtual orbitals, $i,j,k$ etc. used to refer to occupied orbitals; and $p,q,r$
+etc. corresponds to general orbitals. 
+
+Because in quantum chemistry we usually employ the LCAO method, hence it's
+necessary to know how to express the perturbation in terms of the MO
+coefficients:
+\begin{align}
+ \label{orbital_response_gradient_eq:3}
+&\varphi_{p}^{per}  = \varphi_{p}^{(0)} + \lambda\varphi_{p}^{(1)} \nonumber \\
+&\varphi_{p}^{per}  = \varphi_{p}^{(0)} + \lambda\sum_{q}^{ALL
+MO}U_{qp}\varphi_{q}^{(0)} \Longrightarrow \nonumber \\
+&\sum_{\mu}c^{per}_{\mu p}\phi_{\mu} = \sum_{\mu}c^{(0)}_{\mu p}\phi_{\mu} + 
+\lambda\sum_{q}^{ALL
+MO}\sum_{\mu}c^{(0)}_{\mu q}U_{qp}\phi_{\mu} \Longrightarrow \nonumber \\
+&\sum_{\mu}\left\lbrace c^{per}_{\mu p} - [c^{(0)}_{\mu p} +
+\lambda\sum_{q}^{ALL
+MO}c^{(0)}_{\mu q}U_{qp}]\right\rbrace \phi_{\mu}  = 0
+\end{align}
+Because the $\phi_{\mu}$ is some arbitrary function, the term within the brace
+should be zero. then by dropping the unnecessary superscript $(0)$, it turns
+into:
+\begin{equation}
+ \label{orbital_response_gradient_eq:4}
+c^{per}_{\mu p} = c_{\mu p} + \lambda\sum_{q}^{ALL
+MO}c_{\mu q}U_{qp}
+\end{equation}
+By using the matrix notion, it becomes:
+\begin{equation}
+ \label{orbital_response_gradient_eq:5}
+C^{per} = C + \lambda C_{n\times n}U_{n\times n}
+\end{equation}
+Here we assume that the number of basis set is $n$. $C$ is the MO coefficient
+matrix that the row index is AO, and column index is MO.
+
+It's interesting to see that under the first order perturbation, the $U$ matrix
+defined in the (\ref{orbital_response_gradient_eq:5}) is actually unitary:
+\begin{align}
+  \label{orbital_response_gradient_eq:6}
+\langle\varphi_{p}^{(1)}|\varphi_{q}^{(1)}\rangle &= \delta_{pq} \nonumber \\
+\sum_{r}^{ALL MO}\sum_{s}^{ALL
+MO}U_{pr}^{+}U_{sq}\langle\varphi_{r}^{(0)}|\varphi_{s}^{(0)}\rangle &=
+\delta_{pq} \nonumber \\
+\sum_{r}^{ALL MO}\sum_{s}^{ALL
+MO}U_{pr}^{+}U_{sq}\delta_{rs} &= \delta_{pq} \nonumber \\
+\sum_{r}^{ALL MO}U_{pr}^{+}U_{rq} &= \delta_{pq} \Longrightarrow\nonumber \\
+U^{+}U &= I
+\end{align}
+Hence we can imagine that the matrix $U$ corresponds to some ``rotation'' to
+the original MO space, in this case; the $U$ is also called ``MO rotation''.
+
+Finally, let's go to see how to understand the 
+(\ref{orbital_response_gradient_eq:1}) in another way. First let's rewrite the
+Hamiltonian into:
+\begin{equation}
+ \hat{H}(\bm{R}_{0} + \Delta \bm{R}) = \hat{H}(\bm{R}_{0}) + \Delta
+\bm{R}_{a}\frac{\partial \hat{H}}{\partial \bm{R}_{a}}
+\end{equation}
+This is derived in (\ref{GD_gradient_eq:7}). According to this expression,
+the $\lambda$ in the original Hamiltonian is actually $\Delta\bm{R}_{a}$. Since
+the MO coefficient is also some indirect function of $\bm{R}$, then it's able
+to get a Taylor expansion for the $\bm{c}$ over the $\bm{R}$:
+\begin{equation}
+  \label{orbital_response_gradient_eq:7}
+c_{\mu p}(\bm{R}_{0} + \Delta \bm{R}) =  c_{\mu p}(\bm{R}_{0}) + \Delta
+\bm{R}_{a}\frac{\partial c_{\mu p}}{\partial \bm{R}_{a}}
+\end{equation}
+ Let's compare the (\ref{orbital_response_gradient_eq:7}) with the
+(\ref{orbital_response_gradient_eq:1}), it turns out that:
+\begin{equation}
+   \label{orbital_response_gradient_eq:8}
+\frac{\partial c_{\mu p}}{\partial \bm{R}_{a}} = \sum_{q}^{ALL
+MO}c_{\mu q}U^{a}_{qp}
+\end{equation}
+In the following content, so we will use $U^{a}_{qp}$ to represent the rotation
+matrix with respect to the derivatives on $\bm{R}_{a}$.
+
+
+Now let's extend the expression of (\ref{orbital_response_gradient_eq:7}):
+\begin{align}
+    \label{orbital_response_gradient_eq:9}
+c_{\mu p}(\bm{R}_{0} + \Delta \bm{R}) &=  c_{\mu p}(\bm{R}_{0}) + \Delta
+\bm{R}_{a}\frac{\partial c_{\mu p}}{\partial \bm{R}_{a}} + \Delta
+\bm{R}_{b}\frac{\partial c_{\mu p}}{\partial \bm{R}_{b}} \nonumber \\
+& + \Delta\bm{R}_{a}\Delta\bm{R}_{a}\frac{\partial^{2} c_{\mu p}}{\partial
+\bm{R}_{a}^{2}} +  \Delta\bm{R}_{b}\Delta\bm{R}_{b}\frac{\partial^{2} c_{\mu
+p}}{\partial \bm{R}_{b}^{2}} +
+\Delta\bm{R}_{a}\Delta\bm{R}_{b}\frac{\partial^{2} c_{\mu
+p}}{\partial\bm{R}_{a}\partial\bm{R}_{b}}
+\end{align}
+In this expression, $\Delta\bm{R}_{a}$(it can be named as $\lambda_{a}$) and
+$\Delta\bm{R}_{b}$ (named as $\lambda_{b}$) are equivalent to the first order
+perturbation multipliers, and
+$\Delta\bm{R}_{a}\Delta\bm{R}_{a}$($\lambda_{a}\lambda_{a}$),
+$\Delta\bm{R}_{a}\Delta\bm{R}_{b}$($\lambda_{a}\lambda_{b}$) and
+$\Delta\bm{R}_{b}\Delta\bm{R}_{b}$($\lambda_{b}\lambda_{b}$) are equivalent to
+the second order multipliers. Hence according to the general perturbation
+theory, it's known that:
+\begin{align}
+    \label{orbital_response_gradient_eq:10}
+\frac{\partial^{2} c_{\mu
+p}}{\partial\bm{R}_{a}\partial\bm{R}_{b}} &= \varphi^{(2)}_{ab} \nonumber \\
+&= \sum_{q}^{ALL MO}c_{\mu q}U^{ab}_{qp}
+\end{align}
+The final expression in (\ref{orbital_response_gradient_eq:10}) can be easily
+derived from the same manner in (\ref{orbital_response_gradient_eq:3}). The
+$U^{ab}$ represents the responding matrix for the second order perturbation. 
+
+Now let's try to see the relation between $U^{ab}$ and $U$:
+\begin{equation}
+ \begin{split}
+  \frac{\partial}{\partial\bm{R}_{b}} \left( \frac{\partial c_{\mu
+p}}{\partial\bm{R}_{a}}\right)  &= \sum_{q}^{ALL MO}\frac{\partial c_{\mu
+q}}{\partial\bm{R}_{b}}U^{a}_{qp} + \sum_{q}^{ALL MO}c_{\mu q}\frac{\partial
+U^{a}_{qp}}{\partial\bm{R}_{b}}  \\
+&= \sum_{q}^{ALL MO}\sum_{r}^{ALL MO}c_{\mu r}U^{b}_{rq}U^{a}_{qp} +
+\sum_{q}^{ALL
+MO}c_{\mu q}\frac{\partial U^{a}_{qp}}{\partial\bm{R}_{b}}
+ \end{split}
+\label{orbital_response_gradient_eq:11}
+\end{equation}
+Here it's worthy to note that although $U^{b}_{rq}$ and $U^{a}_{qp}$ are
+the same order perturbation, they are totally different. Physically the
+$U^{b}_{rq}$ represents the responding matrix for MO coefficients caused by the
+$\bm{R}_{a}$ change, and $U^{b}_{rq}$ represents the responding matrix for
+MO coefficients caused by the $\bm{R}_{a}$ change; they are totally different.
+That's the reason why label them separately as $a$ or $b$. 
+
+Since the $q$ and $r$ index are all run over the MO space, we can exchange the
+$q$ and $r$ label in the $\sum_{q}^{ALL MO}\sum_{r}^{ALL MO}$ without changing
+anything; hence it gives:
+\begin{equation}
+ \begin{split}
+  &\frac{\partial}{\partial\bm{R}_{b}} \left( \frac{\partial c_{\mu
+p}}{\partial\bm{R}_{a}}\right)  = \sum_{q}^{ALL MO}\sum_{r}^{ALL MO}c_{\mu
+q}U^{b}_{qr}U^{a}_{rp} + \sum_{q}^{ALL
+MO}c_{\mu q}\frac{\partial U^{a}_{qp}}{\partial\bm{R}_{b}} \Longrightarrow \\
+ &\sum_{q}^{ALL MO}c_{\mu q}U^{ab}_{qp} = \sum_{q}^{ALL MO}\left[ 
+\sum_{r}^{ALL MO}U^{b}_{qr}U^{a}_{rp} + \frac{\partial
+U^{a}_{qp}}{\partial\bm{R}_{b}}
+\right] c_{\mu q} \Longrightarrow \\
+&\sum_{q}^{ALL MO}\left\lbrace U^{ab}_{qp} - \left[ 
+\sum_{r}^{ALL MO}U^{b}_{qr}U^{a}_{rp} + \frac{\partial
+U^{a}_{qp}}{\partial\bm{R}_{b}}
+\right]\right\rbrace  c_{\mu q}  = 0 \Longrightarrow \\
+&U^{ab}_{qp}  =
+\sum_{r}^{ALL MO}U^{b}_{qr}U^{a}_{rp} + \frac{\partial
+U^{a}_{qp}}{\partial\bm{R}_{b}}
+ \end{split}
+\label{orbital_response_gradient_eq:12}
+\end{equation}
+
+This is the relation we will use in the future, while deriving the second
+derivatives for the system energy.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analytical Derivatives for Integrals in AO Form}
+%
+%
+%
+%
+In traditional wave function methods, we only encounter three kind of integrals
+in AO form:
+\begin{itemize}
+ \item overlap integral $S_{\mu\nu}$: $\langle\phi_{\mu}|\phi_{\nu}\rangle$ 
+ \item single electron integral $H_{\mu\nu}$:
+$\langle\phi_{\mu}|\hat{H}_{1}|\phi_{\nu}\rangle$
+ \item double electrons integral $\Pi_{\mu\nu\lambda\eta}$:
+$(\mu\nu|\lambda\eta)$\footnote{ In another form, it can also expressed
+as $\langle\phi_{\mu}\phi_{\lambda}|\frac{1}{r_{12}}|\phi_{\nu}\phi_{\eta}
+\rangle$. See \ref{General_Notion_Hatree-Fock}. Here we note that the
+derivatives for the integrals, is independent with the index arrangement.
+That is to say,  no matter what kind of index arrangement we use, the gradient
+expression will be same.}.
+\end{itemize}
+
+The analytical gradients for these AO integrals are very simple, what we need
+to do is only to calculate the derivatives for the basis set functions. For
+example, for the $S_{\mu\nu}$:
+\begin{align}
+ \label{AO_INT_gradient_eq:1}
+S_{\mu\nu}^{a} &= \frac{\partial S_{\mu\nu}}{\partial \bm{R}_{a}} =
+\langle\frac{\partial\phi_{\mu}}{\partial \bm{R}_{a}}|\phi_{\nu}\rangle + 
+\langle\phi_{\mu}|\frac{\partial\phi_{\nu}}{\partial \bm{R}_{a}}\rangle
+\nonumber \\
+S_{\mu\nu}^{ab} &= \frac{\partial^{2} S_{\mu\nu}}{\partial \bm{R}_{a}\partial
+\bm{R}_{b}} = \langle\frac{\partial^{2}\phi_{\mu}}{\partial
+\bm{R}_{a}\partial\bm{R}_{b}}|\phi_{\nu}\rangle + \langle\frac{
+\partial\phi_{\mu}}{\partial\bm{R}_{a}}|\frac{\partial\phi_{\nu}}{\partial\bm{R}
+_{b}}\rangle \nonumber \\
+&+
+\langle\frac{\partial\phi_{\mu}}{\partial\bm{R}_{b}}|\frac{\partial\phi_{\nu}}{
+\partial\bm{R}
+_{a}}\rangle + \langle\phi_{\mu}|\frac{\partial^{2}\phi_{\nu}}{\partial
+\bm{R}_{a}\partial\bm{R}_{b}}\rangle 
+\end{align}
+For the other AO integrals, such as $\Pi$ etc. we can always derive their
+analytical gradient expressions in a like manner, and label it as $\Pi^{a}$
+and $\Pi^{ab}$ etc. Hence in the following chapter, we will only use such
+abbreviated form to express their analytical gradients\footnote{The detailed
+expression can see the chapter 3 in Schaefer
+book\cite{New_Dimension_for_Derivatives_Calculation}}.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analytical Gradients for Integrals in MO Form}
+%
+%
+%
+%
+Before we step into the Hatree-Fock analytical gradients, it's necessary for us
+to study the integrals in MO form; they are the bricks for building
+analytical gradients for all traditional wave function methods.
+
+In quantum chemistry, the complexity of the energy expression, in my opinion;
+is partially attributed to its multi-dimensional index character. For example,
+the total energy for Hatree-Fock framework is depending on six indices:
+\begin{equation}
+ \label{MO_INT_gradient_general_eq:1}
+E \rightarrow E(i,j,\mu,\nu,\lambda,\eta)
+\end{equation}
+$i$ and $j$ are indices for occupied orbitals, and $\mu,\nu,\lambda,\eta$ are
+four indices for AO. It's very common in quantum chemistry, that to switch an
+expression from MO to AO or from AO to MO; in such process; the usual procedure
+is to ``sum over'' the AO or MO index so that to hide the information (For
+example, the density matrix $P = \sum_{i}^{occ}c_{\mu i}c_{\nu i}$, the
+expression runs over the occupied MO so that $P$ only has two AO indices).
+
+So now we come to the question that why we want to study the analytical
+gradients for the integrals in the MO form? As what we can see in the energy
+expression, we can express it either in MO form or in AO form, they are
+identical with each other. So here it's natural to put forward such a question,
+that it it necessary to study the gradient theory in MO form?
+
+In my opinion, the answer is ``Yes''. For all the gradient theory, since it's
+either based on HF framework or based on the Kohn-sham framework, basically
+it's necessary to introduce the MO as the foundation. If MO is introduced, then
+we have to express the MO response to the perturbation, which is reflected in
+the MO rotation matrix of $U$ as what we have shown above. In the energy is
+expressed totally in AO form, which means to hide the MO index; then it's
+impossible to find a way to express the MO response for perturbation.  This
+fact implies that the MO response matrix of $U$ is the key for understanding
+the gradient theory, on the other hand; we can understand it in this way that
+the MO coefficients should appear as some fundamental and independent unit for
+the gradient theory.
+
+Now let's give the HF equation as an example, the energy in AO form can be
+generally expressed in matrix way:
+\begin{equation}
+ \label{MO_INT_gradient_general_eq:2}
+E = P\cdot H + \frac{1}{2} P\cdot H \cdot P^{'}
+\end{equation}
+Here $P$ and $P^{'}$ are density matrices:
+\begin{align}
+ \label{MO_INT_gradient_general_eq:3}
+P = C_{o}C_{o}^{+},  \quad  P_{\mu\nu} &=   \sum_{i}^{occ}c_{\mu i}c_{\nu i}
+\quad P^{'}_{\lambda\eta} =   \sum_{j}^{occ}c_{\lambda j}c_{\eta j}
+\rightarrow\nonumber \\
+P\cdot H  &= \sum_{\mu\nu}P_{\mu\nu}h_{\mu\nu} \nonumber \\
+P\cdot H \cdot P^{'} &=
+\sum_{\mu\nu}\sum_{\lambda\eta}P_{\mu\nu}P^{'}_{\lambda\eta}\Pi_{
+\mu\nu\lambda\eta}
+\end{align}
+
+In the (\ref{MO_INT_gradient_general_eq:2}), the advantage is that the integral
+and MO coefficient are separated, so the gradient expression for $E$ can
+thoroughly built from the matrix notion:
+\begin{equation}
+\label{MO_INT_gradient_general_eq:4}
+E^{[a]} = P^{[a]}\cdot H + P\cdot H^{[a]} + \frac{1}{2} P^{[a]}\cdot H \cdot
+P^{'} + \frac{1}{2} P\cdot H^{[a]} \cdot P^{'} + \frac{1}{2} P\cdot H^{[a]}
+\cdot P^{'[a]}
+\end{equation}
+Here we introduce the superscript of $[a]$, which indicates the gradient
+expression for that term. This is different from the superscript of $a$ we used
+in the (\ref{AO_INT_gradient_eq:1}). Actually we only use ``$a$'' to represent
+the AO integral gradient expression, and use ``$[a]$'' in all the other cases
+to signal it's a gradient expression.
+
+However, $P^{[a]}$ is definitely introducing another MO dimension for the
+expression, which is reflected by the $U$ matrix. According to Winger's
+theorem, that $E^{[a]}$ will not contain any $U$ matrix (because it represents
+the first order perturbation), so how can we eliminate it?
+
+To eliminate this additional MO dimension, in fact we have to usher into other
+MO dimensions so that to apply the orthogonality condition. The new dimensions
+should be closed related to the $\Pi$ and $H$ matrix so that additional
+transformation can be applied. However, for the $\Pi$ and $H$ there's no more
+MO information left so the transformation is difficult to occur.
+
+It's under such consideration, it's believed that to study the analytical
+expression of integrals in MO form is necessary. The use of MO
+orthogonality condition will bring us potential benefit for working out the
+final analytical gradient expression. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overlap Integral}\label{overlap_int_general_derivatives}
+%
+%
+Let's start from the overlap integral\footnote{From this section, we will not
+mark clearly that the label is going through ``ALL MO''. However, as what we
+know; the response rotation matrix always go over all the MO space.}:
+\begin{align}
+\label{overlap_MO_INT_gradient_eq:1}
+\frac{\partial S_{pq}}{\partial \bm{R}_{a}} &= \frac{\partial}{\partial
+\bm{R}_{a}}\left( \sum_{\mu\nu}c_{\mu p}c_{\nu q}S_{\mu\nu}\right) \nonumber\\
+&= \sum_{\mu\nu}\frac{\partial c_{\mu p}}{\partial \bm{R}_{a}}c_{\nu
+q}S_{\mu\nu} + \sum_{\mu\nu}c_{\nu p}\frac{\partial c_{\nu  q}}{\partial
+\bm{R}_{a}}S_{\mu\nu} + \sum_{\mu\nu}c_{\mu p}c_{\nu q}\frac{\partial
+S_{\mu\nu}}{\partial \bm{R}_{a}} \nonumber\\
+&= \sum_{\mu\nu}\sum_{r}c_{\mu r}U^{a}_{rp}c_{\nu
+q}S_{\mu\nu} + \sum_{\mu\nu}\sum_{r}c_{\mu p}c_{\nu r}U^{a}_{rq}S_{\mu\nu} +
+\sum_{\mu\nu}c_{\mu p}c_{\nu q}S^{a}_{\mu\nu} \nonumber \\
+&= \sum_{r}\left[U^{a}_{rp} \left( \sum_{\mu\nu}c_{\mu r}c_{\nu
+q}S_{\mu\nu}\right)  + U^{a}_{rq}\left( \sum_{\mu\nu}c_{\mu p}c_{\nu
+r}S_{\mu\nu}\right) \right]  + \sum_{\mu\nu}c_{\mu p}c_{\nu q}S^{a}_{\mu\nu}
+\nonumber \\
+&= \sum_{r}\left[U^{a}_{rp}S_{qr} + U^{a}_{rq}S_{pr}\right]  + S^{a}_{pq}
+\end{align}
+Giving by the orthogonality between the MO, we have:
+\begin{align}
+ \label{overlap_MO_INT_gradient_eq:2}
+S_{pq} &= \delta_{pq} \Longrightarrow \nonumber \\
+\frac{\partial S_{pq} }{\partial \bm{R}_{a}} &= \frac{\partial^{q} S_{pq}
+}{\partial \bm{R}_{a}\partial \bm{R}_{b}} = 0
+\end{align}
+Hence we have:
+\begin{equation}
+ \label{overlap_MO_INT_gradient_eq:3}
+S_{pq}^{[a]} = \frac{\partial S_{pq}}{\partial \bm{R}_{a}} = U^{a}_{qp} +
+U^{a}_{pq} + S^{a}_{pq} = 0
+\end{equation} 
+It seems that this expression just links the U matrix and the overlap integral
+derivatives together. 
+
+On the other hand, let's understand this term in physical
+way. Compared with the results shown in (\ref{1st_approximation_WT}),
+it's known that the $a^{1}_{kk}$ is unable to be determined, and here;
+we can see that $U^{a}_{pp}$ just equals to $-\dfrac{1}{2}S^{a}_{pp}$,
+it can not be determined, too.
+
+For the second derivatives:
+\begin{align}
+  \label{overlap_MO_INT_gradient_eq:4}
+S_{pq}^{[ab]} &= \frac{\partial^{2} S_{pq}}{\partial \bm{R}_{a}\partial
+\bm{R}_{b}}  = \frac{\partial U^{a}_{qp}}{\partial \bm{R}_{b}} +
+\frac{\partial U^{a}_{pq}}{\partial \bm{R}_{b}} + 
+\frac{\partial S^{a}_{pq}}{\partial \bm{R}_{b}}
+\xrightarrow{\text{given by \ref{orbital_response_gradient_eq:12}}}\nonumber \\
+&= (U^{ab}_{qp} - \sum_{r}U^{b}_{qr}U^{a}_{rp}) + (U^{ab}_{pq} -
+\sum_{r}U^{b}_{pr}U^{a}_{rq}) + S^{ab}_{pq}  \nonumber \\
+&+\sum_{r}\sum_{\mu\nu}
+c_{\mu r}U^{b}_{rp}c_{\nu q}S^{a}_{\mu\nu} + \sum_{r}\sum_{\mu\nu} c_{\mu
+p}c_{\nu r}U^{b}_{rq}S^{a}_{\mu\nu} \nonumber \\
+&= U^{ab}_{qp}  + U^{ab}_{pq} + S^{ab}_{pq} \nonumber \\
+&+ \sum_{r}\left[ U^{b}_{rp}S^{a}_{qr} + U^{b}_{rq}S^{a}_{pr} -
+U^{b}_{qr}U^{a}_{rp} - U^{b}_{pr}U^{a}_{rq} \right] 
+\end{align}
+Now let's use the relation in (\ref{overlap_MO_INT_gradient_eq:3}), that gives:
+\begin{equation}
+ \label{overlap_MO_INT_gradient_eq:5}
+U^{b}_{rp} +
+U^{b}_{pr} + S^{b}_{pr} = 0 \Longrightarrow U^{b}_{rp} = -S^{b}_{pr} -
+U^{b}_{pr} 
+\end{equation}
+We are going to use this relation to shave off the $U$ inside the $US$ term:
+\begin{align}
+ \label{overlap_MO_INT_gradient_eq:6}
+S_{pq}^{[ab]} &= U^{ab}_{qp}  + U^{ab}_{pq} + S^{ab}_{pq} \nonumber \\
+&+ \sum_{r}\left[ \left( -U^{b}_{pr} - S^{b}_{pr}\right) S^{a}_{qr} +
+\left( -U^{b}_{qr} - S^{b}_{qr}\right) S^{a}_{pr} -U^{b}_{qr}U^{a}_{rp} -
+U^{b}_{pr}U^{a}_{rq} \right] \nonumber \\
+&=  U^{ab}_{qp}  + U^{ab}_{pq} + S^{ab}_{pq} \nonumber \\
+&+ \sum_{r}\left[ -S^{b}_{pr} S^{a}_{qr}  - S^{b}_{qr} S^{a}_{pr}
+-U^{b}_{pr} S^{a}_{qr} -U^{b}_{qr}S^{a}_{pr}
+ -U^{b}_{qr}U^{a}_{rp} - U^{b}_{pr}U^{a}_{rq} \right] \nonumber \\
+&=  U^{ab}_{qp}  + U^{ab}_{pq} + S^{ab}_{pq} \nonumber \\
+&+ \sum_{r}\left[ -S^{b}_{pr} S^{a}_{qr}  - S^{b}_{qr} S^{a}_{pr}
+-U^{b}_{pr}\left( S^{a}_{qr} + U^{a}_{rq} \right) 
+-U^{b}_{qr}\left( S^{a}_{pr} + U^{a}_{rp}\right) \right]
+\end{align}
+Because the overlap matrix of $S$ is hermitian, and obviously its derivative
+matrix $S^{a}$ is also hermitian; so we can exchange the label of $S$ without
+changing its value:
+\begin{equation}
+ \label{overlap_MO_INT_gradient_eq:7}
+S^{a}_{qr} = S^{a}_{rq} \quad S^{a}_{pr} = S^{a}_{rp}
+\end{equation}
+Hence combined with (\ref{overlap_MO_INT_gradient_eq:3}), the
+(\ref{overlap_MO_INT_gradient_eq:6}) will further converted to:
+\begin{align}
+ \label{overlap_MO_INT_gradient_eq:8}
+S_{pq}^{[ab]} &=  U^{ab}_{qp}  + U^{ab}_{pq} + S^{ab}_{pq} \nonumber \\
+&+ \sum_{r}\left[ -S^{b}_{pr} S^{a}_{qr}  - S^{b}_{qr} S^{a}_{pr}
++U^{b}_{pr}U^{a}_{qr} +U^{b}_{qr}U^{a}_{pr}\right]
+\end{align}
+This is the final result.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Core Hamiltonian Integral}
+%
+%
+Now let's turn to the single electron integral(it's also named as core
+Hamiltonian integral). By simply copying the process in
+(\ref{overlap_MO_INT_gradient_eq:1}), we can have the first order derivatives
+for $H_{pq}$:
+\begin{align}
+\label{core_Hamiltonian_MO_INT_gradient_eq:1}
+\frac{\partial H_{pq}}{\partial \bm{R}_{a}} &= \frac{\partial}{\partial
+\bm{R}_{a}}\left( \sum_{\mu\nu}c_{\mu p}c_{\nu q}H_{\mu\nu}\right) \nonumber\\
+&= \sum_{\mu\nu}\frac{\partial c_{\mu p}}{\partial \bm{R}_{a}}c_{\nu
+q}H_{\mu\nu} + \sum_{\mu\nu}c_{\nu p}\frac{\partial c_{\nu  q}}{\partial
+\bm{R}_{a}}H_{\mu\nu} + \sum_{\mu\nu}c_{\mu p}c_{\nu q}\frac{\partial
+H_{\mu\nu}}{\partial \bm{R}_{a}} \nonumber\\
+&= \sum_{\mu\nu}\sum_{r}c_{\mu r}U^{a}_{rp}c_{\nu
+q}H_{\mu\nu} + \sum_{\mu\nu}\sum_{r}c_{\mu p}c_{\nu r}U^{a}_{rq}H_{\mu\nu} +
+\sum_{\mu\nu}c_{\mu p}c_{\nu q}H^{a}_{\mu\nu} \nonumber \\
+&= \sum_{r}\left[U^{a}_{rp} \left( \sum_{\mu\nu}c_{\mu r}c_{\nu
+q}H_{\mu\nu}\right)  + U^{a}_{rq}\left( \sum_{\mu\nu}c_{\mu p}c_{\nu
+r}H_{\mu\nu}\right) \right]  + \sum_{\mu\nu}c_{\mu p}c_{\nu q}H^{a}_{\mu\nu}
+\nonumber \\
+&= \sum_{r}\left[U^{a}_{rp}H_{qr} + U^{a}_{rq}H_{pr}\right]  + H^{a}_{pq}
+\end{align}
+Compared with overlap integral case, here we do not have orthogonality
+condition to simply the final result.
+
+For the second derivatives, it gives:
+\begin{align}
+\label{core_Hamiltonian_MO_INT_gradient_eq:2}
+H_{pq}^{[ab]} &= \frac{\partial^{2} H_{pq}}{\partial \bm{R}_{a}\partial
+\bm{R}_{b}} =  \frac{\partial}{\partial
+\bm{R}_{b}}\left( \sum_{r}\left[U^{a}_{rp}H_{qr} + U^{a}_{rq}H_{pr}\right]  +
+H^{a}_{pq}\right)  \nonumber \\
+&= \underbrace{\sum_{r}\left[ 
+\frac{\partial U^{a}_{rp} }{\partial \bm{R}_{b}}H_{qr} + 
+\frac{\partial U^{a}_{rq} }{\partial \bm{R}_{b}}H_{pr}
+\right]}_{\text{term 1}}  +
+\underbrace{\sum_{r}\left[
+\frac{\partial H_{qr} }{\partial \bm{R}_{b}}U^{a}_{rp} + 
+\frac{\partial H_{pr} }{\partial \bm{R}_{b}}U^{a}_{rq}
+\right]}_{\text{term 2}}  \nonumber \\
+&+\underbrace{\frac{\partial H^{a}_{pq} }{\partial \bm{R}_{b}}}_{\text{term 3}}
+\end{align}
+
+Now let's compute each of the three terms. For the term 3, it's the most
+easiest one:
+\begin{align}
+ \label{core_Hamiltonian_MO_INT_gradient_eq:3}
+\frac{\partial H^{a}_{pq} }{\partial \bm{R}_{b}} &=
+\sum_{r}\left[U^{b}_{rp}H^{a}_{qr} + U^{b}_{rq}H^{a}_{pr}\right]  + H^{ab}_{pq}
+\end{align}
+
+For the term 2:
+\begin{align}
+  \label{core_Hamiltonian_MO_INT_gradient_eq:4}
+& \sum_{r}\left[
+\frac{\partial H_{qr} }{\partial \bm{R}_{b}}U^{a}_{rp} + 
+\frac{\partial H_{pr} }{\partial \bm{R}_{b}}U^{a}_{rq}
+\right] \nonumber \\
+&=\sum_{r} \left\lbrace\sum_{s} \left[H_{qs} U^{b}_{sr} +
+H_{rs}U^{b}_{sq}\right]U^{a}_{rp} +  H^{b}_{qr}U^{a}_{rp} \right\rbrace
+\nonumber \\
+&+
+\sum_{r} \left\lbrace\sum_{s} \left[H_{ps} U^{b}_{sr} +
+H_{rs}U^{b}_{sp}\right]U^{a}_{rq} +  H^{b}_{pr}U^{a}_{rq} \right\rbrace
+\nonumber \\
+&= \sum_{r}\left[  H^{b}_{qr}U^{a}_{rp} + H^{b}_{pr}U^{a}_{rq}\right] +
+\underbrace{\sum_{rs}\left[ H_{qs} U^{b}_{sr}U^{a}_{rp} + H_{ps}
+U^{b}_{sr}U^{a}_{rq}\right]}_{\text{term 4}} \nonumber \\
+&+  \sum_{rs}\left[ H_{rs}U^{b}_{sq}U^{a}_{rp} +
+H_{rs}U^{b}_{sp}U^{a}_{rq}\right]
+\end{align}
+
+Finally, for the term 1:
+\begin{align}
+ \label{core_Hamiltonian_MO_INT_gradient_eq:5}
+&\sum_{r}\left[ 
+\frac{\partial U^{a}_{rp} }{\partial \bm{R}_{b}}H_{qr} + 
+\frac{\partial U^{a}_{rq} }{\partial \bm{R}_{b}}H_{pr}
+\right] \nonumber \\
+& = \sum_{r}\left[ U^{ab}_{rp}  -
+\sum_{s}U^{b}_{rs}U^{a}_{sp} \right]H_{qr} +
+\sum_{r}\left[ U^{ab}_{rq}  -
+\sum_{s}U^{b}_{rs}U^{a}_{sq} \right]H_{pr}
+ \nonumber \\
+&= \sum_{r}\left[  U^{ab}_{rp}H_{qr} + U^{ab}_{rq}H_{pr}\right] -
+\underbrace{\sum_{rs}\left[ 
+U^{b}_{rs}U^{a}_{sp} H_{qr} +
+U^{b}_{rs}U^{a}_{sq} H_{pr}\right]}_{\text{term 5}} 
+\end{align}
+
+Now let's compare the term 4 and term 5, it's easy to see that they are
+actually equal to each other. So in the whole summation, they are canceled.
+Finally, the second derivatives for the core Hamiltonian can be expressed as:
+\begin{align}
+  \label{core_Hamiltonian_MO_INT_gradient_eq:6}
+H_{pq}^{[ab]} &= \sum_{r}\left[ H_{qr} U^{ab}_{rp} + H_{pr}U^{ab}_{rq}\right]
+\nonumber \\
+&+ \sum_{r}\left[  H^{b}_{qr}U^{a}_{rp} + H^{b}_{pr}U^{a}_{rq}\right]  + 
+\sum_{rs}\left[ H_{rs}U^{b}_{sq}U^{a}_{rp} +
+H_{rs}U^{b}_{sp}U^{a}_{rq}\right] \nonumber \\
+&+ \sum_{r}\left[H^{a}_{qr}U^{b}_{rp} + H^{a}_{pr}U^{b}_{rq}\right]  +
+H^{ab}_{pq}
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Two Electrons Integral}
+%
+%
+For the first order derivatives, we follow the same procedure
+above\footnote{In this section, we will meet many labels. So we use
+$p,q,r,s,t,u,v$ etc. to represent the general MO orbitals.}:
+\begin{align}
+\label{two_electron_MO_INT_gradient_eq:1}
+\Pi_{pqrs}^{[a]} &=\frac{\partial \Pi_{pqrs}}{\partial \bm{R}_{a}} =
+\frac{\partial}{\partial \bm{R}_{a}}\left( \sum_{\mu\nu\lambda\eta}c_{\mu
+p}c_{\nu q}c_{\lambda r}c_{\eta s}\Pi_{\mu\nu\lambda\eta}\right) \nonumber\\
+&=  \sum_{\mu\nu\lambda\eta}
+\frac{\partial c_{\mu p}}{\partial\bm{R}_{a}}
+c_{\nu q}c_{\lambda r}c_{\eta s}
+\Pi_{\mu\nu\lambda\eta} + 
+       \sum_{\mu\nu\lambda\eta}
+\frac{\partial c_{\nu q}}{\partial \bm{R}_{a}} 
+c_{\mu p}c_{\lambda r}c_{\eta s}
+\Pi_{\mu\nu\lambda\eta} \nonumber \\
+&+  \sum_{\mu\nu\lambda\eta}
+\frac{\partial c_{\lambda r}}{\partial\bm{R}_{a}}
+c_{\mu p}c_{\nu q}c_{\eta s}
+\Pi_{\mu\nu\lambda\eta} + 
+       \sum_{\mu\nu\lambda\eta}
+\frac{\partial c_{\eta s}}{\partial \bm{R}_{a}} 
+c_{\mu p}c_{\nu q}c_{\lambda r}
+\Pi_{\mu\nu\lambda\eta}   \nonumber \\
+&+\sum_{\mu\nu\lambda\eta}
+c_{\mu p}c_{\nu q}c_{\lambda r}c_{\eta s}
+\Pi^{a}_{\mu\nu\lambda\eta}\nonumber \\
+&= \sum_{\mu\nu\lambda\eta}
+      \sum_{t}c_{\mu t}U^{a}_{tp}
+c_{\nu q}c_{\lambda r}c_{\eta s}
+\Pi_{\mu\nu\lambda\eta} + 
+       \sum_{\mu\nu\lambda\eta}
+       \sum_{t}c_{\nu t}U^{a}_{tq}
+c_{\mu p}c_{\lambda r}c_{\eta s}
+\Pi_{\mu\nu\lambda\eta} \nonumber \\
+&+  \sum_{\mu\nu\lambda\eta}
+      \sum_{t}c_{\lambda t}U^{a}_{tr}
+c_{\mu p}c_{\nu q}c_{\eta s}
+\Pi_{\mu\nu\lambda\eta} + 
+       \sum_{\mu\nu\lambda\eta}
+      \sum_{t}c_{\eta t}U^{a}_{ts} 
+c_{\mu p}c_{\nu q}c_{\lambda r}
+\Pi_{\mu\nu\lambda\eta} \nonumber \\
+&+\sum_{\mu\nu\lambda\eta}
+c_{\mu p}c_{\nu q}c_{\lambda r}c_{\eta s}
+\Pi^{a}_{\mu\nu\lambda\eta}\nonumber \\
+&= \sum_{t}\left[ 
+U^{a}_{tp}\Pi_{tqrs} +
+U^{a}_{tq}\Pi_{ptrs} + 
+U^{a}_{tr}\Pi_{pqts} + 
+U^{a}_{ts}\Pi_{pqrt}  
+\right] + \Pi^{a}_{pqrs}
+\end{align}
+
+For the second order derivatives, it will become more complicated:
+\begin{align}
+ \label{two_electron_MO_INT_gradient_eq:2}
+\Pi_{pqrs}^{[ab]} &=\frac{\partial^{2} \Pi_{pqrs}}{\partial \bm{R}_{a}\partial
+\bm{R}_{b}} \nonumber \\
+&= \frac{\partial}{\partial\bm{R}_{b}}\left(
+\underbrace{\sum_{t}U^{a}_{tp}\Pi_{tqrs}}_{\text{term 1}} +
+\underbrace{\sum_{t}U^{a}_{tq}\Pi_{ptrs}}_{\text{term 2}} + 
+\underbrace{\sum_{t}U^{a}_{tr}\Pi_{pqts}}_{\text{term 3}} + 
+\underbrace{\sum_{t}U^{a}_{ts}\Pi_{pqrt}}_{\text{term 4}} \right)  \nonumber \\
+ &+
+\frac{\partial}{\partial\bm{R}_{b}}\left(
+\underbrace{\Pi^{a}_{pqrs}}_{\text{term
+5}}\right) 
+\end{align}
+In this expression, we have five terms to differentiate. Now let's do it one by
+one.
+
+For the first term (term 1), we have:
+\begin{align}
+  \label{two_electron_MO_INT_gradient_eq:3}
+&\frac{\partial}{\bm{R}_{b}}\left( \sum_{t}U^{a}_{tp}\Pi_{tqrs}\right)
+\nonumber \\
+&=\sum_{t}\frac{\partial U^{a}_{tp}}{\bm{R}_{b}}\Pi_{tqrs} +
+\sum_{t}U^{a}_{tp}\frac{\partial \Pi_{tqrs}}{\bm{R}_{b}} \nonumber \\
+&= \sum_{t}\left( U^{ab}_{tp} - \sum_{u}U^{b}_{tu}U^{a}_{up}\right) \Pi_{tqrs}
+\nonumber \\
+&+ \sum_{t}U^{a}_{tp}\sum_{u}\left( 
+U^{b}_{ut}\Pi_{uqrs} +
+U^{b}_{uq}\Pi_{turs} + 
+U^{b}_{ur}\Pi_{tqus} + 
+U^{b}_{us}\Pi_{tqru}  
+\right) + \sum_{t}U^{a}_{tp}\Pi^{b}_{tqrs}
+\end{align}
+Here in the (\ref{two_electron_MO_INT_gradient_eq:3}), we can observe that:
+\begin{align}
+   \label{two_electron_MO_INT_gradient_eq:4}
+\sum_{t}\sum_{u}U^{b}_{tu}U^{a}_{up}\Pi_{tqrs} &=
+\sum_{t}\sum_{u}U^{a}_{tp}U^{b}_{ut}\Pi_{uqrs}
+\end{align}
+Since the label of $u$ and $t$ are arbitrary, they can exchange with each other
+without changing the value. Hence finally, the term 1 becomes:
+\begin{align}
+ \label{two_electron_MO_INT_gradient_eq:5}
+ \frac{\partial}{\bm{R}_{b}}\left( \sum_{t}U^{a}_{tp}\Pi_{tqrs}\right)
+&= \sum_{t} U^{ab}_{tp}\Pi_{tqrs} +
+\sum_{t}U^{a}_{tp}\Pi^{b}_{tqrs} \nonumber \\
+&+ \sum_{t}\sum_{u}U^{a}_{tp}\left(
+U^{b}_{uq}\Pi_{turs} + 
+U^{b}_{ur}\Pi_{tqus} + 
+U^{b}_{us}\Pi_{tqru}  
+\right) \nonumber \\
+&=   \sum_{t} \left[ U^{ab}_{tp}\Pi_{tqrs} + U^{a}_{tp}\Pi^{b}_{tqrs}\right] 
+\nonumber \\
+&+ \sum_{t}\sum_{u}U^{a}_{tp}\left(
+U^{b}_{uq}\Pi_{turs} + 
+U^{b}_{ur}\Pi_{tqus} + 
+U^{b}_{us}\Pi_{tqru}  
+\right)
+\end{align}
+
+Similarly, for the term 2, 3, 4 by repeating the same process we can get the
+similar result:
+\begin{align}
+  \label{two_electron_MO_INT_gradient_eq:6}
+&\frac{\partial}{\bm{R}_{b}} \left( \sum_{t}U^{a}_{tq}\Pi_{ptrs}\right)
+\nonumber \\
+&=\sum_{t}\left[ U^{ab}_{tq}\Pi_{ptrs} + U^{a}_{tq}\Pi^{b}_{ptrs}\right] 
+\nonumber \\
+&+ \sum_{t}\sum_{u}U^{a}_{tq}\left(
+U^{b}_{up}\Pi_{utrs} + 
+U^{b}_{ur}\Pi_{ptus} + 
+U^{b}_{us}\Pi_{ptru}  
+\right)
+\end{align}
+This is for the term 2.
+
+For the term 3, it gives:
+\begin{align}
+  \label{two_electron_MO_INT_gradient_eq:7}
+&\frac{\partial}{\bm{R}_{b}} \left( \sum_{t}U^{a}_{tr}\Pi_{pqts}\right)
+\nonumber \\
+&=\sum_{t}\left[ U^{ab}_{tr}\Pi_{pqts} + U^{a}_{tr}\Pi^{b}_{pqts}\right] 
+\nonumber \\
+&+ \sum_{t}\sum_{u}U^{a}_{tr}\left(
+U^{b}_{up}\Pi_{uqts} + 
+U^{b}_{uq}\Pi_{puts} + 
+U^{b}_{us}\Pi_{pqtu}  
+\right)
+\end{align}
+
+Term 4 gives:
+\begin{align}
+  \label{two_electron_MO_INT_gradient_eq:8}
+&\frac{\partial}{\bm{R}_{b}} \left( \sum_{t}U^{a}_{ts}\Pi_{pqrt}\right)
+\nonumber \\
+&=\sum_{t}\left[ U^{ab}_{ts}\Pi_{pqrt} + U^{a}_{ts}\Pi^{b}_{pqrt}\right] 
+\nonumber \\
+&+ \sum_{t}\sum_{u}U^{a}_{ts}\left(
+U^{b}_{up}\Pi_{uqrt} + 
+U^{b}_{uq}\Pi_{purt} + 
+U^{b}_{ur}\Pi_{pqut}  
+\right)
+\end{align}
+
+For the last term, we have:
+\begin{align}
+ \label{two_electron_MO_INT_gradient_eq:9}
+& \frac{\partial}{\partial\bm{R}_{b}}\left(\Pi^{a}_{pqrs}\right) \nonumber \\
+&= \sum_{t}\left[ 
+U^{b}_{tp}\Pi^{a}_{tqrs} +
+U^{b}_{tq}\Pi^{a}_{ptrs} + 
+U^{b}_{tr}\Pi^{a}_{pqts} + 
+U^{b}_{ts}\Pi^{a}_{pqrt}  
+\right] + \Pi^{ab}_{pqrs}
+\end{align}
+
+By collecting all the terms, we can finally get the second derivatives for the
+integral $(pq|rs)$:
+\begin{equation}
+ \begin{split}
+  \Pi_{pqrs}^{[ab]} &=(pq|rs)^{[ab]} = \frac{\partial^{2} (pq|rs)}{\partial
+\bm{R}_{a}\partial\bm{R}_{b}} \\
+&= \Pi^{ab}_{pqrs} + 
+\sum_{t} \left[ 
+U^{ab}_{tp}\Pi_{tqrs} + 
+U^{ab}_{tq}\Pi_{ptrs} +
+U^{ab}_{tr}\Pi_{pqts} +
+U^{ab}_{ts}\Pi_{pqrt}                      
+\right] \\
+&+ 
+\sum_{t} \left[ 
+U^{a}_{tp}\Pi^{b}_{tqrs}  +
+U^{a}_{tq}\Pi^{b}_{ptrs}  +
+U^{a}_{tr}\Pi^{b}_{pqts}  +
+U^{a}_{ts}\Pi^{b}_{pqrt}
+\right]  \\
+&+
+\sum_{t}\left[ 
+U^{b}_{tp}\Pi^{a}_{tqrs} +
+U^{b}_{tq}\Pi^{a}_{ptrs} + 
+U^{b}_{tr}\Pi^{a}_{pqts} + 
+U^{b}_{ts}\Pi^{a}_{pqrt}  
+\right]  \\
+&+
+\sum_{t}\sum_{u} \\
+&\Big\{U^{a}_{tp}U^{b}_{uq}\Pi_{turs} + 
+U^{a}_{tp}U^{b}_{ur}\Pi_{tqus} + 
+U^{a}_{tp}U^{b}_{us}\Pi_{tqru}  \\
+&+ 
+U^{a}_{tq}U^{b}_{up}\Pi_{utrs} + 
+U^{a}_{tq}U^{b}_{ur}\Pi_{ptus} + 
+U^{a}_{tq}U^{b}_{us}\Pi_{ptru}   \\
+&+
+U^{a}_{tr}U^{b}_{up}\Pi_{uqts} + 
+U^{a}_{tr}U^{b}_{uq}\Pi_{puts} + 
+U^{a}_{tr}U^{b}_{us}\Pi_{pqtu}    \\
+&+
+U^{a}_{ts}U^{b}_{up}\Pi_{uqrt} + 
+U^{a}_{ts}U^{b}_{uq}\Pi_{purt} + 
+U^{a}_{ts}U^{b}_{ur}\Pi_{pqut}  \Big\} 
+ \end{split}
+ \label{two_electron_MO_INT_gradient_eq:10}
+\end{equation}
+
+
+Again, let's reorganize the terms in the last sum, which gives:
+\begin{equation}
+ \begin{split}
+&sum =\\
+&\sum_{t}\sum_{u}
+\left( U^{a}_{tp}U^{b}_{uq}\Pi_{turs} + 
+U^{a}_{tq}U^{b}_{up}\Pi_{utrs}\right) 
++\sum_{t}\sum_{u}
+\left( U^{a}_{tp}U^{b}_{ur}\Pi_{tqus} + 
+U^{a}_{tr}U^{b}_{up}\Pi_{uqts}\right)\\
+& +\\ 
+&\sum_{t}\sum_{u}
+\left(U^{a}_{tp}U^{b}_{us}\Pi_{tqru}  +
+U^{a}_{ts}U^{b}_{up}\Pi_{uqrt}\right) 
++\sum_{t}\sum_{u}
+\left(U^{a}_{tq}U^{b}_{ur}\Pi_{ptus}  +
+U^{a}_{tr}U^{b}_{uq}\Pi_{puts}\right) \\   
+&+\\
+&\sum_{t}\sum_{u}
+\left(U^{a}_{tq}U^{b}_{us}\Pi_{ptru}  +
+U^{a}_{ts}U^{b}_{uq}\Pi_{purt}\right)  
++\sum_{t}\sum_{u}
+\left(U^{a}_{tr}U^{b}_{us}\Pi_{pqtu}  +
+U^{a}_{ts}U^{b}_{ur}\Pi_{pqut}\right) 
+\end{split}
+\label{two_electron_MO_INT_gradient_eq:12}
+\end{equation}
+Here we indicate that since the label $t$ and $u$ are arbitrary, then we have
+such relation:
+\begin{align}
+& \sum_{t}\sum_{u}
+\left( U^{a}_{tp}U^{b}_{uq}\Pi_{turs} + 
+U^{a}_{tq}U^{b}_{up}\Pi_{utrs}\right)   \nonumber \\
+&=
+\sum_{t}\sum_{u}
+\left( U^{a}_{tp}U^{b}_{uq}\Pi_{turs} + 
+U^{a}_{uq}U^{b}_{tp}\Pi_{turs}\right)  \nonumber  \\
+&\sum_{t}\sum_{u}
+\left( 
+U^{a}_{tp}U^{b}_{uq} + 
+U^{b}_{tp}U^{a}_{uq}
+\right) \Pi_{turs}
+\end{align}
+
+Hence finally the sum becomes:
+\begin{equation}
+ \begin{split}
+&sum =\\
+&\sum_{t}\sum_{u}
+\left(U^{a}_{tp}U^{b}_{uq} + 
+U^{b}_{tp}U^{a}_{uq}\right) \Pi_{turs}
++\sum_{t}\sum_{u}
+\left(U^{a}_{tp}U^{b}_{ur} + 
+U^{b}_{tp}U^{a}_{ur}\right)\Pi_{tqus}   +\\ 
+&\sum_{t}\sum_{u}
+\left(U^{a}_{tp}U^{b}_{us} +
+U^{b}_{tp}U^{a}_{us}\right) \Pi_{tqru}
++\sum_{t}\sum_{u}
+\left(U^{a}_{tq}U^{b}_{ur}  +
+U^{b}_{tq}U^{a}_{ur}\right)\Pi_{ptus}    +\\
+&\sum_{t}\sum_{u}
+\left(U^{a}_{tq}U^{b}_{us}  +
+U^{b}_{tq}U^{a}_{us}\right)\Pi_{ptru}  
++\sum_{t}\sum_{u}
+\left(U^{a}_{tr}U^{b}_{us}  +
+U^{b}_{tr}U^{a}_{us}\right)\Pi_{pqtu} 
+\end{split}
+\label{two_electron_MO_INT_gradient_eq:13}
+\end{equation} 
+
+At last, the second derivatives for the $(pq|rs)$ is:
+\begin{equation}
+ \begin{split}
+  \Pi_{pqrs}^{[ab]} &=(pq|rs)^{[ab]} = \frac{\partial^{2} (pq|rs)}{\partial
+\bm{R}_{a}\partial\bm{R}_{b}} \\
+&= \Pi^{ab}_{pqrs} + 
+\sum_{t} \left[ 
+U^{ab}_{tp}\Pi_{tqrs} + 
+U^{ab}_{tq}\Pi_{ptrs} +
+U^{ab}_{tr}\Pi_{pqts} +
+U^{ab}_{ts}\Pi_{pqrt}                      
+\right] \\
+&+ 
+\sum_{t} \left[ 
+U^{a}_{tp}\Pi^{b}_{tqrs}  +
+U^{a}_{tq}\Pi^{b}_{ptrs}  +
+U^{a}_{tr}\Pi^{b}_{pqts}  +
+U^{a}_{ts}\Pi^{b}_{pqrt}
+\right]  \\
+&+
+\sum_{t}\left[ 
+U^{b}_{tp}\Pi^{a}_{tqrs} +
+U^{b}_{tq}\Pi^{a}_{ptrs} + 
+U^{b}_{tr}\Pi^{a}_{pqts} + 
+U^{b}_{ts}\Pi^{a}_{pqrt}  
+\right]  \\
+&+
+\sum_{t}\sum_{u}
+\left(U^{a}_{tp}U^{b}_{uq} + 
+U^{b}_{tp}U^{a}_{uq}\right) \Pi_{turs}
++\sum_{t}\sum_{u}
+\left(U^{a}_{tp}U^{b}_{ur} + 
+U^{b}_{tp}U^{a}_{ur}\right)\Pi_{tqus}   \\ 
+&+\sum_{t}\sum_{u}
+\left(U^{a}_{tp}U^{b}_{us} +
+U^{b}_{tp}U^{a}_{us}\right) \Pi_{tqru}
++\sum_{t}\sum_{u}
+\left(U^{a}_{tq}U^{b}_{ur}  +
+U^{b}_{tq}U^{a}_{ur}\right)\Pi_{ptus}    \\
+&+\sum_{t}\sum_{u}
+\left(U^{a}_{tq}U^{b}_{us}  +
+U^{b}_{tq}U^{a}_{us}\right)\Pi_{ptru}  
++\sum_{t}\sum_{u}
+\left(U^{a}_{tr}U^{b}_{us}  +
+U^{b}_{tr}U^{a}_{us}\right)\Pi_{pqtu} 
+ \end{split}
+ \label{two_electron_MO_INT_gradient_eq:14}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analytical Derivatives for Numerical Integrals}
+%
+%
+%
+%
+The numerical integrals commonly used in quantum chemistry mostly concentrate
+on the Density functional Theory; where the exchange-correlation integral can
+be generally expressed as:
+\begin{equation}
+\begin{split}
+ E_{XC} &= \int d^{3}r F[\rho(r), \nabla(r), \cdots] \\            
+&=\sum_{n}^{atoms}\sum_{g}^{grids}A_{g}\omega_{n}(r_{g})F[\rho(r_{g}),
+\nabla(r_{g}), \cdots] \\
+&= \sum_{n}^{atoms}\sum_{g}^{grids}\varpi_{n}(r_{g})F[\rho(r_{g}),
+\nabla(r_{g}), \cdots]
+\end{split}
+ \label{NUM_AO_INT_gradient_eq:1} 
+\end{equation}
+This expression can be got in the (\ref{NQM_general_eq}). Here inside the
+(\ref{NUM_AO_INT_gradient_eq:1}), the $A_{g}$ is some series expansion constant
+in Gauss-Lebedev grid expansion and Euler-Maclaurin grid expansion method, the
+former is used for evaluation of angular grid integral, the later is used for
+radical grid integral).
+
+The $\omega_{n}(r_{g})$ determines the wight for atoms in terms of the given
+grid. Commonly the grid point could be able to belong to several
+atoms, so $\omega_{n}(r_{g})$ characterizes the ``weight'' for the atoms, and
+it's summation is $1$ for some fixed grid point:
+\begin{equation}
+ \sum_{n}^{atoms}\omega_{n}(r_{g}) = 1
+\end{equation}
+So it's also called ``relative weight function''. The $\omega_{n}(r_{g})$ is the
+explicit function of atom coordinates, so it should appear in the gradient
+theory (more detailed please see \ref{weight_function_dft}).
+
+If we multiply the relative weight function and the $A_{g}$ together, it
+becomes the $\varpi_{n}(r_{g})$, we call it as ``weight function". This value
+has some physical meaning, that
+compared with the common integral expression:
+\begin{equation}
+ I = \int^{a_{1}}_{a_{2}} f(x) dx \approx \sum_{i}^{n}\frac{(a_{2} -
+a_{1})i}{n}f(x_{i})
+\end{equation}
+Here in three-dimension, the $\varpi_{n}(r_{g})$ just characterizes the
+``volumn'' of the infinitesimal. However, obviously it's not the real meaning
+of ``volumn'', but the meaning is similar. 
+
+Finally, the $F[\rho(r_{g}), \nabla(r_{g}), \cdots]$ is the
+corresponding XC functional, which depends on variety of variables:
+\begin{equation}
+ \label{NUM_AO_INT_gradient_eq:2} 
+ E_{XC} = \int  F(\rho_{\alpha}, \rho_{\beta}, \nabla\rho_{\alpha},
+\nabla\rho_{\beta}, \nabla^{2}\rho_{\alpha},
+\nabla^{2}\rho_{\beta}, \tau_{\alpha}, \tau_{\beta})d^{3}r
+\end{equation}
+More details related to the variables can be referred to 
+\ref{sec:examples_functional_derivative}. The XC functional is implicitly
+depending on the atom coordinates, which means it's explicitly depending on
+variables, and the variables depend on atom coordinates. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The First Order Gradient Expression for $E_{XC}$}
+\label{1st_XC_general_derivative}
+%
+%
+%
+%
+Now let's begin to study the first order gradient expression. As what has shown
+in (\ref{NUM_AO_INT_gradient_eq:1}), the exchange-correlation energy can be
+expressed as:
+\begin{equation}
+\label{NUM_AO_INT_gradient_1st_eq:1}
+E_{XC} = \sum\omega(r)F_{XC}(r) 
+\end{equation}
+Then the gradient is:
+\begin{equation}
+  E_{XC}^{[x]} =  \sum\omega^{[x]}(r)F_{XC}(r) +
+\sum\omega(r)F^{[x]}_{XC}(r) 
+\label{NUM_AO_INT_gradient_1st_eq:2}
+\end{equation}
+Where the $F^{[x]}_{XC}(r)$ is:
+\begin{align}
+F^{[x]}_{XC}(r) &= \sum_{\xi}\sum_{\sigma}\frac{\partial F}{\partial
+\xi_{\sigma}} \frac{\partial \xi_{\sigma}}{\partial \bm{R}_{x}} \nonumber\\
+&=  \sum_{\xi}\sum_{\sigma} V_{XC}(\xi_{\sigma})\xi_{\sigma}^{[x]}
+ \label{NUM_AO_INT_gradient_1st_eq:3}
+\end{align}
+Here we have to note, that since variable is expressed on the density matrix:
+\begin{equation}
+ \xi_{\sigma} = \sum_{\mu\nu}P_{\mu\nu\sigma}f(\phi_{\mu}, \phi_{\nu}) = 
+\sum_{i}^{occ}\sum_{\mu\nu}c_{\mu i}c_{\nu i}f(\phi_{\mu}, \phi_{\nu})
+\end{equation}
+For example, the Laplacian variable is:
+\begin{equation}
+ \nabla^{2}\rho = \sum_{\mu\nu}P_{\mu\nu}\nabla^{2}(\phi_{\mu}\phi_{\nu})
+\end{equation}
+Then the $\xi^{[x]}$ can be divided into two parts, one is the contributions
+from MO rotation matrix, the other part is the AO gradient for the variable:
+\begin{align}
+\label{NUM_AO_INT_gradient_1st_eq:4}
+ \xi^{[x]}  &=  \sum_{i}^{occ}\sum_{r}^{ALL MO}\sum_{\mu\nu}c_{\mu
+r}U_{ri}c_{\nu i}f(\phi_{\mu}, \phi_{\nu}) 
++   \sum_{i}^{occ}\sum_{r}^{ALL MO}\sum_{\mu\nu}c_{\nu
+r}U_{ri}c_{\mu i}f(\phi_{\mu}, \phi_{\nu}) \nonumber \\
+&+ \sum_{i}^{occ}\sum_{\mu\nu}c_{\mu i}c_{\nu i}f^{x}(\phi_{\mu}, \phi_{\nu})
+\nonumber \\
+&= 2\sum_{i}^{occ}\sum_{r}^{ALL MO}\sum_{\mu\nu}c_{\mu
+r}U_{ri}c_{\nu i}f(\phi_{\mu}, \phi_{\nu}) +
+ \sum_{i}^{occ}\sum_{\mu\nu}c_{\mu i}c_{\nu i}f^{x}(\phi_{\mu}, \phi_{\nu})
+\nonumber \\
+&= 2\sum_{i}^{occ}\sum_{r}^{ALL MO}U_{ri}\xi_{ri} + \xi^{x}  
+\end{align}
+Here we have used the symmetrical relation between the $\mu$ and $\nu$ in the
+summation.
+
+Finally, the $F^{[x]}_{XC}(r)$ can be expressed as:
+\begin{equation}
+ F^{[x]}_{XC}(r) =  2\sum_{i}^{occ}\sum_{r}^{ALL MO}\sum_{\xi}\sum_{\sigma}
+V_{XC}(\xi_{\sigma})U_{ri}\xi_{ri} + \sum_{\xi}\sum_{\sigma}
+V_{XC}(\xi_{\sigma})\xi_{\sigma}^{x}
+\end{equation}
+More details about how to calculate $f^{x}(\phi_{\mu}, \phi_{\nu})$ can
+be found in \ref{Func_Deriv_gradient_variable_GGA}
+and \ref{Func_Deriv_gradient_variable_META_GGA}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The First Order Gradient Expression for XC Matrix}
+%
+%
+%
+%
+The XC matrix part inside Fock matrix which corresponds to the Kohn-Sham
+equation is defined as:
+\begin{equation}
+F^{XC}_{pq} = \sum_{\xi}\int  V_{XC}(\xi) \xi_{pq} d^{3}r
+\label{NUM_AO_INT_gradient_fock_eq:1} 
+\end{equation}
+Where $ \xi_{pq}$ is given as:
+\begin{equation}
+ \xi_{pq} = \sum_{\mu\nu}c_{\mu p}c_{\nu q}f(\phi_{\mu},\phi_{\nu})
+\end{equation}
+
+Actually this expression can be got through the original Fock matrix
+definition, which can be got from (\ref{functional_mega_gga_eq:3}):
+\begin{align}
+\label{NUM_AO_INT_gradient_fock_eq:2}
+F^{XC}_{\mu\nu}  &= \frac{\partial E_{XC}}{\partial P_{\mu\nu}} \nonumber \\
+&= \sum_{\xi}\int \frac{\partial F(r)}{\partial
+\xi} \frac{\partial \xi}{\partial P_{\mu\nu}} d^{3}r  \nonumber \\
+&= \sum_{\xi}\int \frac{\partial F(r)}{\partial
+\xi} f(\phi_{\mu},\phi_{\nu}) d^{3}r 
+\Rightarrow \nonumber \\
+F^{XC}_{pq}   &= \sum_{\mu\nu}\sum_{\xi}\int \frac{\partial F(r)}{\partial
+\xi} c_{\mu p}c_{\nu q} f(\phi_{\mu},\phi_{\nu}) d^{3}r  \nonumber \\
+&= \sum_{\xi}\int  V_{XC}(\xi) \xi_{pq} d^{3}r
+\end{align}
+More details can be found in (\ref{sec:examples_functional_derivative}). 
+
+The derivatives for the XC matrix, is actually used in the CP-SCF equation so
+that to derive the MO rotation matrix of $U$. The MO rotation matrix of $U$ is
+used for calculating the frequencies or some properties like NMR shift within
+DFT framework.
+
+The general integral in (\ref{NUM_AO_INT_gradient_fock_eq:1}) can be numerically
+expressed as:
+\begin{equation}
+\begin{split}
+F^{XC}_{pq} &= \sum_{\xi}\int  V_{XC}(\xi) \xi_{pq} d^{3}r  \\ 
+ &= \sum_{\xi}\sum_{r}\omega(r)V_{XC}(\xi) \xi_{pq}(r)
+\end{split}
+\label{NUM_AO_INT_gradient_fock_eq:3}
+\end{equation}
+Here the $\omega$ is just the weight function defined in
+(\ref{NUM_AO_INT_gradient_eq:1}).
+
+Based on the expression (\ref{NUM_AO_INT_gradient_fock_eq:3}), The first order
+derivative for $F^{XC}_{pq}$ can be expressed as:
+\begin{align}
+\label{NUM_AO_INT_gradient_fock_eq:3}
+ (F^{XC}_{pq})^{[x]} &=  
+\sum_{\xi}\sum_{r}\omega^{[x]}(r)V_{XC}(\xi) \xi_{pq}(r) +
+\sum_{\xi}\sum_{r}\omega(r)V^{[x]}_{XC}(\xi) \xi_{pq}(r) \nonumber \\
+&+
+\sum_{\xi}\sum_{r}\omega(r)V_{XC}(\xi) \xi^{[x]}_{pq}(r) \nonumber \\
+&= \sum_{\xi}\sum_{r}\omega^{[x]}(r)V_{XC}(\xi) \xi_{pq}(r) +
+\sum_{\xi}\sum_{\zeta}\sum_{r}\omega(r)\frac{\partial 
+V_{XC}(\xi)}{\partial \zeta}\zeta^{[x]} \xi_{pq}(r) \nonumber \\
+&+
+\sum_{\xi}\sum_{r}\omega(r)V_{XC}(\xi) \xi^{[x]}_{pq}(r)
+\end{align}
+Now let's understand each term inside (\ref{NUM_AO_INT_gradient_fock_eq:3}).
+
+The $\dfrac{\partial V_{XC}(\xi)}{\partial \zeta}$ is actually the derivatives
+for the potential of $V_{XC}$:
+\begin{equation}
+\label{NUM_AO_INT_gradient_fock_eq:4}
+ \frac{\partial V_{XC}(\xi)}{\partial \zeta} = \frac{\partial^{2} F(r)}{
+\partial \xi \partial\zeta} = F^{\xi\zeta}
+\end{equation}
+
+For the $\xi^{[x]}_{pq}(r)$, by repeating the procedure in
+(\ref{NUM_AO_INT_gradient_1st_eq:4}) we can have:
+\begin{align}
+\label{NUM_AO_INT_gradient_fock_eq:4}
+ \xi^{[x]}_{pq}  &=  \sum_{s}^{ALL MO}\sum_{\mu\nu}c_{\mu
+ s}U_{sp}c_{\nu q}f(\phi_{\mu}, \phi_{\nu}) 
++ \sum_{s}^{ALL MO}\sum_{\mu\nu}c_{\nu
+s}U_{sq}c_{\mu p}f(\phi_{\mu}, \phi_{\nu}) \nonumber \\
+&+ \sum_{\mu\nu}c_{\mu p}c_{\nu q}f^{x}(\phi_{\mu}, \phi_{\nu})
+\nonumber \\
+&= \sum_{s}^{ALL MO}U_{sp}\xi_{sq} + 
+\sum_{s}^{ALL MO}U_{sq}\xi_{sp}  + \xi^{x}_{pq}  
+\end{align}
+
+
+In this expression, we can sum the explicit derivatives together:
+\begin{align}
+(F^{XC}_{pq})^{x} &=  \sum_{r}\omega(r)\psi_{p}^{x}(r) V_{XC}(r) \psi_{q}(r) 
++  \sum_{r}\omega(r)\psi_{p}(r) V_{XC}(r) \psi_{q}^{x}(r) \nonumber \\ 
+&+  \sum_{r}\omega(r)^{[x]}\psi_{p}(r) V_{XC}(r)\psi_{q}(r) 
+\end{align}
+Here the first two terms are the derivative on AO part, and the third term is
+the derivative on weight function.
+
+By using the expression for $\xi^{[x]}$ in
+(\ref{NUM_AO_INT_gradient_1st_eq:4}), we can further have:
+\begin{align}
+\label{NUM_AO_INT_gradient_fock_eq:5}
+&\sum_{\xi}\sum_{\sigma}\sum_{r}\omega(r)\psi_{p}(r)\frac{\partial 
+V_{XC}(r)}{\partial \xi_{\sigma}}\xi_{\sigma}^{[x]} \psi_{q}(r) \nonumber \\
+&=
+2\sum_{\xi}\sum_{\sigma}\sum_{r}\omega(r)\psi_{p}(r)\frac{\partial 
+V_{XC}(r)}{\partial \xi_{\sigma}}(\xi_{\sigma}^{U})^{x} \psi_{q}(r) \nonumber
+\\
+&+ \sum_{\xi}\sum_{\sigma}\sum_{r}\omega(r)\psi_{p}(r)\frac{\partial 
+V_{XC}(r)}{\partial \xi_{\sigma}}\xi_{\sigma}^{x} \psi_{q}(r) 
+\end{align}
+
+Finally, we can further rewrite the (\ref{NUM_AO_INT_gradient_fock_eq:3}) by
+dividing all the terms into two groups; the first group contains the terms
+related to MO rotation matrix of $U$, and the left terms are driven into the
+other group:
+\begin{equation}
+ \begin{split}
+ (F^{XC}_{pq})^{[x]} &= (F^{XC}_{pq})^{x} + 
+\sum_{\xi}\sum_{\sigma}\sum_{r}\omega(r)\psi_{p}(r)\frac{\partial 
+V_{XC}(r)}{\partial \xi_{\sigma}}\xi_{\sigma}^{x} \psi_{q}(r)   \\
+&+  \sum_{r}\sum_{s}^{ALL MO}U_{sp}\omega(r)\psi_{p}(r)V_{XC}(r) \psi_{q}(r) \\
+&+  \sum_{r}\sum_{s}^{ALL MO}U_{sq}\omega(r)\psi_{p}(r)V_{XC}(r) \psi_{q}(r) 
+ \\
+&+ 2\sum_{\xi}\sum_{\sigma}\sum_{r}\omega(r)\psi_{p}(r)\frac{\partial 
+V_{XC}(r)}{\partial \xi_{\sigma}}(\xi_{\sigma}^{U})^{x} \psi_{q}(r) \\
+&= (F^{XC}_{pq})^{x} + 
+\sum_{\xi}\sum_{\sigma}\sum_{r}\omega(r)\psi_{p}(r)\frac{\partial 
+V_{XC}(r)}{\partial \xi_{\sigma}}\xi_{\sigma}^{x} \psi_{q}(r)   \\
+&+ \sum_{s}^{ALL MO}U_{sp}F^{XC}_{pq} +  \sum_{s}^{ALL MO}U_{sq}F^{XC}_{pq} \\
+&+ 2\sum_{\xi}\sum_{\sigma}\sum_{r}\omega(r)\psi_{p}(r)\frac{\partial 
+V_{XC}(r)}{\partial \xi_{\sigma}}(\xi_{\sigma}^{U})^{x} \psi_{q}(r)
+ \end{split}
+\label{NUM_AO_INT_gradient_fock_eq:6}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Second Order Gradient Expression for $E_{XC}$}
+%
+%
+%
+%
+Following the first order gradient expansion in
+(\ref{NUM_AO_INT_gradient_1st_eq:2}), the second order gradient expansion can
+be expressed as:
+\begin{equation}
+\begin{split}
+  E_{XC}^{[xy]} &=  
+\sum\omega^{[xy]}(r)F_{XC}(r) + 
+\sum\omega^{[x]}(r)F^{[y]}_{XC}(r) \\
+&+ 
+\sum\omega^{[y]}(r)F^{[x]}_{XC}(r) +
+\sum\omega(r)F^{[xy]}_{XC}(r)  
+\end{split}
+ \label{NUM_AO_INT_gradient_2ed_eq:1}
+\end{equation}
+Here in these four terms,  the $\omega^{[xy]}(r)$ can be directly got because
+it's some explicit function for $r$. Hence the only unknown term is the
+$F^{[xy]}_{XC}(r)$:
+\begin{align}
+ F^{[xy]}_{XC}(r) &= \frac{\partial}{\partial \bm{R}_{x}}\sum_{\xi}\sum_{\sigma}
+V_{XC}(\xi_{\sigma})\xi_{\sigma}^{[x]} \nonumber \\
+&= \sum_{\xi}\sum_{\sigma} \frac{\partial
+V_{XC}(\xi_{\sigma})}{\partial \bm{R}_{x}}\xi_{\sigma}^{[x]} +
+\sum_{\xi}\sum_{\sigma}
+V_{XC}(\xi_{\sigma})\xi_{\sigma}^{[xy]} \nonumber \\
+&= \sum_{\xi}\sum_{\sigma}\sum_{\zeta}\sum_{\sigma^{'}} \frac{\partial
+V_{XC}(\xi_{\sigma})}{\partial
+\zeta_{\sigma^{'}}}\zeta_{\sigma^{'}}^{[y]}\xi_{\sigma}^{[x]} +
+\sum_{\xi}\sum_{\sigma}
+V_{XC}(\xi_{\sigma})\xi_{\sigma}^{[xy]} \nonumber \\
+\end{align}
+
+ 
+

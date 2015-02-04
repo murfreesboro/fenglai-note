@@ -1,0 +1,922 @@
+%
+% firstly set up at Feb. 11th, 2009
+%
+% revised at 26th, March; to add the new contents:
+%    some cases for time independent perturbation;
+%    degenerate perturbation function;
+%    time dependent case;
+%
+\chapter{Perturbation Treatment in Quantum Mechanics}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%
+%  1  what's the perturbation theory?
+%  2  what is it for?
+%  3  general idea
+%  4  two perturbation methods. time dependent and time independent
+%
+In quantum mechanics, except for a few very simple system (such as
+the free particle system or the hydrogen atom system), it's usually
+impossible to derive the exact wave functions by directly solving
+the Schrodinger equation. Hence, the approximated methods for
+solution is necessary in dealing with many practical systems. Among
+these methods, the perturbation treatment is some powerful and
+popular candidate.
+
+As an example, now let's give some general idea about the
+perturbation treatment for the time independent case. Suppose that
+the Hamiltonian for a given system is the $\hat{H}$, and the
+corresponding time independent Schrodinger equation is:
+\begin{equation}\label{}
+\hat{H}\Psi = E\Psi
+\end{equation}
+However, the $\Psi$ is impossible to solve directly. On the other
+hand, if the $\hat{H}$ can be split into two parts:
+\begin{equation}\label{PTIQMeq:4}
+\hat{H} = \hat{H}_{0} + \hat{H}^{'}
+\end{equation}
+Here the eigen states for the $\hat{H}_{0}$ is easy to derive.
+Moreover, the $\hat{H}^{'}$ is very small compared with the
+$\hat{H}_{0}$ so that $\hat{H}^{'}$ only makes small contribution in
+forming the eigen states for the $\hat{H}$, thus the exact eigen
+states for the $\hat{H}$ should be very close to the eigen states
+for the $\hat{H}_{0}$. In a sense, we can derive the approximated
+wave function for the $\hat{H}$ by starting from the eigen states
+given by $\hat{H}_{0}$. By considering the progressive effects from
+$\hat{H}^{'}$ on the eigen states of $\hat{H}_{0}$, the approximated
+wave function is able to come closer and closer to the exact wave
+functions.
+
+Usually in the perturbation treatment, there are two general
+methods\cite{Dirac}, one is to take the perturbation as some
+``modifications'' to the ground states, it will cause motion change
+for the system (that means, the wave function is getting change
+under the perturbation). This method usually deal with the changes
+for the ground state, and the perturbation is independent time. the
+other method, is to take the stationary state for the unperturbed
+system, and investigate it's changes as time varies. Therefore, this
+method is usually used for the time dependent perturbation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Time Independent Perturbation
+Theory}\label{Time_independent_perturbation_theory}
+%
+% here we generally consider the perturbation treatment in the
+% time independent case
+% what is it for?
+%
+At the beginning, let's go to investigate the perturbation treatment
+to the time independent case. Such time independent treatment can be
+used to study many practical problems in the quantum mechanics, such
+as the coupling between the spin and the orbitals, time independent
+external fields etc. Moreover, it's worthy to point out that in
+quantum chemistry, the many body perturbation theory methods are
+actually derived from the time independent perturbation theory.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Non-Degenerate Case}
+%
+% 1  Hamiltonian expansion, discussion about the lambda
+% 2  expansion over the wave functions and the energy
+% 3  general expression related to the lambda, get a series of
+%    perturbed equations
+% 4  zero order approximation
+% 5  first order
+% 6  second order
+%
+Suggest that for a given system, the Hamiltonian can be expressed
+as:
+\begin{equation}\label{PTIQMeq:1}
+\hat{H} = \hat{H}_{0} + \lambda\hat{H}^{'}
+\end{equation}
+And the corresponding time independent Schrodinger equation is:
+\begin{equation}\label{PTIQMeq:2}
+\hat{H}\Phi = E\Phi
+\end{equation}
+Here the $\hat{H}^{'}$ is very small so that there's only slight
+difference between the $\hat{H}$ and $\hat{H}_{0}$. Compared with
+(\ref{PTIQMeq:6}), we add some real parameter of $\lambda$ to the
+perturbation operator so that the wave functions and the energy can
+be expanded according to the order of the $\lambda$ (therefore, this
+$\lambda\hat{H}^{'}$ should be small enough so that to guarantee the
+feasibility of expansion). Physically this parameter of $\lambda$ is
+arbitrary and meaningless, as a kind of standard treatment we use it
+only for mathematical clarity\footnote{Here the perturbation method
+used here is called ``Rayleigh-Schrodinger'' expansion}.
+
+Now suppose that for the $\hat{H}_{0}$ we can get its complete set
+of eigen states and the eigen values:
+\begin{equation}\label{PTIQMeq:3}
+\hat{H}_{0}\Psi^{0}_{n} = E^{0}_{n}\Psi^{0}_{n} \quad n = 1,
+2,\cdots
+\end{equation}
+We assume that the energy level is not degenerate: $E^{0}_{n} \neq
+E^{0}_{m}$ if $n \neq m$. This is the simplest case in the time
+independent perturbation treatment, thus we call it as
+``non-degenerate case''.
+
+After defining the eigen states for the $\hat{H}_{0}$, we can expand
+the wave function of $\Phi$ and the corresponding energy of $E$ in
+stepping order of $\lambda$:
+\begin{align}\label{PTIQMeq:5}
+\Phi &= \Phi^{0} + \lambda\Phi^{1} + \lambda^{2}\Phi^{2} + \cdots
+\nonumber \\
+E &= E^{0} + \lambda E^{1} + \lambda^{2}E^{2} + \cdots
+\end{align}
+Here $\Phi^{1}$ denotes the first order modification to the
+$\Phi^{0}$, $\Phi^{2}$ denotes the second order modification to the
+$\Phi^{0}$ etc. Since $\lambda$ is some small value so that
+$\Phi^{i}$ is much smaller than the $\Phi^{i-1}$. Therefore the
+expansion can be converged at $i \rightarrow \infty$.
+
+Let's bring the (\ref{PTIQMeq:5}) into the (\ref{PTIQMeq:2}):
+\begin{multline}\label{PTIQMeq:6}
+(\hat{H}_{0} + \lambda\hat{H}^{'})(\Phi^{0} + \lambda\Phi^{1} +
+\lambda^{2}\Phi^{2} + \cdots) = \\
+(E^{0} + \lambda E^{1} + \lambda^{2}E^{2} + \cdots)(\Phi^{0} +
+\lambda\Phi^{1} + \lambda^{2}\Phi^{2} + \cdots)
+\end{multline}
+By gathering the terms with same power of $\lambda$ on both side of
+the (\ref{PTIQMeq:6}), we can get a series of perturbation
+equations:
+\begin{align}\label{PTIQMeq:7}
+\lambda^{0} &: \hat{H}_{0}\Phi^{0} = E^{0}\Phi^{0} \nonumber \\
+\lambda^{1} &: (\hat{H}_{0} - E^{0})\Phi^{1} =
+(E^{1} - \hat{H}^{'})\Phi^{0} \nonumber \\
+\lambda^{2} &: (\hat{H}_{0} - E^{0})\Phi^{2} =
+(E^{1} - \hat{H}^{'})\Phi^{1} +E^{2}\Phi^{0}  \nonumber \\
+&\cdots\cdots
+\end{align}
+
+\subsubsection{Zero Order Approximation}
+Zero order approximation means that there's no perturbation to the
+system: that's same with $\lambda = 0$ in (\ref{PTIQMeq:1}) so that
+it retreats back to the case defined in (\ref{PTIQMeq:3}). Suppose
+that the system is in energy level of $k$, then we have:
+\begin{align}\label{PTIQMeq:9}
+\Phi^{0}_{k} &= \Psi^{0}_{k} \nonumber \\
+E^{0} &= E^{0}_{k}
+\end{align}
+
+
+\subsubsection{First Order Approximation}\label{1st_approximation_WT}
+In the first order approximation, it's able to construct the
+$\Phi^{1}$ by expanding over the set of eigen states of
+$\Psi^{0}_{n}$:
+\begin{equation}\label{}
+\Phi^{1} = \sum_{n}a^{1}_{n}\Psi^{0}_{n}
+\end{equation}
+Physically, the $\Phi^{1}$ also compose some complete set wave
+functions which is ``slightly modified'' from the set of
+$\Psi^{0}_{n}$ ($n=1,2,\cdots$). Therefore for each given energy
+level of $k$, we have:
+\begin{equation}\label{PTIQMeq:8}
+\Phi^{1}_{k} = \sum_{n}a^{1}_{nk}\Psi^{0}_{n} \quad k=1,2,\cdots
+\end{equation}
+In practice, $\Phi^{1}_{k}$ express the ``modification'' to the
+$\Psi^{0}_{k}$ by the perturbation of $\hat{H}^{'}$. Due to the
+$\hat{H}^{'}$, the orthogonal condition between the $\Psi^{0}_{n}$
+is broken; instead eigen states are mixing together to form some new
+sets. For the $\Psi^{0}_{k}$, it can see that the new eigen state of
+$\Phi_{k}$ has mixed some of its adjacent eigen states of
+$\Psi^{0}_{l}$ ($l \neq k$) on the first order approximation:
+\begin{equation}\label{}
+\Phi_{k} = \Phi_{k}^{0} + \lambda\Phi_{k}^{1} = \Psi^{0}_{k} +
+\lambda\sum_{n}a^{1}_{nk}\Psi^{0}_{n}
+\end{equation}
+In the following content, we will further investigate such relation.
+
+On the other hand, we note that under the perturbation of
+$\hat{H}^{'}$ the new set of eigen states of $\Phi_{i}$ are indeed
+orthogonal with each other on the first order of approximation:
+\begin{align}\label{}
+\langle\Phi_{i}|\Phi_{j}\rangle &= \delta_{ij} + \lambda(a^{1}_{ij}
++ a^{1*}_{ji}) + \lambda^{2}(\sum_{m}\sum_{n}a^{1*}_{mi}a^{1}_{nj}
+\langle\Psi^{0}_{m}|\Psi^{0}_{n}\rangle) \nonumber \\
+&=\lambda(a^{1}_{ij} + a^{1*}_{ji}) + O(\lambda^{2})
+\end{align}
+Here we can see some interesting conclusions. On the first order
+approximation, if $\Phi_{i}$ and $\Phi_{j}$ are orthogonal with each
+other, then it requires that:
+\begin{equation}\label{}
+a^{1}_{ij} + a^{1*}_{ji} = 0
+\end{equation}
+Here the higher order(related to the $\lambda^{2}$) is omitted. In
+the latter content, we will give the concrete expression for the
+$a^{1}_{ij}$, then it can see that they satisfy such relation above.
+
+Now let's bring the (\ref{PTIQMeq:9}) and (\ref{PTIQMeq:8}) into the
+first order of perturbation equation defined in (\ref{PTIQMeq:7}):
+\begin{align}\label{}
+(\hat{H}_{0} - E^{0}_{k})\sum_{n}a^{1}_{nk}\Psi^{0}_{n} &=
+(E^{1}_{k} - \hat{H}^{'})\Phi^{0}_{k} \nonumber \\
+\sum_{n}(E^{0}_{n} - E^{0}_{k})a^{1}_{nk}\Psi^{0}_{n} &= (E^{1}_{k}
+- \hat{H}^{'})\Phi^{0}_{k}
+\end{align}
+This equation holds true for a given energy level of $k$. If we
+multiply both side of the above equation with $\bra{\Psi^{0}_{m}}$
+and make integration, then it gives:
+\begin{align}\label{PTIQMeq:10}
+\sum_{n}(E^{0}_{n} - E^{0}_{k})a^{1}_{nk}\delta_{mn} &=
+E^{1}_{k}\delta_{mk} -
+\bra{\Psi^{0}_{m}}\hat{H}^{'}\ket{\Psi^{0}_{k}} \nonumber \\
+(E^{0}_{m} - E^{0}_{k})a^{1}_{mk} &= E^{1}_{k}\delta_{mk} -
+H^{'}_{mk}
+\end{align}
+
+Given by the (\ref{PTIQMeq:10}), if $m=k$, thus we can get
+\begin{equation}\label{}
+E^{1}_{m} = H^{'}_{mm} =
+\bra{\Psi^{0}_{m}}\hat{H}^{'}\ket{\Psi^{0}_{m}}
+\end{equation}
+
+If $m\neq k$, then we can get the $a^{1}_{mk}$ as:
+\begin{equation}\label{}
+a^{1}_{mk} = \frac{H^{'}_{mk}}{E^{0}_{k} - E^{0}_{m}}
+\end{equation}
+The non-degenerate condition has guaranteed that $E^{0}_{k} -
+E^{0}_{m} \neq 0$.
+
+However, from the (\ref{PTIQMeq:10}) the $a^{1}_{kk}$ is unable to
+be determined. Here we use the normalized condition for the
+$\Phi_{k}$:
+\begin{align}\label{}
+\bra{\Phi_{k}}\hat{H}^{'}\ket{\Phi_{k}} &= 1 \nonumber \\
+a^{1}_{kk} + a^{1*}_{kk} &= 0
+\end{align}
+Therefore, the $a^{1}_{kk}$ is some imaginary number. It can be
+proved that this number can be set to $0$ without hurting the
+validity of the whole derivation.
+
+All in all, for the first order approximation we can give the wave
+function as well as the corresponding energy as:
+\begin{align}\label{PTIQMeq:11}
+\Phi_{k} &= \Psi^{0}_{k} + \sum_{m\neq k}\frac{H^{'}_{mk}}{E^{0}_{k}
+- E^{0}_{m}}\Psi^{0}_{m} \nonumber \\
+E_{k} &= E_{k}^{0} + \bra{\Psi^{0}_{k}}\hat{H}^{'}\ket{\Psi^{0}_{k}}
+\end{align}
+
+Now let's back to the physical discussion of the first order
+approximation. From the result in (\ref{PTIQMeq:11}), it can see
+that energy modification is only
+$\bra{\Psi^{0}_{k}}\hat{H}^{'}\ket{\Psi^{0}_{k}}$, which is the
+expectation value of $\hat{H}^{'}$ for the zero order wave
+functions. The first order wave function of $\Phi^{1}$ doest not
+appear in the energy expression.
+
+On the other hand, for the $\Phi_{k}$ corrected at first order,
+there's really some adjacent eigen states of $\Psi^{0}_{m}$ mixing
+into the $\Psi^{0}_{k}$. The magnitude of the mixing state is
+determined by the coefficient of $a_{mk}$, which is in turn largely
+affected by the energy difference of $E^{0}_{k} - E^{0}_{m}$.
+Therefore, it's the adjacent eigen states for the $\Psi^{0}_{k}$
+that is able to mix ``strongly'' into the first order wave function,
+and if the energy difference is larger, the mixing will get smaller.
+
+\subsubsection{Second Order Approximation}
+Analogically, we can expand the $\Phi^{2}_{k}$ over the
+$\Psi^{0}_{n}$:
+\begin{equation}\label{PTIQMeq:12}
+\Phi^{2}_{k} = \sum_{n}a^{2}_{n}\Psi^{0}_{n}
+\end{equation}
+By taking the (\ref{PTIQMeq:9}), (\ref{PTIQMeq:11}) and
+(\ref{PTIQMeq:12}) into the second order perturbation equation in
+(\ref{PTIQMeq:7}), we can get:
+\begin{equation}\label{PTIQMeq:13}
+\sum_{n}(E^{0}_{n} - E^{0}_{k})a^{2}_{nk}\Psi^{0}_{n} = (E^{1}_{k} -
+\hat{H}^{'})\Phi^{1}_{k} + E^{2}_{k}\Phi^{0}_{k}
+\end{equation}
+
+Similarly by multiplying with $\bra{\Psi^{0}_{m}}$ and make
+integration, the (\ref{PTIQMeq:13}) gives:
+\begin{align}\label{PTIQMeq:14}
+\sum_{n}(E^{0}_{n} - E^{0}_{k})a^{2}_{nk}\delta_{mn} &=
+E^{1}_{k}\langle\Psi^{0}_{m}|\Psi^{1}_{k}\rangle -
+\bra{\Psi^{0}_{m}}\hat{H}^{'}\ket{\Psi^{1}_{k}} +
+E^{2}_{k}\delta_{mk} \nonumber \\
+(E^{0}_{m} - E^{0}_{k})a^{2}_{mk} &=
+E^{1}_{k}\langle\Psi^{0}_{m}|\Psi^{1}_{k}\rangle -
+\bra{\Psi^{0}_{m}}\hat{H}^{'}\ket{\Psi^{1}_{k}} +
+E^{2}_{k}\delta_{mk}
+\end{align}
+
+Next let's expand the $\langle\Psi^{0}_{m}|\Psi^{1}_{k}\rangle$ and
+$\bra{\Psi^{0}_{m}}\hat{H}^{'}\ket{\Psi^{1}_{k}}$ in details. For
+the $\langle\Psi^{0}_{m}|\Psi^{1}_{k}\rangle$, it gives:
+\begin{align}\label{PTIQMeq:15}
+\langle\Psi^{0}_{m}|\Psi^{1}_{k}\rangle &= \sum_{n\neq
+k}\frac{H^{'}_{nk}}{E^{0}_{k} - E^{0}_{n}}
+\langle\Psi^{0}_{m}|\Psi^{0}_{n}\rangle \nonumber \\
+&=\sum_{n\neq k}\frac{H^{'}_{nk}}{E^{0}_{k} - E^{0}_{n}}\delta_{mn}
+\end{align}
+
+For the $\bra{\Psi^{0}_{m}}\hat{H}^{'}\ket{\Psi^{1}_{k}}$, it gives:
+\begin{align}\label{PTIQMeq:16}
+\bra{\Psi^{0}_{m}}\hat{H}^{'}\ket{\Psi^{1}_{k}} &= \sum_{n\neq
+k}\frac{H^{'}_{nk}}{E^{0}_{k} -
+E^{0}_{n}}\bra{\Psi^{0}_{m}}\hat{H}^{'}\ket{\Psi^{0}_{n}} \nonumber
+\\
+&=\sum_{n\neq k}\frac{H^{'}_{nk}}{E^{0}_{k} - E^{0}_{n}}H^{'}_{mn}
+\end{align}
+
+Now by the (\ref{PTIQMeq:15}) and (\ref{PTIQMeq:16}), let's explore
+the (\ref{PTIQMeq:14}) in details. First, if $m=k$, we can get:
+\begin{equation}\label{}
+E^{2}_{k} = \sum_{n\neq k}\frac{|H^{'}_{nk}|^{2}}{E^{0}_{k} -
+E^{0}_{n}}
+\end{equation}
+
+Else if $m \neq k$, then it gives:
+\begin{equation}\label{}
+(E^{0}_{m} - E^{0}_{k})a^{2}_{mk} =
+H^{'}_{kk}\frac{H^{'}_{mk}}{E^{0}_{k} - E^{0}_{m}} - \sum_{n\neq
+k}\frac{H^{'}_{nk}}{E^{0}_{k} - E^{0}_{n}}H^{'}_{mn}
+\end{equation}
+
+That gives:
+\begin{equation}\label{}
+a^{2}_{mk} = -\frac{H^{'}_{mk}H^{'}_{kk}}{(E^{0}_{k} -
+E^{0}_{m})^{2}} + \sum_{n\neq
+k}\frac{H^{'}_{mn}H^{'}_{nk}}{(E^{0}_{k} - E^{0}_{n})(E^{0}_{k} -
+E^{0}_{m})}
+\end{equation}
+
+Now it's only that $a^{2}_{kk}$ has not been determined yet. Like
+what has been done in the first order approximation, the
+normalization condition is used to work out the $a^{2}_{kk}$. First,
+the wave function corrected at second order is:
+\begin{equation}\label{}
+\Psi_{k} = \Psi_{k}^{0} + \lambda\Psi_{k}^{1} +
+\lambda^{2}\Psi_{k}^{2}
+\end{equation}
+Then by employing the normalization condition of
+$\langle\Psi_{k}|\Psi_{k}\rangle = 0$, it gives:
+\begin{multline}\label{PTIQMeq:17}
+\langle\Psi_{k}^{0}|\Psi_{k}^{0}\rangle +
+\lambda\Big(\langle\Psi_{k}^{1}|\Psi_{k}^{0}\rangle +
+\langle\Psi_{k}^{0}|\Psi_{k}^{1}\rangle\Big) + \\
+\lambda^{2}\Big(\langle\Psi_{k}^{2}|\Psi_{k}^{0}\rangle +
+\langle\Psi_{k}^{0}|\Psi_{k}^{2}\rangle +
+\langle\Psi_{k}^{1}|\Psi_{k}^{1}\rangle\Big) = 0
+\end{multline}
+
+Since that for the terms related to the $\lambda^{1}$, they has been
+shown to be zero; so that in the (\ref{PTIQMeq:17}) the terms
+involved with $\lambda^{2}$ should be zero to maintain the
+normalization condition:
+\begin{equation}\label{}
+\langle\Psi_{k}^{2}|\Psi_{k}^{0}\rangle +
+\langle\Psi_{k}^{0}|\Psi_{k}^{2}\rangle +
+\langle\Psi_{k}^{1}|\Psi_{k}^{1}\rangle = 0
+\end{equation}
+That finally gives:
+\begin{equation}\label{}
+a^{2}_{kk} = -\frac{1}{2}\sum_{m\neq
+k}\frac{|H^{'}_{mk}|^{2}}{(E^{0}_{k} - E^{0}_{m})^{2}}
+\end{equation}
+
+All in all, we can express the wave function which correlated at
+second order as:
+\begin{multline}\label{PTIQMeq:18}
+\Phi_{k} = \Psi^{0}_{k} + \sum_{m\neq k}\frac{H^{'}_{mk}}{E^{0}_{k}
+- E^{0}_{m}}\Psi^{0}_{m} + \\
+\sum_{m\neq k}\Bigg\{-\frac{H^{'}_{mk}H^{'}_{kk}}{(E^{0}_{k} -
+E^{0}_{m})^{2}}\Psi^{0}_{m} + \sum_{n\neq
+k}\frac{H^{'}_{mn}H^{'}_{nk}}{(E^{0}_{k} - E^{0}_{n})(E^{0}_{k} -
+E^{0}_{m})}\Psi^{0}_{m}\Bigg\} - \\
+\frac{1}{2}\sum_{m\neq k}\frac{|H^{'}_{mk}|^{2}}{(E^{0}_{k} -
+E^{0}_{m})^{2}}\Psi^{0}_{k}
+\end{multline}
+
+It's corresponding energy is:
+\begin{equation}\label{PTIQMeq:19}
+E_{k} = E_{k}^{0} + \bra{\Psi^{0}_{k}}\hat{H}^{'}\ket{\Psi^{0}_{k}}
++ \sum_{n\neq k}\frac{|H^{'}_{nk}|^{2}}{E^{0}_{k} - E^{0}_{n}}
+\end{equation}
+
+Finally, let's make some analysis to the $E^{2}$. Interestingly it
+can see that $E^{2}$ is the expectation value of $\hat{H}^{'}$
+between the $\Phi^{1}$ and $\Phi^{0}$:
+\begin{equation}\label{}
+E^{2}_{k} = \bra{\Phi^{0}_{k}}\hat{H}^{'}\ket{\Phi^{1}_{k}} =
+\sum_{n\neq k}\frac{|H^{'}_{nk}|^{2}}{E^{0}_{k} - E^{0}_{n}}
+\end{equation}
+On the other hand, if the $E^{0}_{k}$ is selected to be the ground
+state of energy; then for any $n \neq k$ we have $E^{0}_{k} -
+E^{0}_{n}$. That means, for the ground state the second order
+correlation is always less than zero.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Limitation for Non-Degenerate Perturbation
+Treatment}\label{PTIQM:1}
+%
+% 1  the second order form of wave function is complicated
+% 2  as the energy is near degenerated, the perturbation is wrong
+%
+%
+%
+As we can see, the corrected wave function for the second order has
+been made very complicated, therefore it's seldom used. Usually in
+the Rayleigh perturbation treatment, the wave functions is corrected
+at first order, and the energy is corrected at second order.
+Actually, the first order corrected wave function is suitable enough
+for most of the qualitative discussions. On the other hand, there's
+also some other form of perturbation treatment; but the Rayleigh
+perturbation method is most widely used.
+
+There's some strong restriction to the above method, which is
+attributed from the energy degeneracy phenomenon. As shown in the
+(\ref{PTIQMeq:11}) and (\ref{PTIQMeq:19}), if there's near energy
+degeneracy for the energy level of $k$, that means energy level $k$
+and its adjacent energy levels are very close; it will lead to
+abnormal increasing for the terms of
+$\frac{|H^{'}_{nk}|^{2}}{E^{0}_{k} - E^{0}_{n}}$ in the second order
+corrected energy, and there's similar problem in the expression of
+wave functions. Such problems are left for the perturbation
+treatment in the degenerate case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some Examples for Non-Degenerate Perturbation
+Treatment}
+%
+% to give some examples for the non-degenerate perturbation
+%
+%
+\subsection{Perturbation of An Oscillator}
+%
+%
+%
+For a simple case\footnote{In this section the example are all taken
+from the book \cite{ZengJinYan}}, let's consider the perturbation to
+a linear harmonic oscillator. Physically, such linear harmonic
+oscillator can be interpreted as an ion in some ``perfect'' crystal
+who is oscillating around its equilibrium position (for simplicity
+we suggest that the motion of ion is all along the x axis), and the
+perturbation is some constant electric filed which can be expressed
+as $\hat{H}^{'} = -q\varepsilon x$.
+
+All in all, the Hamiltonian for this system is:
+\begin{align}\label{}
+\hat{H} &= -\frac{\hbar^{2}}{2m}\frac{d^{2}}{dx^{2}} +
+\frac{1}{2}m\omega_{0}^{2}x^{2} - q\varepsilon x \nonumber \\
+\hat{H}_{0} &= -\frac{\hbar^{2}}{2m}\frac{d^{2}}{dx^{2}} +
+\frac{1}{2}m\omega_{0}^{2}x^{2} \nonumber \\
+\hat{H}^{'} &= -q\varepsilon x
+\end{align}
+For the harmonic oscillator whose Hamiltonian is $\hat{H}_{0}$, it's
+eigen states can be easily gotten (please see the chapter discussing
+the harmonic oscillator):
+\begin{align}\label{}
+\Psi_{n}^{(0)}(x) &= N_{n}e^{-\frac{1}{2}a^{2}x^{2}}H_{n}(ax)
+\nonumber \\
+a &= \sqrt{\frac{m\omega_{0}}{\hbar}} \nonumber \\
+N_{n} &= \left(\frac{a}{\sqrt{\pi}2^{n}n!}\right)^{\frac{1}{2}}
+\end{align}
+Here the $H_{n}(ax)$ is the hermite polynomial, and $N_{n}$ is the
+normalized factor.
+
+The energy level corresponds to the unperturbed states is:
+\begin{equation}\label{}
+E_{n}^{(0)} = (n+\frac{1}{2})\hbar\omega_{0} \quad n=0,1,2\cdots
+\end{equation}
+It's easily seen that if $n\neq m$ $E_{n}^{(0)}\neq E_{m}^{(0)}$,
+thus it's some non-degenerate states.
+
+Now let's use the formula of perturbation treatment to calculate the
+perturbed correlation to the energy as well as the wave functions.
+Before the derivation, it's convenient to introduce equation to
+calculate the perturbation matrix element for the
+$\Psi_{n}^{(0)}(x)$:
+\begin{align}\label{PTIQMeq:20}
+\hat{x}\Psi_{n}^{(0)}(x) &=
+\frac{1}{a}\left[\sqrt{\frac{n}{2}}\Psi_{n-1}^{(0)}(x) +
+\sqrt{\frac{n+1}{2}}\Psi_{n+1}^{(0)}(x) \right] \Rightarrow
+\nonumber \\
+x_{kn} = \bra{\Psi_{k}^{(0)}}\hat{x}\ket{\Psi_{n}^{(0)}} &=
+\frac{1}{a}\left[\sqrt{\frac{n}{2}}\delta_{k,n-1} +
+\sqrt{\frac{n+1}{2}}\delta_{k,n+1} \right]
+\end{align}
+This equation can be easily gotten from the character of Hermite
+polynomial (also see the chapter discussing the harmonic
+oscillator).
+
+According to the (\ref{PTIQMeq:19}) the second order correlation to
+the energy level of $n$ is:
+\begin{align}\label{}
+E_{n} &= E_{n}^{(0)} + H^{'}_{nn} + \sum_{k\neq
+n}\frac{|H^{'}_{kn}|^{2}}{E_{n}^{(0)} - E_{k}^{(0)}} \nonumber \\
+&= (n+\frac{1}{2})\hbar\omega_{0} +
+\frac{q^{2}\varepsilon^{2}}{\hbar\omega_{0}} ( |x_{n-1,n}|^{2} -
+|x_{n+1,n}|^{2}) \nonumber \\
+&= (n+\frac{1}{2})\hbar\omega_{0} -
+\frac{q^{2}\varepsilon^{2}}{2m\omega_{0}^{2}}
+\end{align}
+We note that from the (\ref{PTIQMeq:20}) the $H^{'}_{nn}$ is easily
+known to be zero. Here we can see that all the energy level shift
+down for $\frac{q^{2}\varepsilon^{2}}{2m\omega_{0}^{2}}$ due to the
+perturbation.
+
+For the wave function, the first order correlation is:
+\begin{align}\label{}
+\Psi_{n}(x) &= \Psi_{n}^{(0)}(x) + \sum_{k\neq
+n}\frac{H^{'}_{kn}}{E^{(0)}_{n}
+- E^{(0)}_{k}}\Psi^{(0)}_{k}(x) \nonumber \\
+&= \Psi_{n}^{(0)}(x) + \frac{q\varepsilon}{\hbar\omega_{0}}
+\frac{1}{a}\left[\sqrt{\frac{n}{2}}\Psi_{n-1}^{(0)}(x) -
+\sqrt{\frac{n+1}{2}}\Psi_{n+1}^{(0)}(x)\right]
+\end{align}
+Now after the perturbation in the $\Psi_{n}^{(0)}(x)$ it has been
+mixed with two adjacent wave functions; namely the
+$\Psi_{n-1}^{(0)}(x)$ and $\Psi_{n+1}^{(0)}(x)$.
+
+In the case without the perturbation, from the (\ref{PTIQMeq:19}) we
+can see that the average coordinate value for the oscillator is
+zero: $x_{nn} = 0$, it means that the average position for the
+oscillator is the equilibrium position. That's coincided with the
+natural understanding with the harmonic oscillator. However, In the
+perturbation field, it turns out that there's some offset for its
+average position:
+\begin{equation}\label{}
+x_{nn}^{'} = \bra{\Psi_{n}(x)}\hat{x}\ket{\Psi_{n}(x)} =
+\frac{q\varepsilon}{m\omega_{0}^{2}}
+\end{equation}
+However, it can see that the electric filed does not alter the
+character of oscillator.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Van der Waals Interaction}
+%
+%
+%
+Van der Waals force plays crucial rule in chemistry. From the view
+of quantum mechanics, it can be attributed to the dipole-dipole
+interaction between two neutralized molecules and atoms. In this
+section let's go to see how to use the approximated dipole-dipole
+interaction operator to derive the expression of Van der Waals
+energy.
+
+The most simplest system for evaluating the Van der Waals
+interaction is two hydrogen atoms system, where both of the two
+atoms are far away from each other compared with the atom radius.
+For example, the average atom radius $r$ for H atom is $1$ Bohr
+radius, which is approximated at $0.5${\AA}.; then if the two
+hydrogen atoms separate each other at $R \approx 4\sim 5${\AA}.; we
+have $r/R \approx \frac{1}{10}$. In this case the interactions
+between the two hydrogen atoms can be fully considered as the Van
+der Waals interactions.
+
+For this two hydrogen system, we denote that the distance between
+the two nucleus are $R$, and the electron $1$ is near the nuclear
+$a$ with average radius of $r_{1}$ while the electron $2$ is
+centered around nuclear $b$ with average radius of $r_{2}$.
+Therefore the Hamiltonian for this system is:
+\begin{align}\label{}
+\hat{H} &= \hat{H}_{0} + \hat{H}^{'} \nonumber \\
+\hat{H}_{0} &= -\frac{\hbar^{2}}{2m}
+(\nabla^{2}_{1} + \nabla^{2}_{2}) - \frac{e^{2}}{r_{1}}
+- \frac{e^{2}}{r_{2}} \nonumber \\
+\hat{H}^{'} &= \frac{e^{2}}{R^{2}} + \frac{e^{2}}{r_{12}^{2}} -
+\frac{e^{2}}{r_{a2}} - \frac{e^{2}}{r_{b1}}
+\end{align}
+
+The $\hat{H}^{'}$ is hard for evaluation. However, if $r/R \ll 1$
+then we can use the dipole-dipole interactions to replace the old
+form:
+\begin{equation}\label{PTIQMeq:21}
+\hat{H}^{'} = \frac{1}{R^{3}}\Big\{\hei{D}_{1}\cdot\hei{D}_{2}
+-3(\hei{D}_{1}\cdot\heiti{e}_{R})(\hei{D}_{2}\cdot\heiti{e}_{R})\Big\}
+\end{equation}
+Here $\hei{D}_{1} = -e\hei{r}_{1}$, $\hei{D}_{2} = -e\hei{r}_{2}$
+and $\hei{e}_{R} = \heiti{R}/R$. The form for the $\hat{H}^{'}$ in
+(\ref{PTIQMeq:21}) can be gotten by compared with the electrostatic
+field in electrodynamics (This actually corresponds to the induced
+dipole in the classical mechanics, and the operator expression could
+be similar gotten by comparing with the classical mechanics).
+
+Assume that the hydrogen atom is in ground state. Because that both
+of the two atoms are far away from each other, thus we can omit
+their overlap to write the whole wave function simply as their
+product:
+\begin{equation}\label{}
+\Psi = \Psi_{1} (r_{1})\Psi_{2} (r_{2})
+\end{equation}
+Here we can prove that $\bra{\Psi}\hat{H}^{'}\ket{\Psi} = 0$(see the
+page of 366 in \cite{ZengJinYan} Vol. one for more details).
+Therefore the first order correlation for the $\hat{H}^{'}$ is zero.
+Thus the second order correlation for the $\hat{H}^{'}$ is:
+\begin{equation}\label{}
+E^{(2)} = \sum_{n\neq 0}\frac{|H^{'}_{n0}|^{2}}{E^{0}_{0} -
+E^{0}_{n}} \approx -\frac{A}{R^{6}}
+\end{equation}
+Here $|H^{'}_{n0}| \infty 1/R^{3}$, thus we got the energy scales
+with $1/R^{6}$. This result is qualitatively coincide with the
+empirical formula which is used to evaluate the Van der Waals
+energy.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Perturbation Treatment for The Degenerate Case}
+%
+% 1  clue that how to tackle down the perturbation treatment
+%    for this case
+% 2  how to understand the perturbation will remove the degeneracy
+%    for the degenerate states
+%
+In the above content, we have discussed the limitations for the
+perturbation treatment applied on the non-degenerate situation. In
+this section, we are going to see how to tackle down such
+difficulties.
+
+Suggest that we have two states, namely the $\Psi_{m}^{(0)}$ and
+$\Psi_{n}^{(0)}$; they are the eigen states for the $\hat{H}_{0}$
+and we assume their energy ($E_{m}^{(0)}$ and $E_{n}^{(0)}$
+separately) level are very close or just in degenerate states.
+According to the discussion in \ref{PTIQM:1}, we can not directly
+use the perturbation formula which is attributed to the fact that
+the $E_{m}^{(0)} - E_{n}^{(0)}$ will cause infinite number (for the
+degenerate states) or abnormal high component in these expressions.
+However, if the corresponding integral of
+$\bra{\Psi_{m}^{(0)}}\hat{H}^{'}\ket{\Psi_{n}^{(0)}}$ equals to
+zero, then for the near degenerate case it looks like that the
+perturbation equations can be used again. therefore, the condition
+that $\bra{\Psi_{m}^{(0)}}\hat{H}^{'}\ket{\Psi_{n}^{(0)}} = 0$ is
+some kind of clue which help us to further investigate how to
+facilitate the perturbation treatment for the degenerate case.
+
+Usually, the perturbed operator of $\hat{H}^{'}$ tends to break the
+original degenerate states situation for the $\hat{H}_{0}$. In
+section \ref{SE:3}, we have proved such fact that if two operator
+$\hat{F}$ and $\hat{G}$ all commute with Hamiltonian, that is
+$[\hat{F}, \hat{H}] = [\hat{G}, \hat{H}] = 0$; however, we have
+$[\hat{F}, \hat{G}] \neq 0$ then there must have energy degeneracy
+phenomenon for the specific system. For example, we know that for
+the angular momentum of $\hei{l}$ we have $[\hei{l}, \hat{H}] = 0$
+However, for the $\hat{l}_{x}$, $\hat{l}_{y}$ and $\hat{l}_{z}$ they
+can not commute with each other: $[\hat{l}_{i}, \hat{l}_{j}] \neq 0$
+for $i, j \in x, y, z$. therefore, we can expected that in the
+system, where it possesses the isotropy quality (all the single atom
+system possesses the isotropy quality); then there must have energy
+degeneracy phenomenon. The most simplest case is the hydrogen atom,
+where its three eigen states corresponding to $l=1$ (namely the
+three states that $m= \pm 1, 0$) are degenerate.
+
+However, if the perturbed operator of $\hat{H}^{'}$ is added into
+the whole system, such degenerate situation usually will break down.
+This is because the perturbed operator of $\hat{H}^{'}$ usually has
+lower symmetry character compared with the $\hat{H}_{0}$ (see the
+reference book \cite{ZengJinYan} in Vol. two. PP $427$). Therefore,
+we will concentrate on the situation that the adding of
+$\hat{H}^{'}$ will partially or wholly remove the degeneracy for the
+original states.
+
+For the degenerate states, they form some subspace for a given
+energy level so that there's some uncertainty in the expression of
+wave functions. For example, if $\Psi_{m}^{(0)}$ and
+$\Psi_{n}^{(0)}$ are two eigen states for the $\hat{H}$ and give the
+same energy of $E^{(0)}_{k}$, and we assume that they are forming
+some subspace; then the vector building from this subspace:
+\begin{equation}\label{}
+\Psi_{k}^{(0)} = c_{1}\Psi_{m}^{(0)} + c_{2}\Psi_{n}^{(0)}
+\end{equation}
+also corresponding to the eigen state for the some arbitrary $c_{1}$
+and $c_{2}$. However, the perturbation of $\hat{H}^{'}$ will rule
+out such uncertainty in the subspace.
+
+In the perturbation treatment, we use some arbitrary real number of
+$\lambda$ to signal the perturbation states for the wave function (
+see the expression of \ref{PTIQMeq:5}) as well as the energy. Here
+we require that they should be the continuous function for the
+$\lambda$ so that as $\lambda\rightarrow 0$; then the wave function
+approach to some definite linear combination between the eigen
+states in the subspace. Later in the content, we can see that this
+linear combination is just diagonalizing the perturbed operator
+$\hat{H}^{'}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Mathematical Expression}
+%
+%  1  mathematical expression
+%
+%
+Suppose that for the $\hat{H}_{0}$ the system is in some degenerate
+state of $E_{k}^{(0)}$:
+\begin{equation}\label{}
+E = E_{k}^{(0)}
+\end{equation}
+Assume that there are $f_{k}$ eigen states giving the energy of
+$E_{k}^{(0)}$, then the wave function is some linear combination of
+them:
+\begin{equation}\label{PTIQMeq:22}
+\Phi^{(0)}_{k} = \sum_{\mu}^{f_{k}}a_{\mu}\Psi_{k\mu}^{(0)}
+\end{equation}
+Here we assume that such $f_{k}$ eigen states have been
+orthogonalized so that we have:
+\begin{equation}\label{}
+\langle\Psi_{k\mu}^{(0)}|\Psi_{k\mu^{'}}^{(0)}\rangle =
+\delta_{\mu\mu^{'}}
+\end{equation}
+Let's take the (\ref{PTIQMeq:22}) into the first order perturbation
+treatment in (\ref{PTIQMeq:7}):
+\begin{equation}\label{}
+(\hat{H}_{0} - E^{0}_{k})\Phi^{1}_{k} = \sum_{\mu}^{f_{k}}(E^{1}_{k}
+- \hat{H}^{'})a_{\mu}\Psi_{k\mu}^{(0)}
+\end{equation}
+If we multiply the above equation with
+$\bra{\Psi_{k\mu^{'}}^{(0)}}$, then we can get:
+\begin{equation}\label{PTIQMeq:23}
+\sum_{\mu}^{f_{k}}(\hat{H}^{'}_{\mu\mu^{'}} -
+E^{1}_{k}\delta_{\mu\mu^{'}})a_{\mu} = 0
+\end{equation}
+Here in the derivation we have to remember that:
+\begin{equation}\label{}
+\bra{\Psi_{k\mu^{'}}^{(0)}}(\hat{H}_{0} -
+E^{0}_{k})\ket{\Phi^{1}_{k}} = (E^{0}_{k} -
+E^{0}_{k})\langle\Psi_{k\mu^{'}}^{(0)}|\Phi^{1}_{k}\rangle = 0
+\end{equation}
+
+The equation in the (\ref{PTIQMeq:23}) is some secular equation,
+where the non-zero solution demands that:
+\begin{equation}\label{PTIQMeq:27}
+det|\hat{H}^{'}_{\mu\mu^{'}} - E^{1}_{k}\delta_{\mu\mu^{'}}| = 0
+\end{equation}
+this $n$ fold determinant will produce $f_{k}$ eigenvalue, which can
+be labeled as $E^{1}_{k1}, E^{1}_{k2}, \cdots, E^{1}_{kf_{k}}$. For
+each certain $E^{1}_{ki}$, there corresponds some eigen vector, it's
+the definite linear combination of the zero order wave function.
+Hence, we can write the new zero order wave function as:
+\begin{equation}\label{PTIQMeq:24}
+\Phi^{(0)}_{\alpha k} =
+\sum_{\mu}^{f_{k}}a_{\alpha\mu}\Psi_{k\mu}^{(0)} \quad \alpha =
+1,2,\cdots, f_{k}
+\end{equation}
+It's a bit of complicated form in (\ref{PTIQMeq:24}). We note that
+the label of $\alpha$ represents the dimension for the new zero
+order wave function in the given subspace, the $k$ indicates that it
+corresponds to the energy level of $E_{k}^{(0)}$; and the $\mu$
+loops over all the old wave function gotten before the perturbation.
+Here it's worthy to note that since the subspace is some
+``complete'' space - which means that all the eigen states give the
+energy of $E_{k}^{(0)}$ are all produced from the linear combination
+of such $f_{k}$ original eigen states. Hence the treatment has
+nothing to do with the eigen vectors outside the subspace.
+
+If the new root of $E^{1}_{k1}, E^{1}_{k2}, \cdots, E^{1}_{kf_{k}}$
+are all different with each other, then it can say that the
+perturbation of $\hat{H}^{'}$ has removed the energy degeneracy.
+However, it may have possibility that the $E^{1}_{ki}$ are still
+degenerate, or partially degenerate. If this is the case, the higher
+correlation for the degenerate states is required because the wave
+function is still not fixed.
+
+Finally, there's some question that how to do this perturbation
+treatment in reality? In practice, This perturbation treatment for
+the degenerate states will be executed in the first step - in an
+attempt to relieve the degeneracy situation for all the eigen
+states. If there's still some degenerate states after the above
+procedure then some higher correlation is expected to bring up so as
+to fully remove the degenerate situation for the specific subspace.
+Then on the base of the new eigen states, the perturbation treatment
+for the non-degenerate case is carried on to generate the final
+result.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Characters for The Zero Order Wave Functions}
+%
+% 1 different eigen vectors are orthogonalized
+% 2 the \hat{H}^{'} is diagonalized
+%
+Now let's consider the characters for the new sets of the zero order
+wave function of $\Phi^{(0)}_{\alpha k}$, $\alpha = 1,2,\cdots,
+f_{k}$. In the following content we assume that the degeneracy has
+been fully relieved.
+
+Firstly, we can prove that $\langle\Phi^{(0)}_{\alpha
+k}|\Phi^{(0)}_{\beta k}\rangle = \delta_{\alpha\beta}$.
+\begin{align}\label{}
+\langle\Phi^{(0)}_{\alpha k}|\Phi^{(0)}_{\beta k}\rangle &=
+\sum_{\mu}\sum_{\mu^{'}}a_{\alpha\mu}^{*}a_{\beta\mu^{'}}
+\int\Psi_{k\mu^{'}}^{(0)}\Psi_{k\mu}^{(0)}d\tau \nonumber \\
+&=\sum_{\mu}\sum_{\mu^{'}}a_{\alpha\mu}^{*}a_{\beta\mu^{'}}
+\delta_{\mu\mu^{'}} \nonumber \\
+&=\sum_{\mu}a_{\alpha\mu}^{*}a_{\beta\mu}
+\end{align}
+
+However, for different eigen value; their eigen vectors are
+orthogonal with each other (see the mathematical book related to the
+linear algebra, section of eigen value and eigen vectors). Now we
+can easily prove this point by starting from the equation
+(\ref{PTIQMeq:23}).
+\begin{align}\label{PTIQMeq:25}
+\sum_{\mu}^{f_{k}}(\hat{H}^{'}_{\mu\mu^{'}} -
+E^{(1)}_{k\alpha}\delta_{\mu\mu^{'}})a_{\alpha\mu}^{*} &= 0 \nonumber \\
+\sum_{\mu}^{f_{k}}\sum_{\mu^{'}}^{f_{k}}(\hat{H}^{'}_{\mu\mu^{'}} -
+E^{(1)}_{k\alpha}\delta_{\mu\mu^{'}})a_{\alpha\mu}^{*}
+a_{\beta\mu^{'}} &=
+0 \Rightarrow \nonumber \\
+E^{(1)}_{k\alpha}\sum_{\mu}a_{\alpha\mu}^{*}a_{\beta\mu} &=
+\sum_{\mu}^{f_{k}}\sum_{\mu^{'}}^{f_{k}}a_{\alpha\mu}^{*}
+a_{\beta\mu^{'}}\hat{H}^{'}_{\mu\mu^{'}}
+\end{align}
+We note that in the (\ref{PTIQMeq:25}) we have multiply the
+$a_{\beta\mu^{'}}$ and loop over all the $\mu^{'}$ label.
+
+Similarly, if we exchange the label $\alpha\leftrightarrow\beta$,
+$\mu\leftrightarrow\mu^{'}$, we can get:
+\begin{align}\label{}
+\sum_{\mu}^{f_{k}}\sum_{\mu^{'}}^{f_{k}}a_{\beta\mu}^{*}
+a_{\alpha\mu^{'}}\hat{H}^{'}_{\mu\mu^{'}} &=
+\Bigg(\sum_{\mu}^{f_{k}}\sum_{\mu^{'}}^{f_{k}}a_{\alpha\mu}^{*}
+a_{\beta\mu^{'}}\hat{H}^{'}_{\mu\mu^{'}}\Bigg)^{*} \nonumber \\
+&=\sum_{\mu}^{f_{k}}\sum_{\mu^{'}}^{f_{k}}a_{\alpha\mu}^{*}
+a_{\beta\mu^{'}}\hat{H}^{'}_{\mu\mu^{'}}
+\end{align}
+We can get this because the coefficients should be real, and the
+perturbed operator of $\hat{H}^{'}$ is hermite. That's some very
+natural restrictions.
+
+Therefore for the (\ref{PTIQMeq:25}) it can be transformed into:
+\begin{equation}\label{PTIQMeq:26}
+E^{(1)}_{k\beta}\sum_{\mu}a_{\beta\mu}^{*}a_{\alpha\mu} =
+\sum_{\mu}^{f_{k}}\sum_{\mu^{'}}^{f_{k}}a_{\alpha\mu}^{*}
+a_{\beta\mu^{'}}\hat{H}^{'}_{\mu\mu^{'}}
+\end{equation}
+
+If we make the (\ref{PTIQMeq:26}) subtract the (\ref{PTIQMeq:25}),
+it gives:
+\begin{align}\label{}
+(E^{(1)}_{k\beta} -
+E^{(1)}_{k\alpha})\sum_{\mu}a_{\alpha\mu}^{*}a_{\beta\mu} &= 0
+\Rightarrow\nonumber \\
+\sum_{\mu}a_{\alpha\mu}^{*}a_{\beta\mu} &= 0
+\end{align}
+Here we have assumed that the degeneracy has been removed by the
+$\hat{H}^{'}$. Therefore we finally have:
+\begin{equation}\label{}
+\sum_{\mu}a_{\alpha\mu}^{*}a_{\beta\mu} = \delta_{\alpha\beta}
+\end{equation}
+
+Based on this fact, we can now finally prove that the new sets of
+wave functions diagonalize the $\hat{H}^{'}$ matrix.
+\begin{align}\label{}
+\bra{\Phi_{\alpha k}^{(0)}}\hat{H}^{'}\ket{\Phi_{\beta k}^{(0)}} &=
+\sum_{\mu}\sum_{\mu^{'}}a_{\alpha\mu}^{*}
+a_{\beta\mu^{'}}\bra{\Psi_{k\mu}^{(0)}}\hat{H}^{'}
+\ket{\Phi_{k\mu^{'}}^{(0)}} \nonumber \\
+&= \sum_{\mu}\sum_{\mu^{'}}a_{\alpha\mu}^{*}
+a_{\beta\mu^{'}}\hat{H}^{'}_{\mu\mu^{'}} \nonumber \\
+&=E^{(1)}_{k\alpha}\sum_{\mu}a_{\alpha\mu}^{*}a_{\beta\mu} \nonumber \\
+&=E^{(1)}_{k\alpha}\delta_{\alpha\beta}
+\end{align}
+This fact coincides with our suspicion made in the head of this
+section: the new wave functions after the perturbation should be
+made the $\hat{H}^{'}$ matrix diagonalized. In other words, the
+solution we are seeking for is the eigen states in the degenerate
+subspace which makes the $\hat{H}^{'}$ matrix diagonalized.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Simple Example: Two Near Degenerate States}
+%
+%
+%
+Suggest that we have $\hat{H} = \hat{H}_{0} + \hat{H}^{'}$. For the
+$\hat{H}_{0}$ there are two eigen states of $\Psi^{(0)}_{1}$ with
+energy $E^{(0)}_{1}$ and $\Psi^{(0)}_{2}$ with energy $E^{(0)}_{2}$.
+Both of the two energy level are in near degeneracy. Then by the
+formula of (\ref{PTIQMeq:27}), we can get:
+\begin{equation}\label{}
+\begin{bmatrix}
+  H_{11}^{'} - E & H_{12}^{'} \\
+  H_{12}^{'} & H_{22}^{'} - E \\
+\end{bmatrix} = 0
+\end{equation}
+This gives two solutions:
+\begin{equation}\label{}
+E^{(1)}_{\pm} = \frac{(H_{11}^{'} + H_{22}^{'}) \pm
+\sqrt{(H_{11}^{'} - H_{22}^{'})^{2} + 4(H_{12}^{'})^{2}}}{2}
+\end{equation}
+
+Therefore, we can have the energy correlated to the first order as:
+\begin{align}\label{}
+E^{(1)}_{1} &= E^{(0)}_{1} + E^{(1)}_{-} \nonumber \\
+E^{(1)}_{2} &= E^{(0)}_{2} + E^{(1)}_{+}
+\end{align}
+Hence the two energy levels will be separate from each other as long
+as the perturbation is strong enough. For the new sets of the wave
+functions of $\Psi^{'(0)}_{1}$ and $\Psi^{'(0)}_{2}$, they can be
+expressed as the linear combination of the $\Psi^{(0)}_{1}$ and
+$\Psi^{(0)}_{2}$. Through the $E^{(1)}_{\pm}$, by solving the eigen
+equation we can get the coefficients, thus the new sets wave
+functions can be got.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

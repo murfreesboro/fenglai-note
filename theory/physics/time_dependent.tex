@@ -1,0 +1,203 @@
+%
+% set up at March 31th, 2009
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Perturbation treatment for the time-dependent systems}
+\label{perturbation_in_time}
+%
+%  what's the perturbation treatment for the time-dependent system?
+%  quantum transition is mostly important
+%  zero order and first order expression
+%
+In quantum mechanics, the study related to the quantum states can be
+divided into two groups:
+\begin{itemize}
+  \item the possible states for describing the system
+  \item the quantum system evolves with time
+\end{itemize}
+
+In the first case, all the study concentrate on the eigen states and
+eigen values. For the specific system, we choose its CSCCO and
+evaluate the corresponding eigen states. By using such eigen states,
+we can figure out any physical quantity, obviously such physical
+quantity should be time independent; such as the dipole moments for
+the molecule.
+
+For the second case, nearly all the study concentrate on the
+perturbation treatment for the time dependent system. In practice,
+it's usually impossible to derive the general form for the evolution
+of wave functions as time varies. Instead, to determine the quantum
+transition probabilities is much more important in practical
+application. For example, in the photochemistry to determine the
+excitation energy level due to some perturbed radiation, or in the
+UV spectrum to determine the ultraviolet spectrum intensity. they
+are all related to the transition probability between two quantum
+states. therefore, we usually express the time dependent part as
+some ``perturbed'' operator:
+\begin{equation}\label{}
+\hat{H} = \hat{H}_{0} + \hat{H}^{'}(t)
+\end{equation}
+So we calculate the response of the wave functions to this perturbed
+operator by progressively expanding it as:
+\begin{align}\label{}
+\hat{H} &= \hat{H}_{0} + \lambda\hat{H}^{'}(t) \nonumber \\
+\Psi(r,t) &= \Psi^{(0)}(r) + \lambda\Psi^{(1)}(r,t) +
+\lambda^{2}\Psi^{(2)}(r,t) + \cdots
+\end{align}
+
+For the $\hat{H}_{0}$, we can calculate its eigen states. Suggest
+that such eigen states for the $\hat{H}_{0}$ are labeled as
+$\psi_{i}(r)$ ($i=1,2,\cdots$) so that for the zero order
+approximation, an arbitrary state of $\Psi^{(0)}(r)$ can be
+expressed as:
+\begin{equation}\label{}
+\Psi^{(0)}(r) = \sum_{i}a_{i}^{(0)}\psi_{i}(r)
+\end{equation}
+Here the $\Psi^{(0)}(r)$ can be any states for the $\hat{H}_{0}$.
+However, in practical application the system usually resides in the
+ground state for the $\hat{H}_{0}$; so here we can extent this
+condition by requiring that:
+\begin{equation}\label{}
+\Psi^{(0)}(r) = \psi_{k}(r)
+\end{equation}
+So the initial state for the system is assumed in $\ket{k}$ state.
+Therefore, for the zero order approximation we have:
+\begin{equation}\label{PTFTDSeq:4}
+a_{i}^{(0)} = \delta_{ik}
+\end{equation}
+
+As the perturbation of $\hat{H}^{'}(t)$ is switched on at $t > 0$,
+the original eigen states will be broken down; instead the new
+states will be the linear combination of the original states (see
+the discussion in \ref{SE:5}):
+\begin{equation}\label{PTFTDSeq:1}
+\Psi(r,t) = \sum_{i}a_{i}(t)\psi_{i}(r)e^{-iE_{i}t/\hbar}
+\end{equation}
+Here the coefficients of $a_{i}$ should be time dependent.
+Furthermore, in (\ref{PTFTDSeq:1}) the wave function is no longer
+the eigen states for Hamiltonian anymore, the new state will be
+partially in state $\psi_{i}$ or partially in state $\psi_{j}$,
+which is decided by the coefficient of $a_{i}$, it is in turn
+influenced by the time of $t$.
+
+In perturbation treatment, now we can expand the $\Psi(r,t)$ as well
+as the coefficients of $a_{i}(t)$ in order of $\lambda$. however,
+let's firstly bring the (\ref{PTFTDSeq:1}) into the Schrodinger
+equation to see the general form:
+\begin{equation}\label{}
+i \hbar \frac{\partial \Psi(r,t)}{\partial t} = (\hat{H}_{0} +
+\hat{H}^{'}(t))\Psi(r,t)
+\end{equation}
+Which it yields:
+\begin{multline}\label{}
+\sum_{i}i\hbar \psi_{i}(r)e^{-iE_{i}t/\hbar}\frac{\partial
+a_{i}(t)}{\partial t} +
+\sum_{i}a_{i}(t)E_{i}\psi_{i}(r)e^{-iE_{i}t/\hbar} = \\
+\sum_{i}a_{i}(t)E_{i}\psi_{i}(r)e^{-iE_{i}t/\hbar} +
+\sum_{i}a_{i}(t)e^{-iE_{i}t/\hbar}\hat{H}^{'}(t)\psi_{i}(r)
+\end{multline}
+
+Then we can drop the some terms in the above equation to make it to
+be:
+\begin{equation}\label{}
+\sum_{i}i\hbar \psi_{i}(r)e^{-iE_{i}t/\hbar}\dot{a}_{i}(t) =
+\sum_{i}a_{i}(t)e^{-iE_{i}t/\hbar}\hat{H}^{'}(t)\psi_{i}(r)
+\end{equation}
+By using the orthogonal condition (whatever we can always get some
+orthogonal sets) for the $\psi_{i}(r)$, we can multiply both side of
+the equation with $\bra{\psi_{j}(r)}$:
+\begin{align}\label{PTFTDSeq:2}
+i\hbar e^{-iE_{j}t/\hbar}\dot{a}_{j}(t) &=
+\sum_{i}a_{i}(t)e^{-iE_{i}t/\hbar}\hat{H}^{'}_{ji}
+ \quad \underrightarrow{e^{iE_{j}t/\hbar}}\nonumber \\
+i\hbar \dot{a}_{j}(t) &= \sum_{i}a_{i}(t)e^{-i\omega_{ij}
+t}\hat{H}^{'}_{ji}
+\end{align}
+Here we have $\omega_{ij}$ as:
+\begin{equation}\label{}
+\omega_{ij} = \frac{E_{i} - E_{j}}{\hbar}
+\end{equation}
+
+For the first order perturbation, where we can express the first
+order correlated wave function as:
+\begin{equation}\label{}
+\Psi^{(1)}(r,t) =
+\sum_{i}a^{(1)}_{i}(t)\psi_{i}(r)e^{-iE_{i}t/\hbar}
+\end{equation}
+So now it's easy to transform the (\ref{PTFTDSeq:2}) into the first
+order equation:
+\begin{equation}\label{PTFTDSeq:3}
+i\hbar \dot{a}^{(1)}_{j}(t) = \sum_{i}a^{(0)}_{i}(t)e^{-i\omega_{ij}
+t}\hat{H}^{'}_{ji}
+\end{equation}
+Here it's worthy to note that the $\hat{H}^{'}$ already has the
+order of $\lambda$ so that the coefficients of $a_{i}(t)$ should be
+in zero order on the right side of (\ref{PTFTDSeq:3}). Furthermore,
+by using the relation in the (\ref{PTFTDSeq:4}) where $a_{i}^{(0)} =
+\delta_{ik}$; we can finally get:
+\begin{equation}\label{PTFTDSeq:5}
+i\hbar \dot{a}^{(1)}_{j}(t) = e^{-i\omega_{kj} t}\hat{H}^{'}_{jk}
+\end{equation}
+Here the label of $k$ indicates that the system is originally in the
+$\ket{k}$ state. by integrating the (\ref{PTFTDSeq:5}), it gives:
+\begin{equation}\label{}
+a^{(1)}_{j}(t) = -\frac{i}{\hbar}\int_{0}^{t}
+\hat{H}^{'}_{jk}e^{-i\omega_{kj} t}dt
+\end{equation}
+
+For the (\ref{PTFTDSeq:6}), now in this equation we have two index:
+$j$ and $k$. $k$ indicates the original state, while $j$ stands for
+the component for $\ket{j}$ in the first order correlated wave
+functions. Hence it's better to express the $a^{(1)}_{j}(t)$ as two
+indices $a^{(1)}_{kj}(t)$:
+\begin{equation}\label{PTFTDSeq:6}
+a^{(1)}_{kj}(t) = -\frac{i}{\hbar}\int_{0}^{t}
+\hat{H}^{'}_{jk}e^{-i\omega_{kj} t}dt
+\end{equation}
+This equation fixes the first order approximated wave function.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Periodic situation}
+%
+%
+%
+Now let's analyze some important situation where the perturbation
+operator can be expressed as periodic function of time\cite{Landau}.
+
+In this case, $\hat{H}^{'}$ is:
+\begin{equation}\label{}
+\hat{H}^{'}(t) = \hat{F}e^{-i\omega t} + \hat{G}e^{i\omega t}
+\end{equation}
+therefore we have $\hat{H}^{'}(t) = \hat{H}^{'}(t +
+\frac{2k\pi}{\omega})$.
+
+Here the operator of $\hat{F}$ and $\hat{G}$ are time independent.
+Since that the $\hat{H}^{'}$ is required to be some physical
+quantity, thus it's some hermite operator:
+\begin{equation}\label{}
+\hat{F}e^{-i\omega t} + \hat{G}e^{i\omega t} = \hat{F}^{+}e^{i\omega
+t} + \hat{G}^{+}e^{-i\omega t} \Rightarrow \hat{F} = \hat{G}^{+}
+\end{equation}
+Then for the $H^{'}_{jk}$, we have:
+\begin{align}\label{}
+a^{(1)}_{kj}(t) &= -\frac{i}{\hbar}\int_{0}^{t}
+\left\{\hat{F}_{jk}e^{-i(\omega_{kj}+\omega) t} +
+\hat{F}^{*}_{kj}e^{-i(\omega_{kj}-\omega) t}\right\}dt \nonumber
+\\
+&=-\frac{1}{\hbar}\bigg\{
+\frac{\hat{F}_{jk}e^{-i(\omega_{kj}+\omega)t}} {\omega_{kj}+\omega}
++ \frac{\hat{F}^{*}_{kj}e^{-i(\omega_{kj}-\omega)t}}
+{\omega_{kj}-\omega}\bigg\}
+\end{align}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../main"
+%%% End: 

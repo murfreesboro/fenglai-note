@@ -1,0 +1,25 @@
+###########################################################################################
+Nov 10th, 2011:
+ported into Google project for a new hosting. right now just write
+down the future plan for this folder:
+1  HF and DFT:
+   The basic framework has been done. However, it's better to 
+   check the documents again, and the revise them.
+2  DFT functionals:
+   we already have something inside. Check it, and begin the 
+   advanced topic on this part.
+3  post HF method:
+   so far only CI is little discussed, in the future we need:
+   3.1  General CI discussion;
+   3.2  MCSCF;
+   3.3  Couple Cluster
+4  based on the post HF method and DFT functionals, we need a more
+   clear concept about the "correlation", inclduing both non-dynamic
+   one and dynamic correlations.
+
+work has been done: 
+   derivatives related documents finally moved to algorithm part
+   (HF, DFT etc.)
+   DFT grid, TDDFT gradient and functional derivatives etc. all 
+   moved to algorithm folder
+###########################################################################################

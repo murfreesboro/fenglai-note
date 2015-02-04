@@ -1,0 +1,174 @@
+% 
+% firstly set up on Jan 2012
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{HGP Method}
+%
+%
+%
+%
+HGP method\cite{HGP} is a revised method based on OS\cite{OS1986} framework.
+It's central idea is to employ the horizontal recurrence relation so that 
+to take the contraction of coefficients into consideration. 
+
+Before we step into the discussion, let's define some expressions. The general
+un-contracted integral, for example; the electron repulsion integral is
+expressed as:
+\begin{equation}
+ (ab|cd) = \int dr \int dr^{'} \chi_{a}(r)\chi_{b}(r)\frac{1}{|r-r^{'}|}
+\chi_{c}(r^{'})\chi_{d}(r^{'})
+\label{HGP:1}
+\end{equation}
+This is same with the definition in \ref{OS_ERI_eq:1}. As we have noted in the
+previous section that the integral are actually based on shell so we only need
+to specify the shells of a, b, c, d. Therefore, the integral in the \ref{HGP:1}
+is also called ``shell quartet''.
+
+For the contracted integrals, we express it as:
+\begin{align}
+ \label{HGP:2}
+[ij|kl] &=
+\sum_{\mu}^{K_{\mu}}\sum_{\nu}^{K_{\nu}}\sum_{\lambda}^{K_{\lambda}}
+\sum_{\eta}^{K_{\eta}}c_{\mu i}c_{\nu j}c_{\lambda k}c_{\eta l} \nonumber \\
+&\int dr \int dr^{'} \chi_{\mu}(r)\chi_{\nu}(r)\frac{1}{|r-r^{'}|}
+\chi_{\lambda}(r^{'})\chi_{\eta}(r^{'})
+\end{align}
+The Greek letters are the indices over AO space, the i,j,k,l are indices over
+the basis set function space. $K$ denotes the contraction degree.
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Horizontal Recurrence Relation}
+In the OS framework, we already derived the recursive relation for the electron
+repulsion integral:
+\begin{equation}
+ \begin{split}
+ ((a+\iota_{i})b|cd)^{(m)} &= (P_{i} - A_{i})(ab|cd)^{(m)} +
+\left(W_{i} -P_{i}\right)(ab|cd)^{(m+1)} \\
+&+\frac{N_{i}(A)}{2\epsilon}\left(((a-\iota_{i})b|cd)^{(m)}-\frac{\rho}{
+\epsilon }((a-\iota_{i})b|cd)^{(m+1)}\right)  \\
+&+\frac{N_{i}(B)}{2\epsilon}\left((a(b-\iota_{i})|cd)^{(m)}-\frac{\rho}{
+\epsilon }(a(b-\iota_{i})|cd)^{(m+1)}\right)  \\
+&+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}
+(ab|(c-\iota_{i})d)^{(m+1)} \\
+&+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}
+(ab|c(d-\iota_{i}))^{(m+1)} 
+ \end{split}
+\label{HGP_ERI_eq:1}
+\end{equation}
+Here we noted that in such relation, the shell $a$ and shell $b$ are in some
+``symmetrical'' position thus if we consider the expression of
+$(a(b+\iota_{i})|cd)^{(m)}$, it's:
+\begin{equation}
+\begin{split}
+ (a(b+\iota_{i})|cd)^{(m)} &= (P_{i} - B_{i})(ab|cd)^{(m)} +
+\left(W_{i} -P_{i}\right)(ab|cd)^{(m+1)} \\
+&+\frac{N_{i}(A)}{2\epsilon}\left(((a-\iota_{i})b|cd)^{(m)}-\frac{\rho}{
+\epsilon }((a-\iota_{i})b|cd)^{(m+1)}\right)  \\
+&+\frac{N_{i}(B)}{2\epsilon}\left((a(b-\iota_{i})|cd)^{(m)}-\frac{\rho}{
+\epsilon }(a(b-\iota_{i})|cd)^{(m+1)}\right)  \\
+&+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}
+(ab|(c-\iota_{i})d)^{(m+1)} \\
+&+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}
+(ab|c(d-\iota_{i}))^{(m+1)} 
+ \end{split}
+\label{HGP_ERI_eq:2} 
+\end{equation}
+We can see that most of the terms in \ref{HGP_ERI_eq:2} are same with
+\ref{HGP_ERI_eq:1}. Then if we subtract the two terms, it gives:
+\begin{equation}
+ \label{HGP_ERI_HRR}
+ (a(b+\iota_{i})|cd)^{(m)} = ((a+\iota_{i})b|cd)^{(m)} + 
+(A_{i} - B_{i})(ab|cd)^{(m)}
+\end{equation}
+The new recursive relation in \ref{HGP_ERI_HRR} is called ``horizontal
+recurrence relation''(HRR). The relation in \ref{HGP_ERI_eq:1} and 
+\ref{HGP_ERI_eq:2} are called ``vertical recurrence relation''(VRR). 
+Here it has an important feature, that for the \ref{HGP_ERI_HRR} 
+we could contract it so that to transform it into:
+\begin{equation}
+ \label{HGP_ERI_eq:3} 
+ [a(b+\iota_{i})|cd]^{(m)} = [(a+\iota_{i})b|cd]^{(m)} + 
+(A_{i} - B_{i})[ab|cd]^{(m)}
+\end{equation}
+Therefore, the advantages for the HRR relation is that it reduces the
+calculation inside the loop of primitive function pairs. For example, for the
+$[pp|pp]$ primitives, now we just need to calculate the $[ds|ds]$. Therefore,
+much less calculation is done with VRR.
+
+What's more, we note that the HRR relation in \ref{HGP_ERI_HRR} is also applied 
+to the other OS recursive relations. For example, for the three center overlap
+integral whose relationship is:
+\begin{equation}
+ \begin{split}
+ (a+\iota_{i}|b|c) 
+&= (G_{Ai} - A_{i})(a|b|c) + 
+N_{i}(A)\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a-\iota_{i}|b|c) \\
+&+ 
+N_{i}(B)\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a|b-\iota_{i}|c) \\
+&+
+N_{i}(C)\left(\frac{1}{2(\alpha+\beta+\gamma)}\right)(a|b|c-\iota_{i}) 
+ \end{split}
+\end{equation}
+It's easy to see that the corresponding HRR is:
+\begin{equation}
+\label{HGP_ERI_eq:4}
+ (a|b+\iota_{i}|c) = (a+\iota_{i}|b|c) + 
+(A_{i} - B_{i})(a|b|c)
+\end{equation}
+Therefore, the same formula retains.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{HGP Algorithm to Evaluate Integrals}
+%
+%
+%
+Based on the HRR, we have some new algorithm to evaluate the integrals(the
+real calculation will be in reverse order):
+\begin{description}
+ \item[HRR step:]
+ For a general shell quartet of $[ab|cd]$, through the HRR it could be
+ evidently reduced to the integrals of $[e0|f0]$; where for the $e$ the angular
+ momentum would be the sum of $a$ and $b$, for the $f$ it would be sum of $c$
+ and $d$.
+ \item[CONTRACTION step:]
+ Perform the contraction from $(e0|f0)$ to $[e0|f0]$.
+ \item[VRR step:]
+ Calculate the primitive integral of $(e0|f0)$ in VRR. Each of such integrals
+ will be reduced to the $(ss|ss)^{(m)}$, while for $(ab|cd)$ $m$ ranges from
+ 0 to $a+b+c+d$. 
+ \end{description}
+
+How to evaluate the HGP algorithm? By using the HRR, a lot of calculations
+within the loop of primitives pairs now could be moved out of the contraction
+loop (this loop is scaled with $K^{4}$). However, in HRR the angular momentum
+increases in the right hand side so it implies that more shell quartets
+are needed to be generated; which is sacrifice in terms of the balance. 
+
+Now let's give an example to see how the HGP works. Suggest that for the 
+shell quartet of $[FF|FF]$, by using the HRR we can have:
+\begin{enumerate}
+ \item $[FF|FF]$ is reduced to $[GD|FF]$ and $[FD|FF]$;
+ \item $[GD|FF]$ is reduced to $[HP|FF]$ and $[GP|FF]$;
+ \item $[FD|FF]$ is reduced to $[GP|FF]$ and $[FP|FF]$;
+ \item $[HP|FF]$ is reduced to $[IS|FF]$ and $[HS|FF]$;
+ \item $[GP|FF]$ is reduced to $[HS|FF]$ and $[GS|FF]$;
+ \item $[FP|FF]$ is reduced to $[GS|FF]$ and $[FS|FF]$
+\end{enumerate}
+Therefore, there are only four elementary shell quartets, namely the 
+$[FS|FF]$, $[GS|FF]$, $[HS|FF]$ and $[IS|FF]$. On the other hand, similar
+treatment to the ket side will yields $[FF|FS]$, $[FF|GS]$, $[FF|HS]$ and
+$[FF|SI]$ therefore only their combinations are needed:
+\begin{enumerate}
+ \item $[FS|FS]$, $[FS|GS]$, $[FS|HS]$, $[FS|IS]$
+ \item $[GS|FS]$, $[GS|GS]$, $[GS|HS]$, $[GS|IS]$
+ \item $[HS|FS]$, $[HS|GS]$, $[HS|HS]$, $[HS|IS]$
+ \item $[IS|FS]$, $[IS|GS]$, $[IS|HS]$, $[IS|IS]$
+\end{enumerate}
+Then in the VRR step we could calculate all of these integrals.
+
+
