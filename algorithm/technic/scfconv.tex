@@ -1,0 +1,570 @@
+%
+% set up May 2013
+%
+\chapter{SCF Convergence Algorithms}
+
+How to find a set of MO ($\varphi_{1}$, $\varphi_{2}$, $\cdots$ $\varphi_{n}$) which optimize
+the energy functional in the self-consistent field calculation? This chapter discuss all kinds
+of algorithms and techniques related to this question.
+
+\section{Direct Energy Minimization Method}
+%
+%
+%
+The direction energy minimization method\cite{DM_SCF} is an old SCF convergence method. Comparing
+with many more advanced algorithms like DIIS etc. it's less efficient, however the theory itself
+is instructive and could enlighten other theories like GDM\cite{gdm}.
+
+\subsection{Pseudocanonical Transformation}
+\label{pseudocanonical_dm_scf}
+%
+%
+%
+The canonical orbitals are the the molecular orbitals which diagonalizes the Fock matrix:
+\begin{equation}\label{DM_SCF_eq:1}
+ C^{+}FC = I
+\end{equation}
+where $I$ is a diagonal matrix.
+Through the HF equation
+\begin{equation}\label{DM_SCF_eq:2}
+ FC = SCE
+\end{equation}
+it's known that the eigenvector $C$ forms the canonical orbitals because the orthogonality
+on the MO: $C^{+}SC = I$.
+
+Pseudocanonical orbitals, on the other hand; is to diagonalize the block of Fock matrix
+in terms of $F_{oo}$ and $F_{vv}$:
+\begin{equation}\label{DM_SCF_eq:3}
+ F^{'} = 
+\begin{pmatrix}
+ Q_{1}^{+}  &  0  \\
+ 0          &  Q_{2}^{+}\\
+\end{pmatrix}
+\begin{pmatrix}
+ F_{oo}  &  F_{ov}  \\
+ F_{vo}  &  F_{vv}  \\
+\end{pmatrix}
+\begin{pmatrix}
+ Q_{1}    &  0  \\
+ 0        &  Q_{2}\\
+\end{pmatrix}
+\end{equation}
+Because the Fock matrix is symmetric, $F_{ov} = F_{vo}^{+}$ hence it has:
+\begin{equation}\label{DM_SCF_eq:4}
+ F^{'} = 
+ \begin{pmatrix}
+ \epsilon_{1}    &  A^{+}    \\
+ A               &  \epsilon_{2}\\
+\end{pmatrix}
+\end{equation}
+where $A = Q_{2}^{+}F_{vo}Q_{1}$, $\epsilon_{1} = Q_{1}^{+}F_{oo}Q_{1}$ etc.
+$Q_{1}$ and $Q_{2}$ are pseudocanonical orbitals, on the other hand; they
+also form pseudocanonical transformation to the Fock matrix.
+
+The pseudocanonical transformation on MO is given as:
+\begin{equation}\label{DM_SCF_eq:100}
+ \begin{pmatrix}
+  c_{1} & c_{2} & \cdots  & c_{n}
+ \end{pmatrix}
+= 
+ \begin{pmatrix}
+  c_{1} & c_{2} & \cdots  & c_{n}
+ \end{pmatrix}
+\begin{pmatrix}
+ Q_{1}    &  0  \\
+ 0        &  Q_{2}\\
+\end{pmatrix}
+\end{equation}
+The transformation here, is between oo and vv blocks itself. Therefore it expects
+that the transformation will not change the energy.
+
+How to evaluate the pseudocanonical orbitals? As iteratively solving the Fock
+matrix when the result MO is getting close to the minimum one, it could be 
+well expected that the block $A$ should become very small and the $\epsilon_{1}$
+and $\epsilon_{2}$ blocks should approach to the final MO energy. Therefore,
+the block $A$ could be used as reference to guide the SCF convergence process.
+This is the starting point for direct energy minimization method.
+
+\subsection{Direct Minimization Method}
+%
+%
+%
+The direct minimization method starts with the pseudocanonical form of 
+Fock matrix:
+\begin{equation}\label{DM_SCF_eq:5}
+ F^{'} = 
+ \begin{pmatrix}
+ \epsilon_{1}    &  0    \\
+ 0               &  \epsilon_{2}\\
+\end{pmatrix}
++
+ \begin{pmatrix}
+ 0    &  A^{+}    \\
+ A    &  0        \\
+\end{pmatrix}
+\end{equation}
+
+If we add additional $\lambda$ to the $F^{'}$ so that
+\begin{equation}\label{DM_SCF_eq:6}
+ F^{'}(\lambda) = 
+ \begin{pmatrix}
+ \epsilon_{1}    &  0    \\
+ 0               &  \epsilon_{2}\\
+\end{pmatrix}
++ \lambda
+ \begin{pmatrix}
+ 0    &  A^{+}    \\
+ A    &  0        \\
+\end{pmatrix}
+\end{equation}
+as $\lambda = 0$ $F^{'}(\lambda)$ drops the occupy-virtual blocks, and $\lambda = 1$
+makes $F^{'}(\lambda)$ become $F$ with pseudocanonical transformation. From the discussion
+in \ref{pseudocanonical_dm_scf}, the SCF convergence procedure could be viewed as a process
+to reduce the occupy-virtual block of $A$. Therefore it's able to view the $A$ as some 
+perturbation to the MO, so that we are able to construct some unitary transformation matrix
+based on $A$. Suggest that the perturbed MO can be expressed as:
+\begin{equation}\label{DM_SCF_eq:7}
+ \psi_{i}^{'} = \psi_{i}^{p} + \sum^{vir}_{a}\psi_{a}^{p}D_{ai}
+\end{equation}
+The superscript ``p'' on the MO means that these orbitals are with pseudocanonical transformation.
+Because the pseudocanonical transformation does not alter the energy, it's possible to choose
+the MO set with pseudocanonical transformation. The reason to choose such specific set will 
+be unveiled in the later content. We use $a$, $b$, $c$ etc. to express the virtual orbitals, 
+and $i$, $j$, $k$ etc. to express the occupied orbitals. $D_{ai}$ denotes the perturbation 
+coefficients for the occupied orbitals when the virtual ones is involved. Next we need to
+know how to choose the form of $D_{ai}$. 
+
+In considering the perturbation theory, the $D_{ai}$ is suggested to be:
+\begin{equation}\label{DM_SCF_eq:8}
+ D_{ai} = -\lambda A_{ai}(\epsilon_{a} - \epsilon_{i})^{-1}
+\end{equation}
+Therefore the perturbation to the MO is fixed. Considering the total energy expression for 
+SCF:
+\begin{align}\label{DM_SCF_eq:9}
+ E &= \sum_{i}\langle\psi_{i}^{'}|H_{0}|\psi_{i}^{'}\rangle  
+    + \frac{1}{2}\sum_{i}\sum_{j}
+\biggl(\langle\psi_{i}^{'}(1)\psi_{i}^{'}(1)|1/r_{12}|\psi_{j}^{'}(2)\psi_{j}^{'}(2)\rangle
+\nonumber \\
+   &- 
+       \langle\psi_{i}^{'}(1)\psi_{j}^{'}(1)|1/r_{12}|\psi_{i}^{'}(2)\psi_{j}^{'}(2)\rangle\biggr)
+\end{align}
+
+If bringing the \ref{DM_SCF_eq:7} and \ref{DM_SCF_eq:8} into the \ref{DM_SCF_eq:9} and only
+taking the first order perturbation term; then it's able to see that the energy change is:
+\begin{equation}\label{DM_SCF_eq:10}
+ \delta E = \sum_{i}^{occ}\sum_{a}^{vir}(A_{ai}^{*}D_{ai} + D_{ai}^{*}A_{ai})
+\end{equation}
+This is the expression 30 in the paper \cite{DM_SCF}. By taking the $D$ as real number,
+the first order energy change is:
+\begin{align}\label{DM_SCF_eq:11}
+ \delta E &= 2\sum_{i}^{occ}\sum_{a}^{vir}A_{ai}D_{ai} \rightarrow     \nonumber \\
+  \frac{d \delta E}{d \lambda}  &=
+  -2\sum_{i}^{occ}\sum_{a}A^{2}_{ai}(\epsilon_{a} - \epsilon_{i})^{-1}
+\end{align}
+The derivatives is always negative, therefore it grantees that when searching the MO change 
+in terms of minimum of $\lambda$, the energy is going down. The \ref{DM_SCF_eq:11} also 
+explains that why we starts from the MO with pseudocanonical transformation (so that $A_{ai}$ 
+appears as square).
+
+In practical application, paper \cite{DM_SCF} suggests a more general form considering $D_{ai}$:
+\begin{equation}\label{DM_SCF_eq:12}
+ D_{ai} = -\lambda A_{ai}(\epsilon_{a} - \epsilon_{i})^{-1}
+ (\epsilon_{a} - \epsilon_{i})^{q}/\vartriangle^{q}
+\end{equation}
+where 
+\begin{equation}\label{DM_SCF_eq:13}
+ \vartriangle^{q} = (M(N-M))^{-1}\sum^{occ}_{i}\sum^{vir}_{a}(\epsilon_{a} - \epsilon_{i})^{q}
+\end{equation}
+$M$ is the number of occupied orbitals and $N-M$ is the number of virtual orbitals.
+$\vartriangle^{q}$ is used as weighted mean energy difference so that to make $D_{ai}$
+as in same dimension as $A_{ai}$ in the form of \ref{DM_SCF_eq:12}. The value of $q$
+is chosen to optimize the SCF convergence.
+ 
+By setting the value of $q$, it's able to derive the perturbation of $D_{ai}$ in expression
+\ref{DM_SCF_eq:12} as a function of $\lambda$. Then in turn it's able to derive the total
+energy $E(\lambda)$ so that by differentiating:
+\begin{equation}
+ \frac{\partial  E(\lambda)}{\partial \lambda} = 0
+\end{equation}
+it's able to derive the $\lambda_{min}$ and then fix the perturbation $D_{ai}$.
+
+The expression for \ref{DM_SCF_eq:7} and \ref{DM_SCF_eq:8} are in fact general. It's able to 
+define $D_{ai}$ independent of $A_{ai}$, and make it into generalized form:
+\begin{equation}\label{DM_SCF_eq:14}
+ D_{ai} = \alpha_{ai}X_{ai}
+\end{equation}
+$X$ represents some general coordinate system(based on $i$ and $a$) and $\alpha$ is corresponding 
+coefficients.
+
+The direct minimization method right now is rarely used in popular modern quantum chemistry
+package. From the derivation of the theory, it could be expected that it's only when $A$ is 
+very small in \ref{DM_SCF_eq:4}, that the perturbation could be well performed. Therefore
+the method may only be well applied to when SCF process is close to minimum. On the other 
+hand, the convergence is not as efficient as DIIS method etc. However, the derivation here 
+may serve to enlighten the following algorithms which is constructed based on direct 
+minimization method.
+
+\section{Geometric Direct Minimization Method}
+%
+%
+%
+The GDM(Geometric Direct Minimization) method is described in paper \cite{gdm,gdm_fock}. The more
+fundamental base for GDM method comes from the geometric study of matrix under orthogonal 
+constraint\cite{doi:10.1137/S0895479895290954}.
+
+\subsection{SCF Optimization Based on Unitary Transformation}
+%
+%
+%
+For the self consistent field function(Hatree-Fock-Roothaan equation):
+\begin{equation}\label{gdm_eq:1}
+ FC = SCE
+\end{equation}
+suggest we have an initial set of mo $C_{0}$, by doing unitary transformation $U$
+\begin{equation}\label{gdm_eq:2}
+ C^{'} = C_{0}U
+\end{equation}
+where $U^{+}U = I$; it's able to derive a new set of mo and iteratively it's able to derive 
+the result mo which minimizes the energy functional. The transformation of $U$ is unitary 
+because the mo needs to maintain $C^{+}SC=I$ for any set of mo. Therefore, suggest $C^{'}$ 
+is the result mo, it can be expressed as:
+\begin{equation}\label{gdm_eq:3}
+ C^{'} = C_{0}U_{0}U_{1}U_{2}\cdots
+\end{equation}
+
+Can we do energy minimization with respect to $U$? In this sense, the $E(U)$ will be a 
+stationary point in terms of $U$. In maintaining the unitary property of $U$, it's able 
+to define a Lagrangian:
+\begin{equation}\label{gdm_eq:4}
+ L(U) = E(U) - Tr[\epsilon\cdot (U^{+}U-I)]
+\end{equation}
+and the stationary equation is given as(see \cite{doi:10.1137/S0895479895290954}):
+\begin{align}\label{gdm_eq:5}
+ \frac{\partial L(U)}{\partial U} &= 0 \rightarrow   \nonumber \\
+ \frac{\partial E(U)}{\partial U} & = F(U) = \epsilon U^{+} 
+\end{align}
+$F$ is just the Fock matrix. Therefore, the \ref{gdm_eq:5} shows how to derive the matrix
+of $U$.
+
+It's well known that in DFT and HF the energy is invariant if the occupied orbitals space 
+does not change. In other words, the energy does not depend on the occupied orbitals
+but on the space that the occupied orbitals span. Therefore, if the $U$ is expressed as:
+\begin{equation}
+ U = 
+ \begin{pmatrix}
+ U_{oo}  &  0  \\
+ 0       &  U_{vv} \\
+ \end{pmatrix}
+\end{equation}
+it's easy to know that the energy is not going to change. Based on this fact, the matrix
+$U$ can be decomposed into two parts:
+\begin{equation}
+  H = 
+ \begin{pmatrix}
+ H_{oo}  &  0  \\
+ 0       &  H_{vv} \\
+ \end{pmatrix}
+\end{equation}
+where it does not alter the energy, and 
+\begin{equation}
+  V = 
+ \begin{pmatrix}
+ 0        &  V_{ov}  \\
+ V_{vo}   &  0       \\
+ \end{pmatrix}
+\end{equation}
+where it changes the energy.
+
+If an infinitesimal change $U \rightarrow U + \delta U$ is applied then through the 
+unitary requirement the $\delta U$ satisfies 
+\begin{equation}
+ U^{+}\delta U + \delta U^{+} U = 0
+\end{equation}
+If we set $U = I$ then it has:
+\begin{equation}\label{gdm_eq:6}
+ \delta U =-\delta U^{+}
+\end{equation}
+this implies that V is skew-symmetric:
+\begin{equation}\label{gdm_eq:7}
+  V = 
+ \begin{pmatrix}
+ 0            &  V_{ov}  \\
+-V^{+}_{vo}   &  0       \\
+ \end{pmatrix}
+\end{equation}
+
+In the constraint of $U^{+}U=1$, by a curve path of $U_{0}$, $U_{1}$, $\cdots$
+we may able to form the mo which is minimizing the SCF energy functional. However,
+what is the form of $U$ that may perform the job? According to the 
+\cite{doi:10.1137/S0895479895290954} the $U$ can be suggested as:
+\begin{equation}\label{gdm_eq:8}
+ U = e^{V}
+\end{equation}
+Based on the expansion below
+\begin{equation}\label{gdm_eq:9}
+ e^{V} = 1 + \frac{V}{1!} + \frac{V^{2}}{2!} + \cdots
+\end{equation}
+it's able to expand the \ref{gdm_eq:8}:
+\begin{equation}\label{gdm_eq:10}
+ U(V) = 
+ \begin{pmatrix}
+  \cos X^{1/2}  & X^{-1/2} \sin X^{1/2} V_{ov} \\
+  V_{vo}X^{-1/2} \sin X^{1/2}  & \cos Y^{1/2}  \\
+ \end{pmatrix}
+\end{equation}
+where $X = V_{ov}V_{vo}$ and $Y = V_{vo}V_{ov}$. We note that the \ref{gdm_eq:10}
+give the expression of $\dfrac{d U(V)}{d V}$.
+
+where $\gamma$ is the variable used to optimize the SCF energy functional. Therefore,
+as initial step the SCF optimization could be suggested as:
+\begin{itemize}
+ \item get the initial orthogonal mo $C_{0}$;
+ \item know the form of $V$;
+ \item minimize the $\gamma$ in form of \ref{gdm_eq:8} in the energy functional 
+ \ref{gdm_eq:4}, suggest the result $\gamma$ value is $\gamma^{'}$;
+ \item derive the new set of mo $C_{1} = C_{0}e^{\gamma_{0} V}$ until the energy
+ is minimized
+\end{itemize}
+In the above suggested routine, the final mo could be expressed as:
+\begin{equation}
+ C = C_{0}e^{\gamma \vartriangle_{1}}e^{\gamma \vartriangle_{2}}\cdots
+\end{equation}
+
+So far there are several things missing in the general discussion:
+\begin{itemize}
+ \item we do not know how to compute the matrix $V$
+ \item how to include the matrix $H$ in the process?
+\end{itemize}
+
+\subsection{Towards A Solid GDM minimizer}
+%
+%
+%
+
+
+
+\section{DIIS Method}
+%
+%
+%
+\subsection{General Idea about DIIS Method}
+%
+%
+%
+DIIS method(direct inversion in the iterative subspace or direct inversion of the iterative subspace)
+\cite{Pulay1980393, JCC:JCC540030413} starts from the Newton-Raphson method. This method is used to
+speed up the optimization procedure used in SCF process and geometry optimization process in quantum
+chemistry. In these practical applications, it's usually hard to get the exact Hessian in the 
+equation \ref{Newton-Raphson_eq:9}. Therefore, the question we have here is that how can we use an 
+approximated Hessian matrix to perform Newton-Raphson optimization procedure?
+
+Suggest that we use an approximated Hessian matrix $H_{0}$, according to equation
+\ref{Newton-Raphson_eq:9}, the approximation solution based on a guess vector $\mathbf{p_{n-1}}$ 
+could be expressed as:
+\begin{equation}
+\label{DIIS_eq:1}
+ \mathbf{p_{n}} = \mathbf{p_{n-1}} - H_{0}^{-1}G
+\end{equation}
+Here $G$ is the gradient vector for $\dfrac{\partial E}{\partial \mathbf{p_{n-1}}}$ and 
+$H_{0}$ characterizes its second derivatives matrix.
+
+Suggest that if we have the accurate Hessian matrix, we could express the $G$ as:
+\begin{equation}
+\label{DIIS_eq:2}
+ G = H(\mathbf{p_{n-1}} - \mathbf{p}^{final})
+\end{equation}
+Where $\mathbf{p}^{final}$ corresponds to the exact solution for equation, which is 
+$\dfrac{\partial E}{\partial p_{i}} = 0$, $i = 1, 2, \cdots$. 
+Therefore, let's bring the \ref{DIIS_eq:2} into \ref{DIIS_eq:1} we can have:
+\begin{equation}
+ \label{DIIS_eq:3}
+ \mathbf{p_{n}} = \mathbf{p}^{final} + (1-H_{0}^{-1}H)(\mathbf{p_{n-1}} - \mathbf{p}^{final})
+\end{equation}
+
+Now let's try to modify the \ref{DIIS_eq:3}:
+\begin{align}
+ \label{DIIS_eq:4}
+ \mathbf{p_{n}} - \mathbf{p_{n-1}} &= \mathbf{p}^{final} - \mathbf{p_{n-1}} + 
+ (1-H_{0}^{-1}H)(\mathbf{p_{n-1}} - \mathbf{p}^{final}) \nonumber \\
+ &= (\mathbf{p}^{final} - \mathbf{p_{n-1}})(1-(1-H_{0}^{-1}H)) \nonumber \\
+ &= (\mathbf{p}^{final} - \mathbf{p_{n-1}})H_{0}^{-1}H
+\end{align}
+The expression of \ref{DIIS_eq:4} has an important meaning. It indicates that
+if the RHS of \ref{DIIS_eq:4} approaches to zero, since
+the term of $H_{0}^{-1}H$ is never zero, then the $\mathbf{p}^{final} - \mathbf{p_{n-1}}$ 
+is zero - which means, we get to the exact solution of the whole equation! 
+Therefore, the difference between $\mathbf{p_{n}} - \mathbf{p_{n-1}}$ characterizes the 
+measure for the convergence of the solution, if it's converged; then we get the final
+real solution. We name the difference between
+$\mathbf{p_{n}}$ and $\mathbf{p_{n-1}}$ as residual vector: $\triangle \mathbf{p_{n}}$, which
+should be the norm between the two vectors.
+
+Based on this point, we can suggest an expression that the solution vectors
+of $\mathbf{p}$ is expressed as a linear combination of its previous iterative 
+vectors:
+\begin{equation}
+ \label{DIIS_eq:5}
+ \mathbf{p_{n}} = \sum_{i}c_{i}\mathbf{p_{i}}
+\end{equation}
+Therefore, the question here is to how can we generate the coefficients of 
+$c_{i}$ so that the $\mathbf{p_{n}}$ could converge to final solution.
+
+First of all, we can see that the $c_{i}$ is actually required to meet some
+restrictions. That is 
+\begin{equation}
+ \label{DIIS_eq:6}
+ \sum_{i}c_{i} = 1
+\end{equation}
+Why we have that? Suggest the final solution is $\mathbf{p}^{final}$,
+and we can express each of approximated solution $\mathbf{p_{i}}$ as:
+\begin{equation}
+ \mathbf{p_{i}} = \mathbf{p}^{final} + \mathbf{e}_{i}
+\end{equation}
+where $e_{i}$ is the error estimation.Then we have:
+\begin{align}
+\label{DIIS_eq:7}
+ \mathbf{p_{n}} &= \sum_{i}c_{i}(\mathbf{p}^{final} + \mathbf{e}_{i}) \nonumber \\
+ &= \mathbf{p}^{final}\sum_{i}c_{i} + \sum_{i}c_{i}\mathbf{e}_{i}
+\end{align}
+If we have the requirement shown in \ref{DIIS_eq:6}, then as the errors of $\mathbf{e}_{i}$
+goes to zero, then in the above equation we have $\mathbf{p_{n}} = \mathbf{p}^{final}$.
+
+Next, how can we evaluate these $c_{i}$ in \ref{DIIS_eq:5}? According to the result
+shown in \ref{DIIS_eq:4}, the residual vector of $\triangle \mathbf{p_{n}}$ characterizes
+the convergence of approximated solutions towards the exact solution, therefore it's 
+natral to imagine that if all of the $\triangle \mathbf{p_{i}}$ ($i=1,2,\cdots$) are small
+enough, then the result $c_{i}$ must be the best approximation. Such idea is similar to the 
+least square problem. Therefore we have:
+\begin{equation}
+\label{DIIS_eq:8}
+ \triangle \mathbf{P} = \sum_{i}c_{i}\triangle \mathbf{p_{i}} 
+ \Rightarrow \min(\triangle \mathbf{P})
+\end{equation}
+
+For evaluating the minimum of $\triangle \mathbf{P}$, we can construct some Lagrangian:
+\begin{align}
+ \label{DIIS_eq:9}
+ L &= \langle \triangle \mathbf{P} |\triangle \mathbf{P} \rangle - 
+ \lambda(1-\sum_{i}c_{i}) \nonumber \\
+   &= \sum_{i}\sum_{j}c_{i}c_{j}\langle\triangle \mathbf{p_{i}}|\triangle\mathbf{p_{j}}\rangle - 
+   \lambda(1-\sum_{i}c_{i})
+\end{align}
+
+By requiring that $\dfrac{\partial L}{\partial c_{i}} = 0$ ($i = 1, 2, \cdots$) 
+as well as $\dfrac{\partial L}{\partial \lambda} = 0$ we can have:
+\begin{align}
+ \frac{\partial L}{\partial c_{i}} &= 
+ 2\sum_{j}c_{j}\langle\triangle \mathbf{p_{i}}|\triangle\mathbf{p_{j}}\rangle - \lambda
+ = \sum_{j}c_{j}\langle\triangle \mathbf{p_{i}}|\triangle\mathbf{p_{j}}\rangle - \frac{\lambda}{2}
+ \nonumber \\
+ \frac{\partial L}{\partial \lambda} &= 
+ 1-\sum_{i}c_{i}
+\end{align}
+We note that the factor of 2 is absorbed into the $\lambda$ in above equation.
+
+By applying the above derivation into the \ref{DIIS_eq:9}, then we can have the following 
+linear equation:
+\begin{align}
+ \label{DIIS_eq:10}
+ &\begin{bmatrix}
+  \langle\triangle \mathbf{p_{1}}|\triangle\mathbf{p_{1}}\rangle  &
+  \langle\triangle \mathbf{p_{1}}|\triangle\mathbf{p_{2}}\rangle  &
+  \cdots                                                          &
+  \langle\triangle \mathbf{p_{1}}|\triangle\mathbf{p_{m}}\rangle  &
+   -1                                                             \\
+  \langle\triangle \mathbf{p_{2}}|\triangle\mathbf{p_{1}}\rangle  &
+  \langle\triangle \mathbf{p_{2}}|\triangle\mathbf{p_{2}}\rangle  &
+  \cdots                                                          &
+  \langle\triangle \mathbf{p_{2}}|\triangle\mathbf{p_{m}}\rangle  &
+   -1                                                             \\
+  \cdots                                                          &
+  \cdots                                                          &
+  \cdots                                                          &
+  \cdots                                                          &
+  \cdots                                                          \\
+  \langle\triangle \mathbf{p_{m}}|\triangle\mathbf{p_{1}}\rangle  &
+  \langle\triangle \mathbf{p_{m}}|\triangle\mathbf{p_{2}}\rangle  &
+  \cdots                                                          &
+  \langle\triangle \mathbf{p_{m}}|\triangle\mathbf{p_{m}}\rangle  &
+  -1                                                             \\  
+  -1                                                              &
+  -1                                                              &
+  \cdots                                                          &
+  -1                                                              &
+   0                                                             \\
+ \end{bmatrix}
+ \begin{bmatrix}
+  c_{1}  \\
+  c_{2}  \\
+  \vdots \\
+  c_{m}  \\
+  \lambda\\ 
+ \end{bmatrix}
+&=  \begin{bmatrix}
+   0  \\
+   0  \\
+  \vdots \\
+   0  \\
+   1  \\ 
+ \end{bmatrix}
+\end{align}
+The final DIIS step is to obtain a solution to the above linear equation, then 
+we know how to form the new vector of $\mathbf{p}$.
+
+Physically, in DIIS procedure the most important expression is the \ref{DIIS_eq:8}.
+This expression explains how we can get the coefficients of $c_{i}$. Furthermore,
+we note that this expression is not unique. We can have multiple way to create the 
+residual vectors of $\triangle \mathbf{p}$ so that to have better convergence for the 
+optimization process.
+
+Another thing to note is that the matrix in \ref{DIIS_eq:10} could be singular when
+the optimization process is near to the convergence. For example, if the last two
+error vectors of $\triangle \mathbf{p_{m}}$ and $\triangle \mathbf{p_{m-1}}$ are 
+nearly same, then their corresponding column and rows would be nearly same - causing
+the matrix to be singular.
+
+At last, it is interesting to note that DIIS procedure has been mathematically analyzed.
+It's shown that DIIS procedure is equivalent to the quasi-Newton/Secant method
+\cite{rohwedder2011analysis}.
+
+\subsection{DIIS in SCF Procedure}
+%
+%
+The key in the DIIS procedure, is to find a proper expression of the error vectors 
+defined in \ref{DIIS_eq:8}. In paper ~\cite{JCC:JCC540030413} Pulay suggest to use 
+the difference below:
+\begin{equation}
+ \label{DIIS_SCF_eq:1}
+ \triangle \mathbf{p} = FPS - SPF
+\end{equation}
+to represent the errors in SCF convergence. We note, that it coincides our expression 
+in \ref{HF_density_matrix:eq:5} that the converged density matrix is able to commute with
+Fock matrix in MO manner.
+
+How to perform the DIIS procedure in SCF cycles? Generally it could be divided into the 
+following steps:
+\begin{enumerate}
+ \item Building density matrices $P$ and overlap matrix $S$;
+ \item Building Fock matrices according to the number of spin states;
+ \item Construct error vectors $e$ for each spin state according to \ref{DIIS_SCF_eq:1};
+ \item Transform the error vectors into form of $S^{-\frac{1}{2}}eS^{-\frac{1}{2}}$ so that
+ to make it orthogonal;
+ \item Estimate the maximum error and root mean square error and compare it with the criteria 
+ to see whether the convergence has been achieved;
+ \item Extrapolate the error matrix defined in \ref{DIIS_eq:10}, we note that it's only the 
+ last column/row we need to re-compute, and the new elements are set to be $ E_{ij} = 
+ \langle e_{i}|e_{j}\rangle$;
+ \item Solve the error matrix and get the coefficients of $c_{i}$;
+ \item Construct the new Fock matrix based on the expression of \ref{DIIS_eq:5}, where the 
+ vector of $\mathbf{p}$ is actually the previous Fock matrix.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
