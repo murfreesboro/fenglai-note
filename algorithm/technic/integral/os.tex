@@ -314,7 +314,37 @@ Then combined with \ref{OS_three_overlap_int_eq:12}, it gives:
  \end{split}
 \label{OS_three_overlap_int_eq:14}
 \end{equation}
-For the other S type centers we have the similar relation, too. 
+For the other S type centers we have the similar relation, too.
+
+From the above derivation, the bottom integral of three center 
+overlap could be expressed as:
+\begin{equation}
+ \begin{split}
+  (0_{A}|0_{B}|0_{C}) &= \int e^{-\alpha r_{A}^{2}}e^{-\beta  r_{B}^{2}} 
+             e^{-\gamma r_{C}^{2}}dr \\
+          &= e^{-\frac{\alpha\beta}{\alpha+\beta}|AB|^{2}}
+e^{-\frac{(\alpha+\beta)\gamma}{\alpha+\beta+\gamma}|PC|^{2}} 
+\int e^{-(\alpha+\beta+\gamma)|r_{G}|^{2}} dr \\
+          &= e^{-\frac{\alpha\beta}{\alpha+\beta}|AB|^{2}}
+e^{-\frac{(\alpha+\beta)\gamma}{\alpha+\beta+\gamma}|PC|^{2}} 
+\left( \frac{\pi}{\alpha+\beta+\gamma}\right)^{\frac{3}{2}} 
+ \end{split}
+ \label{OS_bottom_three_overlap_int_1}
+\end{equation}
+
+We can also write the above integral in another form:
+\begin{equation}
+ \begin{split}
+  (0_{A}|0_{B}|0_{C}) &= e^{-\frac{\alpha\beta}{\alpha+\beta}|AB|^{2}}
+e^{-\frac{(\alpha+\beta)\gamma}{\alpha+\beta+\gamma}|PC|^{2}} 
+\left( \frac{\pi}{\alpha+\beta+\gamma}\right)^{\frac{3}{2}} \\
+&= (0_{A}|0_{B})\left( \frac{\alpha+\beta}{\alpha+\beta+\gamma}\right)^{\frac{3}{2}}
+e^{-\frac{(\alpha+\beta)\gamma}{\alpha+\beta+\gamma}|PC|^{2}} 
+ \end{split}
+ \label{OS_bottom_three_overlap_int_2}
+\end{equation}
+where $(0_{A}|0_{B})$ is the overlap integral in \ref{overlap_direct_int_eq:1}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electron Repulsion Integrals}
 \label{os_eri}
@@ -892,18 +922,106 @@ for deriving the ERI in the OS framework.
 
 Finally, let's make some complementary work. In the \ref{OS_ERI_result},
 it's clear all of integrals could be derived from the basic integral of
-$(00|00)^{(m)}$, which could be finally derived as:
+$(00|00)^{(m)}$, which is in form of:
 \begin{equation}
  \begin{split}
- (00|00)^{(m)} &=\frac{2}{\sqrt{\pi}} \int du \left( \frac{u^{2}}
-{\rho+u^{2}}\right)^{m}
-\int dr \int dr^{'} e^{-\alpha r_{A}^{2}} e^{-\beta r_{B}^{2}}
-e^{-\alpha^{'} (r^{'}_{C})^{2}}e^{-\beta^{'} (r^{'}_{D})^{2}} \\
-&= 2\left( \frac{\rho}{\pi}\right)^{\frac{1}{2}}(0_{A}|0_{B})
+ (00|00)^{(m)} &= \frac{2}{\sqrt{\pi}} \int_{0}^{\infty} du \left( \frac{u^{2}}
+{\rho+u^{2}}\right)^{m} (00|u|00) \\
+&=\frac{2}{\sqrt{\pi}} \int_{0}^{\infty} du \left( \frac{u^{2}}
+{\rho+u^{2}}\right)^{m} 
+\int dr^{'}  e^{-\alpha^{'} (r^{'}_{C})^{2}}e^{-\beta^{'} (r^{'}_{D})^{2}} \\
+&\int dr  e^{-\alpha r_{A}^{2}} e^{-\beta r_{B}^{2}} e^{(r-r^{'})^{2}u^{2}} \\
+\end{split}
+\end{equation}
+As for the integral over $r$, by using the three body integral result in
+\ref{OS_bottom_three_overlap_int_2}, we can rewrite it as:
+\begin{equation}
+ \begin{split}
+  \int dr  e^{-\alpha r_{A}^{2}} e^{-\beta r_{B}^{2}} e^{(r-r^{'})^{2}u^{2}} &=
+  (0_{A}|0_{B})\left( \frac{\alpha+\beta}{\alpha+\beta+u^{2}}\right)^{\frac{3}{2}}
+e^{-\frac{(\alpha+\beta)u^{2}}{\alpha+\beta+u^{2}}|r^{'}-P|^{2}} 
+ \end{split}
+ \label{OS_ERI_eq:30}
+\end{equation}
+This is equivalent to treat $e^{(r-r^{'})^{2}u^{2}}$ as a S type of Gaussian, where
+the electron in $r$ centers on ``nuclei'' of $r^{'}$.
+
+The RHS of \ref{OS_ERI_eq:30} is still like a Gaussian of $r^{'}$ centering
+on $P$, so once again by using the \ref{OS_bottom_three_overlap_int_2};
+it's able to integrate over $r^{'}$. Before we move on, let's do some prepare
+work. Firstly, considering the combination of Gaussian on $P$ and Gaussian
+on $C$ and $D$, for the exponent coefficient it gives:
+\begin{equation}
+ \begin{split}
+  \frac{\frac{(\alpha+\beta)u^{2}}{\alpha+\beta+u^{2}}\times
+  (\alpha^{'}+\beta^{'})}{\frac{(\alpha+\beta)u^{2}}{\alpha+\beta+u^{2}} 
+  +\alpha^{'}+\beta^{'}} 
+  &= \frac{(\alpha^{'}+\beta^{'})(\alpha+\beta)u^{2}}
+  {(\alpha+\beta+u^{2})(\alpha^{'}+\beta^{'})+(\alpha+\beta)u^{2}} \\
+  &= \frac{u^{2}}{1+\frac{u^{2}}{\alpha+\beta}+\frac{u^{2}}{\alpha^{'}+\beta^{'}}} \\
+  &= \frac{u^{2}}{1+u^{2}\left( \frac{1}{\alpha+\beta}+\frac{1}{\alpha^{'}+\beta^{'}}
+  \right) } \\
+  &= \frac{u^{2}}{1+\frac{u^{2}}{\rho}} \\
+  &= \frac{\rho u^{2}}{\rho+ u^{2}}
+ \end{split}
+ \label{OS_ERI_eq:31}
+ \end{equation}
+ Here we use the definition for variable of $\rho$ in \ref{OS_ERI_eq:17}.
+ 
+ So the integral over $r^{'}$ becomes:
+\begin{equation}
+ \begin{split}
+   &\int dr^{'}  e^{-\alpha^{'} (r^{'}_{C})^{2}}e^{-\beta^{'} (r^{'}_{D})^{2}} 
+   \int dr  e^{-\alpha r_{A}^{2}} e^{-\beta r_{B}^{2}} e^{(r-r^{'})^{2}u^{2}} \\
+&= (0_{A}|0_{B})\left( \frac{\alpha+\beta}{\alpha+\beta+u^{2}}\right)^{\frac{3}{2}}   
+  \int dr^{'}  e^{-\alpha^{'} (r^{'}_{C})^{2}}e^{-\beta^{'} (r^{'}_{D})^{2}} 
+   e^{-\frac{(\alpha+\beta)u^{2}}{\alpha+\beta+u^{2}}|r^{'}-P|^{2}} \\
+&= (0_{A}|0_{B})(0_{C}|0_{D})
+\left( \frac{\alpha+\beta}{\alpha+\beta+u^{2}}\right)^{\frac{3}{2}} 
+\left( \frac{\alpha^{'}+\beta^{'}}{\alpha^{'}+\beta^{'}+ 
+\frac{(\alpha+\beta)u^{2}}{\alpha+\beta+u^{2}}}\right)^{\frac{3}{2}}
+e^{-\frac{\rho u^{2}}{\rho+ u^{2}}|PQ|^{2}}
+\end{split} 
+\label{OS_ERI_eq:32}
+\end{equation}
+This is using the result of \ref{OS_ERI_eq:31}. Combing the term in \ref{OS_ERI_eq:32},
+it gives:
+\begin{equation}
+\begin{split}
+ &\left( \frac{\alpha+\beta}{\alpha+\beta+u^{2}}\right)^{\frac{3}{2}} 
+\left( \frac{\alpha^{'}+\beta^{'}}{\alpha^{'}+\beta^{'}+ 
+\frac{(\alpha+\beta)u^{2}}{\alpha+\beta+u^{2}}}\right)^{\frac{3}{2}} \\
+&= \left( \frac{(\alpha+\beta)(\alpha^{'}+\beta^{'})}
+{(\alpha+\beta+u^{2})(\alpha^{'}+\beta^{'})+(\alpha+\beta)u^{2}}\right)^{\frac{3}{2}}\\
+&= \left(\frac{1}{1+\frac{u^{2}}{\rho}}\right)^{\frac{3}{2}} \\
+&= \left(\frac{\rho}{\rho+u^{2}}\right)^{\frac{3}{2}}
+\end{split}
+ \label{OS_ERI_eq:33}
+\end{equation}
+So after integrate over $r$ and $r^{'}$ the bottom integral becomes:
+\begin{equation}
+ \begin{split}
+ (00|00)^{(m)} &=\frac{2}{\sqrt{\pi}}(0_{A}|0_{B})(0_{C}|0_{D})
+ \int_{0}^{\infty} du \left( \frac{u^{2}}{\rho+u^{2}}\right)^{m}
+ \left(\frac{\rho}{\rho+u^{2}}\right)^{\frac{3}{2}}
+ e^{-\frac{\rho u^{2}}{\rho+ u^{2}}|PQ|^{2}} 
+ \end{split}
+\label{OS_ERI_eq:34}
+\end{equation}
+If we set $t^{2} = \frac{u^{2}}{\rho+ u^{2}}$, and it's easy to know
+that 
+\begin{equation}
+ du = (1-t^{2})^{-\frac{3}{2}}\rho^{1/2} dt
+\end{equation}
+so \ref{OS_ERI_eq:34} becomes:
+\begin{equation}
+ \begin{split}
+ (00|00)^{(m)} &= 2\left( \frac{\rho}{\pi}\right)^{\frac{1}{2}}(0_{A}|0_{B})
 (0_{C}|0_{D})\int^{1}_{0} t^{2m} e^{-(\rho|PQ|^{2})t^{2}} dt 
  \end{split}
 \label{OS_ERI_complementary_result}
 \end{equation}
+
 Where we have the arguments as:
 \begin{align}
  \overrightarrow{P} &= \frac{\alpha \overrightarrow{A} + \beta
@@ -913,7 +1031,6 @@ Where we have the arguments as:
 \rho &= \frac{(\alpha+\beta)(\alpha^{'}+\beta^{'})}
 {(\alpha+\beta)+(\alpha^{'}+\beta^{'})}
 \end{align}
-This result could be got in the original reference.
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Overlap Integral}
