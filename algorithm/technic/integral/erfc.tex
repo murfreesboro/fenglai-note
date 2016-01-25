@@ -2,18 +2,17 @@
 \section{Coulomb Integrals with error function Operator}
 
 In a lot of applications it's useful to modify the normal Coulomb operator with 
-error function:
+error function($\omega$ is some given constant):
 \begin{equation}\label{erf_coulomb_integral:1}
  \frac{1}{r_{12}} = \frac{erf(\omega r_{12})}{r_{12}} + \frac{erfc(\omega r_{12})}{r_{12}}
 \end{equation}
 where the error function is:
 \begin{align}\label{erf_coulomb_integral:2}
- erf(\omega r_{12})  &= \frac{2}{\sqrt{\pi}}\int_{0}^{r_{12}} e^{-\omega t^{2}} dt \nonumber \\ 
- erfc(\omega r_{12}) &= \frac{2}{\sqrt{\pi}}\int_{r_{12}}^{+\infty} e^{-\omega t^{2}} dt
+ erf(\omega r_{12})  &= \frac{2}{\sqrt{\pi}}\int_{0}^{\omega r_{12}} e^{-  t^{2}} dt \nonumber \\ 
+ erfc(\omega r_{12}) &= \frac{2}{\sqrt{\pi}}\int_{\omega r_{12}}^{+\infty} e^{- t^{2}} dt
 \end{align}
-therefore $erf(\omega r_{12}) + erfc(\omega r_{12}) = 1$. $\omega$ is some given positive
-constant. Based on the decomposition of the Coulomb operator, now the normal four body 
-integral could be rewritten as:
+therefore $erf(\omega r_{12}) + erfc(\omega r_{12}) = 1$. Based on the decomposition of the Coulomb operator, 
+now the normal four body integral could be rewritten as:
 \begin{equation}\label{erf_coulomb_integral:3}
  I_{ijkl} = \int \chi_{i}(r_{1})\chi_{j}(r_{1})\frac{erf(\omega r_{12})}{r_{12}}
 \chi_{k}(r_{2})\chi_{l}(r_{2}) dr_{1} dr_{2}
@@ -30,16 +29,16 @@ in \ref{os_eri}. However, here we have a better idea; just to rewrite the normal
 in the following way:
 \begin{align}\label{erf_coulomb_integral:4}
  erf(\omega r_{12})  
- &= \frac{2}{\sqrt{\pi}}\int_{0}^{r_{12}} e^{-\omega t^{2}} dt \quad \text{set t=u*r12}
+ &= \frac{2}{\sqrt{\pi}}\int_{0}^{\omega r_{12}} e^{- t^{2}} dt \quad \text{set t=u*$\omega r_{12}$}
  \Rightarrow \nonumber \\ 
- &= \frac{2}{\sqrt{\pi}}\int_{0}^{r_{12}} e^{-\omega (ur_{12})^{2}} d(ur_{12}) \nonumber \\
- &= \frac{2}{\sqrt{\pi}}\int_{0}^{1} r_{12}e^{-\omega u^{2}r_{12}^{2}} du 
+ &= \frac{2}{\sqrt{\pi}}\int_{0}^{\omega r_{12}} e^{- (u\omega r_{12})^{2}} d(u\omega r_{12}) \nonumber \\
+ &= \frac{2\omega}{\sqrt{\pi}}\int_{0}^{1} r_{12}e^{- u^{2}\omega^{2}r_{12}^{2}} du 
 \end{align}
 here the trick is to use variable $u$ to replace the variable $t$, so that to transform the 
-integral limit from $r_{12}$ to 1. By using this form of erf function, we can get:
+integral limit from $\omega r_{12}$ to 1. By using this form of erf function, we can get:
 \begin{equation}\label{erf_coulomb_integral:6}
  \frac{erf(\omega r_{12})}{r_{12}} = 
- \frac{2}{\sqrt{\pi}}\int_{0}^{1} e^{-\omega u^{2}r_{12}^{2}} du 
+ \frac{2\omega}{\sqrt{\pi}}\int_{0}^{1} e^{- u^{2}\omega^{2}r_{12}^{2}} du 
 \end{equation}
 so the $r_{12}$ inside the integrate of \ref{erf_coulomb_integral:4} is canceled with the 
 one in the denominator. It's interesting that the result in \ref{erf_coulomb_integral:6}
@@ -48,7 +47,7 @@ the integration goes from 0 to 1 and in \ref{erf_coulomb_integral:5} it goes fro
 $+\infty$. Similarly, the operator with erfc function is:
 \begin{equation}\label{erf_coulomb_integral:7}
  \frac{erfc(\omega r_{12})}{r_{12}} = 
- \frac{2}{\sqrt{\pi}}\int_{1}^{+\infty} e^{-\omega u^{2}r_{12}^{2}} du 
+ \frac{2\omega}{\sqrt{\pi}}\int_{1}^{+\infty} e^{- u^{2}\omega^{2}r_{12}^{2}} du 
 \end{equation}
 
 Such derivation leads to an important idea, that the integral with operator 
@@ -57,15 +56,87 @@ in \ref{os_eri} without any problem. For example, the result in \ref{OS_ERI_eq:2
 can be rewritten as for operator with erf function:
 \begin{equation}
  \begin{split}
- (ab|cd) &= \frac{2}{\pi^{1/2}}\int^{1}_{0} du 
-\int dr \int dr^{'} \chi_{a}(r)\chi_{b}(r) e^{(r-r^{'})^{2}u^{2}}
+ (ab|\frac{erf(\omega r_{12})}{r_{12}}|cd) &= \frac{2\omega}{\pi^{1/2}}\int^{1}_{0} du 
+\int dr \int dr^{'} \chi_{a}(r)\chi_{b}(r) e^{(r-r^{'})^{2}(u\omega)^{2}}
 \chi_{c}(r^{'})\chi_{d}(r^{'}) \\
-&= \frac{2}{\pi^{1/2}}\int^{1}_{0} du
+&= \frac{2\omega}{\pi^{1/2}}\int^{1}_{0} du
 \int dr^{'}\chi_{c}(r^{'})\chi_{d}(r^{'}) 
-\left( \int dr  \chi_{a}(r)\chi_{b}(r) e^{(r-r^{'})^{2}u^{2}}\right) \\ 
-&= \frac{2}{\pi^{1/2}}\int^{1}_{0} du
-\int dr^{'}\chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}|b) \\
-&= \frac{2}{\pi^{1/2}}\int^{1}_{0} du (ab|u|cd)
+\left( \int dr  \chi_{a}(r)\chi_{b}(r) e^{(r-r^{'})^{2}(u\omega)^{2}}\right) \\ 
+&= \frac{2\omega}{\pi^{1/2}}\int^{1}_{0} du (ab|u\omega|cd)
  \end{split}
 \end{equation}
-for the case when $\omega = 1$.
+Let's name $u^{'} = u\omega$. By repeating all of same procedure in \ref{os_eri} in terms of
+$u^{'}$, we can get the same recurrence relation for ERI as shown in \ref{OS_ERI_result}(here 
+below we omit the operator of $\dfrac{erf(\omega r_{12})}{r_{12}}$):
+\begin{equation}
+ \begin{split}
+((a+\iota_{i})b|cd)^{(m)} &= (P_{i} - A_{i})(ab|cd)^{(m)} +
+\left(W_{i} -P_{i}\right)(ab|cd)^{(m+1)} \\
+&+\frac{N_{i}(A)}{2\epsilon}\left(((a-\iota_{i})b|cd)^{(m)}-\frac{\rho}{
+\epsilon }((a-\iota_{i})b|cd)^{(m+1)}\right)  \\
+&+\frac{N_{i}(B)}{2\epsilon}\left((a(b-\iota_{i})|cd)^{(m)}-\frac{\rho}{
+\epsilon }(a(b-\iota_{i})|cd)^{(m+1)}\right)  \\
+&+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}
+(ab|(c-\iota_{i})d)^{(m+1)} \\
+&+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}
+(ab|c(d-\iota_{i}))^{(m+1)}
+\end{split}
+\label{erf_coulomb_integral:8}
+\end{equation}
+where the integral of $(ab|cd)^{(m)}$ in \ref{OS_ERI_eq:28} is expressed as:
+\begin{equation}
+\label{erf_coulomb_integral:9}
+ (ab|\frac{erf(\omega r_{12})}{r_{12}}|cd)^{(m)} = \frac{2\omega}{\sqrt{\pi}}\int^{1}_{0} du \left( 
+ \frac{\omega^{2}u^{2}}{\rho+\omega^{2}u^{2}}\right)^{m}(ab|\omega u|cd) 
+\end{equation}
+The difference here is that the integrand is integrated from 0 to 1, not $+\infty$.
+
+For the bottom integral of $(00|00)^{(m)}$, by repeating the same procedure from 
+\ref{OS_ERI_eq:30} to \ref{OS_ERI_eq:33}, it can see that:
+\begin{equation}
+ \begin{split}
+ (00|\frac{erf(\omega r_{12})}{r_{12}}|00)^{(m)} &=\frac{2\omega}{\sqrt{\pi}}(0_{A}|0_{B})(0_{C}|0_{D}) \\
+ &\int_{0}^{1} du \left( \frac{\omega^{2}u^{2}}{\rho+\omega^{2}u^{2}}\right)^{m}
+ \left(\frac{\rho}{\rho+\omega^{2}u^{2}}\right)^{\frac{3}{2}}
+ e^{-\frac{\rho \omega^{2}u^{2}}{\rho+ \omega^{2}u^{2}}|PQ|^{2}} 
+ \end{split}
+\label{erf_coulomb_integral:10}
+\end{equation}
+Still if we set $t^{2} = \frac{\omega^{2}u^{2}}{\rho+ \omega^{2}u^{2}}$, and through 
+\ref{OS_ERI_eq:35} and set $u^{'} = \omega u$ it's easy to know that 
+\begin{equation}
+ \omega du = (1-t^{2})^{-\frac{3}{2}}\rho^{1/2} dt
+\end{equation}
+Here if $u=0$, $t = 0$; if $u = 1$, $t = \sqrt{\dfrac{1}{1+\frac{\rho}{\omega^{2}}}}$. Therefore
+the above integral becomes:
+\begin{equation}
+ \begin{split}
+ (00|\frac{erf(\omega r_{12})}{r_{12}}|00)^{(m)} &= 
+ 2\left( \frac{\rho}{\pi}\right)^{\frac{1}{2}}(0_{A}|0_{B})(0_{C}|0_{D}) \\
+ &\int^{\sqrt{\frac{1}{1+\frac{\rho}{\omega^{2}}}}}_{0} t^{2m} e^{-(\rho|PQ|^{2})t^{2}} dt 
+ \end{split}
+\label{erf_coulomb_integral:11}
+\end{equation}
+
+Here it's easy to transform the above integral in \ref{erf_coulomb_integral:11}
+to the form in \ref{fm_ssssm_fmt_eq:1}:
+\begin{equation}
+ \begin{split}
+  f_{m}(x) &= \int^{x}_{0} t^{2m} e^{-ct^{2}} dt \quad \text{set t=v*x} \Rightarrow\\
+           &= \int^{x}_{0} (vx)^{2m} e^{-c(vx)^{2}} d(vx) \\
+           &= x^{2m+1} \int_{0}^{1} v^{2m} e^{-c^{'}v^{2}} dv
+ \end{split}
+ \label{erf_coulomb_integral:12}
+\end{equation}
+where $c^{'} = cx^{2}$. In this case the $x = \sqrt{\dfrac{1}{1+\frac{\rho}{\omega^{2}}}}$. So the integral
+could be finally written as:
+\begin{equation}
+ \begin{split}
+ (00|\frac{erf(\omega r_{12})}{r_{12}}|00)^{(m)} &= 
+ 2\left( \frac{\rho}{\pi}\right)^{\frac{1}{2}}(0_{A}|0_{B})(0_{C}|0_{D})
+ \left( \sqrt{\dfrac{1}{1+\frac{\rho}{\omega^{2}}}}\right)^{2m+1}  \\
+ &\int^{1}_{0} t^{2m} e^{-\left( \frac{|PQ|^{2}}{1+\frac{1}{\omega^{2}} + 
+ \frac{1}{\rho}}\right) t^{2}} dt 
+ \end{split}
+\label{erf_coulomb_integral:13}
+\end{equation}
