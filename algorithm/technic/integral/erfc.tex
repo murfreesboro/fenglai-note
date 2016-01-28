@@ -140,3 +140,58 @@ could be finally written as:
  \end{split}
 \label{erf_coulomb_integral:13}
 \end{equation}
+
+\section{Coulomb Integrals with $e^{-\omega r_{12}^{2}}$}
+
+Here we discuss the integral in the form below:
+\begin{equation}\label{expr12_coulomb_integral:1}
+ I_{ijkl} = \int \chi_{i}(r_{1})\chi_{j}(r_{1})e^{-\omega r_{12}^{2}}
+\chi_{k}(r_{2})\chi_{l}(r_{2}) dr_{1} dr_{2}
+\end{equation}
+Here in comparison with \ref{erf_coulomb_integral:5}, the the operator is just 
+the Laplace form of $r_{12}$ without the integration form, and the variable
+of $u$ is replaced by $\sqrt{\omega}$. Therefore, It's easy to see that this 
+is just the integral of $(ab|\sqrt{\omega}|cd)$ in \ref{OS_ERI_eq:2}. By repeating
+the same process in section \ref{os_eri}, we can get the following recurrence
+relation:
+\begin{equation}
+ \begin{split}
+((a+\iota_{i})b|\sqrt{\omega}|cd) &= (P_{i} - A_{i})(ab|\sqrt{\omega}|cd) +
+\left(W_{i} -P_{i}\right)
+\frac{\omega}{\rho+\omega}(ab|\sqrt{\omega}|cd) \\
+&+\frac{N_{i}(A)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{\omega}{\rho+\omega}\right)
+((a-\iota_{i})b|\sqrt{\omega}|cd) \\
+&+\frac{N_{i}(B)}{2\epsilon}\left(1-\frac{\rho}{\epsilon}
+\frac{\omega}{\rho+\omega}\right)
+(a(b-\iota_{i})|\sqrt{\omega}|cd) \\
+&+\left(\frac{N_{i}(C)}{2}\right)\frac{1}{\epsilon+\eta}\frac{\omega}
+{\rho+\omega}(ab|\sqrt{\omega}|(c-\iota_{i})d) \\
+&+\left(\frac{N_{i}(D)}{2}\right)\frac{1}{\epsilon+\eta}\frac{\omega}
+{\rho+\omega}(ab|\sqrt{\omega}|c(d-\iota_{i}))
+\end{split}
+\label{expr12_coulomb_integral:2}
+\end{equation}
+This is just equivalent to the \ref{OS_ERI_eq:27}. It's interesting that comparing 
+with the traditional ERI, here the integral is without $m$. Also it's noted that
+the horizontal recurrence relation is also applied here, too.
+
+The bottom integral $(00|\sqrt{\omega}|00)$ is:
+\begin{equation}
+ \begin{split}
+ (00|\sqrt{\omega}|00) &= 
+\int dr^{'}  e^{-\alpha^{'} (r^{'}_{C})^{2}}e^{-\beta^{'} (r^{'}_{D})^{2}} 
+\int dr  e^{-\alpha r_{A}^{2}} e^{-\beta r_{B}^{2}} e^{-\omega(r-r^{'})^{2}} 
+\end{split}
+\label{expr12_coulomb_integral:3}
+\end{equation}
+by repeating the calculation from \ref{OS_ERI_eq:30} to \ref{OS_ERI_eq:33}, it can
+see that:
+\begin{equation}
+ \begin{split}
+ (00|\sqrt{\omega}|00) &= (0_{A}|0_{B})(0_{C}|0_{D})
+ \left(\frac{\rho}{\rho+\omega}\right)^{\frac{3}{2}}
+ e^{-\frac{\rho \omega}{\rho+ \omega}|PQ|^{2}} 
+\end{split}
+\label{expr12_coulomb_integral:4}
+\end{equation}
