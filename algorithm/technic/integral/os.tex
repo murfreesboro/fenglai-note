@@ -368,7 +368,7 @@ a,b,c,d are just some general Gaussian primitive functions.
 Firstly we do transformation to the $\frac{1}{|r-r^{'}|}$:
 \begin{equation}
  \frac{1}{|r-r^{'}|} = \frac{2}{\pi^{1/2}}\int^{\infty}_{0}
-e^{(r-r^{'})^{2}u^{2}}du
+e^{-(r-r^{'})^{2}u^{2}}du
 \end{equation}
 Here $(r-r^{'})^{2}$ is 
 \begin{equation}
@@ -385,7 +385,7 @@ the integral could be reformed as:
 \chi_{c}(r^{'})\chi_{d}(r^{'}) \\
 &= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du
 \int dr^{'}\chi_{c}(r^{'})\chi_{d}(r^{'}) 
-\left( \int dr  \chi_{a}(r)\chi_{b}(r) e^{(r-r^{'})^{2}u^{2}}\right) \\ 
+\left( \int dr  \chi_{a}(r)\chi_{b}(r) e^{-(r-r^{'})^{2}u^{2}}\right) \\ 
 &= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du
 \int dr^{'}\chi_{c}(r^{'})\chi_{d}(r^{'})(a|0_{r^{'}}|b) \\
 &= \frac{2}{\pi^{1/2}}\int^{\infty}_{0} du (ab|u|cd)
